@@ -109,7 +109,7 @@ public class VisualiserGUI extends JFrame
         int j = m_filename.length();
         if (m_filename.substring(i, j).equals("csv"))
         {
-          dataSet.AddData(m_filename);
+          DataSet.AddData(m_filename);
           displayTableView();
         }
         else
@@ -275,8 +275,8 @@ public class VisualiserGUI extends JFrame
     m_descriptionLabel = new JLabel("Description: ");
     m_description      = new JTextField(10);
     m_dataLabel        = new JLabel("Data Range: ");
-    m_dataList         = new JComboBox(dataSet.GetHeaders());
-    m_dataListTwo      = new JComboBox(dataSet.GetHeaders());
+    m_dataList         = new JComboBox(DataSet.GetHeaders());
+    m_dataListTwo      = new JComboBox(DataSet.GetHeaders());
     m_colourLabel      = new JLabel("Colour: ");
     m_chartColour      = new JComboBox(colours);
 

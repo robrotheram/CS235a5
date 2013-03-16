@@ -43,7 +43,7 @@ public class LineChart
   public void SetData(int segmentOne, int segmentTwo)
   {
     // Get Data
-    String[][] dataArray = dataSet.GetData();
+    String[][] dataArray = DataSet.GetData();
     
     // Init Arrays
     m_xValues  = new double[dataArray.length];

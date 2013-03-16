@@ -27,13 +27,13 @@ public class TableView
 
   /**
    * Creates a JTable populated with data collected
-   * from the dataSet class.
+   * from the DataSet class.
    * @return A populated JTable
    */
   public JTable GetUserData()
   {
-    m_table = new JTable(dataSet.GetData(),
-                         dataSet.GetHeaders());
+    m_table = new JTable(DataSet.GetData(),
+                         DataSet.GetHeaders());
 
     return m_table;
   }

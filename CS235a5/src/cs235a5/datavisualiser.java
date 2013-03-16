@@ -17,6 +17,8 @@ public class datavisualiser
 {
   public static void main (String[] args)
   {
+      
+    
     VisualiserGUI mainWindow = new VisualiserGUI();
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     mainWindow.VisualiserGUI();
