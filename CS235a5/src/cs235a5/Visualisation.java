@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * \file    Visualiser
+ * \file    Visualisation
  * \author  Kerry Tolhurst
  * \date    17/03/2013
  *
@@ -77,6 +77,17 @@ public abstract class Visualisation extends JPanel
   }
   
   /**
+  * A method that allows the dataSet for the visualisation to be set
+  * @param data - The data to be used for the visualisation 
+  * 
+  * @return boolean - returns true if set correctly
+  */
+  public boolean SetData(dataSet data){
+      m_dataSet = data;
+      return true;
+  }
+  
+  /**
    * A get method to return the title of a chart
    * @return m_chartTitle - Returns the chart title
    */
@@ -112,9 +123,22 @@ public abstract class Visualisation extends JPanel
     return m_chartDescription;
   }
   
+  /**
+   * A get method to return the colour scheme of a chart
+   * @return m_colourScheme - Returns the colour scheme
+   */
   public String GetColourScheme()
   {
     return m_colourScheme;
+  }
+  
+  /**
+   * A get method to return the data set for the visualisation
+   * @return m_dataSet - the data set
+   */
+  public dataSet GetDataSet()
+  {
+      return m_dataSet;
   }
   /**
    * Default constructor which passes in  no parameters and displays an error
@@ -133,23 +157,153 @@ public abstract class Visualisation extends JPanel
    * @param height - To set the height of the table
    * @param data - The data to be displayed in the table
    */
-  Visualisation(String title, int width, int height, DataSet data){
+  Visualisation(String title, int width, int height, dataSet data){
       if(SetChartTitle(title)){
           if(m_test){
               System.out.println("Title set correctly in Visualisation(): Table"
                       + " constructor");
           }
       } else if(!SetChartTitle(title)){
-          JOptionPane.showMessageDialog(this, "There has been an error setting "
-                  + "the chart title in Visualisation(): table constructor.");
+          if(m_test){
+              System.err.println("Title not set correctly in Visualisation():"
+                      + " Table constructor");
+          } else {
+              JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the table title in Visualisation(): table"
+                  + " constructor.");
+          }
+      }
+      if(SetScale(width, height)){
+          if(m_test){
+              System.out.println("Table size set correctly in Visualisation():"
+                  + " table constructor");
+          } else if(!SetScale(width, height)){
+              if(m_test){
+                  System.err.println("Table size not set correctly in"
+                      + " Visualisation(): table constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the table dimensions in Visualisation(): table"
+                  + " constructor.");
+              }
+          }
+      }
+      if(SetData(data)){
+          if(m_test){
+              System.out.println("Table data has been set correctly in "
+                  + "Visualisation(): table constructor");
+          } else if(!SetData(data)){
+              if(m_test){
+                  System.err.println("Table data has not been set correctly in "
+                  + "Visualisation(): table constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the table data in Visualisation(): table"
+                  + " constructor.");
+              }
+          }
       }
   }
-  
+ 
+  Visualisation(String title, int width, int height, dataSet data,
+  ColourScheme colours, String author, String description){
+      if(SetChartTitle(title)){
+          if(m_test){
+              System.out.println("Title set correctly in Visualisation(): Chart"
+                      + " constructor");
+          }
+      } else if(!SetChartTitle(title)){
+          if(m_test){
+              System.err.println("Title not set correctly in Visualisation():"
+                      + " Chart constructor");
+          } else {
+              JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the chart title in Visualisation(): Chart"
+                  + " constructor.");
+          }
+      }
+      if(SetScale(width, height)){
+          if(m_test){
+              System.out.println("Chart size set correctly in Visualisation():"
+                  + " Chart constructor");
+          } else if(!SetScale(width, height)){
+              if(m_test){
+                  System.err.println("Chart size not set correctly in"
+                      + " Visualisation(): Chart constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the chart dimensions in Visualisation(): Chart"
+                  + " constructor.");
+              }
+          }
+      }
+      if(SetData(data)){
+          if(m_test){
+              System.out.println("Chart data has been set correctly in "
+                  + "Visualisation(): Chart constructor");
+          } else if(!SetData(data)){
+              if(m_test){
+                  System.err.println("Chart data has not been set correctly in "
+                  + "Visualisation(): Chart constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the Chart data in Visualisation(): Chart"
+                  + " constructor.");
+              }
+          }
+      }
+      if(SetColour(colours)){
+          if(m_test){
+              System.out.println("Chart colours have been set correctly in "
+                  + "Visualisation(): Chart constructor");
+          } else if(!SetColour(colours)){
+              if(m_test){
+                  System.err.println("Chart colours have not been set correctly in "
+                  + "Visualisation(): Chart constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the Chart colours in Visualisation(): Chart"
+                  + " constructor.");
+              }
+          }
+      }
+      if(SetAuthor(author)){
+           if(m_test){
+              System.out.println("Chart author has been set correctly in "
+                  + "Visualisation(): Chart constructor");
+          } else if(!SetAuthor(author)){
+              if(m_test){
+                  System.err.println("Chart author has not been set correctly in"
+                  + " Visualisation(): Chart constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the chart author in Visualisation(): Chart"
+                  + " constructor.");
+              }
+          }
+      }
+      if(SetDescription(description)){
+           if(m_test){
+              System.out.println("Chart description has been set correctly in "
+                  + "Visualisation(): Chart constructor");
+          } else if(!SetDescription(description)){
+              if(m_test){
+                  System.err.println("Chart description has not been set correctly in"
+                  + " Visualisation(): Chart constructor");
+              } else {
+                  JOptionPane.showMessageDialog(this, "There has been an error "
+                  + "setting the chart description in Visualisation(): Chart"
+                  + " constructor.");
+              }
+          }
+      }
+      
+  }
   private String m_title; // Sets the charts title
   private Dimension m_chartScale; // Sets the size of the chart
   private String m_chartAuthor; // Allows the user to add an author
   private String m_chartDescription; // Allows the user to add a description
   private ColourScheme m_colourScheme; // Sets the colour of the charts
-  private DataSet m_dataSet; // Sets the data set for the new visualisation
+  private dataSet m_dataSet; // Sets the data set for the new visualisation
   private boolean m_test = false; // Flag to turn on testing for the class
 }
