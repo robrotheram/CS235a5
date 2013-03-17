@@ -2,24 +2,23 @@ package cs235a5;
 
 /**
  *
- * \file    Visualiser.java
- * \author  Joe Lock
- * \date    12/02/2013
+ * \file    Visualiser
+ * \author  Kerry Tolhurst
+ * \date    17/03/2013
  *
- * \brief   A Visualiser class that gets and sets various
- *          titles and labels on the visualations.
- *
+ * \brief   A Visualiser class that is abstract and helps to get and set all 
+ *          data needed for making different types of visualisations. Subclasses
+ *          will override some of the methods laid out in this class.
  */
 
 public class Visualiser
 {
-  private static String m_chartTitle;
-  private static String m_chartXLabel;
-  private static String m_chartYLabel;
-  private static int m_chartScale;
-  private static String m_chartAuthor;
-  private static String m_chartDescription;
-  private static String m_colourScheme;
+  private String m_chartTitle; // Sets the charts title
+  private int m_chartScale; // Sets the size of the chart
+  private String m_chartAuthor; // Allows the user to add an author
+  private String m_chartDescription; // Allows the user to add a description
+  private String m_colourScheme; // Sets the colour of the charts
+  private DataSet m_dataSet; // Sets the data set for the new visualisation
 
   /**
    * A method used to set a string to be used as the title of a chart
