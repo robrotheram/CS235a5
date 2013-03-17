@@ -121,11 +121,11 @@ public class VisualiserGUI extends JFrame
         System.exit(0);
       } else if (e.getSource() == m_drawPieChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualiser.SetChartTitle(m_title.getText());
-          Visualiser.SetDescription(m_description.getText());
-          Visualiser.SetAuthor(m_author.getText());
+          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetDescription(m_description.getText());
+          Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
-          Visualiser.SetColour(colour.toString().toLowerCase());
+          Visualisation.SetColour(colour.toString().toLowerCase());
           int i = m_dataList.getSelectedIndex();
           int j = m_dataListTwo.getSelectedIndex();
           PieChart p = new PieChart();
@@ -137,11 +137,11 @@ public class VisualiserGUI extends JFrame
         }
       } else if (e.getSource() == m_drawLineChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualiser.SetChartTitle(m_title.getText());
-          Visualiser.SetDescription(m_description.getText());
-          Visualiser.SetAuthor(m_author.getText());
+          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetDescription(m_description.getText());
+          Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
-          Visualiser.SetColour(colour.toString().toLowerCase());
+          Visualisation.SetColour(colour.toString().toLowerCase());
           int i = m_dataList.getSelectedIndex();
           int j = m_dataListTwo.getSelectedIndex();
           LineChart l = new LineChart();
@@ -153,11 +153,11 @@ public class VisualiserGUI extends JFrame
         }
       } else if (e.getSource() == m_drawColumnChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualiser.SetChartTitle(m_title.getText());
-          Visualiser.SetDescription(m_description.getText());
-          Visualiser.SetAuthor(m_author.getText());
+          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetDescription(m_description.getText());
+          Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
-          Visualiser.SetColour(colour.toString().toLowerCase());
+          Visualisation.SetColour(colour.toString().toLowerCase());
           int i = m_dataList.getSelectedIndex();
           int j = m_dataListTwo.getSelectedIndex();
           ColumnChart c = new ColumnChart();
@@ -229,8 +229,8 @@ public class VisualiserGUI extends JFrame
     m_authorText      = new JLabel();
     m_descriptionText = new JLabel();
 
-    m_authorText.setText("Author: " + Visualiser.GetAuthor());
-    m_descriptionText.setText("Description: " + Visualiser.GetDescription());
+    m_authorText.setText("Author: " + Visualisation.GetAuthor());
+    m_descriptionText.setText("Description: " + Visualisation.GetDescription());
 
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
    

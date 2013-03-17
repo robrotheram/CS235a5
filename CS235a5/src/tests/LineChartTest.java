@@ -1,5 +1,5 @@
 import cs235a5.LineChart;
-import cs235a5.Visualiser;
+import cs235a5.Visualisation;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class LineChartTest {
 		
 		LineChart l = new LineChart();
 		
-		Visualiser.SetXLabel("XLabelTest");
+		Visualisation.SetXLabel("XLabelTest");
 		l.SetXAxis();
 		//assertEquals("Result", "XLabelTest", l.GetXLabel());
 		
@@ -23,7 +23,7 @@ public class LineChartTest {
 		
 		LineChart l = new LineChart();
 		
-		Visualiser.SetYLabel("YLabelTest");
+		Visualisation.SetYLabel("YLabelTest");
 		l.SetYAxis();
 		//assertEquals("Result", "YLabelTest", l.GetYLabel());
 		
@@ -34,7 +34,7 @@ public class LineChartTest {
 		
 		LineChart l = new LineChart();
 		
-		Visualiser.SetChartTitle("TitleTest");
+		Visualisation.SetChartTitle("TitleTest");
 		l.SetName();
 		//assertEquals("Result", "TitleTest", l.GetName());
 	}

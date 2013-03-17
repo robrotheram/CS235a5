@@ -81,7 +81,7 @@ public class PieChart
   {
     boolean check = false;
 
-    m_chartName = Visualiser.GetChartTitle(); // set chart name
+    m_chartName = Visualisation.GetChartTitle(); // set chart name
     if (!m_chartName.equals(""))
     {
       check = true;
@@ -95,7 +95,7 @@ public class PieChart
    */
   public void SetDescription()
   {
-    m_Description = Visualiser.GetDescription();
+    m_Description = Visualisation.GetDescription();
   }
 
   /**
@@ -118,7 +118,7 @@ public class PieChart
 
   public void SetColourScheme(){
 
-    m_colourScheme = Visualiser.GetColourScheme();
+    m_colourScheme = Visualisation.GetColourScheme();
   }
 
   /**

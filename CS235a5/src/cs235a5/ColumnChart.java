@@ -72,7 +72,7 @@ public class ColumnChart
   
  public void SetColourScheme(){
 	  
-	  m_colourScheme = Visualiser.GetColourScheme();
+	  m_colourScheme = Visualisation.GetColourScheme();
   }
 
   /**
@@ -102,7 +102,7 @@ public class ColumnChart
   {
     boolean check = false;
     
-    m_chartName = Visualiser.GetChartTitle(); // set chart name
+    m_chartName = Visualisation.GetChartTitle(); // set chart name
     if (!m_chartName.equals(""))
     {
       check = true;
@@ -116,14 +116,14 @@ public class ColumnChart
    */
   public void SetXAxis()
   {
-    m_xAxis = Visualiser.GetXLabel();
+    m_xAxis = Visualisation.GetXLabel();
   }
   /**
    * Sets the yaxis title using the GetYLabel method of the Visualiser class
    */
   public void SetYAxis()
   {
-    m_yAxis = Visualiser.GetYLabel();
+    m_yAxis = Visualisation.GetYLabel();
   }
 
   /**
@@ -131,7 +131,7 @@ public class ColumnChart
    */
   public void SetDescription()
   {
-    m_Description = Visualiser.GetDescription();
+    m_Description = Visualisation.GetDescription();
   }
 
   /**

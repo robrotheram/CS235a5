@@ -1,5 +1,5 @@
 import cs235a5.ColumnChart;
-import cs235a5.Visualiser;
+import cs235a5.Visualisation;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -12,7 +12,7 @@ public class ColumnChartTest {
 	public void testSetName() {
 		ColumnChart c = new ColumnChart();
 		
-		Visualiser.SetChartTitle("Test");
+		Visualisation.SetChartTitle("Test");
 		c.SetName();
 		assertEquals("Result","Test",c.GetName());
 		
@@ -21,7 +21,7 @@ public class ColumnChartTest {
 	public void testSetXAxis() {
 		ColumnChart c = new ColumnChart();
 		
-		Visualiser.SetXLabel("XTest");
+		Visualisation.SetXLabel("XTest");
 		c.SetXAxis();
 		assertEquals("Result","XTest",c.GetXLabel());
 	}
@@ -30,7 +30,7 @@ public class ColumnChartTest {
 	public void testSetYAxis() {
 		ColumnChart c = new ColumnChart();
 		
-		Visualiser.SetYLabel("YTest");
+		Visualisation.SetYLabel("YTest");
 		c.SetYAxis();
 		assertEquals("Result","YTest",c.GetYLabel());
 	}
@@ -38,7 +38,7 @@ public class ColumnChartTest {
 	@Test
 	public void testDescription() {
 		ColumnChart c = new ColumnChart();
-		Visualiser.SetDescription("Test Description");
+		Visualisation.SetDescription("Test Description");
 		c.SetDescription();
 		assertEquals("Result","Test Description",c.GetDescription());
 		

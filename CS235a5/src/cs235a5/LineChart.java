@@ -63,7 +63,7 @@ public class LineChart
 
   public void SetColourScheme(){
 	  
-    m_colourScheme = Visualiser.GetColourScheme();
+    m_colourScheme = Visualisation.GetColourScheme();
   }
   
   /**
@@ -82,7 +82,7 @@ public class LineChart
   public boolean SetName()
   {
     boolean check = false;
-    m_chartName = Visualiser.GetChartTitle();
+    m_chartName = Visualisation.GetChartTitle();
 
     if (!m_chartName.equals(null))
     {
@@ -97,7 +97,7 @@ public class LineChart
    */
   public void SetXAxis()
   {
-    m_xAxis = Visualiser.GetXLabel();
+    m_xAxis = Visualisation.GetXLabel();
   }
 
   /**
@@ -105,7 +105,7 @@ public class LineChart
    */
   public void SetYAxis()
   {
-    m_yAxis = Visualiser.GetYLabel();
+    m_yAxis = Visualisation.GetYLabel();
   }
 
   /**

@@ -1,4 +1,4 @@
-import cs235a5.Visualiser;
+import cs235a5.Visualisation;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -9,24 +9,24 @@ public class VisualiserTest {
 	@Test
 	public void testGetChartTitle() {
 		
-		Visualiser.SetChartTitle("TitleTest");
-		assertEquals("Result", "TitleTest", Visualiser.GetChartTitle() );
+		Visualisation.SetChartTitle("TitleTest");
+		assertEquals("Result", "TitleTest", Visualisation.GetChartTitle() );
 
 	}
 
 	@Test
 	public void testGetXLabel() {
 		
-		Visualiser.SetXLabel("XTest");
-		assertEquals("Result", "XTest", Visualiser.GetXLabel() );
+		Visualisation.SetXLabel("XTest");
+		assertEquals("Result", "XTest", Visualisation.GetXLabel() );
 	
 	}
 
 	@Test
 	public void testGetYLabel() {
 		
-		Visualiser.SetYLabel("YTest");
-		assertEquals("Result", "YTest", Visualiser.GetYLabel() );
+		Visualisation.SetYLabel("YTest");
+		assertEquals("Result", "YTest", Visualisation.GetYLabel() );
 		
 	}
 
@@ -34,47 +34,47 @@ public class VisualiserTest {
 	public void testGetScale() {
 		
 		int ScaleTest = 5;
-		Visualiser.SetScale(ScaleTest);
-		assertEquals("Result", 5, Visualiser.GetScale() );
+		Visualisation.SetScale(ScaleTest);
+		assertEquals("Result", 5, Visualisation.GetScale() );
 		
 	}
 
 	@Test
 	public void testGetAuthor() {
 		
-		Visualiser.SetAuthor("AuthorTest");
-		assertEquals("Result", "AuthorTest", Visualiser.GetAuthor() );
+		Visualisation.SetAuthor("AuthorTest");
+		assertEquals("Result", "AuthorTest", Visualisation.GetAuthor() );
 	}
 
 	@Test
 	public void testGetDescription() {
 		
-		Visualiser.SetDescription("DescriptionTest");
-		assertEquals("Result", "DescriptionTest", Visualiser.GetDescription() );
+		Visualisation.SetDescription("DescriptionTest");
+		assertEquals("Result", "DescriptionTest", Visualisation.GetDescription() );
 		
 	}
 	
 	@Test
 	public void testGetColourLight() {
 		
-		Visualiser.SetColour("Light");
-		assertEquals("Result", "Light", Visualiser.GetColourScheme() );
+		Visualisation.SetColour("Light");
+		assertEquals("Result", "Light", Visualisation.GetColourScheme() );
 		
 	}
 	
 	@Test
 	public void testGetColourGreyscale() {
 		
-		Visualiser.SetColour("Greyscale");
-		assertEquals("Result", "Greyscale", Visualiser.GetColourScheme() );
+		Visualisation.SetColour("Greyscale");
+		assertEquals("Result", "Greyscale", Visualisation.GetColourScheme() );
 		
 	}
 	
 	@Test
 	public void testGetColourDefault() {
 		
-		Visualiser.SetColour("ColourTest");
-		assertEquals("Result", "Default", Visualiser.GetColourScheme() );
+		Visualisation.SetColour("ColourTest");
+		assertEquals("Result", "Default", Visualisation.GetColourScheme() );
 		
 	}
 
