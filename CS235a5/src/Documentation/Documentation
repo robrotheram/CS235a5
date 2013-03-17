@@ -8,6 +8,14 @@ DataSet - Slight name change from dataSet to conform to the coding conventions
 CSVReader
         - updated name from CSVInput to describe what the class does better
         - added in the CSV parser.
+Visualiser
+        - Changed the name to Visualisation
+        - Added constructors to handle setting data for tables and charts
+        - Edited set methods to be booleans and for constructors to use error
+          handling
+        - Moved variables to the bottom of the class
+        - Implemented C3
+        - Added doxygen to all new methods and corrected any old ones
 
 
 Added Files
