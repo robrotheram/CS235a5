@@ -23,9 +23,9 @@ public abstract class Visualisation extends JPanel
    * @param title - A string representing the title of a chart
    * @return check - A boolean flag to check if title has been set correctly
    */
-  public boolean SetChartTitle(String title)
+  public final boolean SetChartTitle(String title)
   {
-    m_chartTitle = title;
+    m_title = title;
     return true;
   }
 
@@ -35,9 +35,9 @@ public abstract class Visualisation extends JPanel
    * @param scale - An integer value representing the scale of a charts axis
    * @return check - A boolean flag to check if scale has been set correctly
    */
-  public boolean SetScale(Dimension scale)
+  public boolean SetScale(int x, int y)
   {
-    m_chartScale = scale;
+    m_chartScale = new Dimension(x, y);
     return true;
   }
 
@@ -82,14 +82,14 @@ public abstract class Visualisation extends JPanel
    */
   public String GetChartTitle()
   {
-    return m_chartTitle;
+    return m_title;
   }
 
   /**
    * A get method to return the Scale factor of a chart
    * @return m_chartScale - Returns the chart scale
    */
-  public int GetScale()
+  public Dimension GetScale()
   {
     return m_chartScale;
   }
@@ -116,17 +116,40 @@ public abstract class Visualisation extends JPanel
   {
     return m_colourScheme;
   }
-  
+  /**
+   * Default constructor which passes in  no parameters and displays an error
+   * telling the user that they need parameters to create a visualisation.
+   */
   Visualisation(){
       JOptionPane.showMessageDialog(this, "No data has been set for the"
               + " visualisation.\n Please ensure data is being set and stored"
-              + "correctly.\n Visualisation(): Empty constructor.")
+              + "correctly.\n Visualisation(): Empty constructor.");
   }
   
-  private String m_chartTitle; // Sets the charts title
+  /**
+   * Constructor for setting the data needed to create tables
+   * @param title - The title for the data
+   * @param width - To set the width of the table
+   * @param height - To set the height of the table
+   * @param data - The data to be displayed in the table
+   */
+  Visualisation(String title, int width, int height, DataSet data){
+      if(SetChartTitle(title)){
+          if(m_test){
+              System.out.println("Title set correctly in Visualisation(): Table"
+                      + " constructor");
+          }
+      } else if(!SetChartTitle(title)){
+          JOptionPane.showMessageDialog(this, "There has been an error setting "
+                  + "the chart title in Visualisation(): table constructor.");
+      }
+  }
+  
+  private String m_title; // Sets the charts title
   private Dimension m_chartScale; // Sets the size of the chart
   private String m_chartAuthor; // Allows the user to add an author
   private String m_chartDescription; // Allows the user to add a description
   private ColourScheme m_colourScheme; // Sets the colour of the charts
   private DataSet m_dataSet; // Sets the data set for the new visualisation
+  private boolean m_test = false; // Flag to turn on testing for the class
 }
