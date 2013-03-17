@@ -204,7 +204,16 @@ public abstract class Visualisation extends JPanel
           }
       }
   }
- 
+  /**
+   * Constructor setting all the data needed for creating charts
+   * @param title
+   * @param width
+   * @param height
+   * @param data
+   * @param colours
+   * @param author
+   * @param description 
+   */
   Visualisation(String title, int width, int height, dataSet data,
   ColourScheme colours, String author, String description){
       if(SetChartTitle(title)){
