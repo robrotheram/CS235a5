@@ -2,8 +2,8 @@
 Update notes
 
 DataSet - Slight name change from dataSet to conform to the coding conventions
-        - To conform to the specification data is now held in a array of DataCell
-        - Striped out the csv parser methods into the CSVReader class
+        - To conform to the specification data is now held in an array of DataCell
+        - Stripped out the csv parser methods into the CSVReader class
         - Added in methods to get and set the data
 CSVReader
         - updated name from CSVInput to describe what the class does better
@@ -12,12 +12,12 @@ CSVReader
 
 Added Files
 
-DataType - Contain the enumeration data for checking what type a type of data 
-the data cell holds
+DataType - Contains the enumeration data for checking what type of data 
+a data cell currently holds
 
-DataCell - stores the individual data ie Sting, Double, integer
-CSVReaderDialog - Dialog for inputting files
+DataCell - stores the individual data i.e. String, Double, integer
+CSVReaderDialog - Dialog for opening files
 
 Deleted files
 
-FileOut - Unimplemented file no use in current project
+FileOut - Unimplemented class. No use in current project
