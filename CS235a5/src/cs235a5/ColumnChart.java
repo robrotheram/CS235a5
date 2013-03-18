@@ -22,6 +22,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.*;
 import org.jfree.chart.renderer.category.*;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
+import java.awt.Rectangle;
 
 import java.awt.Color;
 import java.awt.Paint;
