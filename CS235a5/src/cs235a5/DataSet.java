@@ -30,7 +30,7 @@ public class DataSet {
      */
      
     public boolean SetHeader(String[] colNames ){
-        m_colNames = colNames;
+        m_Header = colNames;
         return true;
     }
     /**
@@ -87,7 +87,7 @@ public class DataSet {
      * @return String[]
      */
     public String[] GetHeader(){
-        return m_colNames;
+        return m_Header;
     }
     /**
      * Gets the a single column name at position i in the array
@@ -95,7 +95,7 @@ public class DataSet {
      * @return 
      */
     public String GetAColumnName(int i){
-        return m_colNames[i];
+        return m_Header[i];
     }
     /**
      * Returns the number of columns in the dataset
@@ -113,7 +113,7 @@ public class DataSet {
     }
     
     private DataCell[][] m_dataSet;
-    private String[] m_colNames;
+    private String[] m_Header;
     private int m_numCols, m_numRows;
     
    
