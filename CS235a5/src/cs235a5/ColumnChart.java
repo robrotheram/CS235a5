@@ -191,7 +191,7 @@ public class ColumnChart extends Chart
     * Create the column chart using the ChartFactory built into JFreeChart
     * @return m_chart A chart of type JFreeChart
     */
-   public JPanel GetChart()
+   public JFreeChart createChart()
    {
      JFreeChart chart = ChartFactory.createXYBarChart
                                     (m_chartName,
@@ -212,10 +212,7 @@ public class ColumnChart extends Chart
      CategoryItemRenderer renderer = new MS_CustomRenderer(); 
      plot.setRenderer(renderer);  
      
-     ChartPanel cpanel = new ChartPanel(m_chart);
-     JPanel panel = new JPanel();
-     panel.add(cpanel);
-     return panel;
+     return chart;
    }
    
    /**
@@ -230,7 +227,7 @@ public class ColumnChart extends Chart
          * of the bars
          */
         public MS_CustomRenderer(){ 
-           ColourMap mappedColours = getColourMap();
+           ColourMap mappedColours = GetColourMap();
            this.colors = new Paint[] {
              mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
              mappedColours.getColour(3), mappedColours.getColour(4)}; 
@@ -254,5 +251,12 @@ public class ColumnChart extends Chart
    public JFreeChart GetJChart()
    {
      return m_chart;
+   }
+   
+   private ChartPanel createPanel(){
+        ChartPanel myChart = new ChartPanel(createChart());
+        myChart.setMouseWheelEnabled(true);
+
+        return myChart;
    }
 }
