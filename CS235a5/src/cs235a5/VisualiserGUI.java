@@ -28,7 +28,7 @@ import java.io.IOException;
 
 public class VisualiserGUI extends JFrame
 {
-  private static final Dimension MIN_SIZE = new Dimension(800, 500);
+  private final Dimension MIN_SIZE = new Dimension(800, 500);
 
   private JFrame m_frame;
   private Container m_container;
@@ -121,7 +121,7 @@ public class VisualiserGUI extends JFrame
         System.exit(0);
       } else if (e.getSource() == m_drawPieChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetTitle(m_title.getText());
           Visualisation.SetDescription(m_description.getText());
           Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
@@ -137,7 +137,7 @@ public class VisualiserGUI extends JFrame
         }
       } else if (e.getSource() == m_drawLineChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetTitle(m_title.getText());
           Visualisation.SetDescription(m_description.getText());
           Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
@@ -153,7 +153,7 @@ public class VisualiserGUI extends JFrame
         }
       } else if (e.getSource() == m_drawColumnChartMenuItem) {
         if (createOptionWindow() == 0) {
-          Visualisation.SetChartTitle(m_title.getText());
+          Visualisation.SetTitle(m_title.getText());
           Visualisation.SetDescription(m_description.getText());
           Visualisation.SetAuthor(m_author.getText());
           Object colour = m_chartColour.getSelectedItem();
