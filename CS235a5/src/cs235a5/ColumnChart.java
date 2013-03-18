@@ -24,12 +24,13 @@ import org.jfree.chart.renderer.category.*;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 
 import java.awt.Color;
+import java.awt.Paint;
 import java.io.File;
 
 // Import Swing Library
 import javax.swing.JPanel;
 
-public class ColumnChart
+public class ColumnChart extends Chart
 {
   private String[][] input_data;
   private String m_Description;
@@ -206,26 +207,46 @@ public class ColumnChart
 
      m_chart = chart;
      SetName();
-     if(m_colourScheme.equals("Greyscale")){
-  
-    	XYPlot plot = (XYPlot)(m_chart.getPlot());
-    	XYItemRenderer renderer = (XYItemRenderer) plot.getRenderer();
-    	renderer.setSeriesPaint(0, Color.gray);
-    	 
-     }
      
-     else if (m_colourScheme.equals("Light")){
-    	XYPlot plot = (XYPlot)(m_chart.getPlot());
-     	XYItemRenderer renderer = (XYItemRenderer) plot.getRenderer();
-     	renderer.setSeriesPaint(0, Color.green);
-    	 
-     }
+     final CategoryPlot plot = chart.getCategoryPlot(); 
+     CategoryItemRenderer renderer = new MS_CustomRenderer(); 
+     plot.setRenderer(renderer);  
+     
      ChartPanel cpanel = new ChartPanel(m_chart);
      JPanel panel = new JPanel();
      panel.add(cpanel);
      return panel;
    }
    
+   /**
+     * A renderer specific for this type of chart. Sets the colours that will 
+     * be used when displaying the chart.
+     */
+    class MS_CustomRenderer extends BarRenderer { 
+        private Paint[] colors;
+        
+        /**
+         * The constructor for the custom renderer, which will set the colours
+         * of the bars
+         */
+        public MS_CustomRenderer(){ 
+           ColourMap mappedColours = getColourMap();
+           this.colors = new Paint[] {
+             mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
+             mappedColours.getColour(3), mappedColours.getColour(4)}; 
+        }
+        
+        /**
+         * Accessor method for getting the colours of each column
+         * @param row - the identifier of the row it is returning
+         * @param column - the identifier of the column it is returning
+         * @return the colour of each column 
+         */
+        @Override
+        public Paint getItemPaint(final int row, final int column) { 
+           return (this.colors[column % this.colors.length]); 
+        } 
+    }
    /**
     *  A method to return the chart created by this class so it can be outputted.
     * @return m_chart the chart created by this class
