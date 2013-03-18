@@ -22,6 +22,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.*;
 import org.jfree.chart.renderer.category.*;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
+import java.awt.Rectangle;
 
 import java.awt.Color;
 import java.awt.Paint;
@@ -30,8 +31,7 @@ import java.io.File;
 // Import Swing Library
 import javax.swing.JPanel;
 
-public class ColumnChart extends Chart
-{
+public class ColumnChart extends Chart {
   private String[][] input_data;
   private String m_Description;
   private double [] m_xValues;
@@ -41,6 +41,13 @@ public class ColumnChart extends Chart
   private String m_yAxis;
   private String m_colourScheme;
   private JFreeChart m_chart;
+  
+  public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
+  {
+      super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
+      
+  }
+          
   
   private XYSeriesCollection m_collection = new XYSeriesCollection();
 
