@@ -23,7 +23,7 @@ public abstract class Visualisation extends JPanel
    * @param title - A string representing the title of a chart
    * @return check - A boolean flag to check if title has been set correctly
    */
-  public final boolean SetChartTitle(String title)
+  public final boolean SetTitle(String title)
   {
     m_title = title;
     return true;
@@ -158,12 +158,12 @@ public abstract class Visualisation extends JPanel
    * @param data - The data to be displayed in the table
    */
   Visualisation(String title, int width, int height, dataSet data){
-      if(SetChartTitle(title)){
+      if(SetTitle(title)){
           if(m_test){
               System.out.println("Title set correctly in Visualisation(): Table"
                       + " constructor");
           }
-      } else if(!SetChartTitle(title)){
+      } else if(!SetTitle(title)){
           if(m_test){
               System.err.println("Title not set correctly in Visualisation():"
                       + " Table constructor");
@@ -216,12 +216,12 @@ public abstract class Visualisation extends JPanel
    */
   Visualisation(String title, int width, int height, dataSet data,
   ColourScheme colours, String author, String description){
-      if(SetChartTitle(title)){
+      if(SetTitle(title)){
           if(m_test){
               System.out.println("Title set correctly in Visualisation(): Chart"
                       + " constructor");
           }
-      } else if(!SetChartTitle(title)){
+      } else if(!SetTitle(title)){
           if(m_test){
               System.err.println("Title not set correctly in Visualisation():"
                       + " Chart constructor");
