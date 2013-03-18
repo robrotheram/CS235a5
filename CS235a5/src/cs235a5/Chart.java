@@ -28,7 +28,7 @@ public abstract class Chart extends Visualisation {
     private int m_yAxisDataPosition;
     private String m_chartAuthor; // Allows the user to add an author
     private String m_chartDescription; // Allows the user to add a description
-    private ColourScheme m_colourScheme; // Sets the colour of the charts
+    private ColourMap m_colourScheme; // Sets the colour of the charts
     private String m_title;
   
     
@@ -131,7 +131,7 @@ public abstract class Chart extends Visualisation {
      */
     public Chart(DataSet db,int xColumnPos, int yColumnPos, String title, 
             Rectangle r, ColourMap cm, String author, String description){
-       if(super.SetData(db)){
+       if(SetData(db)){
            System.out.println("MS_Chart().setData(): Successful");
        } else {
            System.err.println("MS_Chart().setData(): Failed");
@@ -149,7 +149,7 @@ public abstract class Chart extends Visualisation {
            System.err.println("MS_Chart().setYData(): Failed");
        }
        
-       if(super.SetTitle(title)){
+       if(SetChartTitle(title)){
            System.out.println("MS_Chart().setChartTitle(): Successful");
        } else {
            System.err.println("MS_Chart().setChartTitle(): Failed");
@@ -160,12 +160,12 @@ public abstract class Chart extends Visualisation {
        } else {
            System.err.println("MS_Chart().setColourMap(): Failed");
        }
-       if(super.SetAuthor(author)){
+       if(SetAuthor(author)){
            System.out.println("MS_Chart().SetAuthor(): Successful");
        } else {
            System.err.println("MS_Chart().SetAuthor(): Failed");
        }
-       if(super.SetDescription(description)){
+       if(SetDescription(description)){
            System.out.println("MS_Chart().SetDescription(): Successful");
        } else {
            System.err.println("MS_Chart().SetDescription(): Failed");
@@ -189,47 +189,5 @@ public abstract class Chart extends Visualisation {
         ChartPanel myChart = new ChartPanel(createChart());
            myChart.setMouseWheelEnabled(true);
         return myChart;
-    }
-    
-    public static void main(String[] args){
-       /**
-        * some of this class is abstract so the class itself can't visually
-        * create a chart. Checked set and get methods worked by hard-coding in
-        * some data and out putting the changes to check data is being stored
-        * correctly for subclasses to use.
-        */
-        JFrame view = new JFrame("Test Frame");
-        view.setBounds(0, 0, 500, 350);
-        JPanel container = new JPanel();
-        container.setBounds(view.getBounds());
-        view.add(container);
-        File f = new File("/Users/vampie/Downloads/coalDisasters-1.csv");
-        MS_DataSet db = new MS_DataSet();
-        MS_CSVParser csv = new MS_CSVParser(db,f,",");
-        csv.ParseFile();
-        Color[] colorarray = {Color.BLACK, Color.RED, Color.BLUE, Color.GREEN, Color.ORANGE} ;
-        
-        MS_ColourMap cm = new MS_ColourMap(colorarray);
-        
-        // change below for you class
-        int xColumn = 1;  
-        int yColumn = 4;
-        
-        //setMethods already output messages if setting was managed
-        MS_Barchart bc = new MS_Barchart(db,xColumn,yColumn,"title",view.getBounds(), cm);
-        
-        //test db is returned
-        System.out.println("Get dataset: " + bc.getDataSet() + " Note: this"
-                + " returns the memory location of the dataset if it has been"
-                + "set.");
-        //test x and y coloumns are returned
-        System.out.println("Get X column: " + bc.getXColumnPosition() + " Get"
-                + "Y column: " + bc.getYColumnPosition());
-        //test chart title it returned
-        System.out.println("Get chart title: " + bc.getTitle());
-        //test the colourmap is returned
-        System.out.println("Get colour map: " + bc.getColourMap().toString(bc.getColourMap()));
-                
-    }
-    
+    } 
 }
