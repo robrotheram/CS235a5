@@ -3,7 +3,7 @@ package cs235a5;
 /**
  *
  * \file    LineChart.java
- * \author  Joe Lock, Mike Smith, (Will Jones)
+ * \author  Joe Lock, (Will Jones)
  * \date    18/02/2013 (18/03/2013)
  *
  * \brief   A Line Chart Class to generate and display
@@ -11,7 +11,7 @@ package cs235a5;
  *
  */
 
-// Import JFreeChart
+// Import JFreeChart Library
 import java.awt.Color;
 
 import org.jfree.chart.*;
@@ -20,7 +20,7 @@ import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.xy.*;
 
-// Import Swing Library
+// Import JSwing Library
 import javax.swing.JPanel;
 import javax.swing.*;
 
@@ -29,14 +29,14 @@ public class LineChart extends Chart
 	
    public void SetData(int xValue, int yValue)
    {
-    // Get Data
+    // Get Data from the DataSet class
     String[][] dataArray = DataSet.GetData();
     
-    // Init Arrays
-    m_xValues  = new double[dataArray.length];
+    // Initalise Arrays for xValues and yValue axis 
+    m_xValues = new double[dataArray.length];
     m_yValues = new double[dataArray.length];
     
-    // Put Data into Arrays
+    // Put the Data into the Arrays
     for (int i = 0; i < dataArray.length; i++)
     {
     	m_xValues[i] = Double.parseDouble(dataArray[i][xValue]);
@@ -72,7 +72,7 @@ public class LineChart extends Chart
   }
 
   /**
-   * Sets the xaxis title using the GetXLabel method of the super class
+   * Sets the X axis title using the GetXLabel method from the super class
    */
   public void SetXAxis()
   {
@@ -80,7 +80,7 @@ public class LineChart extends Chart
   }
 
   /**
-   * Sets the yaxis title using the GetYLabel method of the super class
+   * Sets the Y axis title using the GetYLabel method from the super class
    */
   public void SetYAxis()
   {
