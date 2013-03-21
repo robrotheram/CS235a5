@@ -14,22 +14,13 @@ package cs235a5;
 // Import JFreeChart
 import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.xy.*;
 import org.jfree.chart.renderer.category.*;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
 import java.awt.Rectangle;
 
-import java.awt.Color;
 import java.awt.Paint;
-import java.io.File;
-
-// Import Swing Library
-import javax.swing.JPanel;
 
 public class ColumnChart extends Chart {
   private String[][] input_data;
@@ -39,7 +30,7 @@ public class ColumnChart extends Chart {
   private String m_chartName;
   private String m_xAxis;
   private String m_yAxis;
-  private String m_colourScheme;
+  private ColourMap m_colourScheme;
   private JFreeChart m_chart;
   
   public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
