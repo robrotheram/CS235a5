@@ -5,11 +5,7 @@
 package cs235a5;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Rectangle;
-import java.io.File;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
@@ -38,7 +34,7 @@ public abstract class Chart extends Visualisation {
      * @param db dataset to be set
      * @return returns true is set is successful
      */
-    boolean SetData(DataSet db){
+    boolean SetDataSet(DataSet db){
         super.SetData(db);
         return true;
     }
