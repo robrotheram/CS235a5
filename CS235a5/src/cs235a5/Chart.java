@@ -113,8 +113,8 @@ public abstract class Chart extends Visualisation {
     /**
      * Abstract class theat returns the array of the current colour map 
      */
-    ColourMap GetColourMap(){
-        return m_colourScheme;
+    ColourMap GetColours(){
+        return super.GetColourMap();
     };
     
     /**
