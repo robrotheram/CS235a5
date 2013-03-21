@@ -70,9 +70,9 @@ public abstract class Visualisation extends JPanel
    * visualisation
    * @return boolean - returns true if set correctly
    */
-  public boolean SetColour(ColourMap colourScheme) 
+  public boolean SetColour(ColourMap colourMap) 
   {
-      m_colourScheme = colourScheme;
+      m_colourMap = colourMap;
       return true;
   }
   
@@ -127,9 +127,9 @@ public abstract class Visualisation extends JPanel
    * A get method to return the colour scheme of a chart
    * @return m_colourScheme - Returns the colour scheme
    */
-  public ColourMap GetColourScheme()
+  public ColourMap GetColourMap()
   {
-    return m_colourScheme;
+    return m_colourMap;
   }
   
   /**
@@ -312,7 +312,7 @@ public abstract class Visualisation extends JPanel
   private Dimension m_chartScale; // Sets the size of the chart
   private String m_chartAuthor; // Allows the user to add an author
   private String m_chartDescription; // Allows the user to add a description
-  private ColourMap m_colourScheme; // Sets the colour of the charts
+  private ColourMap m_colourMap; // Sets the colour of the charts
   private DataSet m_dataSet; // Sets the data set for the new visualisation
   private boolean m_test = false; // Flag to turn on testing for the class
 }

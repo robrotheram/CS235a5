@@ -24,18 +24,7 @@ import javax.swing.*;
 
 public class TableView extends JPanel
 {
-  private Object[][] m_rows;
-  private Object[] m_headers;
-  private JScrollPane m_sp;
-  private JTable m_table;
 
-  public TableView()
-  {
-    m_table = GetUserData();
-  }
-  
-  
-  
   /**
      * Set the dataset in this class
      * @param MS_DataSet db the dataset reference
@@ -65,8 +54,7 @@ public class TableView extends JPanel
    */
   public JTable GetUserData()
   {
-    m_table = new JTable(DataSet.GetData(),
-                         DataSet.GetHeaders());
+    m_table = new JTable(m_DB.GetDataSet(),m_DB.GetHeader());
 
     return m_table;
   }
@@ -83,10 +71,19 @@ public class TableView extends JPanel
    
   public JScrollPane GetTableView()
   {
-    JTable t = new JTable(m_DB.getDataSet(),m_DB.getColumnNames());
-        return  new JScrollPane(t);
+    return  new JScrollPane(GetUserData());
   }
-
+  
+  public TableView(DataSet db, Rectangle r){
+       m_DB = db;
+       this.setBounds(r);
+       this.setLayout(new java.awt.BorderLayout());
+       this.add(GetTableView(),BorderLayout.CENTER);
+       this.setVisible(true);
+    }
+    
+    private DataSet m_DB;
+    private JTable m_table;
 
 }
 
