@@ -70,7 +70,7 @@ public abstract class Visualisation extends JPanel
    * visualisation
    * @return boolean - returns true if set correctly
    */
-  public boolean SetColour(ColourScheme colourScheme) 
+  public boolean SetColour(ColourMap colourScheme) 
   {
       m_colourScheme = colourScheme;
       return true;
@@ -82,7 +82,7 @@ public abstract class Visualisation extends JPanel
   * 
   * @return boolean - returns true if set correctly
   */
-  public boolean SetData(dataSet data){
+  public boolean SetData(DataSet data){
       m_dataSet = data;
       return true;
   }
@@ -127,7 +127,7 @@ public abstract class Visualisation extends JPanel
    * A get method to return the colour scheme of a chart
    * @return m_colourScheme - Returns the colour scheme
    */
-  public String GetColourScheme()
+  public ColourMap GetColourScheme()
   {
     return m_colourScheme;
   }
@@ -136,7 +136,7 @@ public abstract class Visualisation extends JPanel
    * A get method to return the data set for the visualisation
    * @return m_dataSet - the data set
    */
-  public dataSet GetDataSet()
+  public DataSet GetDataSet()
   {
       return m_dataSet;
   }
@@ -157,7 +157,7 @@ public abstract class Visualisation extends JPanel
    * @param height - To set the height of the table
    * @param data - The data to be displayed in the table
    */
-  Visualisation(String title, int width, int height, dataSet data){
+  Visualisation(String title, int width, int height, DataSet data){
       if(SetTitle(title)){
           if(m_test){
               System.out.println("Title set correctly in Visualisation(): Table"
@@ -214,8 +214,8 @@ public abstract class Visualisation extends JPanel
    * @param author
    * @param description 
    */
-  Visualisation(String title, int width, int height, dataSet data,
-  ColourScheme colours, String author, String description){
+  Visualisation(String title, int width, int height, DataSet data,
+  ColourMap colours, String author, String description){
       if(SetTitle(title)){
           if(m_test){
               System.out.println("Title set correctly in Visualisation(): Chart"
@@ -312,7 +312,7 @@ public abstract class Visualisation extends JPanel
   private Dimension m_chartScale; // Sets the size of the chart
   private String m_chartAuthor; // Allows the user to add an author
   private String m_chartDescription; // Allows the user to add a description
-  private ColourScheme m_colourScheme; // Sets the colour of the charts
-  private dataSet m_dataSet; // Sets the data set for the new visualisation
+  private ColourMap m_colourScheme; // Sets the colour of the charts
+  private DataSet m_dataSet; // Sets the data set for the new visualisation
   private boolean m_test = false; // Flag to turn on testing for the class
 }
