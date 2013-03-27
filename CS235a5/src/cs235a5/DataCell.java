@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class DataCell {
     
     public DataCell(String input){
-       if(SetData(input)){
+       if(!SetData(input)){
            JOptionPane.showMessageDialog(null,"Failed to set data",
                    "Error Message", JOptionPane.ERROR_MESSAGE);
        }
