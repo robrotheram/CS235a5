@@ -3,11 +3,11 @@ package cs235a5;
 /**
  *
  * \file        ColumnChart.java
- * \author      Mike Smith
+ * \author      Mike Smith, William Bray
  * \date        18/02/2013
  *
- * \brief       A Line Chart Class to generate and display
- *              Line Chart visualisation .
+ * \brief       The Column Chart Class generates and displays
+ *              column chart by inheriting from the Chart class.
  *
  */
 
@@ -16,215 +16,170 @@ import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.data.xy.*;
 import org.jfree.chart.renderer.category.*;
 import java.awt.Rectangle;
 
 import java.awt.Paint;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class ColumnChart extends Chart {
-  private String[][] input_data;
-  private String m_Description;
-  private double [] m_xValues;
-  private double [] m_yValues;
-  private String m_chartName;
-  private String m_xAxis;
-  private String m_yAxis;
-  private ColourMap m_colourScheme;
+ 
   private JFreeChart m_chart;
   
-  public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
-  {
-      super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
-      
-  }
-          
+
   
-  private XYSeriesCollection m_collection = new XYSeriesCollection();
-
-  /**
-   * Takes user input and puts it into arrays containing the x and y data
-   *
-   * @param xValues an array containing all the xValues
-   * @param yValues an array containing all the y values
-   */
-  public void SetData(int segmentOne, int segmentTwo)
-  {
-    // Get Data
-    String[][] dataArray = DataSet.GetData();
-
-    // Init Arrays
-    m_xValues  = new double[dataArray.length];
-    m_yValues = new double[dataArray.length];
-
-    // Put Data into Arrays
-    for (int i = 0; i < dataArray.length; i++)
-    {
-      m_xValues[i] = Double.parseDouble(dataArray[i][segmentOne]);
-    }
-
-    for (int j = 0; j < dataArray.length; j++)
-    {
-      m_yValues[j] = Double.parseDouble(dataArray[j][segmentTwo]);
-    }
+  @Override
+  public boolean SetDataSet(DataSet data){
+      super.SetData(data);
+      return true;
   }
   
- public void SetColourScheme(){
-	  
-	  m_colourScheme = Visualisation.GetColourScheme();
+  @Override
+  public boolean SetXData(int xData){
+      super.SetXData(xData);
+      return true;
   }
-
-  /**
-   * Returns the X Values for the Column
-   * @return m_xValues The X Axis Data
-   */
-  public double[] GetXData()
+  
+  @Override
+  public boolean SetYData(int yData){
+      super.SetYData(yData);
+      return true;
+  }
+  
+  @Override
+  public boolean SetChartTitle(String title){
+      super.SetChartTitle(title);
+      return true;
+  }
+  
+  @Override
+  public boolean SetColourMap(ColourMap colours){
+      super.SetColourMap(colours);
+      return true;
+  }
+  
+  @Override
+  public boolean SetAuthor(String author){
+      super.SetAuthor(author);
+      return true;
+  }
+  
+  @Override
+  public boolean SetDescription(String description){
+      super.SetDescription(description);
+      return true;
+  }
+  
+  public int GetXData()
   {
-    return m_xValues;
+    return super.GetXColumnPosition();
   }
 
   /**
    * Returns the Y Values for the Column
    * @return m_yValues The Y Axis Data
    */
-  public double[] GetYData()
+  public int GetYData()
   {
-    return m_yValues;
-  }
-
-
-  /**
-   * Sets the name of the class using the superclases ChartTitle methods
-   * @return check boolean flag to ensure name has been set correctly
-   */
-  public boolean SetName()
-  {
-    boolean check = false;
-    
-    m_chartName = Visualisation.GetChartTitle(); // set chart name
-    if (!m_chartName.equals(""))
-    {
-      check = true;
-    }
-    
-    return check;
-  }
-
-  /**
-   * Sets the xaxis title using the GetXLabel method of the super class
-   */
-  public void SetXAxis()
-  {
-    m_xAxis = Visualisation.GetXLabel();
-  }
-  /**
-   * Sets the yaxis title using the GetYLabel method of the Visualiser class
-   */
-  public void SetYAxis()
-  {
-    m_yAxis = Visualisation.GetYLabel();
-  }
-
-  /**
-   * Sets the description of the chart.
-   */
-  public void SetDescription()
-  {
-    m_Description = Visualisation.GetDescription();
+    return super.GetYColumnPosition();
   }
 
   /**
    * Returns the Description for the Chart
    * @return m_Description a description of the char thats been genarated
    */
+  @Override
   public String GetDescription(){
 
-    return m_Description;
-  }
-
-  /**
-   * Returns the label for the X Axis
-   * @return m_xAxis the label of the xAxis
-   */
-  public String GetXLabel()
-  {
-    return m_xAxis;
-  }
-
-  /**
-   * Returns the label for the Y Axis
-   * @return the label of the yAxis
-   */
-  public String GetYLabel()
-  {
-    return m_yAxis;
+    return super.GetDescription();
   }
 
   /**
    * Returns the name of the Chart
    * @return m_chartName the name of the chart
    */
-  public String GetName()
+  @Override
+  public String GetTitle()
   {
-    return m_chartName;
+    return super.GetChartTitle();
   }
 
+  
+  public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
+  {
+     super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
+      
+  }
   /**
    * Creates a dataset of type XYSeries
    */
-   public void CreateDataset()
-   {
-     
-	   XYSeries series = new XYSeries("Column Chart");
-     for (int i =0;i< m_xValues.length;i++)
-     {
-       series.add(m_xValues[i], m_yValues[i]);
-     }
-     
-     m_collection.addSeries(series);
-   }
+   public DefaultCategoryDataset convertDataSet()
+  {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        
+        int sum = 0;
+        int preval = super.GetDataSet().GetCell(super.GetXColumnPosition(), 0).GetInteger();
+        
+        for(int i= 0; i < super.GetDataSet().GetNumOfRows()-1; i++ ){
+            if(preval == super.GetDataSet().GetCell(super.GetXColumnPosition(), i).GetInteger()){
+                
+                sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), i).GetInteger();
+                
+            }else{
+                /**
+                 * adds to the dataset the sum value, String value of the number 
+                 * in the xaxis column of the MS_DataSet
+                 * */
+                dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
+                        super.GetXColumnPosition(), (i-1)).GetInteger()));
+                
+                sum = super.GetDataSet().GetCell(super.GetYColumnPosition(), i).GetInteger();
+                preval = super.GetDataSet().GetCell(super.GetXColumnPosition(), i).GetInteger();
+            
+            }
+        }
+        return dataset;
+    }
+    
 
    /**
     *
     * Create the column chart using the ChartFactory built into JFreeChart
     * @return m_chart A chart of type JFreeChart
     */
-   public JFreeChart createChart()
-   {
-     JFreeChart chart = ChartFactory.createXYBarChart
-                                    (m_chartName,
-                                     m_xAxis,
-                                     false,
-                                     m_yAxis,
-                                     m_collection,
-                                     PlotOrientation.VERTICAL,
-                                     true,
-                                     true,
-                                     false
-                                     );
-
-     m_chart = chart;
-     SetName();
-     
-     final CategoryPlot plot = chart.getCategoryPlot(); 
-     CategoryItemRenderer renderer = new MS_CustomRenderer(); 
-     plot.setRenderer(renderer);  
-     
-     return chart;
-   }
+   @Override
+    public JFreeChart createChart(){
+        final JFreeChart CHART = ChartFactory.createBarChart(
+            super.GetTitle(),         // chart title
+            super.GetDataSet().GetAColumnName(super.GetXColumnPosition()),               // domain axis label
+            super.GetDataSet().GetAColumnName(super.GetYColumnPosition()),                  // range axis label
+            convertDataSet(),            
+            PlotOrientation.VERTICAL, // orientation
+            true,                     // include legend
+            true,                     // tooltips?
+            false                     // URLs?
+        );
+        
+        final CategoryPlot plot = CHART.getCategoryPlot(); 
+        CategoryItemRenderer renderer = new CustomRenderer(); 
+        plot.setRenderer(renderer);
+        return CHART;
+    }
+   
+   
    
    /**
      * A renderer specific for this type of chart. Sets the colours that will 
      * be used when displaying the chart.
      */
-    class MS_CustomRenderer extends BarRenderer { 
+    class CustomRenderer extends BarRenderer { 
         private Paint[] colors;
         
         /**
          * The constructor for the custom renderer, which will set the colours
          * of the bars
          */
-        public MS_CustomRenderer(){ 
+        public CustomRenderer(){ 
            ColourMap mappedColours = GetColourMap();
            this.colors = new Paint[] {
              mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
@@ -249,12 +204,5 @@ public class ColumnChart extends Chart {
    public JFreeChart GetJChart()
    {
      return m_chart;
-   }
-   
-   private ChartPanel createPanel(){
-        ChartPanel myChart = new ChartPanel(createChart());
-        myChart.setMouseWheelEnabled(true);
-
-        return myChart;
    }
 }
