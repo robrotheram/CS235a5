@@ -104,12 +104,23 @@ public class ColumnChart extends Chart {
     return super.GetChartTitle();
   }
 
-  
+     /**
+     * constructor setting all class variables needed to create a column chart
+     * @param ds - the data for the chart
+     * @param xColPosition - the column data for the x axis from the dataset
+     * @param yColPosition - the column data for the y axis from the dataset
+     * @param title - chart title
+     * @param rect - to display the chart in the windows native size
+     * @param cm - the colour scheme for the chart
+     * @param author - sets the author of the chart
+     * @param description - gives the chart a description
+     */
   public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
   {
      super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
       
   }
+  
   /**
    * Creates a dataset of type XYSeries
    */
