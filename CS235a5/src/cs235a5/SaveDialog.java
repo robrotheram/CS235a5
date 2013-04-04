@@ -14,12 +14,22 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author Robert
- */
-public class SaveDialog {
+/** @brief This class is used to save a file
 
+    This class gets the user to select a file, the program will then write the 
+    * file using the data from the tabPannel class
+    * classes
+    @author Robert Fletcher
+    @file TSaveDialog.java
+    @date April 2013
+    */
+
+public class SaveDialog {
+ /**
+     * Class Constructor 
+     * @param DataSet the programs dataSet
+     * @param TabPannel The programs TabPannel
+     */
     
     public SaveDialog(DataSet db, TabPannel tp){
         if(!SetDataSet(db)){
@@ -32,15 +42,30 @@ public class SaveDialog {
         }
     }
     
+  /**
+     * Sets the DataSet for the class
+     * @param DataSet db
+     * @return boolean True if set Correctly
+     */
     public boolean SetDataSet(DataSet db){
         m_db = db;
         return true;
     }
+    /**
+     * Sets the Memory reference to the Programs TabPanel
+     * @param TabPannel 
+     * @return boolean True if set Correctly
+     */
     public boolean SetTabPannel(TabPannel tp){
         m_tp = tp;
         return true;
     
     }
+    
+/**
+    * Gets the File the user wants to open.
+    * @return File - The File the program will read.
+    */ 
     
     private File getSaveFile(){
         JFileChooser fileChooser = new JFileChooser();
@@ -55,6 +80,11 @@ public class SaveDialog {
         }
     }
     
+    /**
+     * This method will write the file in a XML format so that the openDialog 
+     * class can read it.
+     * @return boolean True if written  with no errors
+     */
     public boolean SaveFile(){
         FileWriter fw = null;
         try {

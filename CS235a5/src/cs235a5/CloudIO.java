@@ -40,19 +40,25 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class contains all the methods to communicate to the server
+
+    This Class contains 5 methods that communicate to the server. Login() that 
+    * will return the sid form the server if successful. List() list the files 
+    * you have uploaded. getFilePath() that gets the file path to the csv file 
+    * on the server upload() and Download() to transfer the files to and from
+    * the server.
+    @author Robert Fletcher
+    @file CloudIO.java
+    @date April 2013
+    */
+
 public class CloudIO {
-    private final String SERVER = "http://54.243.57.127/cs235/";
-    private final String UPLOAD = "upload.php?sid=";
-    private final String LOGIN = "login.php";
-    private final String GET = "get.php?sid=";
-    private final String LIST = "list.php?sid=";
-    private JSONParser parser;
-    private HttpClient httpclient;
-    private JsonParser jP;
+
+    
+    /**
+     * Custom Constructor for this class. It sets up the httpClient and the TCP 
+     * protocol being used. 
+     */
     public CloudIO(){
         httpclient = new DefaultHttpClient();
         httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
@@ -60,6 +66,14 @@ public class CloudIO {
         jP = new JsonParser();
     }
     
+    
+    /**
+     * This Method will log into the server and will return the session ID if 
+     * the login is Successful.
+     * @param String User the username for the server
+     * @param String  Password the password to the server
+     * @return String the Session ID form the server or null
+     */
     public String login(String user, String pass){
         try {
             HttpPost httppost = new HttpPost(SERVER+LOGIN);
@@ -93,6 +107,12 @@ public class CloudIO {
       
     }
     
+   /**
+    * This Method will List all the files you have uploaded.
+    * @param String sid the session id you have got from the login method
+    * @return String[][] the object that contains a list of the files you have
+    * uploaded
+    */
     public String[][] List(String sid){
         try {
             HttpGet request = new HttpGet(SERVER+LIST+sid);
@@ -111,6 +131,12 @@ public class CloudIO {
   
     }
     
+    /**
+     * This Method will return the path of the file so long as you are loged in 
+     * @param String sid the session id you have got from the login method
+     * @param fileID the id of the file you want to retrieve
+     * @return String url file path
+     */
     public String getFilePath(String sid, String fileID){
         try {
             HttpGet request = new HttpGet(SERVER+GET+sid+"&file="+fileID);
@@ -132,7 +158,12 @@ public class CloudIO {
         }
   
     }
-    
+    /**
+     * This Method will List all the files you have uploaded.
+     * @param String sid the session id you have got from the login method
+     * @param file File you are going to upload
+     * @return String will contain the word yess if upload is successful
+     */
     public String upload(String sid, File file){
         try {
             HttpClient httpclient = new DefaultHttpClient();
@@ -169,7 +200,12 @@ public class CloudIO {
         }
     }
 
-    
+    /**
+     * Download the file from the path got from the getFilePath() method or a 
+     * custom url of your choosing 
+     * @param String url path to the string
+     * @return file the downloaded file
+     */
     public File DownloadFile(String path){
         try {
             String name = this.getClass().getName();  
@@ -217,4 +253,12 @@ public class CloudIO {
 }
  
     
+    private final String SERVER = "http://54.243.57.127/cs235/";
+    private final String UPLOAD = "upload.php?sid=";
+    private final String LOGIN = "login.php";
+    private final String GET = "get.php?sid=";
+    private final String LIST = "list.php?sid=";
+    private JSONParser parser;
+    private HttpClient httpclient;
+    private JsonParser jP;
 }

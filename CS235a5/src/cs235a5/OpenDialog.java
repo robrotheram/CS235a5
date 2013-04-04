@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cs235a5;
 
 import java.awt.Color;
@@ -23,13 +20,23 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is used to open a file
+
+    This class gets the user to select a file, the program will then read it and
+    * add the charts to the tabPannel
+    * classes
+    @author Robert Fletcher
+    @file TabPannel.java
+    @date April 2013
+    */
+
 public class OpenDialog {
-    
-       public OpenDialog(DataSet db, TabPannel tp){
+    /**
+     * Class Constructor 
+     * @param DataSet the programs dataSet
+     * @param TabPannel The programs TabPannel
+     */
+    public OpenDialog(DataSet db, TabPannel tp){
         if(!SetDataSet(db)){
             System.out.println("SaveDialog.SetDataSet()-Failed to"
                     + " set the DataSet");
@@ -40,17 +47,30 @@ public class OpenDialog {
         }
     }
     
+    /**
+     * Sets the DataSet for the class
+     * @param DataSet db
+     * @return boolean True if set Correctly
+     */
     public boolean SetDataSet(DataSet db){
         m_db = db;
         return true;
     }
+    /**
+     * Sets the Memory reference to the Programs TabPanel
+     * @param TabPannel 
+     * @return boolean True if set Correctly
+     */
     public boolean SetTabPannel(TabPannel tp){
         m_tp = tp;
         return true;
     
     }
     
-    
+   /**
+    * Gets the File the user wants to open.
+    * @return File - The File the program will read.
+    */ 
     private File getOpenFile(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileNameExtensionFilter(
@@ -64,7 +84,13 @@ public class OpenDialog {
         }
     }
     
-    public void SaveFile(){
+   
+    /**
+     * XML Parser, will read through the XML file and make replace the old 
+     * DataSet and fill the tabPanel with new charts
+     * @return boolean True if parsed with no errors
+     */
+    public boolean ReadFile(){
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -145,21 +171,35 @@ public class OpenDialog {
                              
 
                             }
+                            
                         }
                     }
+                   return true; 
                   }
               }else{
                   System.err.println("FNF: ");
+                  return false; 
               }
         } catch (SAXException ex) {
-            
+            return false; 
         } catch (IOException ex) {
-           
+           return false; 
         } catch (ParserConfigurationException ex) {
+            return false; 
             
         }
+        return false;
     }
-    
+    /**
+     * Adds the chart with the parameters given from the file to the TabPannel 
+     * @param ChartType Type of Chart
+     * @param int x axis column Position from the DataSet
+     * @param int y axis column Position from the DataSet
+     * @param String Chart Title
+     * @param String Chart Author
+     * @param String Chart Description
+     * @param Color[] Array of Colors used in the ColourMap for the Chart  
+     */
     private void addChart
             (String ct, int x, int y, String title, String author, String desc, Color[] clrs){
         
