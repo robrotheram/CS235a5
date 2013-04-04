@@ -53,6 +53,15 @@ public class DataSet {
         m_dataSet = data;
         return true;
     }
+    /**
+     * Set the absolute Path to the file used to make This DataSet
+     * @param filePath
+     * @return boolean True if the setFile path; 
+     */
+    public boolean SetFilePath(String filePath){
+        m_filePath = filePath;
+        return true;
+    }
     
     /**
      * Returns the dataAtribute and position x,y
@@ -112,10 +121,21 @@ public class DataSet {
         return m_numRows;
     }
     
+    /**
+     * Returns the absolute path to the file used to make the DataSet
+     * @return String m_filePath
+     */
+    public String getFilePath(){
+        return m_filePath;
+    }
+    
+    
+    
+    
     private DataCell[][] m_dataSet;
     private String[] m_Header;
     private int m_numCols, m_numRows;
-    
+    private String m_filePath;
    
     
 }

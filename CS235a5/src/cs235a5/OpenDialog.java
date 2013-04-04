@@ -1,0 +1,194 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cs235a5;
+
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+/**
+ *
+ * @author Robert
+ */
+public class OpenDialog {
+    
+       public OpenDialog(DataSet db, TabPannel tp){
+        if(!SetDataSet(db)){
+            System.out.println("SaveDialog.SetDataSet()-Failed to"
+                    + " set the DataSet");
+        }
+        if(!SetTabPannel(tp)){
+            System.out.println("SaveDialog.SetTabPannel()-Failed to"
+                    + " set the DataSet");
+        }
+    }
+    
+    public boolean SetDataSet(DataSet db){
+        m_db = db;
+        return true;
+    }
+    public boolean SetTabPannel(TabPannel tp){
+        m_tp = tp;
+        return true;
+    
+    }
+    
+    
+    private File getOpenFile(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter(
+        "GMS Files Only", "GMS"));
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            return fileChooser.getSelectedFile();
+         
+        }else{
+            return null;
+        }
+    }
+    
+    public void SaveFile(){
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            File file = getOpenFile();
+            boolean parse = false;
+            if (file.exists()) {
+                  Document doc = db.parse(file);
+                  Element docEle = doc.getDocumentElement();
+                  
+                  NodeList studentList = docEle.getElementsByTagName("Data");
+                  
+                  if (studentList != null && studentList.getLength() > 0) {
+                      for (int i = 0; i < studentList.getLength(); i++) {
+                          Node node = studentList.item(i);
+                          if (node.getNodeType() == Node.ELEMENT_NODE) {
+                              
+                              Element e = (Element) node;
+                              NodeList nodeList = e.getElementsByTagName("Date");
+                              System.out.println("Data: " + nodeList.item(0).getChildNodes().item(0).getNodeValue());
+
+                              nodeList = e.getElementsByTagName("File");
+                              String url = nodeList.item(0).getChildNodes().item(0).getNodeValue();
+                              CSVReader r = new CSVReader(m_db, new File(url),",");
+                              if(r.ParseFile()){
+                                   parse = true;
+                              }
+                          }
+                      }
+                  }
+                  if(parse){
+                    studentList = docEle.getElementsByTagName("Chart");
+                    System.out.println("Total Charts: " + studentList.getLength());
+                    if (studentList != null && studentList.getLength() > 0) {
+                        for (int i = 0; i < studentList.getLength(); i++) {
+                            Node node = studentList.item(i);
+                            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                                
+                                Element e = (Element) node;
+                                NodeList nodeList = 
+                                        e.getElementsByTagName("ChartType");
+                                String type = 
+                       nodeList.item(0).getChildNodes().item(0).getNodeValue();
+
+                                nodeList = e.getElementsByTagName("XColumn");
+                                int x = Integer.parseInt
+                     (nodeList.item(0).getChildNodes().item(0).getNodeValue());
+
+                                nodeList = e.getElementsByTagName("YColumn");
+                                int y = Integer.parseInt
+                     (nodeList.item(0).getChildNodes().item(0).getNodeValue());
+
+                                nodeList = e.getElementsByTagName("ChartTitle");
+                                String title =
+                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
+                                
+                                nodeList = e.getElementsByTagName("Author");
+                                String author =
+                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
+                                
+                                nodeList = e.getElementsByTagName("Desc");
+                                String desc =
+                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
+
+                                nodeList = e.getElementsByTagName("Color");
+                                int c = nodeList.getLength();
+                                Color[] clrArr = new Color[c];
+                             for(int j = 0; j <c; j++){
+                                String[] rgbStr =
+            nodeList.item(j).getChildNodes().item(0).getNodeValue().split(",");
+                                
+                                int red = Integer.parseInt(rgbStr[RED]);
+                                int green = Integer.parseInt(rgbStr[GREEN]);
+                                int blue = Integer.parseInt(rgbStr[BLUE]);
+                                clrArr[j] =  new Color(red,green,blue);
+                                
+                            }
+                            addChart(type,x,y,title,author,desc,clrArr);
+                             
+
+                            }
+                        }
+                    }
+                  }
+              }else{
+                  System.err.println("FNF: ");
+              }
+        } catch (SAXException ex) {
+            
+        } catch (IOException ex) {
+           
+        } catch (ParserConfigurationException ex) {
+            
+        }
+    }
+    
+    private void addChart
+            (String ct, int x, int y, String title, String author, String desc, Color[] clrs){
+        
+       if(ct.equals(ChartType.BARCHART.toString())){
+           ColumnChart c = new ColumnChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           
+           c.SetChartType(ChartType.BARCHART);
+           m_tp.AddTab(title, c);
+       }
+        
+        
+    }
+    
+    
+    
+    
+    private DataSet m_db;
+    private TabPannel m_tp;
+    private final int RED = 0;
+    private final int GREEN = 1;
+    private final int BLUE = 2;
+    
+    
+}

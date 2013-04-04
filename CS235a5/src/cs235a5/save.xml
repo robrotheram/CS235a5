@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Visulisation>
-    <Data>
-        <Date>28.03.2013</Date>
-        <File>/User/data/csv.csv</File>
-    </Data>
-    <Chart>
-        <ChartType>BarChart</ChartType>
-        <XColumn>0</XColumn>
-        <YColumn>4</YColumn>
-        <ChartTitle>testChart</ChartTitle>
-        <Schemme>
-            <Color>0,0,0</Color>
-            <Color>1,1,1</Color>
-            <Color>2,2,2</Color>
-            <Color>3,3,3</Color>
-            <Color>4,4,4</Color>
-        </Schemme>
-    </Chart>
+<Data>
+<Date>28.03.2013</Date>
+<File>/User/data/csv.csv</File>
+</Data>
+<Chart>
+<ChartType>BarChart</ChartType>
+<XColumn>0</XColumn>
+<YColumn>4</YColumn>
+<ChartTitle>testChart</ChartTitle>
+<Schemme>
+<Color>0,0,0</Color>
+<Color>1,1,1</Color>
+<Color>2,2,2</Color>
+<Color>3,3,3</Color>
+<Color>4,4,4</Color>
+</Schemme>
+</Chart>
 </Visulisation>

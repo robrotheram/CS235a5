@@ -26,8 +26,8 @@ public class ColumnChart extends Chart {
  
   private JFreeChart m_chart;
   
-
   
+    
   @Override
   public boolean SetDataSet(DataSet data){
       super.SetData(data);
@@ -70,6 +70,26 @@ public class ColumnChart extends Chart {
       return true;
   }
   
+  /**
+   * Sets the type of chart to the constant BarChart
+   * @return true of set correctly;
+   */
+  public boolean SetChartType(){
+      return super.SetChartType(ChartType.BARCHART);
+  }
+  
+  /**
+   * returns the chart type
+   * @return the constant BARCHART
+   */
+  public ChartType getChartType(){
+      return super.GetChartType();
+  }
+  
+  /**
+   * Returns the X Axis Column Position
+   * @return Int X Axis Column Position
+   */
   public int GetXData()
   {
     return super.GetXColumnPosition();

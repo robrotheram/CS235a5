@@ -26,7 +26,12 @@ public abstract class Chart extends Visualisation {
     private String m_chartDescription; // Allows the user to add a description
     private ColourMap m_colourScheme; // Sets the colour of the charts
     private String m_title;
-  
+    private ChartType m_chartType;
+    
+
+    
+    
+   
     
     /**
      * Allows access for setting the dataset
@@ -49,6 +54,15 @@ public abstract class Chart extends Visualisation {
         m_xAxisDataPosition = xData;
         return true;
     }
+    /**
+     * Set type the chart from the enum ChartChart class
+     * @param ChartType chartType 
+     * @return True if set correctly
+     */
+      boolean SetChartType(ChartType chartType){
+          m_chartType  = chartType;
+          return true;
+      }
     
     /**
      * Allows access for setting the y axis data to be used for making charts
@@ -77,6 +91,10 @@ public abstract class Chart extends Visualisation {
         m_colourScheme = colourMap;
         return true;
     };
+    
+    ChartType GetChartType(){
+        return m_chartType;
+    }
     
     /**
      * allows access to the dataset if needed

@@ -110,6 +110,7 @@ public class CSVReader {
      * @return Boolean isError 
      */
     public Boolean ParseFile(){
+        m_DB.SetFilePath(m_File.getAbsolutePath());
         boolean isError = true;
         try {
             Scanner in = new Scanner(m_File);
