@@ -1,3 +1,5 @@
+package TestClasses;
+
 import cs235a5.DataSet;
 import static org.junit.Assert.*;
 

@@ -1,3 +1,5 @@
+package TestClasses;
+
 import cs235a5.Visualisation;
 import static org.junit.Assert.*;
 
