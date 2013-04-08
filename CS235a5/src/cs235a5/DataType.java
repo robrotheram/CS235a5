@@ -7,7 +7,7 @@ package cs235a5;
  */
 public enum DataType {
     
-    STRING("S"),INTEGER("I"),DOUBLE("B");
+    STRING("S"),INTEGER("I"),DOUBLE("D"),BOOLEAN("B");
     
     private String dataType;
     

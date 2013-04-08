@@ -28,9 +28,32 @@ public class DataCell {
            m_DataType = DataType.INTEGER;
             return true;
        }else if(Pattern.matches(STRINGPATTERN, input)) {
-           m_String = input;
-           m_DataType = DataType.STRING;
-            return true;
+           if( //Case Statements to check if the string is a Boolean
+                   (input.toUpperCase().equals("T"))||
+                   (input.toUpperCase().equals("TRUE"))){
+               
+                m_boolean = true;
+                m_DataType = DataType.BOOLEAN;
+                return true;
+           
+               
+           }else if(
+                   (input.toUpperCase().equals("F"))||
+                   (input.toUpperCase().equals("FALSE"))
+                   ){
+               
+                m_boolean = false;
+                m_DataType = DataType.BOOLEAN;
+                return true;
+               
+               
+            }else{
+
+                m_String = input;
+                m_DataType = DataType.STRING;
+                return true;
+           }
+        
        }else{
            return false;
        }
@@ -55,6 +78,11 @@ public class DataCell {
         return m_DataType;
     }
     
+     public boolean GetBoolean(){
+        
+        return m_boolean;
+    }
+    
     @Override
     public String toString(){
         return m_String;
@@ -66,10 +94,13 @@ public class DataCell {
     private String m_String;
     private Integer m_Integer;
     private Double m_Double;
+    private boolean m_boolean;
     private DataType m_DataType;
+    
     private final String DOUBLEPATTERN = "([0-9]*)\\.([0-9]*)";  
     private final String INTPATTERN = "([0-9]*)";
     private final String STRINGPATTERN = "/^[a-zA-Z]+$/";
+    
     
     
 }
