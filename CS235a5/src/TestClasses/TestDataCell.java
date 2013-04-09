@@ -220,4 +220,26 @@ public class TestDataCell {
      return theTest;
     }
     
+    
+    public static void main(String[] args){
+        boolean run = true;
+        TestDataCell TDC = new TestDataCell();
+        System.out.println("Test SetData:"
+                +TDC.testSetDataString(run).getResult());
+        System.out.println("Test SetData:"
+                +TDC.testSetBoolean(run).getResult());
+        System.out.println("Test SetData:"
+                +TDC.testSetDataDouble(run).getResult());
+        System.out.println("Test SetData:"
+                +TDC.testSetInteger(run).getResult());
+        System.out.println("Test GetBoolean: "
+                +TDC.testGetBoolen(run).getResult());
+        System.out.println("Test GetInteger: "
+                +TDC.testGetDouble(run).getResult());
+        System.out.println("Test GetInteger: "
+                +TDC.testGetInteger(run).getResult());
+        System.out.println("Test GetString:"+
+                TDC.testGetString(run).getResult());
+    }
+    
 }

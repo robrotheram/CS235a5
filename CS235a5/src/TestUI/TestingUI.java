@@ -277,7 +277,6 @@ public class TestingUI extends JFrame {
               TDC.testSetBoolean(run),
               TDC.testSetDataDouble(run),
               TDC.testSetInteger(run),
-              
               TDC.testGetBoolen(run),
               TDC.testGetDouble(run),
               TDC.testGetInteger(run),
