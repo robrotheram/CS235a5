@@ -64,8 +64,10 @@ public class TestingUI extends JFrame {
                 m_runTests = true;
                 m_testList = new JList(getTestList(true));
                 m_testList.setCellRenderer(new ListRender());
-                m_testList.addListSelectionListener(new ListSelectionListener() {
-                    public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                m_testList.addListSelectionListener(
+                        new ListSelectionListener() {
+                    public void valueChanged(ListSelectionEvent 
+                            listSelectionEvent) {
                         Test t = (Test) m_testList.getSelectedValue();
                         textField.setText(t.getTitle());
                         textField1.setText(t.getClassName());
@@ -79,7 +81,8 @@ public class TestingUI extends JFrame {
                 
                 m_listPanel.setLayout(new BorderLayout());
 
-                m_listPanel.add(new JScrollPane(m_testList), BorderLayout.CENTER);
+                m_listPanel.add(new JScrollPane(m_testList), 
+                        BorderLayout.CENTER);
                 m_listPanel.add(m_buttonPannel, BorderLayout.SOUTH);
                 m_listPanel.setPreferredSize(LISTSIZE);   
                 m_listPanel.validate(); 
@@ -95,8 +98,10 @@ public class TestingUI extends JFrame {
                 m_runTests = true;
                 m_testList = new JList(getTestList(false));
                 m_testList.setCellRenderer(new ListRender());
-                m_testList.addListSelectionListener(new ListSelectionListener() {
-                    public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                m_testList.addListSelectionListener(
+                        new ListSelectionListener() {
+                    public void valueChanged
+                            (ListSelectionEvent listSelectionEvent) {
                         Test t = (Test) m_testList.getSelectedValue();
                         textField.setText(t.getTitle());
                         textField1.setText(t.getClassName());
@@ -199,7 +204,8 @@ public class TestingUI extends JFrame {
     
     private void initListPannel(){
         m_listPanel = new JPanel();
-        m_listPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
+        m_listPanel.setBorder
+                (BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
         m_buttonPannel = new JPanel();
         m_buttonPannel.setLayout(new BorderLayout());
         
@@ -247,12 +253,12 @@ public class TestingUI extends JFrame {
     }
     
     
-    private JPanel m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, m_textPanel;
+    private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
+                    m_textPanel;
     private JButton m_reset, m_runAll;
-    private JLabel m_ClassTest, m_methodTest,m_whattested;
-    private JTextArea m_Expexted,m_Actual;
     private JLabel l6,l5,l4,l3,l2,l1,l;
-    private JTextField textField,textField1,textField2,textField3,textField4,textField5,textField6;
+    private JTextField  textField,textField1,textField2,textField3,textField4,
+                        textField5,textField6;
 
     private final Dimension MAINFRAMESIZE = new Dimension(700,400);
     private final int LABELHEIGHT = 600;
