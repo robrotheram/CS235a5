@@ -11,7 +11,7 @@ public class DataCell {
     
     public DataCell(String input){
        if(!SetData(input)){
-           JOptionPane.showMessageDialog(null,"Failed to set data",
+           JOptionPane.showMessageDialog(null,"Failed to set data: "+input,
                    "Error Message", JOptionPane.ERROR_MESSAGE);
        }
     }
@@ -27,8 +27,8 @@ public class DataCell {
            m_String = input;
            m_DataType = DataType.INTEGER;
             return true;
-       }else if(Pattern.matches(STRINGPATTERN, input)) {
-           if( //Case Statements to check if the string is a Boolean
+ 
+       }else if( //Case Statements to check if the string is a Boolean
                    (input.toUpperCase().equals("T"))||
                    (input.toUpperCase().equals("TRUE"))){
                
@@ -37,7 +37,7 @@ public class DataCell {
                 return true;
            
                
-           }else if(
+        }else if(
                    (input.toUpperCase().equals("F"))||
                    (input.toUpperCase().equals("FALSE"))
                    ){
@@ -47,16 +47,14 @@ public class DataCell {
                 return true;
                
                
-            }else{
+    }else{
 
                 m_String = input;
-                m_DataType = DataType.STRING;
+            m_DataType = DataType.STRING;
                 return true;
            }
         
-       }else{
-           return false;
-       }
+       
         
     }
     

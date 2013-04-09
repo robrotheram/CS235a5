@@ -4,12 +4,15 @@
  */
 package TestUI;
 
+import TestClasses.TestDataCell;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -38,7 +41,8 @@ public class TestingUI extends JFrame {
     public TestingUI(){
         initFrame();
         initListPannel();
-        initMainPannel();        
+        initMainPannel();       
+        initButtons();
         this.setVisible(true);
     }
     
@@ -51,7 +55,71 @@ public class TestingUI extends JFrame {
         this.setSize(MAINFRAMESIZE);
         
     }
-    
+    private void initButtons(){
+        m_runAll.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                
+                
+                m_listPanel.removeAll();
+                m_runTests = true;
+                m_testList = new JList(getTestList(true));
+                m_testList.setCellRenderer(new ListRender());
+                m_testList.addListSelectionListener(new ListSelectionListener() {
+                    public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                        Test t = (Test) m_testList.getSelectedValue();
+                        textField.setText(t.getTitle());
+                        textField1.setText(t.getClassName());
+                        textField2.setText(t.getMethodName());
+                        textField3.setText(t.getDescription());
+                        textField4.setText(t.getExpected());
+                        textField5.setText(t.getActual());
+                        textField6.setText(t.getResult());
+                    }}
+                );
+                
+                m_listPanel.setLayout(new BorderLayout());
+
+                m_listPanel.add(new JScrollPane(m_testList), BorderLayout.CENTER);
+                m_listPanel.add(m_buttonPannel, BorderLayout.SOUTH);
+                m_listPanel.setPreferredSize(LISTSIZE);   
+                m_listPanel.validate(); 
+                
+            }
+        });
+        
+         m_reset.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                
+                
+                m_listPanel.removeAll();
+                m_runTests = true;
+                m_testList = new JList(getTestList(false));
+                m_testList.setCellRenderer(new ListRender());
+                m_testList.addListSelectionListener(new ListSelectionListener() {
+                    public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                        Test t = (Test) m_testList.getSelectedValue();
+                        textField.setText(t.getTitle());
+                        textField1.setText(t.getClassName());
+                        textField2.setText(t.getMethodName());
+                        textField3.setText(t.getDescription());
+                        textField4.setText(t.getExpected());
+                        textField5.setText(t.getActual());
+                        textField6.setText(t.getResult());
+                    }}
+                );
+                
+                m_listPanel.setLayout(new BorderLayout());
+
+                m_listPanel.add(new JScrollPane(m_testList), BorderLayout.CENTER);
+                m_listPanel.add(m_buttonPannel, BorderLayout.SOUTH);
+                m_listPanel.setPreferredSize(LISTSIZE);   
+                m_listPanel.validate(); 
+                
+            }
+        });
+        
+        
+    }
 
     private void initMainPannel(){
         
@@ -141,7 +209,7 @@ public class TestingUI extends JFrame {
         m_buttonPannel.add( m_reset, BorderLayout.EAST);         
         
         m_listPanel.setBackground(Color.YELLOW);
-        m_testList = new JList(THETESTS);
+        m_testList = new JList(getTestList(false));
         m_testList.setCellRenderer(new ListRender());
         m_testList.addListSelectionListener(new ListSelectionListener() {
             
@@ -167,6 +235,9 @@ public class TestingUI extends JFrame {
         m_listPanel.setPreferredSize(LISTSIZE);         
         this.getContentPane().add(m_listPanel, BorderLayout.WEST); 
     }
+    
+    
+    
     
     
     
@@ -197,28 +268,37 @@ public class TestingUI extends JFrame {
         "reuslt: " ,  
         "Test Status (Pass|Fail|N/A): "
     };
-    private final Test[] THETESTS = 
-    {
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart"),
-      new Test("Test: Linechart Display", "Linechart","Dispalay()","Test to see if the chart will dipalay","x=32,y=56","Picture of a chart")
+   
+    
+     public Test[] getTestList(boolean run){
+        Test[] THETESTS = 
+            {
+              TDC.testSetDataString(run),
+              TDC.testSetBoolean(run),
+              TDC.testSetDataDouble(run),
+              TDC.testSetInteger(run),
+              
+              TDC.testGetBoolen(run),
+              TDC.testGetDouble(run),
+              TDC.testGetInteger(run),
+              TDC.testGetString(run)
+            };
+        return THETESTS;
+        
      
-    };
+     }
+    /* ---- Data for the tests ----*/
+    
+    
+    /* ---- Define all the Classes that are going to be used ----*/
+    private final TestDataCell TDC = new TestDataCell();
+    
+    
+    /* ---- Set to run the tests --*/
+    private boolean m_runTests = false;
+    
+    /* ----Define the list of the tests----*/
+   
     
 
     
