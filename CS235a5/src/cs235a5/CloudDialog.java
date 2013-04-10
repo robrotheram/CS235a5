@@ -186,6 +186,7 @@ public class CloudDialog extends JFrame{
             public void actionPerformed(ActionEvent e){
                 String fileID = m_data[m_List.getSelectedIndex()][0];
                 File f = CLOUD.DownloadFile(CLOUD.getFilePath(m_sid, fileID));
+                
                 CSVReader csvr = new CSVReader(m_db,f,"'");
                 if(csvr.ParseFile()){
                     System.out.println(CLASS+"initListPannel.actionPerformed():"
