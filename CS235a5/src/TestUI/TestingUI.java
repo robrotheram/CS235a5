@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package TestUI;
+ package TestUI;
 
 import TestClasses.TestDataCell;
 import java.awt.BorderLayout;
@@ -32,12 +28,20 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author Robert
- */
+/** @brief Class the contains all the info for the Debug User interface
+
+    This Class will contains all the info for the User interface for the test
+    @author Robert Fletcher
+    @file TestingUI.java
+    @date April 2013
+    */
 public class TestingUI extends JFrame {
-    private JList m_testList;
+    
+    
+    
+    /**
+     * Class constructor to set up the ui
+     */
     public TestingUI(){
         initFrame();
         initListPannel();
@@ -46,7 +50,9 @@ public class TestingUI extends JFrame {
         this.setVisible(true);
     }
     
-    
+    /**
+     * Set up the main frame
+     */
     private void initFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Data Visulisation Debug Program");
@@ -55,6 +61,9 @@ public class TestingUI extends JFrame {
         this.setSize(MAINFRAMESIZE);
         
     }
+    /**
+     * Set up the Button listeners
+     */
     private void initButtons(){
         m_runAll.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
@@ -125,7 +134,9 @@ public class TestingUI extends JFrame {
         
         
     }
-
+    /**
+     * Set up the main panel
+     */
     private void initMainPannel(){
         
         m_contentPanel = new JPanel();
@@ -201,7 +212,9 @@ public class TestingUI extends JFrame {
         
         
     }
-    
+    /**
+     * Set up the list panel
+     */
     private void initListPannel(){
         m_listPanel = new JPanel();
         m_listPanel.setBorder
@@ -241,42 +254,12 @@ public class TestingUI extends JFrame {
         m_listPanel.setPreferredSize(LISTSIZE);         
         this.getContentPane().add(m_listPanel, BorderLayout.WEST); 
     }
-    
-    
-    
-    
-    
-    
-        public static void main(String[] args){
-        TestingUI t = new TestingUI();
-        t.setVisible(true);
-    }
-    
-    
-    private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
-                    m_textPanel;
-    private JButton m_reset, m_runAll;
-    private JLabel l6,l5,l4,l3,l2,l1,l;
-    private JTextField  textField,textField1,textField2,textField3,textField4,
-                        textField5,textField6;
 
-    private final Dimension MAINFRAMESIZE = new Dimension(700,400);
-    private final int LABELHEIGHT = 600;
-    private final int TEXTHEIGHT = 300;
-    private final int LABELWIDTH = 200;
-    private final int SPRINGCOL = 2;
-    private final int SPRINGXYINT = 6;
-    private final Dimension LISTSIZE = new Dimension(240,this.getHeight());
-    private final String[] LABELS = {
-        "Test Title: ",
-        "Name of Class being tested: ", 
-        "Name of Method being tested: ", 
-        "What is being Tested: ", 
-        "Input pramaters: ",
-        "reuslt: " ,  
-        "Test Status (Pass|Fail|N/A): "
-    };
-   
+    /**
+     * Sets up the list of test that are going to be run
+     * @param Boolean run all the tests
+     * @return Test[] An array of tests
+     */
     
      public Test[] getTestList(boolean run){
         Test[] THETESTS = 
@@ -303,10 +286,30 @@ public class TestingUI extends JFrame {
     
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;
-    
-    /* ----Define the list of the tests----*/
+     private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
+                    m_textPanel;
+    private JButton m_reset, m_runAll;
+    private JLabel l6,l5,l4,l3,l2,l1,l;
+    private JTextField  textField,textField1,textField2,textField3,textField4,
+                        textField5,textField6;
+    private JList m_testList;
+    private final Dimension MAINFRAMESIZE = new Dimension(700,400);
+    private final int LABELHEIGHT = 600;
+    private final int TEXTHEIGHT = 300;
+    private final int LABELWIDTH = 200;
+    private final int SPRINGCOL = 2;
+    private final int SPRINGXYINT = 6;
+    private final Dimension LISTSIZE = new Dimension(240,this.getHeight());
+    private final String[] LABELS = {
+        "Test Title: ",
+        "Name of Class being tested: ", 
+        "Name of Method being tested: ", 
+        "What is being Tested: ", 
+        "Input pramaters: ",
+        "reuslt: " ,  
+        "Test Status (Pass|Fail|N/A): "
+    };
    
-    
 
     
     

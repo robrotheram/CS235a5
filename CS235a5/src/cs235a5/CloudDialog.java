@@ -185,7 +185,10 @@ public class CloudDialog extends JFrame{
         m_GetFile.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 String fileID = m_data[m_List.getSelectedIndex()][0];
-                File f = CLOUD.DownloadFile(CLOUD.getFilePath(m_sid, fileID));
+                String path = CLOUD.getFilePath(m_sid, fileID);
+                File f = CLOUD.DownloadFile(path);
+                
+                System.err.println("Path = "+path+"file opath = "+f.getAbsolutePath()+" file id:"+fileID);
                 
                 CSVReader csvr = new CSVReader(m_db,f,"'");
                 if(csvr.ParseFile()){
