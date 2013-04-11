@@ -6,6 +6,7 @@ package cs235a5;
 
 import java.awt.BorderLayout;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
@@ -27,7 +28,7 @@ public abstract class Chart extends Visualisation {
     private ColourMap m_colourScheme; // Sets the colour of the charts
     private String m_title;
     private ChartType m_chartType;
-    
+    protected ArrayList<String>m_foundElements;
 
     
     
@@ -204,4 +205,26 @@ public abstract class Chart extends Visualisation {
            myChart.setMouseWheelEnabled(true);
         return myChart;
     } 
+    /**
+     * Method for checking array list if the element has already be found. 
+     * It so that when making the chart dataset there will be no duplicates.
+     * @param String Value to be checked
+     * @return boolean true if found
+     */
+    protected boolean isUnique(String val){
+		 boolean found = false;
+		 for (int i = 0; i< m_foundElements.size(); i++){
+			 
+			 if(val.equals( m_foundElements.get(i))){
+				 found = true;
+                                 System.out.print( m_foundElements.get(i));
+				 break;
+			 }
+			 
+		 }
+                  System.out.println();
+		 return found;
+	 }
+    
+    
 }

@@ -20,6 +20,7 @@ import org.jfree.chart.renderer.category.*;
 import java.awt.Rectangle;
 
 import java.awt.Paint;
+import java.util.ArrayList;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class ColumnChart extends Chart {
@@ -146,32 +147,49 @@ public class ColumnChart extends Chart {
    */
    public DefaultCategoryDataset convertDataSet()
   {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        
+        int size = 0;
         int sum = 0;
-        int preval = super.GetDataSet().GetCell(super.GetXColumnPosition(), 0).GetInteger();
+        int pos = 0;
+        int j= 0;
         
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DataCell preVal = super.GetDataSet().GetCell(0, 0);
+        // Creates a new list for the found elements 
+        super.m_foundElements = new ArrayList<String>();
+
         for(int i= 0; i < super.GetDataSet().GetNumOfRows()-1; i++ ){
-            if(preval == super.GetDataSet().GetCell(super.GetXColumnPosition(), i).GetInteger()){
-                
-                sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), i).GetInteger();
-                
-            }else{
-                /**
-                 * adds to the dataset the sum value, String value of the number 
-                 * in the xaxis column of the MS_DataSet
-                 * */
+
+            if(!super.isUnique(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString())){
+                for(j = pos; j < super.GetDataSet().GetNumOfRows()-1; j++ ){
+                    if(preVal.toString().equals(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).toString())){
+
+
+                        //Check if datatype is a number
+                        if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.INTEGER){
+                            sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), j).GetInteger();  
+                        }else if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.DOUBLE){
+                            sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), j).GetDouble(); 
+                        }
+                    }
+                }
+                super.m_foundElements.add(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString());
+
+                //Add to chart dataSet
+
                 dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
                         super.GetXColumnPosition(), (i-1)).GetInteger()));
-                
-                sum = super.GetDataSet().GetCell(super.GetYColumnPosition(), i).GetInteger();
-                preval = super.GetDataSet().GetCell(super.GetXColumnPosition(), i).GetInteger();
-            
+
+
+
+                preVal = super.GetDataSet().GetCell(super.GetXColumnPosition(), i++);
+                sum=0;//
+                pos++;	            
+                }
             }
-        }
+        
         return dataset;
     }
-    
+   
 
    /**
     *
