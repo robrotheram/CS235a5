@@ -1,6 +1,7 @@
  package TestUI;
 
 import TestClasses.TestDataCell;
+import TestClasses.TestJsonParser;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -271,7 +272,11 @@ public class TestingUI extends JFrame {
               TDC.testGetBoolen(run),
               TDC.testGetDouble(run),
               TDC.testGetInteger(run),
-              TDC.testGetString(run)
+              TDC.testGetString(run),
+              TJP.TestparseLogin(run),
+              TJP.TestparseList(run),
+              TJP.TestparseGet(run),
+              TJP.TestparseUpload(run)
             };
         return THETESTS;
         
@@ -282,7 +287,7 @@ public class TestingUI extends JFrame {
     
     /* ---- Define all the Classes that are going to be used ----*/
     private final TestDataCell TDC = new TestDataCell();
-    
+    private final TestJsonParser TJP = new TestJsonParser();
     
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;
