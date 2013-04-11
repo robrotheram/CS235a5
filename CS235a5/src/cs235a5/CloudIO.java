@@ -61,7 +61,8 @@ public class CloudIO {
      */
     public CloudIO(){
         httpclient = new DefaultHttpClient();
-        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION,
+                HttpVersion.HTTP_1_1);
         parser = new JSONParser();
         jP = new JsonParser();
     }
@@ -98,10 +99,12 @@ public class CloudIO {
         
         
         } catch (ParseException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
+                    ex);
             return null;
         } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);  
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
+                    ex);  
             return null;
         }
       
@@ -117,15 +120,18 @@ public class CloudIO {
         try {
             HttpGet request = new HttpGet(SERVER+LIST+sid);
             HttpResponse response = httpclient.execute(request);
-            Reader in = new InputStreamReader(response.getEntity().getContent());
+            Reader in = new InputStreamReader(response.getEntity()
+                    .getContent());
 	    Object obj = parser.parse(in);
             return jP.parse(JsonType.LIST, (JSONObject) obj);
             
         } catch (ParseException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null,
+                    ex);
             return null;
         } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
+                    ex);
             return null;
         }
   
@@ -150,10 +156,12 @@ public class CloudIO {
              return out[0][0];
             }
         } catch (ParseException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
+                    ex);
             return null;
         } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
+                    ex);
             return null;
         }
   
@@ -167,7 +175,8 @@ public class CloudIO {
     public String upload(String sid, File file){
         try {
             HttpClient httpclient = new DefaultHttpClient();
-           httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+           httpclient.getParams().setParameter(
+                   CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
            HttpPost httppost = new HttpPost(SERVER+UPLOAD+sid);
 
@@ -192,10 +201,13 @@ public class CloudIO {
            
 
         } catch (ParseException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    CloudIO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    
+                    CloudIO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -209,15 +221,16 @@ public class CloudIO {
     public File DownloadFile(String path){
         try {
             String name = this.getClass().getName();  
-         
-            File file = new File(System.getProperty("user.dir")+"/test1234.jpg");
+            
+            File file = new File(System.getProperty("user.dir")+"/");
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
                 try {
                     file.createNewFile();
                 } catch (IOException ex) {
-                    Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(
+                          CloudIO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -245,7 +258,8 @@ public class CloudIO {
                return file;
             }
         } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    CloudIO.class.getName()).log(Level.SEVERE, null, ex);
             return null;
 
     }

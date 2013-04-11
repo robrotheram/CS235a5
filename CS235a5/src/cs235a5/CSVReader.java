@@ -6,11 +6,14 @@ import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.Scanner;
 
-/**
- * This Class Opens and reads through the Csv file and for each new element it
- * Makes a new MS_DataAtribute object and adds that to the M_DataSet Class
- * @author Robert Fletcher
- */
+/** @brief This class is will parser a csv File 
+
+    This Class will run through a csv file and check to see if the string is 
+    * null if if it not null will add it to the dataSet
+    @author Robert Fletcher
+    @file CSVReader.java
+    @date April 2013
+    */
 public class CSVReader {
     
     private File m_File;

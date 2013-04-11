@@ -38,7 +38,8 @@ public class JsonParser {
                         case UPLOAD:
                             returns = new String[1][1];
                             getpos = 0;
-                            returns[0][0] = (String) jsonObject.get("Succseful");
+                            returns[0][0] = (String) 
+                                    jsonObject.get("Succseful");
                             return returns;
                         case GET:
                             returns = new String[1][1];
@@ -47,8 +48,10 @@ public class JsonParser {
                             return returns;
 
                         case LIST:
-                            System.out.println("json: "+jsonObject.toJSONString());
-                            JSONArray msg = (JSONArray) jsonObject.get("RESULT");
+                            System.out.println("json: "+
+                                    jsonObject.toJSONString());
+                            JSONArray msg = (JSONArray) 
+                                    jsonObject.get("RESULT");
                             Iterator<JSONObject> iterator = msg.iterator(); 
                             returns = new String[msg.size()][GETARRAYLENGTH];
                             int i = 0;
@@ -64,7 +67,7 @@ public class JsonParser {
                                 returns[i][p] = name;
                                 p++;
                                 returns[i][p] = date;
-                                //System.out.println("\nFile id:"+fileID+"\nFile name:"+name+"\nfile Date:"+date);
+                                
                                 i++;
                    
                             }

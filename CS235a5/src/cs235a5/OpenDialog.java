@@ -108,12 +108,20 @@ public class OpenDialog {
                           if (node.getNodeType() == Node.ELEMENT_NODE) {
                               
                               Element e = (Element) node;
-                              NodeList nodeList = e.getElementsByTagName("Date");
-                              System.out.println("Data: " + nodeList.item(0).getChildNodes().item(0).getNodeValue());
+                              NodeList nodeList =
+                                      
+                                      e.getElementsByTagName("Date");
+                              System.out.println("Data: " + nodeList.item(0)
+                                      .getChildNodes().item(0).getNodeValue());
 
                               nodeList = e.getElementsByTagName("File");
-                              String url = nodeList.item(0).getChildNodes().item(0).getNodeValue();
-                              CSVReader r = new CSVReader(m_db, new File(url),",");
+                              String url = nodeList.item(0).getChildNodes()
+                                      .item(0).getNodeValue();
+                              CSVReader r = new CSVReader(
+                                                            m_db, 
+                                                            new File(url),
+                                                            ",");
+                              
                               if(r.ParseFile()){
                                    parse = true;
                               }
@@ -122,7 +130,9 @@ public class OpenDialog {
                   }
                   if(parse){
                     studentList = docEle.getElementsByTagName("Chart");
-                    System.out.println("Total Charts: " + studentList.getLength());
+                    System.out.println("Total Charts: " 
+                            + studentList.getLength());
+                    
                     if (studentList != null && studentList.getLength() > 0) {
                         for (int i = 0; i < studentList.getLength(); i++) {
                             Node node = studentList.item(i);
@@ -200,8 +210,12 @@ public class OpenDialog {
      * @param String Chart Description
      * @param Color[] Array of Colors used in the ColourMap for the Chart  
      */
-    private void addChart
-            (String ct, int x, int y, String title, String author, String desc, Color[] clrs){
+    private void addChart(String ct,
+            int x, int y,
+            String title,
+            String author, 
+            String desc, 
+            Color[] clrs){
         
        if(ct.equals(ChartType.BARCHART.toString())){
            ColumnChart c = new ColumnChart(

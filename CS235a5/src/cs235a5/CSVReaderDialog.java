@@ -26,11 +26,13 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
-/**
- * MS_CsvFileDialog creates a JFrame where the user can browser for their csv 
- * file and choose the delimitor in the csv file
- * @author Robert
- */
+/** @brief This class is will Display a dialog for importing a file
+
+    The Program will display the dialog for importing the file
+    @author Robert Fletcher
+    @file CSVReaderDialog.java
+    @date April 2013
+    */
 public final class CSVReaderDialog extends JFrame {
 
     /** 
@@ -301,7 +303,8 @@ public final class CSVReaderDialog extends JFrame {
     
    
     /**
-     * 
+     * Class Constructor that sets up the ui the dataset that the program is 
+     * using and the reference to the Main ui Class
      * @param MS_DataSet db - the refernce the the dataset stored in the 
      * progrma
      */
@@ -325,6 +328,9 @@ public final class CSVReaderDialog extends JFrame {
             
             
     }
+    /**
+     * Class constructor that sets up just the UI
+     */
     public CSVReaderDialog (){
         init();
     }

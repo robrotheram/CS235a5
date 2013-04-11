@@ -181,9 +181,9 @@ public class TestingUI extends JFrame {
  
         //Lay out the panel.
         SpringUtilities.makeCompactGrid(m_contentPanel,
-                                        numPairs, 2, //rows, cols
-                                        6, 6,        //initX, initY
-                                        6, 6);       //xPad, yPad
+                                        numPairs, SPRINGCOL, //rows, cols
+                                        SPRINGXYINT, SPRINGXYINT,        //initX, initY
+                                        SPRINGXYINT, SPRINGXYINT);       //xPad, yPad
  
         //Create and set up the window.
         JFrame frame = new JFrame("SpringForm");
@@ -263,7 +263,9 @@ public class TestingUI extends JFrame {
     private final Dimension MAINFRAMESIZE = new Dimension(700,400);
     private final int LABELHEIGHT = 600;
     private final int TEXTHEIGHT = 300;
-    private final int LABELWIDTH = 20;
+    private final int LABELWIDTH = 200;
+    private final int SPRINGCOL = 2;
+    private final int SPRINGXYINT = 6;
     private final Dimension LISTSIZE = new Dimension(240,this.getHeight());
     private final String[] LABELS = {
         "Test Title: ",
