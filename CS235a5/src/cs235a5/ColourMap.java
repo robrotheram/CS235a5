@@ -5,37 +5,16 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 /**
+ * \file    ColourMap.java
+ * \author  Zhenjie Mu
+ * \date    April 2013
  * 
- * @author Zhenjie Mu
+ * \brief   Colourmap class stores different colours that compose the new colour map  
+ *          
  */
 public class ColourMap implements ColorScheme{
-    private Color[] m_colorArray = new Color[5];
-    private JPanel m_colourPanel = new JPanel(), m_defaultC2 = new JPanel()
-            , m_defaultC3 = new JPanel(), m_defaultC4 = new JPanel(), 
-            m_defaultC5 = new JPanel();
-    private JPanel[] m_panels = {m_colourPanel, m_defaultC2
-            , m_defaultC3, m_defaultC4, m_defaultC5};
-            
-   /**
-    * Constructor sets the color array for constructor
-    * 
-    * @param colorArray 
-    */
-    public ColourMap(Color[] colorArray){
-        if(setColourArray(colorArray)){
-            System.out.println("Colours set in the colour map in MS_ColourMap");
-        } else if(!setColourArray(colorArray)){
-            System.err.println("Unable to set colours in MS_ColourMap");
-        }
-        if(setPanels(m_panels)){
-            System.out.println("Colour panels set in MS_ColourMap");
-        }
-        else if(!setPanels(m_panels)){
-            System.err.println("Colour panels not set in MS_ColourMap");
-        }
-    }
     
-    /**
+     /**
     * 
     * The setColourArray class stores structure of entire color data
     * 
@@ -112,6 +91,26 @@ public class ColourMap implements ColorScheme{
     public int getNumberOfColours() {
         return m_colorArray.length;
     }
+          
+   /**
+    * Constructor sets the color array for constructor
+    * 
+    * @param colorArray 
+    */
+    public ColourMap(Color[] colorArray){
+        if(setColourArray(colorArray)){
+            System.out.println("Colours set in the colour map in MS_ColourMap");
+        } else if(!setColourArray(colorArray)){
+            System.err.println("Unable to set colours in MS_ColourMap");
+        }
+        if(setPanels(m_panels)){
+            System.out.println("Colour panels set in MS_ColourMap");
+        }
+        else if(!setPanels(m_panels)){
+            System.err.println("Colour panels not set in MS_ColourMap");
+        }
+    }
+    
     
     /*
      * New toString method for the purpose of testing
@@ -121,10 +120,23 @@ public class ColourMap implements ColorScheme{
         for(int i = 0; i < cm.getNumberOfColours(); i++){
             output = output + cm.getColour(i);
             output = output + " ";
-        }
-        
+        }  
         return output;
     }
+        
+    private Color[] m_colorArray = new Color[5];
+    private JPanel m_colourPanel = new JPanel(), 
+                     m_defaultC2 = new JPanel(),
+                     m_defaultC3 = new JPanel(), 
+                     m_defaultC4 = new JPanel(), 
+                     m_defaultC5 = new JPanel();
+    private JPanel[] m_panels = {
+        m_colourPanel,
+        m_defaultC2, 
+        m_defaultC3, 
+        m_defaultC4, 
+        m_defaultC5
+    };
     
 }
 
