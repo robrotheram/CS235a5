@@ -22,6 +22,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 // Import Swing Library
 import javax.swing.*;
 
@@ -159,12 +163,13 @@ public class VisualiserGUI extends JFrame
         m_chartImages = new ImageIcon[m_chartImageStrings.length];
         m_intArray = new Integer[m_chartImageStrings.length];
         for (int i = 0; i < m_chartImageStrings.length; i++){
-            m_intArray[i] = new Integer(i);
-            m_chartImages[i] = createImageIcon("/assets/images/" + 
-                    m_chartImageStrings[i] + ".png");
-            if (m_chartImages[i] != null){
-                m_chartImages[i].setDescription(m_chartImageStrings[i]);
-            } 
+            m_intArray[i] = i;
+            try {
+                m_chartImages[i] = new ImageIcon(ImageIO.read(this.getClass().getResource("/assets/images/drive.png")).getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+                m_chartImages[i].setDescription("drive.png"); 
+            } catch (IOException ex) {}
+            
+            
         }
         
         // Creates the combo box
@@ -386,6 +391,10 @@ public class VisualiserGUI extends JFrame
     private JButton m_printFileButton;
     // Custom combo box items
     private ImageIcon[] m_chartImages;
+    
+    
+    
+    
     private String[] m_chartImageStrings = {"area_chart", "barchart", 
         "compound_barchart", "linechart", "piechart", "scatterplot_chart"};;
     private Integer[] m_intArray;
@@ -664,4 +673,12 @@ public class VisualiserGUI extends JFrame
                                          JOptionPane.OK_CANCEL_OPTION,
                                          JOptionPane.PLAIN_MESSAGE);
   }*/
+    
+    
+               /**
+     * Main method to run this test 
+     * @param String[] the command line arguments
+     */
+    
+  
 }
