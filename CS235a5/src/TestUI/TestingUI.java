@@ -7,6 +7,8 @@ import TestClasses.TestCloudIO;
 import TestClasses.TestDataCell;
 import TestClasses.TestDataSet;
 import TestClasses.TestJsonParser;
+import TestClasses.TestOpenDialog;
+import TestClasses.TestSaveDialog;
 import TestClasses.TestTabPannel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -318,7 +320,10 @@ public class TestingUI extends JFrame {
                 TCSV.TestParseFile(run),
                 TTP.TestAddTab(run),
                 TTP.TestGetTab(run),
-                TTP.TestNumOfCharts(run)
+                TTP.TestNumOfCharts(run),
+                TSD.TestSaveFile(run),
+                TOD.TestReadFile(run)
+                
             };
         return THETESTS;
         
@@ -336,6 +341,10 @@ public class TestingUI extends JFrame {
     private final TestCSVReaderDialog TCSVR = new TestCSVReaderDialog();
     private final TestCSVReader TCSV = new TestCSVReader();
     private final TestTabPannel TTP = new TestTabPannel();
+    private final TestOpenDialog TOD = new  TestOpenDialog();
+    private final TestSaveDialog TSD = new  TestSaveDialog();
+    
+    
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;
      private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
