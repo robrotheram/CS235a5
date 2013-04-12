@@ -10,7 +10,7 @@ package inBeta;
  */
 public class GetPath {
     public GetPath(){
-        System.out.println(this.getClass().getResource("/assets/files/csv.csv").getPath());
+        System.out.println(GetPath.class.getClass().getResource("/assets/files/csv.csv").getPath());
     }
     public static void main(String[] args){
         GetPath GP = new GetPath();

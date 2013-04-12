@@ -319,7 +319,7 @@ public class TestingUI extends JFrame {
                 TTP.TestAddTab(run),
                 TTP.TestGetTab(run),
                 TTP.TestNumOfCharts(run)
-
+            };
         return THETESTS;
         
      

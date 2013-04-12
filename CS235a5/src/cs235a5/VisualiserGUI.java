@@ -32,7 +32,7 @@ import javax.swing.*;
 public class VisualiserGUI extends JFrame
 {
  
-  VisualiserGUI()
+  public VisualiserGUI()
   {
     // Init JFileChooser
     m_fc = new JFileChooser();
