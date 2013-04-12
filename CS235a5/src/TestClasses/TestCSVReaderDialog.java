@@ -42,7 +42,7 @@ public class TestCSVReaderDialog {
         
         if(run){
             theTest.hasRun();
-            
+             m_CD.setVisible(true);
             if(m_CD.isVisible()){
                 theTest.setPassed(true);
             }else{

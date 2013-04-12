@@ -33,10 +33,13 @@ public class TestTabPannel {
        
         if(run){
             theTest.hasRun();
-            
-            if(m_TP.AddTab("Test Panel", new ColumnChart(new DataSet(),0,0,"title",new Rectangle(0,0,30,30),new ColourMap(c),"Author","Decription"))){
-                theTest.setPassed(true);
-            }else{
+            try{ 
+                if(m_TP.AddTab("Test Panel", new ColumnChart(new DataSet(),0,0,"title",new Rectangle(0,0,30,30),new ColourMap(c),"Author","Decription"))){
+                    theTest.setPassed(true);
+                }else{
+                    theTest.setPassed(false);
+                }
+            }catch(Exception e){
                 theTest.setPassed(false);
             }
             
@@ -58,21 +61,24 @@ public class TestTabPannel {
        
         if(run){
             theTest.hasRun();
-            
-            m_TP.AddTab("Test Panel", 
-                            new ColumnChart(new DataSet(),
-                                            0,
-                                            0,
-                                            "title",
-                                            new Rectangle(0,0,30,30),
-                                            new ColourMap(c),
-                                            "Author",
-                                            "Decription"
-                                            ));
-            
-                    if(m_TP.GetTab(0)!=null){
-                theTest.setPassed(true);
-            }else{
+            try{
+                m_TP.AddTab("Test Panel", 
+                                new ColumnChart(new DataSet(),
+                                                0,
+                                                0,
+                                                "title",
+                                                new Rectangle(0,0,30,30),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+
+                        if(m_TP.GetTab(0)!=null){
+                    theTest.setPassed(true);
+                }else{
+                    theTest.setPassed(false);
+                }
+            }catch(Exception e){
                 theTest.setPassed(false);
             }
             

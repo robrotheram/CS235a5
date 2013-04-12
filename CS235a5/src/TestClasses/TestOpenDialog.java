@@ -29,9 +29,13 @@ public class TestOpenDialog {
                  );
             if(run){
                 theTest.hasRun();
+                try{
                 if(m_OD.ReadFile()){
                     theTest.setPassed(true);
                 }else{
+                    theTest.setPassed(false);
+                }
+                }catch(Exception e){
                     theTest.setPassed(false);
                 }
             }
