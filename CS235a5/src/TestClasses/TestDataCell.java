@@ -1,22 +1,29 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package TestClasses;
 
 import TestUI.Test;
 import cs235a5.DataCell;
 import cs235a5.DataType;
 
-/**
- *
- * @author Robert
- */
+/** @brief Class the contains all the methods in the DataCell Class
+
+    This Class will contains all methods for the dataCell class and return a 
+    * test class
+    @author Robert Fletcher
+    @file  TestDataCell.java
+    @date April 2013
+    */
+
 public class TestDataCell {
     
     private final String CLASSNAME = "DataCell";
     private DataCell m_DC = new DataCell("string");
     
+    /**
+     * Test to set a string
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     public Test testSetDataString(boolean run){
         
         Test theTest = new Test(
@@ -46,6 +53,12 @@ public class TestDataCell {
         }
         return theTest;
     }
+    
+    /**
+     * Test to set a Double
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     public Test testSetDataDouble(boolean run){
         Test theTest = new Test(
                  "Testing Setting Double Data",
@@ -73,6 +86,12 @@ public class TestDataCell {
         return theTest;
     }
     
+    
+    /**
+     * Test to set a Integer
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     public Test testSetInteger(boolean run){
         Test theTest = new Test(
                  "Testing Setting Integer Data",
@@ -100,6 +119,11 @@ public class TestDataCell {
         return theTest;
     }
     
+    /**
+     * Test to set a Boolean
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
      public Test testSetBoolean(boolean run){
         Test theTest = new Test(
                  "Testing Setting Boolean Data",
@@ -129,6 +153,12 @@ public class TestDataCell {
         return theTest;
     }
      
+     /**
+     * Test to set get a string from the dataCell Class
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
+     
     public Test testGetString(boolean run){
         Test theTest = new Test(
                  "Testing getting the String Data",
@@ -151,6 +181,11 @@ public class TestDataCell {
      return theTest;
     }
     
+    /**
+     * Test to set get a Double from the dataCell Class
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     public Test testGetDouble(boolean run){
         Test theTest = new Test(
                  "Testing getting the Double Data",
@@ -173,6 +208,11 @@ public class TestDataCell {
      return theTest;
     }
     
+    /**
+     * Test to set get a integer from the dataCell Class
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     public Test testGetInteger(boolean run){
                 
         Test theTest = new Test(
@@ -196,6 +236,11 @@ public class TestDataCell {
      return theTest;
     }
     
+    /**
+     * Test to set get a Boolean from the dataCell Class
+     * @param Boolean run has the test run 
+     * @return Test - the info about this test
+     */
     
     public Test testGetBoolen(boolean run){
                 
@@ -220,6 +265,10 @@ public class TestDataCell {
      return theTest;
     }
     
+    /**
+     * Main method to run this test 
+     * @param String[] the command line arguments
+     */
     
     public static void main(String[] args){
         boolean run = true;

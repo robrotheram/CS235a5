@@ -16,7 +16,11 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.nio.channels.FileChannel;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -222,7 +226,7 @@ public class CloudIO {
         try {
             String name = this.getClass().getName();  
             
-            File file = new File(System.getProperty("user.dir")+"/");
+            File file = new File(System.getProperty("user.dir")+"/"+getDate()+".csv");
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
@@ -236,7 +240,7 @@ public class CloudIO {
 
 
             httpclient = new DefaultHttpClient();
-            HttpGet httpget = new HttpGet(SERVER+"../"+path);
+            HttpGet httpget = new HttpGet(SERVER+path);
             HttpResponse response = httpclient.execute(httpget);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
@@ -265,8 +269,23 @@ public class CloudIO {
     }
         return null;
 }
- 
-    
+    /**
+     * Method to get the current time and date and return it as a string
+     * @return String  - the current time and Data
+     */
+     private String getDate(){
+               DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+               //get current date time with Date()
+               Date date = new Date();
+               System.out.println(dateFormat.format(date));
+         
+               //get current date time with Calendar()
+               Calendar cal = Calendar.getInstance();
+               return(dateFormat.format(cal.getTime()));
+               
+           
+           
+     }    
     private final String SERVER = "http://54.243.57.127/cs235/";
     private final String UPLOAD = "upload.php?sid=";
     private final String LOGIN = "login.php";

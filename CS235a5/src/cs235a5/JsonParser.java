@@ -24,7 +24,7 @@ public class JsonParser {
      */
     public String[][] parse(JsonType t, JSONObject jsonObject ){
         String[][] returns = null;
-        System.err.println(jsonObject.toJSONString());
+        //System.err.println(jsonObject.toJSONString());
         String con = (String) jsonObject.get("connect");
         int getpos = 0;
         if(con !=null){
@@ -48,8 +48,7 @@ public class JsonParser {
                             return returns;
 
                         case LIST:
-                            System.out.println("json: "+
-                                    jsonObject.toJSONString());
+                            
                             JSONArray msg = (JSONArray) 
                                     jsonObject.get("RESULT");
                             Iterator<JSONObject> iterator = msg.iterator(); 
@@ -58,7 +57,7 @@ public class JsonParser {
                             while (iterator.hasNext()) {
                                 int p =0;
                                 JSONObject result = iterator.next();
-                                System.out.println();
+                                
                                 String fileID = (String) result.get("fileID");
                                 String name = (String) result.get("fileName");
                                 String date = (String) result.get("fileDate");

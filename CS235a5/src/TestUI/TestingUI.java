@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package TestUI;
+ package TestUI;
 
 import TestClasses.TestDataCell;
+import TestClasses.TestJsonParser;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,12 +29,20 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- *
- * @author Robert
- */
+/** @brief Class the contains all the info for the Debug User interface
+
+    This Class will contains all the info for the User interface for the test
+    @author Robert Fletcher
+    @file TestingUI.java
+    @date April 2013
+    */
 public class TestingUI extends JFrame {
-    private JList m_testList;
+    
+    
+    
+    /**
+     * Class constructor to set up the ui
+     */
     public TestingUI(){
         initFrame();
         initListPannel();
@@ -46,7 +51,9 @@ public class TestingUI extends JFrame {
         this.setVisible(true);
     }
     
-    
+    /**
+     * Set up the main frame
+     */
     private void initFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Data Visulisation Debug Program");
@@ -55,6 +62,9 @@ public class TestingUI extends JFrame {
         this.setSize(MAINFRAMESIZE);
         
     }
+    /**
+     * Set up the Button listeners
+     */
     private void initButtons(){
         m_runAll.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
@@ -125,7 +135,9 @@ public class TestingUI extends JFrame {
         
         
     }
-
+    /**
+     * Set up the main panel
+     */
     private void initMainPannel(){
         
         m_contentPanel = new JPanel();
@@ -201,7 +213,9 @@ public class TestingUI extends JFrame {
         
         
     }
-    
+    /**
+     * Set up the list panel
+     */
     private void initListPannel(){
         m_listPanel = new JPanel();
         m_listPanel.setBorder
@@ -241,25 +255,49 @@ public class TestingUI extends JFrame {
         m_listPanel.setPreferredSize(LISTSIZE);         
         this.getContentPane().add(m_listPanel, BorderLayout.WEST); 
     }
+
+    /**
+     * Sets up the list of test that are going to be run
+     * @param Boolean run all the tests
+     * @return Test[] An array of tests
+     */
+    
+     public Test[] getTestList(boolean run){
+        Test[] THETESTS = 
+            {
+              TDC.testSetDataString(run),
+              TDC.testSetBoolean(run),
+              TDC.testSetDataDouble(run),
+              TDC.testSetInteger(run),
+              TDC.testGetBoolen(run),
+              TDC.testGetDouble(run),
+              TDC.testGetInteger(run),
+              TDC.testGetString(run),
+              TJP.TestparseLogin(run),
+              TJP.TestparseList(run),
+              TJP.TestparseGet(run),
+              TJP.TestparseUpload(run)
+            };
+        return THETESTS;
+        
+     
+     }
+    /* ---- Data for the tests ----*/
     
     
+    /* ---- Define all the Classes that are going to be used ----*/
+    private final TestDataCell TDC = new TestDataCell();
+    private final TestJsonParser TJP = new TestJsonParser();
     
-    
-    
-    
-        public static void main(String[] args){
-        TestingUI t = new TestingUI();
-        t.setVisible(true);
-    }
-    
-    
-    private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
+    /* ---- Set to run the tests --*/
+    private boolean m_runTests = false;
+     private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 
                     m_textPanel;
     private JButton m_reset, m_runAll;
     private JLabel l6,l5,l4,l3,l2,l1,l;
     private JTextField  textField,textField1,textField2,textField3,textField4,
                         textField5,textField6;
-
+    private JList m_testList;
     private final Dimension MAINFRAMESIZE = new Dimension(700,400);
     private final int LABELHEIGHT = 600;
     private final int TEXTHEIGHT = 300;
@@ -277,36 +315,6 @@ public class TestingUI extends JFrame {
         "Test Status (Pass|Fail|N/A): "
     };
    
-    
-     public Test[] getTestList(boolean run){
-        Test[] THETESTS = 
-            {
-              TDC.testSetDataString(run),
-              TDC.testSetBoolean(run),
-              TDC.testSetDataDouble(run),
-              TDC.testSetInteger(run),
-              TDC.testGetBoolen(run),
-              TDC.testGetDouble(run),
-              TDC.testGetInteger(run),
-              TDC.testGetString(run)
-            };
-        return THETESTS;
-        
-     
-     }
-    /* ---- Data for the tests ----*/
-    
-    
-    /* ---- Define all the Classes that are going to be used ----*/
-    private final TestDataCell TDC = new TestDataCell();
-    
-    
-    /* ---- Set to run the tests --*/
-    private boolean m_runTests = false;
-    
-    /* ----Define the list of the tests----*/
-   
-    
 
     
     
