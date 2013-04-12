@@ -21,6 +21,6 @@ public class datavisualiser
     
     VisualiserGUI mainWindow = new VisualiserGUI();
     mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    mainWindow.VisualiserGUI();
+    mainWindow.setVisible(true);
   }
 }

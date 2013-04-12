@@ -49,8 +49,7 @@ public abstract class Visualisation extends JPanel
   public boolean SetAuthor(String author)
   {
     m_chartAuthor = author;
-    boolean check = false;
-    return check;
+    return true;
   }
 
   /**

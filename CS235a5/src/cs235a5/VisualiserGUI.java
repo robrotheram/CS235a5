@@ -3,7 +3,7 @@ package cs235a5;
 /**
  *
  * \file    visualiserGUI.java
- * \author  John Rowley
+ * \author  John Rowley(Original), Kerry Tolhurst(Built upon for A5)
  * \date    16/02/2013
  *
  * \brief   A Grahical User Interface to read and
@@ -17,44 +17,18 @@ import java.io.File;
 
 // Import AWT Library
 import java.awt.*;
-import java.awt.event.*;
-
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 // Import Swing Library
 import javax.swing.*;
-import javax.swing.event.*;
-
-// Import Exceptions
-import java.io.IOException;
 
 public class VisualiserGUI extends JFrame
 {
-  private final Dimension MIN_SIZE = new Dimension(800, 500);
-
-  private JFrame m_frame;
-  private Container m_container;
-  private JPanel m_drawPanel;
-  private JFileChooser m_fc;
-
-  private JMenuBar m_menuBar;
-  private JMenu m_fileMenu, m_drawMenu;
-  private JMenuItem m_openMenuItem, m_exitMenuItem;
-  private JMenuItem m_drawPieChartMenuItem, m_drawLineChartMenuItem;
-  private JMenuItem m_drawColumnChartMenuItem;
-
-  private JLabel m_descriptionText,m_authorText;
-  private JLabel m_titleLabel, m_xAxisLabel, m_yAxisLabel, m_scaleLabel;
-  private JLabel m_authorLabel, m_descriptionLabel, m_dataLabel, m_colourLabel;
-
-  private JTextField m_title, m_xAxisTitle, m_yAxisTitle;
-  private JTextField m_author, m_description;
-
-  private JComboBox m_scale, m_dataList, m_dataListTwo, m_chartColour;
-
-  private GUIEventHandler m_handler;
-  private String m_filename;
-  private File m_file;
-
-  public Boolean VisualiserGUI()
+ 
+  VisualiserGUI()
   {
     // Init JFileChooser
     m_fc = new JFileChooser();
@@ -62,25 +36,28 @@ public class VisualiserGUI extends JFrame
     // Init Main Window
     m_container = getContentPane();
     m_container.setLayout(new BorderLayout());
-
-    // Init MenuBar
+    
+    // Gets users current resolution
+    KIT = m_container.getToolkit();
+    SCREENSIZE = KIT.getScreenSize();
+    
+    // Add MenuBar to Main Window
     initMenuBar();
     
-    // Add MenuBor to Main Window
-    m_container.add(m_menuBar);
 
     // Init a new GUIEventHandler
-    m_handler = new GUIEventHandler();
+   // m_handler = new GUIEventHandler();
 
-    // Set Listeners for Interface Elements
+    /** Set Listeners for Interface Elements
     m_openMenuItem.addActionListener(m_handler);
     m_exitMenuItem.addActionListener(m_handler);
     m_drawPieChartMenuItem.addActionListener(m_handler);
     m_drawLineChartMenuItem.addActionListener(m_handler);
     m_drawColumnChartMenuItem.addActionListener(m_handler);
+    * */
 
     // Set Size
-    setPreferredSize(MIN_SIZE);
+    setPreferredSize(SCREENSIZE);
     pack();
 
     // Display
@@ -88,11 +65,69 @@ public class VisualiserGUI extends JFrame
     setJMenuBar(m_menuBar);
     setVisible(true);
 
-    return true;
   }
+    /**
+    * Initialises the MenuBar
+    * Adds the various elements.
+    */
+    private void initMenuBar()
+    {
+        // Create menu bar
+        m_menuBar = new JMenuBar();
+        
+        // Create menus
+        m_fileMenu = new JMenu("File");
+        m_chartsMenu = new JMenu("Charts");
+        m_viewMenu = new JMenu("View");
+        m_aboutMenu = new JMenu("About");
 
-  private class GUIEventHandler implements ActionListener, KeyListener
-  {
+        // Create file menu items
+        m_newMenuItem = new JMenuItem("New...");
+        m_openMenuItem = new JMenuItem("Open");
+        m_saveMenuItem = new JMenuItem("Save");
+        m_saveAsMenuItem = new JMenuItem("Save As...");
+        m_exitMenuItem = new JMenuItem("Exit");
+        
+        // Add items to file menu
+        m_fileMenu.add(m_newMenuItem);
+        m_fileMenu.add(m_openMenuItem);
+        m_fileMenu.add(m_saveMenuItem);
+        m_fileMenu.add(m_saveAsMenuItem);
+        m_fileMenu.add(m_exitMenuItem);
+        
+        // Create charts menu items
+        m_newChartMenuItem = new JMenuItem("New Chart...");  
+        m_editChartMenuItem = new JMenuItem("Edit Chart");
+
+        // Add items to charts menu
+        m_chartsMenu.add(m_newChartMenuItem);
+        m_chartsMenu.add(m_editChartMenuItem);
+        
+        // Create view menu items
+        m_colourMapMenuItem = new JMenuItem("Chart colours...");
+
+        // Add items to view menu
+        m_viewMenu.add(m_colourMapMenuItem);
+        
+        // Create about menu items
+        m_versionMenuItem = new JMenuItem("Version");
+        m_helpDocumentationMenuItem = new JMenuItem("Help...");
+        
+        //Add menu items to about menu
+        m_aboutMenu.add(m_versionMenuItem);
+        m_aboutMenu.add(m_helpDocumentationMenuItem);
+        
+        // Add Menu Elements to MenuBar
+        m_menuBar.add(m_fileMenu);
+        m_menuBar.add(m_chartsMenu);
+        m_menuBar.add(m_viewMenu);
+        m_menuBar.add(m_aboutMenu);
+        
+        m_menuBar.setVisible(true);
+    }
+
+    private class GUIEventHandler implements ActionListener, KeyListener
+    {
     public void keyTyped(KeyEvent ke){}
     public void keyPressed(KeyEvent ke){}
     public void keyReleased(KeyEvent ke){}
@@ -169,44 +204,68 @@ public class VisualiserGUI extends JFrame
         }
       }
     }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
   }
 
-  /**
-   * Initialises the MenuBar
-   * Adds the various elements.
-   */
-  public void initMenuBar()
-  {
-    // Initialise MenuBar
-    m_menuBar = new JMenuBar();
+    private Container m_container;
+    private final Toolkit KIT;
+    private final Dimension SCREENSIZE;
+    private JMenuBar m_menuBar;
+    // Menu bar items
+    private JMenu m_fileMenu, m_chartsMenu, m_viewMenu, m_aboutMenu; 
+    // File menu items
+    private JMenuItem m_newMenuItem, m_openMenuItem, m_saveMenuItem, 
+            m_saveAsMenuItem, m_exitMenuItem;
+    // Chart menu items
+      private JMenuItem m_newChartMenuItem, m_editChartMenuItem;
+    // View menu items
+    private JMenuItem m_colourMapMenuItem;
+    // About menu items
+    private JMenuItem m_versionMenuItem, m_helpDocumentationMenuItem;
+    private final Dimension MIN_SIZE = new Dimension(800, 500);
 
-    // Add Menu Elements
-    m_fileMenu = new JMenu("File");
-    m_drawMenu = new JMenu("Draw");
+    private JFrame m_frame;
+  
+    private JPanel m_drawPanel;
+    private JFileChooser m_fc;
 
-    // Add Menu Items to Menu Elements
-    m_openMenuItem            = new JMenuItem("Open");
-    m_exitMenuItem            = new JMenuItem("Exit");
-    m_drawPieChartMenuItem    = new JMenuItem("Pie Chart");
-    m_drawLineChartMenuItem   = new JMenuItem("Line Chart");
-    m_drawColumnChartMenuItem = new JMenuItem("Column Chart");
+    private JLabel m_descriptionText,m_authorText;
+    private JLabel m_titleLabel, m_xAxisLabel, m_yAxisLabel, m_scaleLabel;
+    private JLabel m_authorLabel, m_descriptionLabel, m_dataLabel, m_colourLabel;
 
-    m_fileMenu.add(m_openMenuItem);
-    m_fileMenu.add(m_exitMenuItem);
+    private JTextField m_title, m_xAxisTitle, m_yAxisTitle;
+    private JTextField m_author, m_description;
 
-    m_drawMenu.add(m_drawPieChartMenuItem);
-    m_drawMenu.add(m_drawLineChartMenuItem);
-    m_drawMenu.add(m_drawColumnChartMenuItem);
+    private JComboBox m_scale, m_dataList, m_dataListTwo, m_chartColour;
 
-    // Add Menu Elements to MenuBar
-    m_menuBar.add(m_fileMenu);
-    m_menuBar.add(m_drawMenu);
-  }
+    //private GUIEventHandler m_handler;
+    private String m_filename;
+    private File m_file;
 
   /**
    * Creates a JTable to be displayed in the main container.
    * @param m_filename The full path to the input file.
    */
+  /**
   public Boolean displayTableView()
   {
     TableView tv = new TableView();
@@ -217,12 +276,14 @@ public class VisualiserGUI extends JFrame
 
     return true;
   }
+  * */
 
   /**
    * Creates a plain window to be populated with various visualisations.
    * @param windowTitle A string to be used as the JFrame window title.
    * @param panel A JPanel to be added to the JFrame for displaying.
    */
+  /**
   public void createWindow(String windowTitle, JPanel panel)
   {
     m_frame           = new JFrame(windowTitle);
@@ -242,13 +303,14 @@ public class VisualiserGUI extends JFrame
     m_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     m_frame.setVisible(true);
   }
-
+*/
   /**
    * Creates an option window prior to drawing a visualiton,
    * allowing the user to set titles and axis labels.
    * @param windowTitle A string to be used as the JFrame window title.
    * @return int 0 for OK Button, 2 for Cancel Button.
    */
+  /**
   public int createOptionWindow()
   {
     // Init a new SpringLayout for aligning interface elements
@@ -305,7 +367,7 @@ public class VisualiserGUI extends JFrame
      * elements for an option panel. Changing these may cause
      * elements to overlap, becoming unusable.
      */
-
+/**
     // m_titleLabel
     layout.putConstraint(SpringLayout.WEST, m_titleLabel,
                          5,
@@ -445,11 +507,11 @@ public class VisualiserGUI extends JFrame
      * End Constraints
      */
 
-
+/**
     return JOptionPane.showConfirmDialog(null,
                                          m_drawPanel,
                                          "Visualation Options",
                                          JOptionPane.OK_CANCEL_OPTION,
                                          JOptionPane.PLAIN_MESSAGE);
-  }
+  }*/
 }
