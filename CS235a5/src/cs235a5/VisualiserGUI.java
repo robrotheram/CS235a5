@@ -44,7 +44,12 @@ public class VisualiserGUI extends JFrame
     // Add MenuBar to Main Window
     initMenuBar();
     
-
+    // Initialise the custom chart combo box
+    initChartComboBox();
+    
+    // Add toolbar to main window
+    initToolBar();
+    
     // Init a new GUIEventHandler
    // m_handler = new GUIEventHandler();
 
@@ -125,13 +130,76 @@ public class VisualiserGUI extends JFrame
         
         m_menuBar.setVisible(true);
     }
-
+    
+    private void initToolBar()
+    {
+        m_toolbar = new JPanel();
+        m_newFileButton = new JButton("New");
+        m_openFileButton = new JButton("Open");
+        m_saveFileButton = new JButton("Save");
+        m_printFileButton = new JButton("Print");
+        
+        m_toolbar.add(m_newFileButton);
+        m_toolbar.add(m_openFileButton);
+        m_toolbar.add(m_saveFileButton);
+        m_toolbar.add(m_printFileButton);
+        m_toolbar.add(m_chartListPanel);
+        
+        m_toolbar.setVisible(true);
+        m_container.add(m_toolbar);
+        
+    }
+    
+    private void initChartComboBox()
+    {
+        
+        m_chartListPanel = new JPanel();
+        // Loads the chart images and creates an index
+        m_chartListPanel.setLayout(new BorderLayout());
+        m_chartImages = new ImageIcon[m_chartImageStrings.length];
+        m_intArray = new Integer[m_chartImageStrings.length];
+        for (int i = 0; i < m_chartImageStrings.length; i++){
+            m_intArray[i] = new Integer(i);
+            m_chartImages[i] = createImageIcon("/assets/images/" + 
+                    m_chartImageStrings[i] + ".png");
+            if (m_chartImages[i] != null){
+                m_chartImages[i].setDescription(m_chartImageStrings[i]);
+            } 
+        }
+        
+        // Creates the combo box
+        m_chartList = new JComboBox(m_intArray);
+        m_chartListRenderer = new ComboBoxRenderer();
+        m_chartListRenderer.setPreferredSize(new Dimension(200, 130));
+        m_chartList.setRenderer(m_chartListRenderer);
+        m_chartList.setMaximumRowCount(3);
+        
+        m_chartListPanel.add(m_chartList, BorderLayout.PAGE_START);
+        m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(20,20,
+                20,20));
+        
+    }
+    
+    protected static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = VisualiserGUI.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+                return null;
+        }
+    }
+    /**
     private class GUIEventHandler implements ActionListener, KeyListener
     {
+    @Override
     public void keyTyped(KeyEvent ke){}
+    @Override
     public void keyPressed(KeyEvent ke){}
+    @Override
     public void keyReleased(KeyEvent ke){}
 
+    @Override
     public void actionPerformed(ActionEvent e)
     {
       if (e.getSource() == m_openMenuItem) {
@@ -225,10 +293,78 @@ public class VisualiserGUI extends JFrame
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
   }
+    */
+    
+    /**
+     * A custom renderer for the chart list containing images
+     * of types of chart.
+     * 
+     */
+    class ComboBoxRenderer extends JLabel implements ListCellRenderer 
+    {
+        private Font uhOhFont;
 
+        public ComboBoxRenderer() {
+            setOpaque(true);
+            setHorizontalAlignment(CENTER);
+            setVerticalAlignment(CENTER);
+        }
+
+        /*
+         * This method finds the image and text corresponding
+         * to the selected value and returns the label, set up
+         * to display the text and image.
+         */
+        @Override
+        public Component getListCellRendererComponent(
+                                           JList list,
+                                           Object value,
+                                           int index,
+                                           boolean isSelected,
+                                           boolean cellHasFocus) {
+            //Get the selected index. (The index param isn't
+            //always valid, so just use the value.)
+            int selectedIndex = ((Integer)value).intValue();
+
+            if (isSelected) {
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            } else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+
+            //Set the icon and text.  If icon was null, say so.
+            ImageIcon icon = m_chartImages[selectedIndex];
+            String pet = m_chartImageStrings[selectedIndex];
+            setIcon(icon);
+            if (icon != null) {
+                setText(pet);
+                setFont(list.getFont());
+            } else {
+                setUhOhText(pet + " (no image available)",
+                            list.getFont());
+            }
+
+            return this;
+        }
+        
+        //Set the font and text when no image was found.
+        protected void setUhOhText(String uhOhText, Font normalFont) {
+            if (uhOhFont == null) { //lazily create this font
+                uhOhFont = normalFont.deriveFont(Font.ITALIC);
+            }
+            setFont(uhOhFont);
+            setText(uhOhText);
+        }
+    }
+
+    /** Main container objects */
     private Container m_container;
     private final Toolkit KIT;
     private final Dimension SCREENSIZE;
+    
+    /** Menu bar objects */
     private JMenuBar m_menuBar;
     // Menu bar items
     private JMenu m_fileMenu, m_chartsMenu, m_viewMenu, m_aboutMenu; 
@@ -241,7 +377,21 @@ public class VisualiserGUI extends JFrame
     private JMenuItem m_colourMapMenuItem;
     // About menu items
     private JMenuItem m_versionMenuItem, m_helpDocumentationMenuItem;
-    private final Dimension MIN_SIZE = new Dimension(800, 500);
+    
+    /** Toolbar objects */
+    private JPanel m_toolbar;
+    private JButton m_newFileButton;
+    private JButton m_openFileButton;
+    private JButton m_saveFileButton;
+    private JButton m_printFileButton;
+    // Custom combo box items
+    private ImageIcon[] m_chartImages;
+    private String[] m_chartImageStrings = {"area_chart", "barchart", 
+        "compound_barchart", "linechart", "piechart", "scatterplot_chart"};;
+    private Integer[] m_intArray;
+    private JComboBox m_chartList;
+    private ComboBoxRenderer m_chartListRenderer;
+    private JPanel m_chartListPanel;
 
     private JFrame m_frame;
   
