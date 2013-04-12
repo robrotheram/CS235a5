@@ -74,7 +74,7 @@ public class OpenDialog {
     private File getOpenFile(){
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(new FileNameExtensionFilter(
-        "GMS Files Only", "GMS"));
+        "XML Files Only", "xml"));
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             return fileChooser.getSelectedFile();
@@ -95,6 +95,7 @@ public class OpenDialog {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             File file = getOpenFile();
+            //File file = new File("/Users/Robert/Desktop/save.xml");
             boolean parse = false;
             if (file.exists()) {
                   Document doc = db.parse(file);
@@ -134,16 +135,18 @@ public class OpenDialog {
                             + studentList.getLength());
                     
                     if (studentList != null && studentList.getLength() > 0) {
+                        System.err.println("Error 1");
                         for (int i = 0; i < studentList.getLength(); i++) {
+                            System.err.println("Error 2");
                             Node node = studentList.item(i);
                             if (node.getNodeType() == Node.ELEMENT_NODE) {
-                                
+                                System.err.println("Error 3");
                                 Element e = (Element) node;
                                 NodeList nodeList = 
                                         e.getElementsByTagName("ChartType");
                                 String type = 
                        nodeList.item(0).getChildNodes().item(0).getNodeValue();
-
+                                System.out.println(type);
                                 nodeList = e.getElementsByTagName("XColumn");
                                 int x = Integer.parseInt
                      (nodeList.item(0).getChildNodes().item(0).getNodeValue());
@@ -177,7 +180,7 @@ public class OpenDialog {
                                 clrArr[j] =  new Color(red,green,blue);
                                 
                             }
-                            addChart(type,x,y,title,author,desc,clrArr);
+                            //addChart(type,x,y,title,author,desc,clrArr);
                              
 
                             }
@@ -229,7 +232,7 @@ public class OpenDialog {
                    desc);
            
            c.SetChartType(ChartType.BARCHART);
-           m_tp.AddTab(title, c);
+           //m_tp.AddTab(title, c);
        }
         
         
@@ -243,6 +246,5 @@ public class OpenDialog {
     private final int RED = 0;
     private final int GREEN = 1;
     private final int BLUE = 2;
-    
     
 }

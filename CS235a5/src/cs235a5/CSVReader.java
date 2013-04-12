@@ -134,7 +134,7 @@ public class CSVReader {
        
                 if(insertData(tempData , i)){
                     i++;
-                    System.out.println(CLASS+".insertData():Complete");
+                    //System.out.println(CLASS+".insertData():Complete");
                 }else{
                     System.out.println(CLASS+".insertData():Failed");
                 }

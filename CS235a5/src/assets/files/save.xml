@@ -2,13 +2,30 @@
 <Visulisation>
 <Data>
 <Date>28.03.2013</Date>
-<File>/User/data/csv.csv</File>
+<File>/Users/Robert/NetBeansProjects/CS2351a5/CS235a5/CS235a5/src/assets/files/csv.csv</File>
 </Data>
 <Chart>
 <ChartType>BarChart</ChartType>
 <XColumn>0</XColumn>
 <YColumn>4</YColumn>
 <ChartTitle>testChart</ChartTitle>
+<Author>A Author</Author>
+<Desc> Describe a chart</Desc>
+<Schemme>
+<Color>0,0,0</Color>
+<Color>1,1,1</Color>
+<Color>2,2,2</Color>
+<Color>3,3,3</Color>
+<Color>4,4,4</Color>
+</Schemme>
+</Chart>
+<Chart>
+<ChartType>BarChart</ChartType>
+<XColumn>0</XColumn>
+<YColumn>4</YColumn>
+<ChartTitle>testChart</ChartTitle>
+<Author>A Author</Author>
+<Desc> Describe a chart</Desc>
 <Schemme>
 <Color>0,0,0</Color>
 <Color>1,1,1</Color>

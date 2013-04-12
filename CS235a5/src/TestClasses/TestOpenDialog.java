@@ -32,10 +32,13 @@ public class TestOpenDialog {
                 try{
                 if(m_OD.ReadFile()){
                     theTest.setPassed(true);
+                    
                 }else{
                     theTest.setPassed(false);
                 }
                 }catch(Exception e){
+                    System.err.println(e);
+                    
                     theTest.setPassed(false);
                 }
             }
@@ -50,7 +53,7 @@ public class TestOpenDialog {
     
     public static void main(String[] args){
         TestOpenDialog TOD = new TestOpenDialog();
-            System.out.println("Test to Open File"+
+            System.out.println("Test to Open File: "+
                 TOD.TestReadFile(true).getResult());
                 
         
