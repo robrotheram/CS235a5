@@ -1,7 +1,13 @@
  package TestUI;
 
+import TestClasses.TestCSVReader;
+import TestClasses.TestCSVReaderDialog;
+import TestClasses.TestCloudDialog;
+import TestClasses.TestCloudIO;
 import TestClasses.TestDataCell;
+import TestClasses.TestDataSet;
 import TestClasses.TestJsonParser;
+import TestClasses.TestTabPannel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,7 +64,7 @@ public class TestingUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Data Visulisation Debug Program");
         this.setLayout(new BorderLayout());
-        this.setResizable(false);
+        this.setResizable(true);
         this.setSize(MAINFRAMESIZE);
         
     }
@@ -265,19 +271,55 @@ public class TestingUI extends JFrame {
      public Test[] getTestList(boolean run){
         Test[] THETESTS = 
             {
-              TDC.testSetDataString(run),
-              TDC.testSetBoolean(run),
-              TDC.testSetDataDouble(run),
-              TDC.testSetInteger(run),
-              TDC.testGetBoolen(run),
-              TDC.testGetDouble(run),
-              TDC.testGetInteger(run),
-              TDC.testGetString(run),
-              TJP.TestparseLogin(run),
-              TJP.TestparseList(run),
-              TJP.TestparseGet(run),
-              TJP.TestparseUpload(run)
-            };
+                TDC.testSetDataString(run),
+                TDC.testSetBoolean(run),
+                TDC.testSetDataDouble(run),
+                TDC.testSetInteger(run),
+                TDC.testGetBoolen(run),
+                TDC.testGetDouble(run),
+                TDC.testGetInteger(run),
+                TDC.testGetString(run),
+                TJP.TestparseLogin(run),
+                TJP.TestparseList(run),
+                TJP.TestparseGet(run),
+                TJP.TestparseUpload(run),
+                TDS.TestSetDataSetWithInt(run),
+                TDS.TestSetDataSet(run),
+                TDS.TestSetHeader(run),
+                TDS.TestSetDataCell(run),
+                TDS.TestSetFilePath(run),
+                TDS.TestGetCell(run),
+                TDS.TestGetDataSet(run),
+                TDS.TestGetRow(run),
+                TDS.TestGetHeader(run),
+                TDS.TestGetAHeader(run),
+                TDS.TestGetNumRows(run),
+                TDS.TestGetNumColumns(run),
+                TDS.TestGetFilePath(run),            
+                TC.TestLogin(run),
+                TC.TestList(run),
+                TC.TestgetFilePath(run),
+                TC.TestUpload(run),
+                TC.TestDownloadFile(run),
+                TCD.TestCloudDialogDisplay(run),
+                TCSVR.TestCloudDialogDisplay(run),
+                TCSVR.TestsetContext(run),
+                TCSVR.TestsetDataSet(run),
+                TCSVR.TestsetFile(run),
+                TCSVR.TestGetFile(run),
+                TCSVR.TestGetDataSet(run),
+                TCSVR.TestGetContext(run),
+                TCSV.TestsetDataSet(run),
+                TCSV.TestsetFile(run),
+                TCSV.TestGetFile(run),
+                TCSV.TestGetDataSet(run),
+                TCSV.TestGetDelimiters(run),
+                TCSV.TestsetDelimiter(run),
+                TCSV.TestParseFile(run),
+                TTP.TestAddTab(run),
+                TTP.TestGetTab(run),
+                TTP.TestNumOfCharts(run)
+
         return THETESTS;
         
      
@@ -288,7 +330,12 @@ public class TestingUI extends JFrame {
     /* ---- Define all the Classes that are going to be used ----*/
     private final TestDataCell TDC = new TestDataCell();
     private final TestJsonParser TJP = new TestJsonParser();
-    
+    private final TestDataSet TDS = new TestDataSet();
+    private final TestCloudIO TC = new TestCloudIO();
+    private final TestCloudDialog TCD = new TestCloudDialog();
+    private final TestCSVReaderDialog TCSVR = new TestCSVReaderDialog();
+    private final TestCSVReader TCSV = new TestCSVReader();
+    private final TestTabPannel TTP = new TestTabPannel();
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;
      private JPanel  m_listPanel,m_contentPanel,m_buttonPannel, m_LabelPanel, 

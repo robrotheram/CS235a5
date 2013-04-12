@@ -64,7 +64,7 @@ public class Main {
          java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new cs235a5.VisualiserGUI().setVisible(true);
+               // new cs235a5.VisualiserGUI().setVisible(true);
             }
         });
     }

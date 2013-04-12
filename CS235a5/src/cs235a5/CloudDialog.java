@@ -33,8 +33,8 @@ import javax.swing.event.ListSelectionListener;
     * server. the UI starts small just showing the Login Panel. if the login is
     * successful the UI expands to show the files available on the server and to
     * upload a new file
-    @author Robert Fletcher
-    @file CloudIO.java
+    @author Robert Fletcher 
+   @file CloudIO.java
     @date April 2013
     */
 public class CloudDialog extends JFrame{
