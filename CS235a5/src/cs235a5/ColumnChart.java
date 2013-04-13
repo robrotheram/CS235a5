@@ -177,7 +177,7 @@ public class ColumnChart extends Chart {
                 //Add to chart dataSet
 
                 dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i-1)).GetInteger()));
+                        super.GetXColumnPosition(), (i)).GetInteger()));
 
 
 
@@ -198,6 +198,7 @@ public class ColumnChart extends Chart {
     */
    @Override
     public JFreeChart createChart(){
+        System.out.println("x="+super.GetDataSet().GetHeader());
         final JFreeChart CHART = ChartFactory.createBarChart(
             super.GetTitle(),         // chart title
             super.GetDataSet().GetAColumnName(super.GetXColumnPosition()),               // domain axis label
@@ -208,7 +209,7 @@ public class ColumnChart extends Chart {
             true,                     // tooltips?
             false                     // URLs?
         );
-        
+       
         final CategoryPlot plot = CHART.getCategoryPlot(); 
         CategoryItemRenderer renderer = new CustomRenderer(); 
         plot.setRenderer(renderer);
