@@ -32,7 +32,7 @@ import javax.swing.*;
 public class VisualiserGUI extends JFrame
 {
  
-  public VisualiserGUI()
+  public VisualiserGUI() throws IOException
   {
     // Init JFileChooser
     m_fc = new JFileChooser();
@@ -135,10 +135,15 @@ public class VisualiserGUI extends JFrame
         m_menuBar.setVisible(true);
     }
     
-    private void initToolBar()
+    private void initToolBar() throws IOException
     {
         m_toolbar = new JPanel();
-        m_newFileButton = new JButton("New");
+        m_newFileButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/newDocument.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
+        m_newFileButton.setPreferredSize(new Dimension(50, 50));
+        m_newFileButton.setToolTipText("New File");
         m_openFileButton = new JButton("Open");
         m_saveFileButton = new JButton("Save");
         m_printFileButton = new JButton("Print");
@@ -165,17 +170,23 @@ public class VisualiserGUI extends JFrame
         for (int i = 0; i < m_chartImageStrings.length; i++){
             m_intArray[i] = i;
             try {
-                m_chartImages[i] = new ImageIcon(ImageIO.read(this.getClass().getResource("/assets/images/drive.png")).getScaledInstance(20, 20, Image.SCALE_SMOOTH));
-                m_chartImages[i].setDescription("drive.png"); 
-            } catch (IOException ex) {}
-            
-            
+                m_chartImages[i] = 
+                        new ImageIcon(ImageIO.read(this.getClass().getResource(
+                        "/assets/images/" + m_chartImageStrings[i] + ".png"
+                        )).getScaledInstance(80, 80, Image.SCALE_SMOOTH));
+                m_chartImages[i].setDescription(m_chartImageDescriptions[i]); 
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "There was an error "
+                        + "loading the chart icons. Please report this fault"
+                        + "to the developers at: \n GroupMS@gmail.com", 
+                        "Inane Error", JOptionPane.ERROR_MESSAGE);
+            } 
         }
         
         // Creates the combo box
         m_chartList = new JComboBox(m_intArray);
         m_chartListRenderer = new ComboBoxRenderer();
-        m_chartListRenderer.setPreferredSize(new Dimension(200, 130));
+        m_chartListRenderer.setPreferredSize(new Dimension(250, 130));
         m_chartList.setRenderer(m_chartListRenderer);
         m_chartList.setMaximumRowCount(3);
         
@@ -341,13 +352,13 @@ public class VisualiserGUI extends JFrame
 
             //Set the icon and text.  If icon was null, say so.
             ImageIcon icon = m_chartImages[selectedIndex];
-            String pet = m_chartImageStrings[selectedIndex];
+            String chart = m_chartImageDescriptions[selectedIndex];
             setIcon(icon);
             if (icon != null) {
-                setText(pet);
+                setText("\r\n" + chart);
                 setFont(list.getFont());
             } else {
-                setUhOhText(pet + " (no image available)",
+                setUhOhText(chart + " (no image available)",
                             list.getFont());
             }
 
@@ -391,12 +402,12 @@ public class VisualiserGUI extends JFrame
     private JButton m_printFileButton;
     // Custom combo box items
     private ImageIcon[] m_chartImages;
-    
-    
-    
-    
-    private String[] m_chartImageStrings = {"area_chart", "barchart", 
-        "compound_barchart", "linechart", "piechart", "scatterplot_chart"};;
+    private String[] m_chartImageDescriptions = {"Area chart", "Bar chart", 
+        "Compound bar chart", "Line chart", "Pie chart", 
+        "Scatter-plot chart"};;
+    private String[] m_chartImageStrings = {"areaChart", "barChart",
+        "compoundBarChart", "lineChart", "pieChart",
+        "scatterPlotChart"};
     private Integer[] m_intArray;
     private JComboBox m_chartList;
     private ComboBoxRenderer m_chartListRenderer;
