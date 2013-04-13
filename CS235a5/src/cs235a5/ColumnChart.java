@@ -145,7 +145,7 @@ public class ColumnChart extends Chart {
   /**
    * Creates a dataset of type XYSeries
    */
-   public DefaultCategoryDataset convertDataSet()
+   private DefaultCategoryDataset convertDataSet()
   {
         int size = 0;
         int sum = 0;
@@ -231,10 +231,13 @@ public class ColumnChart extends Chart {
          */
         public CustomRenderer(){ 
            ColourMap mappedColours = GetColourMap();
-           this.colors = new Paint[] {
-             mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
-             mappedColours.getColour(3), mappedColours.getColour(4)}; 
+           this.colors = new Paint[mappedColours.getColourArray().length];
+           for(int i = 0; i<mappedColours.getColourArray().length;i++){
+               this.colors[i] = mappedColours.getColour(i);
+           }
         }
+            
+       
         
         /**
          * Accessor method for getting the colours of each column

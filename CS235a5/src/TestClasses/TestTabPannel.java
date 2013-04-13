@@ -5,12 +5,15 @@
 package TestClasses;
 
 import TestUI.Test;
+import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.TabPannel;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.File;
+import java.net.URL;
 
 /**
  *
@@ -20,6 +23,18 @@ public class TestTabPannel {
     private final String CLASSNAME = "TabPannel";
     private TabPannel m_TP = new TabPannel();
     private final Color[] c = {Color.RED,Color.RED,Color.RED,Color.RED,Color.RED};
+    private final DataSet m_db;
+    
+    public TestTabPannel(){
+        m_db = new DataSet();
+        URL fileURL = this.getClass().getResource("/assets/files/csv.csv");
+        
+        File f = new File(fileURL.getPath());
+        CSVReader csvr = new CSVReader(m_db,f,",");
+        csvr.ParseFile();
+    }
+    
+    
        public Test TestAddTab(boolean run){
         Test theTest = new Test(
                  "Testing if you can Add a chart to the TabbedPane",//Test Title
@@ -34,7 +49,7 @@ public class TestTabPannel {
         if(run){
             theTest.hasRun();
             try{ 
-                if(m_TP.AddTab("Test Panel", new ColumnChart(new DataSet(),0,0,"title",new Rectangle(0,0,30,30),new ColourMap(c),"Author","Decription"))){
+                if(m_TP.AddTab("Test Panel", new ColumnChart(m_db,0,4,"title",new Rectangle(0,0,30,30),new ColourMap(c),"Author","Decription"))){
                     theTest.setPassed(true);
                 }else{
                     theTest.setPassed(false);
@@ -63,9 +78,9 @@ public class TestTabPannel {
             theTest.hasRun();
             try{
                 m_TP.AddTab("Test Panel", 
-                                new ColumnChart(new DataSet(),
+                                new ColumnChart(m_db,
                                                 0,
-                                                0,
+                                                4,
                                                 "title",
                                                 new Rectangle(0,0,30,30),
                                                 new ColourMap(c),
@@ -79,6 +94,7 @@ public class TestTabPannel {
                     theTest.setPassed(false);
                 }
             }catch(Exception e){
+                System.err.println(e);
                 theTest.setPassed(false);
             }
             

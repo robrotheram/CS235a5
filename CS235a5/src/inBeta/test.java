@@ -4,6 +4,7 @@
  */
 package inBeta;
 
+import cs235a5.AreaChart;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
@@ -35,7 +36,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new ColumnChart(db,
+          m.add( new AreaChart(db,
                                                 0,
                                                 4,
                                                 "title",
