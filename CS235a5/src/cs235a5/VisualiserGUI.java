@@ -18,13 +18,7 @@ import java.io.File;
 // Import AWT Library
 import java.awt.*;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 // Import Swing Library
 import javax.swing.*;
@@ -58,9 +52,25 @@ public class VisualiserGUI extends JFrame
     
     // Add toolbar to main window
     initToolBar();
-    
+    DataSet db = new DataSet();
+    File f = new File(this.getClass().getResource("/assets/files/csv.csv").getPath());
+    CSVReader m_reader = new CSVReader(db,f,",");
+    m_reader.ParseFile();
     // Add the table panel to the window
-    m_tableAndCharts = new JPanel();
+    m_tableAndCharts = new JPanel(new BorderLayout());
+    m_tableAndCharts.setBorder(BorderFactory.createEmptyBorder(10,10,
+                10,10));
+    m_tablePane = new TableView(db, new Rectangle());
+    m_chartTabPanel = new TabPannel();
+    Color[] testcolours = {new Color(2,89,89), new Color(0,175,181), 
+        new Color(189,51,103), new Color(242,206,22), new Color(204,135,4)};
+    ColourMap cm = new ColourMap(testcolours);
+    ColumnChart TESTCHART = new ColumnChart(db, 1, 4, "Test Chart", new Rectangle(), cm, "Kerry", "A test chart");
+    m_chartTabPanel.AddTab("test", TESTCHART);
+    m_tableAndCharts.add(m_tablePane, BorderLayout.LINE_START);
+    m_tableAndCharts.add(m_chartTabPanel, BorderLayout.LINE_END);
+    m_container.add(m_tableAndCharts, BorderLayout.CENTER);
+    
     
     // Init a new GUIEventHandler
    // m_handler = new GUIEventHandler();
@@ -153,7 +163,7 @@ public class VisualiserGUI extends JFrame
        
         m_toolbar = new JPanel((LayoutManager) new FlowLayout(FlowLayout.LEFT));
         m_toolbar.setBorder(m_titledBorder);
-        m_toolbar.setPreferredSize(new Dimension(700, 300));
+        m_toolbar.setPreferredSize(new Dimension(500, 120));
        
         m_newFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
@@ -188,7 +198,7 @@ public class VisualiserGUI extends JFrame
         m_toolbar.add(m_chartListPanel);
         
         m_toolbar.setVisible(true);
-        m_container.add(m_toolbar);
+        m_container.add(m_toolbar, BorderLayout.PAGE_START);
         
     }
     
@@ -449,8 +459,13 @@ public class VisualiserGUI extends JFrame
     /** Data and Chart components */
     private JPanel m_tableAndCharts; 
     private TabPannel m_chartTabPanel;
-    private JFrame m_frame;
-  
+    private TableView m_tablePane;
+    
+    
+    
+    
+   
+    
     private JPanel m_drawPanel;
     private JFileChooser m_fc;
 
