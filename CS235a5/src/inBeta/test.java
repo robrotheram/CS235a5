@@ -10,6 +10,7 @@ import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
+import cs235a5.PieChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -37,7 +38,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new LineChart(db,
+          m.add( new PieChart(db,
                                                 0,
                                                 4,
                                                 "title",
