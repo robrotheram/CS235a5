@@ -28,11 +28,16 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 // Import Swing Library
 import javax.swing.*;
+import static javax.swing.SwingConstants.CENTER;
+import static javax.swing.SwingConstants.LEFT;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 
 public class VisualiserGUI extends JFrame
 {
  
-  public VisualiserGUI()
+  public VisualiserGUI() throws IOException
   {
     // Init JFileChooser
     m_fc = new JFileChooser();
@@ -53,6 +58,9 @@ public class VisualiserGUI extends JFrame
     
     // Add toolbar to main window
     initToolBar();
+    
+    // Add the table panel to the window
+    m_tableAndCharts = new JPanel();
     
     // Init a new GUIEventHandler
    // m_handler = new GUIEventHandler();
@@ -135,22 +143,43 @@ public class VisualiserGUI extends JFrame
         m_menuBar.setVisible(true);
     }
     
-    private void initToolBar() 
+    private void initToolBar() throws IOException 
     {
-        m_toolbar = new JPanel();
-        try {
-            m_newFileButton = new JButton(
-                    new ImageIcon(ImageIO.read(this.getClass().getResource(
-                    "/assets/images/newDocument.png")).getScaledInstance(
-                    40, 40, Image.SCALE_SMOOTH)));
-        } catch (IOException ex) {
-            System.err.println("VisulisationGUI.initToolBar():"+ex);
-        }
+        Border m_loweredEtched = 
+                BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+        
+        TitledBorder m_titledBorder = BorderFactory.createTitledBorder(
+                       m_loweredEtched, "Tools");
+       
+        m_toolbar = new JPanel((LayoutManager) new FlowLayout(FlowLayout.LEFT));
+        m_toolbar.setBorder(m_titledBorder);
+        m_toolbar.setPreferredSize(new Dimension(700, 300));
+       
+        m_newFileButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/newDocument.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
         m_newFileButton.setPreferredSize(new Dimension(50, 50));
         m_newFileButton.setToolTipText("New File");
-        m_openFileButton = new JButton("Open");
-        m_saveFileButton = new JButton("Save");
-        m_printFileButton = new JButton("Print");
+        
+        m_openFileButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/openFile.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
+        m_openFileButton.setPreferredSize(new Dimension(50, 50));
+        m_openFileButton.setToolTipText("Open File");
+        m_saveFileButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/saveFile.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
+        m_saveFileButton.setPreferredSize(new Dimension(50, 50));
+        m_saveFileButton.setToolTipText("Save File");
+        m_printFileButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/printFile.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
+        m_printFileButton.setPreferredSize(new Dimension(50, 50));
+        m_printFileButton.setToolTipText("Print File");
         
         m_toolbar.add(m_newFileButton);
         m_toolbar.add(m_openFileButton);
@@ -177,12 +206,9 @@ public class VisualiserGUI extends JFrame
                m_chartImages[i] = 
                         new ImageIcon(ImageIO.read(this.getClass().getResource(
                         "/assets/images/" + m_chartImageStrings[i] + ".png"
-                        )).getScaledInstance(80, 80, Image.SCALE_SMOOTH));
-              
-                m_chartImages[i].setDescription(m_chartImageDescriptions[i]);
-                
-            } catch (Exception ex) {
-                System.err.println("error = "+ex);
+                        )).getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+                m_chartImages[i].setDescription(m_chartImageDescriptions[i]); 
+            } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "There was an error "
                         + "loading the chart icons. Please report this fault"
                         + "to the developers at: \n GroupMS@gmail.com", 
@@ -192,14 +218,14 @@ public class VisualiserGUI extends JFrame
         
         // Creates the combo box
         m_chartList = new JComboBox(m_intArray);
-        m_chartListRenderer = new ComboBoxRenderer();
-        m_chartListRenderer.setPreferredSize(new Dimension(250, 130));
+        m_chartListRenderer = new VisualiserGUI.ComboBoxRenderer();
+        m_chartListRenderer.setPreferredSize(new Dimension(175, 50));
         m_chartList.setRenderer(m_chartListRenderer);
         m_chartList.setMaximumRowCount(3);
         
         m_chartListPanel.add(m_chartList, BorderLayout.PAGE_START);
-        m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(20,20,
-                20,20));
+        m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
+                10,10));
         
     }
     
@@ -329,7 +355,7 @@ public class VisualiserGUI extends JFrame
 
         public ComboBoxRenderer() {
             setOpaque(true);
-            setHorizontalAlignment(CENTER);
+            setHorizontalAlignment(LEFT);
             setVerticalAlignment(CENTER);
         }
 
@@ -417,9 +443,12 @@ public class VisualiserGUI extends JFrame
         "scatterPlotChart"};
     private Integer[] m_intArray;
     private JComboBox m_chartList;
-    private ComboBoxRenderer m_chartListRenderer;
+    private VisualiserGUI.ComboBoxRenderer m_chartListRenderer;
     private JPanel m_chartListPanel;
-
+    
+    /** Data and Chart components */
+    private JPanel m_tableAndCharts; 
+    private TabPannel m_chartTabPanel;
     private JFrame m_frame;
   
     private JPanel m_drawPanel;
