@@ -9,6 +9,7 @@ import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
+import cs235a5.LineChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class test extends JFrame {
  private JPanel m;
-  private final Color[] c = {Color.RED,Color.GREEN,Color.RED,Color.RED,Color.RED};
+  private final Color[] c = {Color.RED,Color.GREEN,Color.BLUE,Color.CYAN,Color.ORANGE};
   
     public test(){
      this.setSize(500,500);
@@ -36,7 +37,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new AreaChart(db,
+          m.add( new LineChart(db,
                                                 0,
                                                 4,
                                                 "title",

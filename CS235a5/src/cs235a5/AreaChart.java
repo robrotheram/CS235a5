@@ -222,7 +222,7 @@ public class AreaChart extends Chart {
      * A renderer specific for this type of chart. Sets the colours that will 
      * be used when displaying the chart.
      */
-    class CustomRenderer extends AreaRenderer { //.....????..changed from BarRenderer.????!!!!............................
+    class CustomRenderer extends AreaRenderer {
         private Paint[] colors;
         
         /**
@@ -231,9 +231,10 @@ public class AreaChart extends Chart {
          */
         public CustomRenderer(){ 
            ColourMap mappedColours = GetColourMap();
-           this.colors = new Paint[] {
-             mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
-             mappedColours.getColour(3), mappedColours.getColour(4)}; 
+        this.colors = new Paint[mappedColours.getColourArray().length];
+           for(int i = 0; i<mappedColours.getColourArray().length;i++){
+               this.colors[i] = mappedColours.getColour(i);
+           }
         }
         
         /**
