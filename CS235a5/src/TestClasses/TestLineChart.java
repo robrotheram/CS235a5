@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TestLineChart {
-    private final String CLASSNAME ="ColumnChart";
+    private final String CLASSNAME ="LineChart";
     private final int SIZE = 500;
     private LineChart m_LC;
     private JFrame m_frame;
@@ -712,8 +712,6 @@ public class TestLineChart {
         
         System.out.println("Test createchart: "+
               TLC.TestcreateChart(run).getResult());
-        System.out.println("Test getJChart "+
-              TLC.TestGetJChart(run).getResult());
         
         System.out.println("Test Set Title: "+
               TLC.TestSetTitle(run).getResult());

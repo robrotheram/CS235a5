@@ -4,10 +4,13 @@ import TestClasses.TestCSVReader;
 import TestClasses.TestCSVReaderDialog;
 import TestClasses.TestCloudDialog;
 import TestClasses.TestCloudIO;
+import TestClasses.TestColumnChart;
 import TestClasses.TestDataCell;
 import TestClasses.TestDataSet;
 import TestClasses.TestJsonParser;
+import TestClasses.TestLineChart;
 import TestClasses.TestOpenDialog;
+import TestClasses.TestPieChart;
 import TestClasses.TestSaveDialog;
 import TestClasses.TestTabPannel;
 import java.awt.BorderLayout;
@@ -322,7 +325,58 @@ public class TestingUI extends JFrame {
                 TTP.TestGetTab(run),
                 TTP.TestNumOfCharts(run),
                 TSD.TestSaveFile(run),
-                TOD.TestReadFile(run)
+                TOD.TestReadFile(run),
+                TPC.TestPieChartDiplay(run),
+                TPC.TestcreateChart(run),
+               
+                TPC.TestSetTitle(run),
+                TPC.TestGetTitle(run),
+                TPC.TestsetDataSet(run),
+                TPC.TestSetXColumnData(run),
+                TPC.TestGetXColumnData(run),
+                TPC.TestSetYColumnData(run),
+                TPC.TestGetYColumnData(run),
+                TPC.TestSetColourMap(run),
+                TPC.TestGetColourMap(run),
+                TPC.TestSetAuthor(run),
+                TPC.TestGetAuthor(run),
+                TPC.TestSetYColumnData(run),
+                TPC.TestGetYColumnData(run),
+                
+                TLC.TestColumnChartDiplay(run),
+                TLC.TestcreateChart(run),
+                
+                TLC.TestSetTitle(run),
+                TLC.TestGetTitle(run),
+                TLC.TestsetDataSet(run),
+                TLC.TestSetXColumnData(run),
+                TLC.TestGetXColumnData(run),
+                TLC.TestSetYColumnData(run),
+                TLC.TestGetYColumnData(run),
+                TLC.TestSetColourMap(run),
+                TLC.TestGetColourMap(run),
+                TLC.TestSetAuthor(run),
+                TLC.TestGetAuthor(run),
+                TLC.TestSetYColumnData(run),
+                TLC.TestGetYColumnData(run),
+                
+                TCC.TestColumnChartDiplay(run),
+                TCC.TestcreateChart(run),
+               
+                TCC.TestSetTitle(run),
+                TCC.TestGetTitle(run),
+                TCC.TestsetDataSet(run),
+                TCC.TestSetXColumnData(run),
+                TCC.TestGetXColumnData(run),
+                TCC.TestSetYColumnData(run),
+                TCC.TestGetYColumnData(run),
+                TCC.TestSetColourMap(run),
+                TCC.TestGetColourMap(run),
+                TCC.TestSetAuthor(run),
+                TCC.TestGetAuthor(run),
+                TCC.TestSetYColumnData(run),
+                TCC.TestGetYColumnData(run)
+
                 
             };
         return THETESTS;
@@ -343,7 +397,9 @@ public class TestingUI extends JFrame {
     private final TestTabPannel TTP = new TestTabPannel();
     private final TestOpenDialog TOD = new  TestOpenDialog();
     private final TestSaveDialog TSD = new  TestSaveDialog();
-    
+    private final TestPieChart TPC = new TestPieChart();
+    private final TestLineChart TLC = new TestLineChart();
+    private final TestColumnChart TCC = new TestColumnChart();
     
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;

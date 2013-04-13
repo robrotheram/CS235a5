@@ -32,7 +32,7 @@ import javax.swing.*;
 public class VisualiserGUI extends JFrame
 {
  
-  public VisualiserGUI() throws IOException
+  public VisualiserGUI()
   {
     // Init JFileChooser
     m_fc = new JFileChooser();
@@ -135,13 +135,17 @@ public class VisualiserGUI extends JFrame
         m_menuBar.setVisible(true);
     }
     
-    private void initToolBar() throws IOException
+    private void initToolBar() 
     {
         m_toolbar = new JPanel();
-        m_newFileButton = new JButton(
-                new ImageIcon(ImageIO.read(this.getClass().getResource(
-                "/assets/images/newDocument.png")).getScaledInstance(
-                40, 40, Image.SCALE_SMOOTH)));
+        try {
+            m_newFileButton = new JButton(
+                    new ImageIcon(ImageIO.read(this.getClass().getResource(
+                    "/assets/images/newDocument.png")).getScaledInstance(
+                    40, 40, Image.SCALE_SMOOTH)));
+        } catch (IOException ex) {
+            System.err.println("VisulisationGUI.initToolBar():"+ex);
+        }
         m_newFileButton.setPreferredSize(new Dimension(50, 50));
         m_newFileButton.setToolTipText("New File");
         m_openFileButton = new JButton("Open");
@@ -170,12 +174,15 @@ public class VisualiserGUI extends JFrame
         for (int i = 0; i < m_chartImageStrings.length; i++){
             m_intArray[i] = i;
             try {
-                m_chartImages[i] = 
+               m_chartImages[i] = 
                         new ImageIcon(ImageIO.read(this.getClass().getResource(
                         "/assets/images/" + m_chartImageStrings[i] + ".png"
                         )).getScaledInstance(80, 80, Image.SCALE_SMOOTH));
-                m_chartImages[i].setDescription(m_chartImageDescriptions[i]); 
-            } catch (IOException ex) {
+              
+                m_chartImages[i].setDescription(m_chartImageDescriptions[i]);
+                
+            } catch (Exception ex) {
+                System.err.println("error = "+ex);
                 JOptionPane.showMessageDialog(this, "There was an error "
                         + "loading the chart icons. Please report this fault"
                         + "to the developers at: \n GroupMS@gmail.com", 

@@ -189,7 +189,7 @@ public abstract class Chart extends Visualisation {
 			 
 			 if(val.equals( m_foundElements.get(i))){
 				 found = true;
-                                 System.out.print( m_foundElements.get(i));
+                                 
 				 break;
 			 }
 			 
