@@ -1,6 +1,7 @@
 package cs235a5;
 
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -213,7 +214,7 @@ public abstract class Visualisation extends JPanel
    * @param author
    * @param description 
    */
-  Visualisation(String title, int width, int height, DataSet data,
+  Visualisation(String title, DataSet data,
   ColourMap colours, String author, String description){
       if(SetTitle(title)){
           if(m_test){
@@ -230,21 +231,7 @@ public abstract class Visualisation extends JPanel
                   + " constructor.");
           }
       }
-      if(SetScale(width, height)){
-          if(m_test){
-              System.out.println("Chart size set correctly in Visualisation():"
-                  + " Chart constructor");
-          } else if(!SetScale(width, height)){
-              if(m_test){
-                  System.err.println("Chart size not set correctly in"
-                      + " Visualisation(): Chart constructor");
-              } else {
-                  JOptionPane.showMessageDialog(this, "There has been an error "
-                  + "setting the chart dimensions in Visualisation(): Chart"
-                  + " constructor.");
-              }
-          }
-      }
+      
       if(SetData(data)){
           if(m_test){
               System.out.println("Chart data has been set correctly in "

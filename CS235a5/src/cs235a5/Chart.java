@@ -29,10 +29,6 @@ public abstract class Chart extends Visualisation {
     private String m_title;
     private ChartType m_chartType;
     protected ArrayList<String>m_foundElements;
-
-    
-    
-   
     
     /**
      * Allows access for setting the dataset
@@ -146,11 +142,8 @@ public abstract class Chart extends Visualisation {
      */
     public Chart(DataSet db,int xColumnPos, int yColumnPos, String title, 
             Rectangle r, ColourMap cm, String author, String description){
-       if(SetData(db)){
-           System.out.println("MS_Chart().setData(): Successful");
-       } else {
-           System.err.println("MS_Chart().setData(): Failed");
-       }
+        
+       super(title, db, cm, author, description);
        
        if(SetXData(xColumnPos)){
            System.out.println("MS_Chart().setXData(): Successful");
@@ -164,27 +157,6 @@ public abstract class Chart extends Visualisation {
            System.err.println("MS_Chart().setYData(): Failed");
        }
        
-       if(SetChartTitle(title)){
-           System.out.println("MS_Chart().setChartTitle(): Successful");
-       } else {
-           System.err.println("MS_Chart().setChartTitle(): Failed");
-       }
-       
-       if(SetColourMap(cm)){
-           System.out.println("MS_Chart().setColourMap(): Successful");
-       } else {
-           System.err.println("MS_Chart().setColourMap(): Failed");
-       }
-       if(SetAuthor(author)){
-           System.out.println("MS_Chart().SetAuthor(): Successful");
-       } else {
-           System.err.println("MS_Chart().SetAuthor(): Failed");
-       }
-       if(SetDescription(description)){
-           System.out.println("MS_Chart().SetDescription(): Successful");
-       } else {
-           System.err.println("MS_Chart().SetDescription(): Failed");
-       }
        this.setBounds(r);
        this.setLayout(new java.awt.BorderLayout());
        this.add(createPanel(),BorderLayout.CENTER);
