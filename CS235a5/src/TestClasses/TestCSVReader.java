@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package TestClasses;
 
 import TestUI.Test;
@@ -10,10 +7,16 @@ import cs235a5.DataSet;
 import java.io.File;
 import java.net.URL;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the CSVReader class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * CSVReader class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see CSVReader.java
+    @date April 2013
+    */
+
 public class TestCSVReader {
     private final String CLASSNAME = "CSVReader";
     URL fileURL = this.getClass().getResource("/assets/files/csv.csv");
@@ -21,7 +24,14 @@ public class TestCSVReader {
     private CSVReader m_csv = new CSVReader(new DataSet(),f,",");
     
     
-    
+      /**
+     * Method to test the CSVReader SetFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
      public Test TestsetFile(boolean run){
          
         
@@ -50,7 +60,14 @@ public class TestCSVReader {
         return theTest;
     }
      
-     
+       /**
+     * Method to test the CSVReader GetFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       public Test TestGetFile(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the File",//Test Title
@@ -77,7 +94,14 @@ public class TestCSVReader {
         }
         return theTest;
     }
-      
+        /**
+     * Method to test the CSVReader GetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       
       public Test TestGetDataSet(boolean run){
             Test theTest = new Test(
@@ -103,7 +127,14 @@ public class TestCSVReader {
         }
         return theTest;
     }
-      
+        /**
+     * Method to test the CSVReader SetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       
       public Test TestsetDataSet(boolean run){
             Test theTest = new Test(
@@ -129,7 +160,14 @@ public class TestCSVReader {
         }
         return theTest;
     }
-      
+        /**
+     * Method to test the CSVReader GetDeliminators() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       
       public Test TestGetDelimiters(boolean run){
             Test theTest = new Test(
@@ -156,7 +194,14 @@ public class TestCSVReader {
         return theTest;
     }
       
-      
+        /**
+     * Method to test the CSVReader SetDelimiter() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       public Test TestsetDelimiter(boolean run){
             Test theTest = new Test(
                  "Testing if you can set the DataSet",//Test Title
@@ -181,7 +226,14 @@ public class TestCSVReader {
         }
         return theTest;
     }
-      
+       /**
+     * Method to test the CSVReader ParseFile method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */ 
      public Test TestParseFile(boolean run){
             Test theTest = new Test(
                  "Testing if ther class can parse the file",//Test Title

@@ -8,16 +8,28 @@ import TestUI.Test;
 import cs235a5.DataCell;
 import cs235a5.DataSet;
 
-
-
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the DataSet class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * DataSet class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see DataSet.java
+    @date April 2013
+    */
 public class TestDataSet {
         private final String CLASSNAME = "DataSet";
         private DataSet m_db = new DataSet();
         
+        
+         /**
+     * Method to test the DataSet SetDataSetWithInt() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestSetDataSetWithInt(boolean run){
             Test theTest = new Test(
                  "Test to set up the dataset",//Test Title
@@ -41,7 +53,14 @@ public class TestDataSet {
         return theTest;
         }
         
-        
+         /**
+     * Method to test the DataSet SetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestSetDataSet(boolean run){
             Test theTest = new Test(
                  "Test to set up the dataset",//Test Title
@@ -64,6 +83,14 @@ public class TestDataSet {
         return theTest;
         }
         
+         /**
+     * Method to test the DataSet SetHeader() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestSetHeader(boolean run){
             Test theTest = new Test(
                  "Test to set up the Column Headers",//Test Title
@@ -86,7 +113,14 @@ public class TestDataSet {
         return theTest;
         }
         
-        
+         /**
+     * Method to test the DataSet GetDataCell() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestSetDataCell(boolean run){
             Test theTest = new Test(
                  "Test to set up the set a Datacell at position x,y",//Test Title
@@ -110,7 +144,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet SetFilePath() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestSetFilePath(boolean run){
             Test theTest = new Test(
                  "Test to set up the File path method",//Test Title
@@ -133,7 +174,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetCell() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
          public Test TestGetCell(boolean run){
             Test theTest = new Test(
                  "Test to get a cell at X , Y",//Test Title
@@ -156,7 +204,14 @@ public class TestDataSet {
             
         return theTest;
         }
-         
+          /**
+     * Method to test the DataSet GetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
          public Test TestGetDataSet(boolean run){
             Test theTest = new Test(
                  "Test to get a the entire DataSet",//Test Title
@@ -178,7 +233,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetRow() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
           public Test TestGetRow(boolean run){
             Test theTest = new Test(
                  "Test to get a the entire row of data",//Test Title
@@ -200,7 +262,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetHeader() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestGetHeader(boolean run){
             Test theTest = new Test(
                  "Test to see if the headers can be returned",//Test Title
@@ -223,7 +292,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetAHeader() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestGetAHeader(boolean run){
             Test theTest = new Test(
                  "Test to see if the A heder at column position X",//Test Title
@@ -247,7 +323,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetNumsRows() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestGetNumRows(boolean run){
             Test theTest = new Test(
                  "Test to see if the number of rows can be returned",//Test Title
@@ -269,7 +352,14 @@ public class TestDataSet {
             
         return theTest;
         }
-        
+         /**
+     * Method to test the DataSet GetNumColumns() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
         public Test TestGetNumColumns(boolean run){
             Test theTest = new Test(
                  "Test to see if the number of Columns can be returned",//Test Title
@@ -292,7 +382,14 @@ public class TestDataSet {
         return theTest;
         }
         
-        
+         /**
+     * Method to test the DataSet GetFilePath() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
          public Test TestGetFilePath(boolean run){
             Test theTest = new Test(
                  "Test to see if the DataSet can return the file path",//Test Title

@@ -13,15 +13,29 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the JsonParser class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * JsonParser  class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see JsonParser .java
+    @date April 2013
+    */
+
+
 public class TestJsonParser {
     private final String CLASSNAME = "JsonParser";
     private JsonParser m_json = new JsonParser();
     
-    
+     /**
+     * Method to test the JsonParser ParseLogin() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestparseLogin(boolean run) {
         Test theTest = new Test(
                  "Testing Parseing the json object if is a login data",//Test Title
@@ -54,6 +68,14 @@ public class TestJsonParser {
         return theTest;
     }
     
+     /**
+     * Method to test the JsonParser ParseList() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestparseList(boolean run){
         Test theTest = new Test(
                  "Testing Parseing the json object if is a list data",//Test Title
@@ -152,6 +174,14 @@ public class TestJsonParser {
         return theTest;
     }
     
+     /**
+     * Method to test the JsonParser parseGet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestparseGet(boolean run){
         Test theTest = new Test(
                  "Testing Parseing the json object if is a Get File Path data",//Test Title
@@ -184,6 +214,14 @@ public class TestJsonParser {
         return theTest;
     }
     
+     /**
+     * Method to test the JsonParser ParseUpload() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestparseUpload(boolean run) {
         Test theTest = new Test(
                  "Testing Parseing the json object if is a upload data",//Test Title
