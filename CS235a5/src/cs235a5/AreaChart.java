@@ -137,7 +137,7 @@ public class AreaChart extends Chart {
      * @param author - sets the author of the chart
      * @param description - gives the chart a description
      */
-  public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
+  public AreaChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
   {
      super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
       
@@ -178,7 +178,7 @@ public class AreaChart extends Chart {
                 //Add to chart dataSet
 
                 dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i-1)).GetInteger()));
+                        super.GetXColumnPosition(), (i)).GetInteger()));
 
 
 

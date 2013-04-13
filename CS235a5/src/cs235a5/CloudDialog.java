@@ -59,7 +59,7 @@ public class CloudDialog extends JFrame{
      */
     private void initMainFrame(){
         
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(MAINFRAMESIZE);
         BoxLayout bl = new BoxLayout(getContentPane(), BoxLayout.Y_AXIS);
         this.getContentPane().setLayout(bl);
