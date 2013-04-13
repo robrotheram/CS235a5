@@ -9,14 +9,28 @@ import cs235a5.DataSet;
 import cs235a5.OpenDialog;
 import cs235a5.TabPannel;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the OpenDialog class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * OpenDialog class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see OpenDialog.java
+    @date April 2013
+    */
+
 public class TestOpenDialog {
-    private final String CLASSNAME = "OpenDialod";
+    private final String CLASSNAME = "OpenDialog";
     private OpenDialog m_OD = new OpenDialog(new DataSet(), new TabPannel());
     
+     /**
+     * Method to test the OpenDialog ReadFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestReadFile(boolean run){
             Test theTest = new Test(
                  "Test to Write the Open File",//Test Title

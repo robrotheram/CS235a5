@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package TestClasses;
 
 import TestUI.Test;
@@ -9,14 +6,27 @@ import cs235a5.DataSet;
 import cs235a5.SaveDialog;
 import cs235a5.TabPannel;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the SaveDialog class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * SaveDialog class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see SaveDialog.java
+    @date April 2013
+    */
+
 public class TestSaveDialog {
-    private final String CLASSNAME = "SaveDialod";
+    private final String CLASSNAME = "SaveDialog";
     private SaveDialog m_SD = new SaveDialog(new DataSet(), new TabPannel());
-    
+     /**
+     * Method to test the SaveDialog SaveFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestSaveFile(boolean run){
             Test theTest = new Test(
                  "Test to Write the save File",//Test Title

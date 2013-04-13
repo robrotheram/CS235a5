@@ -266,7 +266,7 @@ public class TestDataCell {
     }
     
     /**
-     * Main method to run this test 
+     * Main method to run all the tests in this class 
      * @param String[] the command line arguments
      */
     

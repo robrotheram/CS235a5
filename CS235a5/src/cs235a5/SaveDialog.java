@@ -89,6 +89,7 @@ public class SaveDialog {
         FileWriter fw = null;
         try {
             File file = getSaveFile();
+            if(file !=null){
             fw = new FileWriter(file.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);
             
@@ -130,7 +131,8 @@ public class SaveDialog {
             
             
             return true;
-            
+            }
+            return false;
             
         } catch (IOException ex) {
             

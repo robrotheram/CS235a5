@@ -304,7 +304,7 @@ public class TestingUI extends JFrame {
                 TC.TestUpload(run),
                 TC.TestDownloadFile(run),
                 TCD.TestCloudDialogDisplay(run),
-                TCSVR.TestCloudDialogDisplay(run),
+                TCSVR.TestCSVReaderDialogDisplay(run),
                 TCSVR.TestsetContext(run),
                 TCSVR.TestsetDataSet(run),
                 TCSVR.TestsetFile(run),

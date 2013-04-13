@@ -14,21 +14,38 @@ import java.net.URL;
 
 
 
+/** @brief This class is will Test all the methods in the CSVReaderDialog class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * CSVReaderDialog class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see CSVReaderDialog.java
+    @date April 2013
+    */
 
-/**
- *
- * @author Robert
- */
 public class TestCSVReaderDialog {
     private final String CLASSNAME = "CSVReaderDialog";
     private CSVReaderDialog m_CD = new CSVReaderDialog();
     private VisualiserGUI VGUI = new VisualiserGUI();
     
+    /**
+     * Hides the VisualiserGUI GUI since it is not needed
+     */
     public  TestCSVReaderDialog(){
         VGUI.setVisible(false);
     }
     
-    public Test TestCloudDialogDisplay(boolean run){
+    
+      /**
+     * Method to test the CSVReaderDialog CSVReadserDialog method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
+    public Test TestCSVReaderDialogDisplay(boolean run){
         Test theTest = new Test(
                  "Testing if you can display the UI",//Test Title
                  CLASSNAME,//Class Name
@@ -52,7 +69,14 @@ public class TestCSVReaderDialog {
         }
         return theTest;
     }
-    
+      /**
+     * Method to test the CSVReaderDialog GetSetContext() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestsetContext(boolean run){
         Test theTest = new Test(
                  "Testing if you add the hooks into the UI",//Test Title
@@ -77,7 +101,14 @@ public class TestCSVReaderDialog {
         }
         return theTest;
     }
-    
+      /**
+     * Method to test the CSVReaderDialog GetFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
      public Test TestsetFile(boolean run){
             Test theTest = new Test(
                  "Testing if you can set the file",//Test Title
@@ -103,7 +134,14 @@ public class TestCSVReaderDialog {
         }
         return theTest;
     }
-    
+      /**
+     * Method to test the CSVReaderDialog SetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       public Test TestsetDataSet(boolean run){
             Test theTest = new Test(
                  "Testing if you can set the DataSet",//Test Title
@@ -128,6 +166,14 @@ public class TestCSVReaderDialog {
         }
         return theTest;
     }
+       /**
+     * Method to test the CSVReaderDialog GetDataSet() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       
     public Test TestGetDataSet(boolean run){
             Test theTest = new Test(
@@ -154,6 +200,14 @@ public class TestCSVReaderDialog {
         return theTest;
     }
     
+      /**
+     * Method to test the CSVReaderDialog GetContext() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     public Test TestGetContext(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the VisuliserGUI",//Test Title
@@ -181,7 +235,14 @@ public class TestCSVReaderDialog {
     
     
     
-   
+     /**
+     * Method to test the CSVReaderDialog GetFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     
     public Test TestGetFile(boolean run){
             Test theTest = new Test(
@@ -219,7 +280,7 @@ public class TestCSVReaderDialog {
         boolean run = true;
         TestCSVReaderDialog TCSVR = new TestCSVReaderDialog();
         System.out.println("Test Display: "+
-              TCSVR.TestCloudDialogDisplay(run).getResult());
+              TCSVR.TestCSVReaderDialogDisplay(run).getResult());
         System.out.println("Test Set Context: "+
               TCSVR.TestsetContext(run).getResult());
         System.out.println("Test Set DataSet: "+

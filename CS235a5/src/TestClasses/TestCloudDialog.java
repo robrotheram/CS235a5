@@ -8,14 +8,27 @@ import TestUI.Test;
 import cs235a5.CloudDialog;
 import cs235a5.DataSet;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the CloudDialog class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * CloudDialog class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see CloudDialog.java
+    @date April 2013
+    */
 public class TestCloudDialog {
     private final String CLASSNAME = "CloudDialog";
     private CloudDialog m_CD;
     
+      /**
+     * Method to test the CloudDialog CloudDialogDisplay method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
      public Test TestCloudDialogDisplay(boolean run){
         Test theTest = new Test(
                  "Testing if you can display the UI",//Test Title

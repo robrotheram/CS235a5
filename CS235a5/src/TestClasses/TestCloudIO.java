@@ -10,13 +10,28 @@ import cs235a5.DataType;
 import java.io.File;
 import java.net.URL;
 
-/**
- *
- * @author Robert
- */
+/** @brief This class is will Test all the methods in the CloudIO class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * CloudIO class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see CloudIO.java
+    @date April 2013
+    */
 public class TestCloudIO {
     private final String CLASSNAME = "CloudIO";
     private CloudIO Cloud = new CloudIO();
+    
+    
+      /**
+     * Method to test the CloudIO Login() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
     
     public Test TestLogin(boolean run){
         Test theTest = new Test(
@@ -40,6 +55,15 @@ public class TestCloudIO {
         }
         return theTest;
     }
+    
+      /**
+     * Method to test the CloudIO List() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
      public Test TestList(boolean run){
         Test theTest = new Test(
                  "Testing if you can List the files on the server",//Test Title
@@ -63,7 +87,14 @@ public class TestCloudIO {
         }
         return theTest;
     }
-     
+       /**
+     * Method to test the CloudIO GetFilePath() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       public Test TestgetFilePath(boolean run){
         Test theTest = new Test(
                  "Testing if you canget the file path to a file id",//Test Title
@@ -87,7 +118,14 @@ public class TestCloudIO {
         }
         return theTest;
     }
-      
+        /**
+     * Method to test the CloudIO Upload() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       public Test TestUpload(boolean run){
         Test theTest = new Test(
                  "Testing if you can log upload a file to the server",//Test Title
@@ -111,6 +149,14 @@ public class TestCloudIO {
         }
         return theTest;
     }
+        /**
+     * Method to test the CloudIO DownloadFile() method  and returns a Test object containing the 
+     * test tile, Class being tested, method being tested,test description, 
+     * Input data expected output, if the test has been run and if the test 
+     * is passed.
+     * @param boolean if the method is being run
+     * @return Test 
+     */
       
       public Test TestDownloadFile(boolean run){
         Test theTest = new Test(

@@ -145,7 +145,7 @@ public class ColumnChart extends Chart {
   /**
    * Creates a dataset of type XYSeries
    */
-   public DefaultCategoryDataset convertDataSet()
+   private DefaultCategoryDataset convertDataSet()
   {
         int size = 0;
         int sum = 0;
@@ -177,7 +177,7 @@ public class ColumnChart extends Chart {
                 //Add to chart dataSet
 
                 dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i-1)).GetInteger()));
+                        super.GetXColumnPosition(), (i)).GetInteger()));
 
 
 
@@ -198,6 +198,7 @@ public class ColumnChart extends Chart {
     */
    @Override
     public JFreeChart createChart(){
+        System.out.println("x="+super.GetDataSet().GetHeader());
         final JFreeChart CHART = ChartFactory.createBarChart(
             super.GetTitle(),         // chart title
             super.GetDataSet().GetAColumnName(super.GetXColumnPosition()),               // domain axis label
@@ -208,7 +209,7 @@ public class ColumnChart extends Chart {
             true,                     // tooltips?
             false                     // URLs?
         );
-        
+       
         final CategoryPlot plot = CHART.getCategoryPlot(); 
         CategoryItemRenderer renderer = new CustomRenderer(); 
         plot.setRenderer(renderer);
@@ -230,10 +231,13 @@ public class ColumnChart extends Chart {
          */
         public CustomRenderer(){ 
            ColourMap mappedColours = GetColourMap();
-           this.colors = new Paint[] {
-             mappedColours.getColour(0), mappedColours.getColour(1), mappedColours.getColour(2), 
-             mappedColours.getColour(3), mappedColours.getColour(4)}; 
+           this.colors = new Paint[mappedColours.getColourArray().length];
+           for(int i = 0; i<mappedColours.getColourArray().length;i++){
+               this.colors[i] = mappedColours.getColour(i);
+           }
         }
+            
+       
         
         /**
          * Accessor method for getting the colours of each column
