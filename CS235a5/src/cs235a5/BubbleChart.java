@@ -7,6 +7,7 @@ package cs235a5;
 import java.awt.Paint;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Collections;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.plot.PlotOrientation;
@@ -16,6 +17,9 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.renderer.xy.XYBubbleRenderer;
+import org.jfree.data.xy.MatrixSeriesCollection;
+import org.jfree.data.xy.NormalizedMatrixSeries;
 
 /**
  *\file     BubbleChart.java
@@ -144,16 +148,20 @@ public class BubbleChart extends Chart{
   /**
    * Creates a dataset of type XYSeries
    */
-     public XYDataset convertDataSet()
+     public MatrixSeriesCollection convertDataSet()
+             
   {
+        ArrayList<Integer>xVal = new ArrayList<Integer>();
+        ArrayList<Integer>yVal = new ArrayList<Integer>();
+        ArrayList<Double>sumVal = new ArrayList<Double>();
+        
         int size = 0;
         int sum = 0;
         int pos = 0;
         int j= 0;                                                    //.........needs to be changed!?!?........
         
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries(super.GetTitle());
-        
+
+
         DataCell preVal = super.GetDataSet().GetCell(0, 0);
         // Creates a new list for the found elements 
         super.m_foundElements = new ArrayList<String>();
@@ -177,8 +185,14 @@ public class BubbleChart extends Chart{
 
                 //Add to chart dataSet
 
-                 series.add(sum,super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i)).GetInteger());
+                
+                
+                 int x= super.GetDataSet().GetCell(super.GetXColumnPosition(),(i)).GetInteger();
+                 int y = super.GetDataSet().GetCell(super.GetYColumnPosition(),(i)).GetInteger();
+                 xVal.add(x);
+                 yVal.add(y);
+                 double d = (y+0.0)/sum;
+                 sumVal.add((d));
 
 
 
@@ -187,9 +201,26 @@ public class BubbleChart extends Chart{
                 pos++;             
                 }
             }
-        dataset.addSeries(series);
+        
+        
+        double maxSum = Collections.max(sumVal);
+        int maxY = Collections.max(yVal);
+        int maxX = Collections.max(xVal);
+        
+        NormalizedMatrixSeries series = new NormalizedMatrixSeries(super.GetTitle(),(maxY+1),(maxX+1));
+        for(int i = 0; i<sumVal.size();i++){
+            series.update(yVal.get(i),xVal.get(i),sumVal.get(i));
+        }
+        
+        
+       series.setScaleFactor(series.getRowCount());
+       MatrixSeriesCollection dataset = new MatrixSeriesCollection(series);
         return dataset;
     }
+
+     
+     
+     
     
         /**
     *
@@ -227,7 +258,7 @@ public class BubbleChart extends Chart{
         return CHART;
          */
         
-        XYItemRenderer renderer = new BubbleChart.CustomRenderer(); 
+        XYBubbleRenderer renderer = new BubbleChart.CustomRenderer(); 
         plot.setRenderer(renderer);
         return CHART;
     }
@@ -235,7 +266,7 @@ public class BubbleChart extends Chart{
      * A renderer specific for this type of chart. Sets the colours that will 
      * be used when displaying the chart.
      */
-    class CustomRenderer extends XYItemRenderer {
+    class CustomRenderer extends XYBubbleRenderer{
         private Paint[] colors;
         
         /**
@@ -256,7 +287,7 @@ public class BubbleChart extends Chart{
          * @param column - the identifier of the area it is returning
          * @return the colour of each area 
          */
-        @Override
+        
         public Paint getItemPaint(final int row, final int column) {     //............needs to be changed?!.........
            return (this.colors[column % this.colors.length]); 
         } 

@@ -5,6 +5,7 @@
 package inBeta;
 
 import cs235a5.AreaChart;
+import cs235a5.BubbleChart;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
@@ -30,6 +31,7 @@ public class test extends JFrame {
      this.setSize(500,500);
      m = new JPanel();
      m.setBackground(Color.yellow);
+     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      m.setBounds(0,0, 500, 500);
      this.add(m);
      DataSet db = new DataSet();
@@ -38,7 +40,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new PieChart(db,
+          m.add( new BubbleChart(db,
                                                 0,
                                                 4,
                                                 "title",
