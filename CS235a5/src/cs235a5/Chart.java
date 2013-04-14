@@ -5,8 +5,18 @@
 package cs235a5;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Rectangle;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
@@ -29,6 +39,7 @@ public abstract class Chart extends Visualisation {
     private String m_title;
     private ChartType m_chartType;
     protected ArrayList<String>m_foundElements;
+    private final int OFFSET = 30;
     
     /**
      * Allows access for setting the dataset
@@ -157,10 +168,12 @@ public abstract class Chart extends Visualisation {
            System.err.println("MS_Chart().setYData(): Failed");
        }
        
-       this.setBounds(r);
+       this.setBounds(r.x,r.y,r.width,(r.height-OFFSET));
        this.setLayout(new java.awt.BorderLayout());
        this.add(createPanel(),BorderLayout.CENTER);
+       this.add(addChartInfo(r,author,description),BorderLayout.SOUTH);
        this.setVisible(true);
+       this.validate();
     };
     
     /**
@@ -177,6 +190,55 @@ public abstract class Chart extends Visualisation {
            myChart.setMouseWheelEnabled(true);
         return myChart;
     } 
+    
+    
+    /**
+     * Private method to add the charts info ie the Author Description and time to the chart
+     * @param Rectangle the size of the panel
+     * @param String author of the chart
+     * @param String Description, The charts Description
+     * @return JPanel A panel with a 3 labels containing the author, description, time
+     */
+    private JPanel addChartInfo(Rectangle r,String author, String Desc ){
+        JPanel p = new JPanel();
+        p.setPreferredSize(new Dimension(r.width,OFFSET));
+        p.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
+        p.setLayout(new FlowLayout());
+        
+        JLabel auth = new JLabel("Author: "+author+" | ");
+        p.add(auth);
+        JLabel des = new JLabel("Description: "+Desc+" | ");
+        p.add(des);
+        JLabel date = new JLabel("Date: "+getDate("dd/MM/yyyy")+" Time: "+getDate("HH:mm:ss"));
+        p.add(date);
+        
+        
+        p.validate(); 
+       
+        
+        
+        
+        return p;
+    } 
+     /**
+     * Method to get the current time and date and return it as a string
+     * @return String  - the current time and Data
+     */
+     private String getDate(String format){
+               DateFormat dateFormat = new SimpleDateFormat(format);
+               //get current date time with Date()
+               Date date = new Date();
+               System.out.println(dateFormat.format(date));
+         
+               //get current date time with Calendar()
+               Calendar cal = Calendar.getInstance();
+               return(dateFormat.format(cal.getTime()));
+               
+           
+           
+     }  
+    
+    
     /**
      * Method for checking array list if the element has already be found. 
      * It so that when making the chart dataset there will be no duplicates.

@@ -12,9 +12,11 @@ package cs235a5;
 
 // Import Swing Library
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
   * Creates a new JPanel containing a JTable
@@ -73,7 +75,11 @@ public class TableView extends JPanel
   {
     return  new JScrollPane(GetUserData());
   }
-  
+  /**
+   * Class constructor that created the table from the dataset
+   * @param DataSet the DataSAet used by the class to make the table
+   * @param Rectangle the size of the table
+   */
   public TableView(DataSet db, Rectangle r){
        m_DB = db;
        this.setBounds(r);
@@ -81,6 +87,113 @@ public class TableView extends JPanel
        this.add(GetTableView(),BorderLayout.CENTER);
        this.setVisible(true);
     }
+  /**
+   * Class constructor to create a empty table
+   */
+  public TableView(){
+  JTable t = new JTable(new DefaultTableModel(
+   new Object [][] {
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    {null, null, null, null},
+                    
+                   }, new String [] {"Title 1", "Title 2", "Title 3", "Title 4"}
+                ));
+  
+  t.setEnabled(false);    
+      
+      
+      t.setFillsViewportHeight(true);
+      t.setShowGrid(true);
+      t.setGridColor(Color.BLACK);
+      this.setLayout(new BorderLayout());
+      this.add(new JScrollPane(t),BorderLayout.CENTER);
+  }
     
     private DataSet m_DB;
     private JTable m_table;

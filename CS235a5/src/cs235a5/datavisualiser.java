@@ -11,11 +11,12 @@ package cs235a5;
  */
 
 // Import Swing Library
+import java.io.IOException;
 import javax.swing.*;
 
 public class datavisualiser
 {
-  public static void main (String[] args)
+  public static void main (String[] args) throws IOException
   {
       
     
