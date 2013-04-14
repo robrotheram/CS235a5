@@ -18,6 +18,8 @@ import java.io.File;
 // Import AWT Library
 import java.awt.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 // Import Swing Library
@@ -70,7 +72,7 @@ public class VisualiserGUI extends JFrame
     m_tableAndCharts.add(m_tablePane, BorderLayout.LINE_START);
     m_tableAndCharts.add(m_chartTabPanel, BorderLayout.LINE_END);
     m_container.add(m_tableAndCharts, BorderLayout.CENTER);
-    
+   
     
     // Init a new GUIEventHandler
    // m_handler = new GUIEventHandler();
@@ -190,7 +192,8 @@ public class VisualiserGUI extends JFrame
                 40, 40, Image.SCALE_SMOOTH)));
         m_printFileButton.setPreferredSize(new Dimension(50, 50));
         m_printFileButton.setToolTipText("Print File");
-        
+            
+
         m_toolbar.add(m_newFileButton);
         m_toolbar.add(m_openFileButton);
         m_toolbar.add(m_saveFileButton);
@@ -199,6 +202,22 @@ public class VisualiserGUI extends JFrame
         
         m_toolbar.setVisible(true);
         m_container.add(m_toolbar, BorderLayout.PAGE_START);
+        
+        // ------ code to remove the chart the tabpenl is displaying ----///
+         m_openFileButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event) {
+                int i = m_chartTabPanel.getSelectedIndex();
+                if(i>-1){
+                    m_chartTabPanel.remove(m_chartTabPanel.GetTab(i));
+                    m_chartTabPanel.validate();
+
+                }
+            }});
+        
+        
+        
+        
+        
         
     }
     
