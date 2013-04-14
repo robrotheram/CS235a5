@@ -31,6 +31,10 @@
 
 
 package Main;
+
+import cs235a5.VisualiserGUI;
+import javax.swing.JFrame;
+
 /** @brief This main class for the program
 
    This class checks the arguments sent to the program to see if it is to be 
@@ -61,12 +65,12 @@ public class Main {
      */
     public static void StartProgramUI(){
         System.out.println("Starting Main Program");
-         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-               // new cs235a5.VisualiserGUI().setVisible(true);
-            }
-        });
+         
+                  VisualiserGUI mainWindow = new VisualiserGUI();
+                    mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    mainWindow.setVisible(true);
+            
+       
     }
     /**
      * Static method to launch the Data Visualizer Debug UI IO in a runnable 
