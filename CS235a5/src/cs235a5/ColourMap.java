@@ -14,11 +14,11 @@ import javax.swing.JPanel;
  */
 public class ColourMap implements ColorScheme{
     
-     /**
-    * 
-    * The setColourArray class stores structure of entire color data
+   /** Sets the colour array method
+    * The setColourArray class stores a structure for an entire color data set
     * 
     * @param cArray 
+    * @return true 
     */
     @Override
     public boolean setColourArray(Color[] cArray) {
@@ -26,11 +26,12 @@ public class ColourMap implements ColorScheme{
         return true;
     }
 
-    /**
-    * set in the color array a Color c at position i
+   /** Sets colour to position i in the colour array
+    * Sets Color c at the position i within the colourArray 
     * 
     * @param c the colour
     * @param i the position
+    * @return true
     */
     @Override
     public boolean setColour(Color c, int i) {
@@ -38,7 +39,7 @@ public class ColourMap implements ColorScheme{
         return true;
     }
     
-    /**
+    /** Sets useable panels for the colour window to use
      * Sets 5 panels sizes and colours to match the array for viewing colour
      * map colours in an interface
      * 
@@ -53,8 +54,8 @@ public class ColourMap implements ColorScheme{
         return true;
     }
     
-    /**
-     * Returns the coloured panels for colourmaps
+    /** Returns the coloured panels for colourmaps
+     * returns the colour panel for the class to use it
      * 
      * @return panels coloured panels matching the colour array
      */
@@ -62,8 +63,9 @@ public class ColourMap implements ColorScheme{
         return m_panels;
     }
     
-    /**
-     * Get the colour array
+    /** Get the colour array
+     * returns the colourArray method to be used by the class
+     * 
      * @return m_colorArray
      */
     @Override
@@ -71,7 +73,7 @@ public class ColourMap implements ColorScheme{
         return m_colorArray;
     }
 
-    /**
+    /** Gets the colour array value
     * Get individual colours from the colour array
     * 
     * @param i an int for the location of colour in array
@@ -82,7 +84,7 @@ public class ColourMap implements ColorScheme{
         return m_colorArray[i];
     }
     
-    /**
+    /** Gets the total number of colours in the array
      * Returns the number of colours stored in array for calculations etc
      * 
      * @return int
@@ -92,8 +94,8 @@ public class ColourMap implements ColorScheme{
         return m_colorArray.length;
     }
           
-   /**
-    * Constructor sets the color array for constructor
+   /** The constructor sets the colour array
+    * Constructor sets the color array for the class to make the colourMap
     * 
     * @param colorArray 
     */

@@ -13,18 +13,7 @@ import javax.swing.JOptionPane;
     */
 public class DataCell {
     
-    /**
-     * Class Constructor takes a string and sends it to the SetData Method. Shows
-     * a message dialog if there is an error setting the data
-     * @param String a input of data
-     */
-    public DataCell(String input){
-       if(!SetData(input)){
-           JOptionPane.showMessageDialog(null,"Failed to set data: "+input,
-                   "Error Message", JOptionPane.ERROR_MESSAGE);
-       }
-    }
-    /**
+    /** A method that puts data types into their respective data types
      * Method that checks the String to see what is its native data type and
      * store it in theat data type. 
      * @param String - Sting input
@@ -66,55 +55,74 @@ public class DataCell {
                 m_String = input;
             m_DataType = DataType.STRING;
                 return true;
-           }
-        
-       
-        
+           } 
     }
     
-    /**
+     /** Returns and integer
      * Returns the integer data that has been stored
+     * 
      * @return integer
      */
     public int GetInteger(){
         return m_Integer;
     }
     
-    /**
+    /** Returns Double data
      * Returns the Double data that has been stored
+     * 
      * @return Double the data stored
      */
     public double GetDouble(){
         return m_Double;  
     }
     
-   /**
-    * Returns the string Data
+   /** Returns the string data
+    * Returns the string Data that has been stored 
+    * 
     * @return The String being stored 
     */
     public String GetString(){
         return m_String;  
     }
     
-    /**
+    /** Returns the enumeration 
      * Return the enumeration of the data type see DataType.java
+     * 
      * @return  DataType 
      */
     public DataType GetDataType(){
         
         return m_DataType;
     }
-     /**
+    
+     /** Returns Boolean values
       * Return the Boolean Data that is being stored
+      * 
       * @return Boolean the Data
       */
      public boolean GetBoolean(){
         
         return m_boolean;
     }
-    /**
+    
+    
+    /** Constructor that sends strings to the setData method
+     * Class Constructor takes a string and sends it to the SetData Method. Shows
+     * a message dialog if there is an error setting the data
+     * @param String a input of data
+     */
+     
+    public DataCell(String input){
+       if(!SetData(input)){
+           JOptionPane.showMessageDialog(null,"Failed to set data: "+input,
+                   "Error Message", JOptionPane.ERROR_MESSAGE);
+       }
+    }  
+    
+    /** Returns the overridden string variable 
      * Overrides the toString() method and returns the what is being stored in 
-     * the m_String variable
+     * the m_String variable.
+     * 
      * @return 
      */
     @Override
@@ -123,18 +131,12 @@ public class DataCell {
     }
     
     
-    
-    
-    private String m_String;
-    private Integer m_Integer;
-    private Double m_Double;
-    private boolean m_boolean;
-    private DataType m_DataType;
-    
-    private final String DOUBLEPATTERN = "([0-9]*)\\.([0-9]*)";  
-    private final String INTPATTERN = "([0-9]*)";
-    private final String STRINGPATTERN = "/^[a-zA-Z]+$/";
-    
-    
-    
+    private String m_String;                                        //Initalises the m_String variable
+    private Integer m_Integer;                                      //Initalises the m_Integer variable
+    private Double m_Double;                                        //Initalises the m_Double variable
+    private boolean m_boolean;                                      //Initalises the m_boolean variable
+    private DataType m_DataType;                                    //Initalises the m_DataType variable
+    private final String DOUBLEPATTERN = "([0-9]*)\\.([0-9]*)";     //Initalises the DOUBLEPATTERN variable
+    private final String INTPATTERN = "([0-9]*)";                   //Initalises the INTERPATTERN variable
+    private final String STRINGPATTERN = "/^[a-zA-Z]+$/";           //Initalises the STRINGPATTERN variable
 }

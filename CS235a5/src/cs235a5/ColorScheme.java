@@ -10,6 +10,17 @@ import java.awt.Color;
  * Interface implemented by subclasses to ensure they implement the needed methods
  * @author Wyler
  */
+/**
+ *
+ * \file        colorScheme.java
+ * \author      Xiaoxi Gu(Wyler) 
+ * 
+ * \date        15/04/2013
+ *
+ * \brief       The Scatter Plot Chart Class generates and displays an
+ *              scatter plot chart by inheriting from the Chart class.
+ *
+ */
 interface ColorScheme {
     
     /**
