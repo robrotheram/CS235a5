@@ -1,21 +1,21 @@
-/** @brief This class is will Test all the methods in the Line chart class
+/** @brief This class is will Test all the methods in the Bubble chart class
  
-  The Class contains a number of methods to text all the methods in the 
-  * Line chart class
-    @author Robert Fletcher
-    @file TestLineChart.java
-    @see LineChart.java
-    @date April 2013
+  The Class contains a number of methods to test all the methods in the 
+  * bubble chart class
+    @author William Jones
+    @file TestBubbleChart.java
+    @see BubbleChart.java
+    @date 15 April 2013
     */
 
 package TestClasses;
 
 import TestUI.Test;
+import cs235a5.BubbleChart;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
-import cs235a5.LineChart;
+import cs235a5.BubbleChart;
 import cs235a5.DataSet;
-import cs235a5.LineChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -23,10 +23,10 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestLineChart {
-    private final String CLASSNAME ="LineChart";
+public class TestBubbleChart {
+    private final String CLASSNAME ="BubbleChart";
     private final int SIZE = 500;
-    private LineChart m_LC;
+    private BubbleChart m_CC;
     private JFrame m_frame;
     private JPanel m_pnl;
     private DataSet m_db;
@@ -42,7 +42,7 @@ public class TestLineChart {
     /**
      * Constructor that sets up the dataset and the frame to show the chart
      */
-    public TestLineChart(){
+    public TestBubbleChart(){
         
             m_frame = new JFrame("Testing"+CLASSNAME);
             m_frame.setSize(SIZE,SIZE);
@@ -59,15 +59,16 @@ public class TestLineChart {
             csvr.ParseFile();
           
     }
+    
     /**
-     * Method to test the LineChart and returns a Test object containing the 
+     * Method to test the BubbleChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */
-     public Test TestLineChartDiplay(boolean run){
+     public Test TestBubbleChartDiplay(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the Chart Constructor",//Test Title
                  CLASSNAME,//Class Name
@@ -84,7 +85,7 @@ public class TestLineChart {
             theTest.hasRun();
             try{
             
-            m_LC = new LineChart(m_db,
+            m_CC = new BubbleChart(m_db,
                                     0,
                                     4,
                                     "title",
@@ -93,7 +94,7 @@ public class TestLineChart {
                                     "Author",
                                     "Decription"
                                     );
-            m_pnl.add(m_LC);
+            m_pnl.add(m_CC);
             m_pnl.validate();
             m_frame.setVisible(true);    
             theTest.setPassed(true);
@@ -105,12 +106,9 @@ public class TestLineChart {
         }
         return theTest;
     }
-    
-    
-    
-    
+        
      /**
-     * Method to test the LineChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the BubbleChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -131,8 +129,8 @@ public class TestLineChart {
         
         if(run){
             theTest.hasRun();
-            m_LC.SetDataSet(new DataSet());
-            if(m_LC.GetDataSet()!=null){
+            m_CC.SetDataSet(new DataSet());
+            if(m_CC.GetDataSet()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -142,8 +140,8 @@ public class TestLineChart {
         return theTest;
     }
       
-       /**
-     * Method to test the LineChart SetDataSet() method  and returns a Test object containing the 
+    /**
+     * Method to test the ~BubbleChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -165,7 +163,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetDataSet(m_db)){
+            if(m_CC.SetDataSet(m_db)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -176,7 +174,7 @@ public class TestLineChart {
     }
     
     /**
-     * Method to test the LineChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the BubbleChart SetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -199,7 +197,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetXData(0)){
+            if(m_CC.SetXData(0)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -208,8 +206,9 @@ public class TestLineChart {
         }
         return theTest;
     }
-      /**
-     * Method to test the LineChart SetYColumnData() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -231,7 +230,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetYData(4)){
+            if(m_CC.SetYData(4)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -242,7 +241,7 @@ public class TestLineChart {
     }
      
    /**
-     * Method to test the LineChart SetTitle() method  and returns a Test object containing the 
+     * Method to test the BubbleChart SetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -264,7 +263,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetChartTitle("A wonderful title")){
+            if(m_CC.SetChartTitle("A wonderful title")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -273,10 +272,9 @@ public class TestLineChart {
         }
         return theTest;
     }
-     
-     
-      /**
-     * Method to test the LineChart SetSetColourMap method  and returns a Test object containing the 
+
+     /**
+     * Method to test the BubbleChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -298,7 +296,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetColourMap(new ColourMap(CLRS))){
+            if(m_CC.SetColourMap(new ColourMap(CLRS))){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -307,8 +305,9 @@ public class TestLineChart {
         }
         return theTest;
     } 
-     /**
-     * Method to test the LineChart SetAuthor() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -330,7 +329,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetAuthor("Robert")){
+            if(m_CC.SetAuthor("Robert")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -340,8 +339,8 @@ public class TestLineChart {
         return theTest;
     }
      
-     /**
-     * Method to test the LineChart SetDescription() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -363,7 +362,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetAuthor("A Description")){
+            if(m_CC.SetAuthor("A Description")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -372,8 +371,9 @@ public class TestLineChart {
         
         return theTest;
     }
-     /**
-     * Method to test the LineChart SetXChartType() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -395,7 +395,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetChartType()){
+            if(m_CC.SetChartType()){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -406,7 +406,7 @@ public class TestLineChart {
     }
      
     /**
-     * Method to test the LineChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the BubbleChart GetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -428,7 +428,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetXData()>=0){
+            if(m_CC.GetXData()>=0){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -437,8 +437,9 @@ public class TestLineChart {
         }
         return theTest;
     }
-       /**
-     * Method to test the LineChart GetYColumnData() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -460,7 +461,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetXData()>=0){
+            if(m_CC.GetXData()>=0){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -470,8 +471,8 @@ public class TestLineChart {
         return theTest;
     }
      
-      /**
-     * Method to test the LineChart GetTitle() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -493,7 +494,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetTitle()!=null){
+            if(m_CC.GetTitle()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -503,8 +504,8 @@ public class TestLineChart {
         return theTest;
     }
      
-      /**
-     * Method to test the LineChart GetColourMap() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -526,7 +527,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetColourMap()!=null){
+            if(m_CC.GetColourMap()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -535,8 +536,9 @@ public class TestLineChart {
         }
         return theTest;
     } 
-      /**
-     * Method to test the LineChart GetAuthor() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -558,7 +560,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetAuthor()!=null){
+            if(m_CC.GetAuthor()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -567,9 +569,9 @@ public class TestLineChart {
         
         return theTest;
     }
-     
-      /**
-     * Method to test the LineChart GetDescritpion() method  and returns a Test object containing the 
+    
+     /**
+     * Method to test the BubbleChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -591,7 +593,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetDescription()!=null){
+            if(m_CC.GetDescription()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -600,8 +602,9 @@ public class TestLineChart {
         
         return theTest;
     }
-      /**
-     * Method to test the LineChart GetChartType() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -623,7 +626,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.SetChartType()){
+            if(m_CC.SetChartType()){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -633,8 +636,8 @@ public class TestLineChart {
         return theTest;
     }
      
-      /**
-     * Method to test the LineChart createChart() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -656,7 +659,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.createChart()!=null){
+            if(m_CC.createChart()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -666,8 +669,8 @@ public class TestLineChart {
         return theTest;
     }
     
-     /**
-     * Method to test the LineChart GetGetJChart() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -689,7 +692,7 @@ public class TestLineChart {
         if(run){
             theTest.hasRun();
             
-            if(m_LC.GetJChart()!=null){
+            if(m_CC.GetJChart()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -705,48 +708,49 @@ public class TestLineChart {
      */
     
     public static void main(String[] args){
-        TestLineChart TLC = new TestLineChart();
+        TestBubbleChart TCC = new TestBubbleChart();
         boolean run = true;
         System.out.println("Test Chart can be displayed: "+
-              TLC.TestLineChartDiplay(run).getResult());
+              TCC.TestBubbleChartDiplay(run).getResult());
         
         System.out.println("Test createchart: "+
-              TLC.TestcreateChart(run).getResult());
+              TCC.TestcreateChart(run).getResult());
+        System.out.println("Test getJChart "+
+              TCC.TestGetJChart(run).getResult());
         
         System.out.println("Test Set Title: "+
-              TLC.TestSetTitle(run).getResult());
+              TCC.TestSetTitle(run).getResult());
         System.out.println("Test Get Title: "+
-              TLC.TestGetTitle(run).getResult());
+              TCC.TestGetTitle(run).getResult());
         
         System.out.println("Test Set DataSet: "+
-              TLC.TestsetDataSet(run).getResult());
+              TCC.TestsetDataSet(run).getResult());
         System.out.println("Test Get dataSet: "+
-              TLC.TestGetDataSet(run).getResult());
+              TCC.TestGetDataSet(run).getResult());
         
         System.out.println("Test Set XData: "+
-              TLC.TestSetXColumnData(run).getResult());
+              TCC.TestSetXColumnData(run).getResult());
         System.out.println("Test Get XData: "+
-              TLC.TestGetXColumnData(run).getResult());
+              TCC.TestGetXColumnData(run).getResult());
         
         System.out.println("Test Set YData: "+
-              TLC.TestSetYColumnData(run).getResult());
+              TCC.TestSetYColumnData(run).getResult());
         System.out.println("Test Get YData: "+
-              TLC.TestGetYColumnData(run).getResult());
+              TCC.TestGetYColumnData(run).getResult());
         
         System.out.println("Test Set Color Map: "+
-              TLC.TestSetColourMap(run).getResult());
+              TCC.TestSetColourMap(run).getResult());
         System.out.println("Test Get Color Map: "+
-              TLC.TestGetColourMap(run).getResult());
+              TCC.TestGetColourMap(run).getResult());
         
          System.out.println("Test Set Author: "+
-              TLC.TestSetAuthor(run).getResult());
+              TCC.TestSetAuthor(run).getResult());
         System.out.println("Test Get Author: "+
-              TLC.TestGetAuthor(run).getResult());
+              TCC.TestGetAuthor(run).getResult());
         
          System.out.println("Test Set Desciption: "+
-              TLC.TestSetYColumnData(run).getResult());
+              TCC.TestSetYColumnData(run).getResult());
         System.out.println("Test Get Desciption: "+
-              TLC.TestGetYColumnData(run).getResult());
-
+              TCC.TestGetYColumnData(run).getResult());         
     }
 }
