@@ -29,101 +29,147 @@ public class ColumnChart extends Chart {
   
   
     
+  /**Allows access for setting the dataset
+  * Sets the data set to be used to produce a graph
+  *
+  * @param data dataset to be set
+  * @return returns true is set if successful
+  */
   @Override
   public boolean SetDataSet(DataSet data){
       super.SetData(data);
       return true;
   }
   
+  /**Sets access for the x axis data 
+   * Allows access for setting the x axis data to be used for making charts
+   *
+   * @param xData
+   * @return
+   */
   @Override
   public boolean SetXData(int xData){
       super.SetXData(xData);
       return true;
   }
   
+  /**Sets access for the y axis data
+   * Allows access for setting the y axis data to be used for making charts
+   *
+   * @param xData
+   * @return
+   */
   @Override
   public boolean SetYData(int yData){
       super.SetYData(yData);
       return true;
   }
   
+  /** Sets the title of the Chart
+   * Alllows access for setting a title to be used with the chart
+   *
+   * @param title
+   * @return Chart title of the Chart;
+   */
   @Override
   public boolean SetChartTitle(String title){
       super.SetChartTitle(title);
       return true;
   }
   
+  /**Returns the colourmap selected
+   * Sets the colour to be applied to the chart
+   *
+   * @param colours
+   * @return colourmap set of the Chart;
+   */
   @Override
   public boolean SetColourMap(ColourMap colours){
       super.SetColourMap(colours);
       return true;
   }
   
+  /**Returns an author
+   * sets the author's name to be used on the chart
+   *
+   * @param author
+   * @return author of the Chart;
+   */
   @Override
   public boolean SetAuthor(String author){
       super.SetAuthor(author);
       return true;
   }
   
+  /**sets the description
+   * sets a description to inform the user what the chart represents
+   *
+   * @param description
+   * @return description of the Chart class;
+   */
   @Override
   public boolean SetDescription(String description){
       super.SetDescription(description);
       return true;
   }
   
-  /**
+  /**Sets the Chart type
    * Sets the type of chart to the constant BarChart
+   * 
    * @return true of set correctly;
    */
   public boolean SetChartType(){
       return super.SetChartType(ChartType.BARCHART);
   }
   
-  /**
-   * returns the chart type
+  /** Returns the chert type
+   * returns what kind of chart is being created
+   * 
    * @return the constant BARCHART
    */
   public ChartType getChartType(){
       return super.GetChartType();
   }
   
-  /**
-   * Returns the X Axis Column Position
+  /**Returns the X Axis Column Position
+   * Returns the X axis column position of data to be 
+   * used on the graph
+   * 
    * @return Int X Axis Column Position
    */
-  public int GetXData()
-  {
+  public int GetXData(){
     return super.GetXColumnPosition();
   }
 
-  /**
-   * Returns the Y Values for the Column
+  /**Returns the Y Values for the Column
+   * Returns the Y axis column position of data to be 
+   * used on the graph
+   * 
    * @return m_yValues The Y Axis Data
    */
-  public int GetYData()
-  {
+  public int GetYData(){
     return super.GetYColumnPosition();
   }
 
-  /**
-   * Returns the Description for the Chart
+  /**Returns the Description for the Chart
+   * Returns the description of the what the chart represents
+   * 
    * @return m_Description a description of the char thats been generated
    */
   @Override
   public String GetDescription(){
-
     return super.GetDescription();
   }
 
-  /**
-   * Returns the name of the Chart
+  /**Returns the name of the Chart
+   * returns the chart title to identify what the chart is called
    * @return m_chartName the name of the chart
    */
   @Override
-  public String GetTitle()
-  {
+  public String GetTitle(){
     return super.GetChartTitle();
   }
+
 
      /**
      * constructor setting all class variables needed to create a column chart
