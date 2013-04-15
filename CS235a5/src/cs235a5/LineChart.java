@@ -12,7 +12,7 @@ package cs235a5;
  *
  */
 
-// Import JFreeChart and utilities 
+// Import JFreeChart and libraries 
 import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
