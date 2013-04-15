@@ -343,7 +343,7 @@ public class TestingUI extends JFrame {
                 TPC.TestSetYColumnData(run),
                 TPC.TestGetYColumnData(run),
                 
-                TLC.TestColumnChartDiplay(run),
+                TLC.TestLineChartDiplay(run),
                 TLC.TestcreateChart(run),
                 
                 TLC.TestSetTitle(run),

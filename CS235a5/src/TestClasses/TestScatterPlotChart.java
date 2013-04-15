@@ -1,10 +1,10 @@
-/** @brief This class is will Test all the methods in the Column chart class
+/** @brief This class is will Test all the methods in the Scatter Plot chart class
  
   The Class contains a number of methods to text all the methods in the 
-  pie chart class
-    @author Robert Fletcher
-    @file TestPieChart.java
-    @see PieChart.java
+  * Scatter Plot chart class
+    @author Will Jones
+    @file TestLineChart.java
+    @see LineChart.java
     @date April 2013
     */
 
@@ -13,9 +13,9 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
+import cs235a5.ScatterPlotChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
-import cs235a5.PieChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -23,10 +23,10 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestPieChart {
-    private final String CLASSNAME ="PieChart";
+public class TestLineChart {
+    private final String CLASSNAME ="ScatterPlot";
     private final int SIZE = 500;
-    private PieChart m_PC;
+    private LineChart m_LC;
     private JFrame m_frame;
     private JPanel m_pnl;
     private DataSet m_db;
@@ -42,7 +42,7 @@ public class TestPieChart {
     /**
      * Constructor that sets up the dataset and the frame to show the chart
      */
-    public TestPieChart(){
+    public TestScatterPlotChart(){
         
             m_frame = new JFrame("Testing"+CLASSNAME);
             m_frame.setSize(SIZE,SIZE);
@@ -60,14 +60,14 @@ public class TestPieChart {
           
     }
     /**
-     * Method to test the PieChart and returns a Test object containing the 
+     * Method to test the ScatterPlotChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */
-     public Test TestPieChartDiplay(boolean run){
+     public Test TestScatterPlotChartDiplay(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the Chart Constructor",//Test Title
                  CLASSNAME,//Class Name
@@ -84,7 +84,7 @@ public class TestPieChart {
             theTest.hasRun();
             try{
             
-            m_PC = new PieChart(m_db,
+            m_LC = new ScatterPlotChart(m_db,
                                     0,
                                     4,
                                     "title",
@@ -93,7 +93,7 @@ public class TestPieChart {
                                     "Author",
                                     "Decription"
                                     );
-            m_pnl.add(m_PC);
+            m_pnl.add(m_LC);
             m_pnl.validate();
             m_frame.setVisible(true);    
             theTest.setPassed(true);
@@ -110,7 +110,7 @@ public class TestPieChart {
     
     
      /**
-     * Method to test the PieChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -131,8 +131,8 @@ public class TestPieChart {
         
         if(run){
             theTest.hasRun();
-            m_PC.SetDataSet(new DataSet());
-            if(m_PC.GetDataSet()!=null){
+            m_LC.SetDataSet(new DataSet());
+            if(m_LC.GetDataSet()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -143,7 +143,7 @@ public class TestPieChart {
     }
       
        /**
-     * Method to test the PieChart SetDataSet() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -165,7 +165,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetDataSet(m_db)){
+            if(m_LC.SetDataSet(m_db)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -176,7 +176,7 @@ public class TestPieChart {
     }
     
     /**
-     * Method to test the PieChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -199,7 +199,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetXData(0)){
+            if(m_LC.SetXData(0)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -209,7 +209,7 @@ public class TestPieChart {
         return theTest;
     }
       /**
-     * Method to test the PieChart SetYColumnData() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -231,7 +231,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetYData(4)){
+            if(m_LC.SetYData(4)){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -242,7 +242,7 @@ public class TestPieChart {
     }
      
    /**
-     * Method to test the PieChart SetTitle() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -264,7 +264,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetChartTitle("A wonderful title")){
+            if(m_LC.SetChartTitle("A wonderful title")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -276,7 +276,7 @@ public class TestPieChart {
      
      
       /**
-     * Method to test the PieChart SetSetColourMap method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -298,7 +298,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetColourMap(new ColourMap(CLRS))){
+            if(m_LC.SetColourMap(new ColourMap(CLRS))){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -308,7 +308,7 @@ public class TestPieChart {
         return theTest;
     } 
      /**
-     * Method to test the PieChart SetAuthor() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -330,7 +330,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetAuthor("Robert")){
+            if(m_LC.SetAuthor("Robert")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -341,7 +341,7 @@ public class TestPieChart {
     }
      
      /**
-     * Method to test the PieChart SetDescription() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -363,7 +363,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetAuthor("A Description")){
+            if(m_LC.SetAuthor("A Description")){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -373,7 +373,7 @@ public class TestPieChart {
         return theTest;
     }
      /**
-     * Method to test the PieChart SetXChartType() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -395,7 +395,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetChartType()){
+            if(m_LC.SetChartType()){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -406,7 +406,7 @@ public class TestPieChart {
     }
      
     /**
-     * Method to test the PieChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -428,7 +428,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetXData()>=0){
+            if(m_LC.GetXData()>=0){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -438,7 +438,7 @@ public class TestPieChart {
         return theTest;
     }
        /**
-     * Method to test the PieChart GetYColumnData() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -460,7 +460,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetXData()>=0){
+            if(m_LC.GetXData()>=0){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -471,7 +471,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PieChart GetTitle() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -493,7 +493,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetTitle()!=null){
+            if(m_LC.GetTitle()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -504,7 +504,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PieChart GetColourMap() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -526,7 +526,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetColourMap()!=null){
+            if(m_LC.GetColourMap()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -536,7 +536,7 @@ public class TestPieChart {
         return theTest;
     } 
       /**
-     * Method to test the PieChart GetAuthor() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -558,7 +558,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetAuthor()!=null){
+            if(m_LC.GetAuthor()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -569,7 +569,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PieChart GetDescritpion() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -591,7 +591,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetDescription()!=null){
+            if(m_LC.GetDescription()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -601,7 +601,7 @@ public class TestPieChart {
         return theTest;
     }
       /**
-     * Method to test the PieChart GetChartType() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -623,7 +623,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.SetChartType()){
+            if(m_LC.SetChartType()){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -634,7 +634,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PieChart createChart() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -656,7 +656,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.createChart()!=null){
+            if(m_LC.createChart()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -667,7 +667,7 @@ public class TestPieChart {
     }
     
      /**
-     * Method to test the PieChart GetGetJChart() method  and returns a Test object containing the 
+     * Method to test the ScatterPlotChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -689,7 +689,7 @@ public class TestPieChart {
         if(run){
             theTest.hasRun();
             
-            if(m_PC.GetJChart()!=null){
+            if(m_LC.GetJChart()!=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);
@@ -705,68 +705,48 @@ public class TestPieChart {
      */
     
     public static void main(String[] args){
-        TestPieChart TPC = new TestPieChart();
+        TestScatterPlotChart TLC = new TestScatterPlotChart();
         boolean run = true;
         System.out.println("Test Chart can be displayed: "+
-              TPC.TestPieChartDiplay(run).getResult());
+              TLC.TestScatterPlotChartDiplay(run).getResult());
         
         System.out.println("Test createchart: "+
-              TPC.TestcreateChart(run).getResult());
-        System.out.println("Test getJChart "+
-              TPC.TestGetJChart(run).getResult());
+              TLC.TestcreateChart(run).getResult());
         
         System.out.println("Test Set Title: "+
-              TPC.TestSetTitle(run).getResult());
+              TLC.TestSetTitle(run).getResult());
         System.out.println("Test Get Title: "+
-              TPC.TestGetTitle(run).getResult());
+              TLC.TestGetTitle(run).getResult());
         
         System.out.println("Test Set DataSet: "+
-              TPC.TestsetDataSet(run).getResult());
+              TLC.TestsetDataSet(run).getResult());
         System.out.println("Test Get dataSet: "+
-              TPC.TestGetDataSet(run).getResult());
+              TLC.TestGetDataSet(run).getResult());
         
         System.out.println("Test Set XData: "+
-              TPC.TestSetXColumnData(run).getResult());
+              TLC.TestSetXColumnData(run).getResult());
         System.out.println("Test Get XData: "+
-              TPC.TestGetXColumnData(run).getResult());
+              TLC.TestGetXColumnData(run).getResult());
         
         System.out.println("Test Set YData: "+
-              TPC.TestSetYColumnData(run).getResult());
+              TLC.TestSetYColumnData(run).getResult());
         System.out.println("Test Get YData: "+
-              TPC.TestGetYColumnData(run).getResult());
+              TLC.TestGetYColumnData(run).getResult());
         
         System.out.println("Test Set Color Map: "+
-              TPC.TestSetColourMap(run).getResult());
+              TLC.TestSetColourMap(run).getResult());
         System.out.println("Test Get Color Map: "+
-              TPC.TestGetColourMap(run).getResult());
+              TLC.TestGetColourMap(run).getResult());
         
          System.out.println("Test Set Author: "+
-              TPC.TestSetAuthor(run).getResult());
+              TLC.TestSetAuthor(run).getResult());
         System.out.println("Test Get Author: "+
-              TPC.TestGetAuthor(run).getResult());
+              TLC.TestGetAuthor(run).getResult());
         
          System.out.println("Test Set Desciption: "+
-              TPC.TestSetYColumnData(run).getResult());
+              TLC.TestSetYColumnData(run).getResult());
         System.out.println("Test Get Desciption: "+
-              TPC.TestGetYColumnData(run).getResult());
-        
-        
-        
-        
+              TLC.TestGetYColumnData(run).getResult());
+
     }
-      
-      
-      
-      
-    
-  
-        
-    
-    
-    
-    
-    
-    
-    
-    
 }
