@@ -13,8 +13,11 @@ public enum DataType {
     STRING("S"),INTEGER("I"),DOUBLE("D"),BOOLEAN("B");
     
     private String dataType;
-   /**
-    * Private constructor to set up the enumeration 
+    
+   /** Private constructor to set up the enumeration 
+    * Private constructor to set up the enumeration to be then used 
+    * for the DataCell class
+    * 
     * @param String string for the enumeration value
     */ 
     private DataType(String s) {
