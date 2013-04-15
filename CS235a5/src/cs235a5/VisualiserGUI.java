@@ -377,7 +377,7 @@ public class VisualiserGUI extends JFrame
                 ChartOptionPane m_chartOptions = new ChartOptionPane(
                         m_chartList.getSelectedIndex(), m_chartImages,
                         m_chartImageStrings, m_chartImageDescriptions, 
-                        m_intArray);
+                        m_intArray, m_db);
             }
             
         }
