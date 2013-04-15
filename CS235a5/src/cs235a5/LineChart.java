@@ -173,7 +173,7 @@ public class LineChart extends Chart{
     return super.GetChartTitle();
   }
 
-     /** constructor setting all class variables needed to create a column chart
+     /** constructor setting all class variables needed to create a line chart
      * The constructor will create all class variables to be called by the subclasses
      * of the chart class.
      * 
