@@ -15,6 +15,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,6 +60,18 @@ public class TableView extends JPanel
     m_table = new JTable(m_DB.GetDataSet(),m_DB.GetHeader());
     m_table.setShowGrid(true);
     m_table.setGridColor(Color.BLACK);
+    m_table.getModel().addTableModelListener(new TableModelListener() {
+
+          @Override
+          public void tableChanged(TableModelEvent tme) {
+             int r = tme.getLastRow();
+             int c = tme.getColumn();
+             String s = (String) m_table.getModel().getValueAt(r, c);
+               
+               m_DB.SetDataCell(new DataCell(s), r, c);
+              // System.out.println("row = "+r+" coloum = "+c+"Source + "+m_DB.GetCell(r,c).toString());
+          }
+      });
     return m_table;
   }
 
@@ -90,8 +104,9 @@ public class TableView extends JPanel
   /**
    * Class constructor to create a empty table
    */
-  public TableView(){
-  JTable t = new JTable(new DefaultTableModel(
+  public TableView(DataSet db,boolean n){
+    
+  final JTable t = new JTable(new DefaultTableModel(
    new Object [][] {
                     {null, null, null, null},
                     {null, null, null, null},
@@ -185,14 +200,31 @@ public class TableView extends JPanel
                    }, new String [] {"Title 1", "Title 2", "Title 3", "Title 4"}
                 ));
   
-  t.setEnabled(false);    
-      
-      
-      t.setFillsViewportHeight(true);
-      t.setShowGrid(true);
-      t.setGridColor(Color.BLACK);
-      this.setLayout(new BorderLayout());
-      this.add(new JScrollPane(t),BorderLayout.CENTER);
+  //t.setEnabled(false);
+        m_DB = db;
+        if(n){
+            int y = t.getRowCount();
+            int x = t.getColumnCount();
+            db.SetDataSet(y, x);
+        }
+
+        t.setFillsViewportHeight(true);
+        t.setShowGrid(true);
+        t.setGridColor(Color.BLACK);
+        t.getModel().addTableModelListener(new TableModelListener() {
+
+          @Override
+          public void tableChanged(TableModelEvent tme) {
+             int r = tme.getLastRow();
+             int c = tme.getColumn();
+             String s = (String) t.getModel().getValueAt(r, c);
+               
+               m_DB.SetDataCell(new DataCell(s), r, c);
+               //System.out.println("row = "+r+" coloum = "+c+"Source + "+m_DB.GetCell(r,c).toString());
+          }
+      });
+        this.setLayout(new BorderLayout());
+        this.add(new JScrollPane(t),BorderLayout.CENTER);
   }
     
     private DataSet m_DB;

@@ -76,7 +76,7 @@ public class VisualiserGUI extends JFrame
     m_pLeft = new JPanel();
     m_pLeft.setLayout(new BorderLayout());
     m_pLeft.setBackground(Color.DARK_GRAY);
-    m_pLeft.add(new TableView(),BorderLayout.CENTER);
+    m_pLeft.add(new TableView(m_db,true),BorderLayout.CENTER);
     m_pLeft.validate();
     
     m_SplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,m_pLeft, m_chartTabPanel);
