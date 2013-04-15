@@ -1,7 +1,7 @@
 /** @brief This class is will Test all the methods in the Line chart class
  
-  The Class contains a number of methods to text all the methods in the C
-  * column chart class
+  The Class contains a number of methods to text all the methods in the 
+  * Line chart class
     @author Robert Fletcher
     @file TestLineChart.java
     @see LineChart.java
