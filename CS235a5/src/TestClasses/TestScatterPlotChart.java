@@ -23,10 +23,10 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestLineChart {
+public class TestScatterPlotChart {
     private final String CLASSNAME ="ScatterPlot";
     private final int SIZE = 500;
-    private LineChart m_LC;
+    private ScatterPlotChart m_LC;
     private JFrame m_frame;
     private JPanel m_pnl;
     private DataSet m_db;
