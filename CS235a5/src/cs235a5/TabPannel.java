@@ -7,15 +7,24 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -29,9 +38,10 @@ import javax.swing.plaf.basic.BasicButtonUI;
     */
 
 public class TabPannel extends JTabbedPane {
-    
+    private final TabPannel CON = this;
     private ArrayList<Chart> m_charts = new ArrayList<Chart>();
-
+    private int tabCounter;
+    private final int SIZE = 10;
     /**
     * This method returns the number of charts in the list.
     * @return Integer The numbers of charts in the ArrayList.
@@ -49,6 +59,63 @@ public class TabPannel extends JTabbedPane {
     **/
     public boolean AddTab(String title, Chart chartPannel){
         super.addTab(title, chartPannel);
+        
+        
+        
+        
+        
+   
+    JEditorPane ep = new JEditorPane();
+    ep.setEditable(false);
+    
+    
+
+        try {
+                BufferedImage im = ImageIO.read(this.getClass().getResource("/assets/images/no.png"));
+                ImageIcon i = new ImageIcon(im.getScaledInstance(10,10, Image.SCALE_SMOOTH));
+             JButton tabCloseButton = new JButton("");
+
+             tabCloseButton.setIcon(i);
+             tabCloseButton.setBorder(BorderFactory.createEmptyBorder());
+        //removes content area
+        tabCloseButton.setContentAreaFilled(false);
+        tabCloseButton.setActionCommand("" + tabCounter);
+
+        ActionListener al;
+        al = new ActionListener() {
+          public void actionPerformed(ActionEvent ae) {
+            JButton btn = (JButton) ae.getSource();
+            String s1 = btn.getActionCommand();
+            for (int i = 0; i < CON.getTabCount(); i++) {
+              JPanel pnl = (JPanel) CON.getTabComponentAt(i);
+              btn = (JButton) pnl.getComponent(1);
+              String s2 = btn.getActionCommand();
+              if (s1.equals(s2)) {
+                CON.removeTabAt(i);
+                break;
+              }
+            }
+          }
+        };
+        tabCloseButton.addActionListener(al);
+
+
+          JPanel pnl = new JPanel();
+          JLabel l  = new JLabel(title);
+          pnl.add(l);
+          pnl.setOpaque(false);
+
+            pnl.add(tabCloseButton);
+
+          super.setTabComponentAt(super.getTabCount() - 1, pnl);
+          super.setSelectedIndex(super.getTabCount() - 1);
+
+
+        tabCounter++;
+
+        } catch (IOException ex) {}
+   
+  
         m_charts.add(chartPannel);
         return true;
     }
@@ -61,82 +128,5 @@ public class TabPannel extends JTabbedPane {
     public Chart GetTab(int i){
         return m_charts.get(i);
     }
-    
-    private class TabButton extends JButton implements ActionListener {
-        public TabButton() {
-            int size = 17;
-            setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
-            //Make the button looks the same for all Laf's
-            setUI(new BasicButtonUI());
-            //Make it transparent
-            setContentAreaFilled(false);
-            //No need to be focusable
-            setFocusable(false);
-            setBorder(BorderFactory.createEtchedBorder());
-            setBorderPainted(false);
-            //Making nice rollover effect
-            //we use the same listener for all buttons
-            addMouseListener(buttonMouseListener);
-            setRolloverEnabled(true);
-            //Close the proper tab by clicking the button
-            addActionListener(this);
-        }
- 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int i = indexOfTabComponent(TabPannel.this);
-            if (i != -1) {
-                remove(i);
-            }
-        }
- 
-        //we don't want to update UI for this button
-        public void updateUI() {
-        }
- 
-        //paint the cross
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            Graphics2D g2 = (Graphics2D) g.create();
-            //shift the image for pressed buttons
-            if (getModel().isPressed()) {
-                g2.translate(1, 1);
-            }
-            g2.setStroke(new BasicStroke(2));
-            g2.setColor(Color.BLACK);
-            if (getModel().isRollover()) {
-                g2.setColor(Color.MAGENTA);
-            }
-            int delta = 6;
-            g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
-            g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
-            g2.dispose();
-        }
-
-        private final MouseListener buttonMouseListener = new MouseAdapter() {
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(true);
-            }
-        }
- 
-        @Override
-        public void mouseExited(MouseEvent e) {
-            Component component = e.getComponent();
-            if (component instanceof AbstractButton) {
-                AbstractButton button = (AbstractButton) component;
-                button.setBorderPainted(false);
-            }
-        }
-    };
-    }
- 
-   
-    
-    
-    
+        
 }

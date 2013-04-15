@@ -13,6 +13,7 @@ import cs235a5.DataSet;
 import cs235a5.LineChart;
 import cs235a5.PieChart;
 import cs235a5.ScatterPlotChart;
+import cs235a5.TabPannel;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -30,6 +31,7 @@ public class test extends JFrame {
   
     public test(){
      this.setSize(500,500);
+     TabPannel tp  = new TabPannel();
      m = new JPanel();
      m.setBackground(Color.yellow);
      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,7 +43,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new ScatterPlotChart(db,
+            tp.AddTab("testChart",  new ScatterPlotChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -50,6 +52,19 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
+            tp.AddTab("testChart",  new PieChart(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+            m.add(tp); 
+                  
+                  
+                
             
             
             
