@@ -34,10 +34,12 @@ public class LineChart extends Chart{
   private JFreeChart m_chart;
   
   
-  /**
-  * Returns the data set  
-  * @return true the set data is correct;
-  */  
+   /**
+     * Allows access for setting the dataset
+     * 
+     * @param data dataset to be set
+     * @return returns true is set if successful
+     */  
   @Override
   public boolean SetDataSet(DataSet data){
       super.SetData(data);
