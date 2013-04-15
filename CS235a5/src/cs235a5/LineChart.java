@@ -14,13 +14,9 @@ package cs235a5;
 
 // Import JFreeChart and libraries 
 import org.jfree.chart.*;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.*;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -95,7 +91,7 @@ public class LineChart extends Chart{
   }
   
   /**
-  * Returns a aurthor
+  * Returns an author
   * 
   * @param author
   * @return author of the Chart;
@@ -128,7 +124,7 @@ public class LineChart extends Chart{
   
   /**
   * returns the chart type
-  * @return the constant AREACHART
+  * @return the constant LINECHART
   */
   public ChartType getChartType(){
       return super.GetChartType();
@@ -152,7 +148,7 @@ public class LineChart extends Chart{
 
   /**
   * Returns the Description for the Chart
-  * @return m_Description a description of the char thats been genarated
+  * @return m_Description a description of the char thats been generated
   */
   @Override
   public String GetDescription(){
@@ -236,7 +232,7 @@ public class LineChart extends Chart{
 
    /**
    *
-   * Create the column chart using the ChartFactory built into JFreeChart
+   * Create the line chart using the ChartFactory built into JFreeChart
    * @return m_chart A chart of type JFreeChart
    */
    @Override                                                 

@@ -12,11 +12,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYItemRenderer;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.renderer.xy.XYBubbleRenderer;
 import org.jfree.data.xy.MatrixSeriesCollection;
 import org.jfree.data.xy.NormalizedMatrixSeries;
@@ -112,7 +107,7 @@ public class BubbleChart extends Chart{
 
   /**
    * Returns the Description for the Chart
-   * @return m_Description a description of the char thats been genarated
+   * @return m_Description a description of the char thats been generated
    */
   @Override
   public String GetDescription(){
@@ -130,7 +125,7 @@ public class BubbleChart extends Chart{
     return super.GetChartTitle();
   }
     /**
-     * constructor setting all class variables needed to create a column chart
+     * constructor setting all class variables needed to create a bubble chart
      * @param ds - the data for the chart
      * @param xColPosition - the column data for the x axis from the dataset
      * @param yColPosition - the column data for the y axis from the dataset
@@ -224,7 +219,7 @@ public class BubbleChart extends Chart{
     
         /**
     *
-    * Create the column chart using the ChartFactory built into JFreeChart
+    * Create the bubble chart using the ChartFactory built into JFreeChart
     * @return m_chart A chart of type JFreeChart
     */
    @Override                                                 //.....needs to be changed?!?!................

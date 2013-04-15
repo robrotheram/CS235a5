@@ -16,7 +16,6 @@ package cs235a5;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.*;
 import java.awt.Rectangle;
 
@@ -108,7 +107,7 @@ public class AreaChart extends Chart {
 
   /**
    * Returns the Description for the Chart
-   * @return m_Description a description of the char thats been genarated
+   * @return m_Description a description of the char thats been generated
    */
   @Override
   public String GetDescription(){
@@ -151,7 +150,7 @@ public class AreaChart extends Chart {
         int size = 0;
         int sum = 0;
         int pos = 0;
-        int j= 0;                                                    //.........needs to be changed!?!?........
+        int j = 0;                                                    //.........needs to be changed!?!?........
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         DataCell preVal = super.GetDataSet().GetCell(0, 0);
@@ -194,7 +193,7 @@ public class AreaChart extends Chart {
 
    /**
     *
-    * Create the column chart using the ChartFactory built into JFreeChart
+    * Create the area chart using the ChartFactory built into JFreeChart
     * @return m_chart A chart of type JFreeChart
     */
    @Override                                                 //.....needs to be changed?!?!................

@@ -1,7 +1,6 @@
 package cs235a5;
 
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -107,7 +106,7 @@ public abstract class Visualisation extends JPanel
 
   /**
    * A get method to return the Author of a chart
-   * @return m_chartAuthor - Returns the chart's Author
+   * @return m_chartAuthor - Returns the charts Author
    */
   public String GetAuthor()
   {
@@ -116,7 +115,7 @@ public abstract class Visualisation extends JPanel
 
   /**
    * A get method to return the description of a chart
-   * @return m_chartDescription - Returns the chart's description
+   * @return m_chartDescription - Returns the charts description
    */
   public String GetDescription()
   {

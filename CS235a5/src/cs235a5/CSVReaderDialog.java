@@ -9,10 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -303,10 +300,10 @@ public final class CSVReaderDialog extends JFrame {
     
    
     /**
-     * Class Constructor that sets up the ui the dataset that the program is 
-     * using and the reference to the Main ui Class
-     * @param MS_DataSet db - the refernce the the dataset stored in the 
-     * progrma
+     * Class Constructor that sets up the UI the dataset that the program is 
+     * using and the reference to the Main UI Class
+     * @param MS_DataSet db - the reference the the dataset stored in the 
+     * program
      */
     public CSVReaderDialog (DataSet db, VisualiserGUI context){
            

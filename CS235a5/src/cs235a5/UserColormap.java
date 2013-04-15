@@ -17,7 +17,7 @@ public class UserColormap extends JFrame implements ColorScheme{
      * 
      * @param args 
      * 
-     * the main method is used to test the usercolormap whether the chose color 
+     * the main method is used to test the userColormap whether the chose color 
      * stored in the color array and to get color from the color array display on
      * color panel
      * 
