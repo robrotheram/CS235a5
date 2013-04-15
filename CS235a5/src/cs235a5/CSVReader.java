@@ -1,4 +1,3 @@
-
 package cs235a5;
 
 import java.io.File;
@@ -15,15 +14,59 @@ import java.util.Scanner;
     @date April 2013
     */
 public class CSVReader {
+     
     
-    private File m_File;
-    private DataSet m_DB; 
-    private String m_delimitor; 
-    private final String CLASS = "CSVReader"; 
+     /** Sets the dataset
+    * Sets the dataset used in the class
+    * 
+    * @param  MS_DataSet the dataset of this class
+    * @return boolean true if set correctly
+    */
+    public boolean SetDataset(DataSet db){
+        m_DB = db;
+        return true;
+    }
+    
+    /** sets a delimiter
+    * Sets the delimiter used in parsing the file;
+    * @param  String  the file's Delimiter
+    * @return boolean true if set correctly
+    */
+    public boolean SetDelimiter(String del){
+        m_delimitor = del;
+        return true;
+    }
+    
+        /**Gets the File being used
+    * Gets the file that is currently being used by the user
+    * 
+    * @return MS_BasicGUI 
+    */
+    public File GetFile(){
+        return m_File;
+    }
+  
+
+    /**Gets the Dataset 
+    * Gets the Dataset of this class to be used when called
+    * @return MS_BasicGUI 
+    */
+    public DataSet GetDataSet(){
+        return m_DB;
+    }
+
+    /** gets the delimiter
+    * Gets the delimiter of this class
+    * @return String 
+    */
+    public String GetDelimitor(){
+        return m_delimitor;
+    }
     
     
-    /**
-     * Class Constructor
+    /**Class Constructor
+     * Creates a constructor to take in CSV file information
+     * 
      * @param ds
      * @param file 
      */
@@ -46,8 +89,9 @@ public class CSVReader {
         }
     }
 
-    /**
-     * Set the file the class uses to read through it
+    /** Sets the file
+     * Sets the file the classes use to read through the CSV file
+     * 
      * @param File f
      * @return Boolean true
      */
@@ -61,50 +105,9 @@ public class CSVReader {
         
         
     }
-    /**
-    * Gets the File used
-    * @return MS_BasicGUI 
-    */
-    public File GetFile(){
-        return m_File;
-    }
-    /** 
-    * Sets the dataset used in the class
-    * @param  MS_DataSet the dataset of this class
-    * @return boolean true if set correctly
-    */
-    public boolean SetDataset(DataSet db){
-        m_DB = db;
-        return true;
-    }
-
-    /**
-    * Gets the Dataset of this class
-    * @return MS_BasicGUI 
-    */
-    public DataSet GetDataSet(){
-        return m_DB;
-    }
-    /** 
-    * Sets the delimiter used in parsing the file;
-    * @param  String  the file's Delimiter
-    * @return boolean true if set correctly
-    */
-    public boolean SetDelimiter(String del){
-        m_delimitor = del;
-        return true;
-    }
-
-    /**
-    * Gets the delimiter of this class
-    * @return String 
-    */
-    public String GetDelimitor(){
-        return m_delimitor;
-    }
     
  
-    /**
+    /** ParseFile forms the layout for subclasses to use to create charts
      * ParseFile runs through the file the first line it takes the Column names
      * The rest of the file it make a new MS_DataAtribute and adds it with 
      * Position values to the MS_DataSet class  Returns a Boolean if True no   
@@ -147,7 +150,7 @@ public class CSVReader {
        return isError;
     }
     
-    /**
+    /** Checks to see if there are null values in the array
      * The function checks the array to see if it is null if not it inserts it
      * to the MS_DataSet
      * @param String[] the row of data from the csv parser
@@ -188,5 +191,11 @@ public class CSVReader {
         }
         return isEmpty;
     } 
+ 
+ 
+    private File m_File;
+    private DataSet m_DB; 
+    private String m_delimitor; 
+    private final String CLASS = "CSVReader"; 
  
 }
