@@ -65,11 +65,7 @@ public class VisualiserGUI extends JFrame
         } catch (IOException ex) {
             Logger.getLogger(VisualiserGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    DataSet db = new DataSet();
-    File f = new File(this.getClass().getResource("/assets/files/csv.csv").getPath());
-    System.err.println("file check: "+f);
-    CSVReader m_reader = new CSVReader(db,f,",");
-    m_reader.ParseFile();
+   
 
     m_chartTabPanel = new TabPannel();
     

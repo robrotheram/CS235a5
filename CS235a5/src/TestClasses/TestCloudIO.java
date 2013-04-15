@@ -7,7 +7,12 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CloudIO;
 import cs235a5.DataType;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 
 /** @brief This class is will Test all the methods in the CloudIO class
@@ -23,6 +28,28 @@ public class TestCloudIO {
     private final String CLASSNAME = "CloudIO";
     private CloudIO Cloud = new CloudIO();
     
+    
+     /**
+     * Private method to get the file inside of the jar file
+     * @return File
+     */ 
+    private File getFile(){
+        String  p = System.getProperty("user.dir")+"/rrf.csv";
+        try{
+            InputStream is = is = this.getClass().getResourceAsStream("/assets/files/csv.csv");
+            OutputStream stream = new BufferedOutputStream(new FileOutputStream(p));
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                stream.write(buffer, 0, len);
+            }
+            if(stream!=null){
+                stream.close();
+            }
+        }catch(IOException e){}
+        return new File(p);
+    }
     
       /**
      * Method to test the CloudIO Login() method  and returns a Test object containing the 
@@ -135,12 +162,11 @@ public class TestCloudIO {
                  "File", //Input Data
                  "String != null" //Expected output
                  );   
-        URL fileURL = this.getClass().getResource("/assets/files/csv.csv");
-        File f = new File(fileURL.getPath());
+
         String ssid = Cloud.login("r","r");
         if(run){
             theTest.hasRun();
-            if(Cloud.upload(ssid, f) !=null){
+            if(Cloud.upload(ssid, getFile()) !=null){
                 theTest.setPassed(true);
             }else{
                 theTest.setPassed(false);

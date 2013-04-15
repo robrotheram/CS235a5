@@ -18,7 +18,12 @@ import cs235a5.BubbleChart;
 import cs235a5.DataSet;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -53,11 +58,32 @@ public class TestBubbleChart {
             m_frame.add(m_pnl);
   
             m_db = new DataSet();
-            URL fileURL = this.getClass().getResource("/assets/files/csv.csv"); 
-            File f = new File(fileURL.getPath());
-            CSVReader csvr = new CSVReader(m_db,f,",");
+            
+            CSVReader csvr = new CSVReader(m_db,getFile(),",");
             csvr.ParseFile();
           
+    }
+    
+    /**
+     * Private method to get the file inside of the jar file
+     * @return File
+     */ 
+    private File getFile(){
+        String  p = System.getProperty("user.dir")+"/rrf.csv";
+        try{
+            InputStream is = is = this.getClass().getResourceAsStream("/assets/files/csv.csv");
+            OutputStream stream = new BufferedOutputStream(new FileOutputStream(p));
+            int bufferSize = 1024;
+            byte[] buffer = new byte[bufferSize];
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                stream.write(buffer, 0, len);
+            }
+            if(stream!=null){
+                stream.close();
+            }
+        }catch(IOException e){}
+        return new File(p);
     }
     
     /**
