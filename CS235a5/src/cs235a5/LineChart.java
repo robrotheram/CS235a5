@@ -130,7 +130,7 @@ public class LineChart extends Chart{
   /** Returns the chart type
   * returns chart type (Line) if the method is called
   * 
-  * @return the constant AREACHART
+  * @return the constant LINECHART
   */
   public ChartType getChartType(){
       return super.GetChartType();
