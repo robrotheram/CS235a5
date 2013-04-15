@@ -286,7 +286,7 @@ public final class CSVReaderDialog extends JFrame {
                if(parseFile()){
                     System.out.println(CLASS+"EventHandler.actionPerformed():"
                             + " parseFile() been successful");
-                   // m_Context.displayTable();
+                    m_Context.displayTable();
 
                }else{
                    System.out.println(CLASS+"EventHandler.actionPerformed():"

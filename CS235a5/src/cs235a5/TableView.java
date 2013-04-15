@@ -56,7 +56,8 @@ public class TableView extends JPanel
   public JTable GetUserData()
   {
     m_table = new JTable(m_DB.GetDataSet(),m_DB.GetHeader());
-
+    m_table.setShowGrid(true);
+    m_table.setGridColor(Color.BLACK);
     return m_table;
   }
 
