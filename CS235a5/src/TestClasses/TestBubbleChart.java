@@ -1,7 +1,7 @@
-/** @brief This class is will Test all the methods in the Column chart class
+/** @brief This class is will Test all the methods in the Bubble chart class
  
-  The Class contains a number of methods to text all the methods in the C
-  * column chart class
+  The Class contains a number of methods to test all the methods in the 
+  * bubble chart class
     @author William Jones
     @file TestBubbleChart.java
     @see BubbleChart.java
@@ -39,7 +39,7 @@ public class TestColumnChart {
     
     
     /**
-     * Constructor that sets up the dataset and the frame to shoe to chart
+     * Constructor that sets up the dataset and the frame to show the chart
      */
     public TestBubbleChart(){
         
@@ -58,6 +58,7 @@ public class TestColumnChart {
             csvr.ParseFile();
           
     }
+    
     /**
      * Method to test the BubbleChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
@@ -104,10 +105,7 @@ public class TestColumnChart {
         }
         return theTest;
     }
-    
-    
-    
-    
+        
      /**
      * Method to test the BubbleChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
@@ -141,8 +139,8 @@ public class TestColumnChart {
         return theTest;
     }
       
-       /**
-     * Method to test the ColumnChart SetDataSet() method  and returns a Test object containing the 
+    /**
+     * Method to test the ~BubbleChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -175,7 +173,7 @@ public class TestColumnChart {
     }
     
     /**
-     * Method to test the ColumnChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the BubbleChart SetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -207,8 +205,9 @@ public class TestColumnChart {
         }
         return theTest;
     }
-      /**
-     * Method to test the ColumnChart SetYColumnData() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -241,7 +240,7 @@ public class TestColumnChart {
     }
      
    /**
-     * Method to test the ColumnChart SetTitle() method  and returns a Test object containing the 
+     * Method to test the BubbleChart SetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -272,10 +271,9 @@ public class TestColumnChart {
         }
         return theTest;
     }
-     
-     
-      /**
-     * Method to test the ColumnChart SetSetColourMap method  and returns a Test object containing the 
+
+     /**
+     * Method to test the BubbleChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -306,8 +304,9 @@ public class TestColumnChart {
         }
         return theTest;
     } 
-     /**
-     * Method to test the ColumnChart SetAuthor() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -339,8 +338,8 @@ public class TestColumnChart {
         return theTest;
     }
      
-     /**
-     * Method to test the ColumnChart SetDescription() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -371,8 +370,9 @@ public class TestColumnChart {
         
         return theTest;
     }
-     /**
-     * Method to test the ColumnChart SetXChartType() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -405,7 +405,7 @@ public class TestColumnChart {
     }
      
     /**
-     * Method to test the ColumnChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the BubbleChart GetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -436,8 +436,9 @@ public class TestColumnChart {
         }
         return theTest;
     }
-       /**
-     * Method to test the ColumnChart GetYColumnData() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -469,8 +470,8 @@ public class TestColumnChart {
         return theTest;
     }
      
-      /**
-     * Method to test the ColumnChart GetTitle() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -502,8 +503,8 @@ public class TestColumnChart {
         return theTest;
     }
      
-      /**
-     * Method to test the ColumnChart GetColourMap() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -534,8 +535,9 @@ public class TestColumnChart {
         }
         return theTest;
     } 
-      /**
-     * Method to test the ColumnChart GetAuthor() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -566,9 +568,9 @@ public class TestColumnChart {
         
         return theTest;
     }
-     
-      /**
-     * Method to test the ColumnChart GetDescritpion() method  and returns a Test object containing the 
+    
+     /**
+     * Method to test the BubbleChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -599,8 +601,9 @@ public class TestColumnChart {
         
         return theTest;
     }
-      /**
-     * Method to test the ColumnChart GetChartType() method  and returns a Test object containing the 
+    
+    /**
+     * Method to test the BubbleChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -632,8 +635,8 @@ public class TestColumnChart {
         return theTest;
     }
      
-      /**
-     * Method to test the ColumnChart createChart() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -665,8 +668,8 @@ public class TestColumnChart {
         return theTest;
     }
     
-     /**
-     * Method to test the ColumnChart GetGetJChart() method  and returns a Test object containing the 
+    /**
+     * Method to test the BubbleChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -747,25 +750,6 @@ public class TestColumnChart {
          System.out.println("Test Set Desciption: "+
               TCC.TestSetYColumnData(run).getResult());
         System.out.println("Test Get Desciption: "+
-              TCC.TestGetYColumnData(run).getResult());
-        
-        
-        
-        
+              TCC.TestGetYColumnData(run).getResult());         
     }
-      
-      
-      
-      
-    
-  
-        
-    
-    
-    
-    
-    
-    
-    
-    
 }
