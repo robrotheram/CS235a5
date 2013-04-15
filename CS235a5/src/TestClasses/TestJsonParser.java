@@ -115,7 +115,7 @@ public class TestJsonParser {
                 + ",\"upload_id\":\"13\",\"filePath\":\"..\\/file\\"
                 + "/5165cc35caaee.jpg\",\"fileName\":\"csv.csv\"}],\"connect\":"
                 + "\"yes\"}", //Input Data
-                 "String not null containgin the random session id from the server" //Expected output
+                 "String not null containing the random session id from the server" //Expected output
                  );   
         JSONParser parser = new JSONParser();
         Object obj = null;
@@ -189,7 +189,7 @@ public class TestJsonParser {
                  "parse",//Method Being Tested
                  "A test to see if the class can parse the object correctly", //Description
                  "{\"id\":\"13\",\"connect\":\"yes\",\"name\":\"csv.csv\",\"path\":\"..\\/file\\/5165cc35caaee.jpg\"}", //Input Data
-                 "String not null containgin the random session id from the server" //Expected output
+                 "String not null containing the random session id from the server" //Expected output
                  );   
         JSONParser parser = new JSONParser();
         Object obj = null;
@@ -224,7 +224,7 @@ public class TestJsonParser {
      */
     public Test TestparseUpload(boolean run) {
         Test theTest = new Test(
-                 "Testing Parseing the json object if is a upload data",//Test Title
+                 "Testing parseing the json object if it is uploadable data",//Test Title
                  CLASSNAME,//Class Name
                  "parse",//Method Being Tested
                  "A test to see if the class can parse the object correctly", //Description

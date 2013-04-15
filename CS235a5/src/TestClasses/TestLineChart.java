@@ -60,7 +60,7 @@ public class TestLineChart {
           
     }
     /**
-     * Method to test the ColumnChart and returns a Test object containing the 
+     * Method to test the LineChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -110,7 +110,7 @@ public class TestLineChart {
     
     
      /**
-     * Method to test the ColumnChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the LineChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -143,7 +143,7 @@ public class TestLineChart {
     }
       
        /**
-     * Method to test the ColumnChart SetDataSet() method  and returns a Test object containing the 
+     * Method to test the LineChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -176,7 +176,7 @@ public class TestLineChart {
     }
     
     /**
-     * Method to test the ColumnChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the LineChart SetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -209,7 +209,7 @@ public class TestLineChart {
         return theTest;
     }
       /**
-     * Method to test the ColumnChart SetYColumnData() method  and returns a Test object containing the 
+     * Method to test the LineChart SetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -276,7 +276,7 @@ public class TestLineChart {
      
      
       /**
-     * Method to test the ColumnChart SetSetColourMap method  and returns a Test object containing the 
+     * Method to test the LineChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -308,7 +308,7 @@ public class TestLineChart {
         return theTest;
     } 
      /**
-     * Method to test the ColumnChart SetAuthor() method  and returns a Test object containing the 
+     * Method to test the LineChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -341,7 +341,7 @@ public class TestLineChart {
     }
      
      /**
-     * Method to test the ColumnChart SetDescription() method  and returns a Test object containing the 
+     * Method to test the LineChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -373,7 +373,7 @@ public class TestLineChart {
         return theTest;
     }
      /**
-     * Method to test the ColumnChart SetXChartType() method  and returns a Test object containing the 
+     * Method to test the LineChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -406,7 +406,7 @@ public class TestLineChart {
     }
      
     /**
-     * Method to test the ColumnChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the LineChart GetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -438,7 +438,7 @@ public class TestLineChart {
         return theTest;
     }
        /**
-     * Method to test the ColumnChart GetYColumnData() method  and returns a Test object containing the 
+     * Method to test the LineChart GetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -471,7 +471,7 @@ public class TestLineChart {
     }
      
       /**
-     * Method to test the ColumnChart GetTitle() method  and returns a Test object containing the 
+     * Method to test the LineChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -504,7 +504,7 @@ public class TestLineChart {
     }
      
       /**
-     * Method to test the ColumnChart GetColourMap() method  and returns a Test object containing the 
+     * Method to test the LineChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -536,7 +536,7 @@ public class TestLineChart {
         return theTest;
     } 
       /**
-     * Method to test the ColumnChart GetAuthor() method  and returns a Test object containing the 
+     * Method to test the LineChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -569,7 +569,7 @@ public class TestLineChart {
     }
      
       /**
-     * Method to test the ColumnChart GetDescritpion() method  and returns a Test object containing the 
+     * Method to test the LineChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -601,7 +601,7 @@ public class TestLineChart {
         return theTest;
     }
       /**
-     * Method to test the ColumnChart GetChartType() method  and returns a Test object containing the 
+     * Method to test the LineChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -634,7 +634,7 @@ public class TestLineChart {
     }
      
       /**
-     * Method to test the ColumnChart createChart() method  and returns a Test object containing the 
+     * Method to test the LineChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -667,7 +667,7 @@ public class TestLineChart {
     }
     
      /**
-     * Method to test the ColumnChart GetGetJChart() method  and returns a Test object containing the 
+     * Method to test the LineChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.

@@ -1,10 +1,10 @@
 /** @brief This class is will Test all the methods in the Column chart class
  
-  The Class contains a number of methods to text all the methods in the C
-  * column chart class
+  The Class contains a number of methods to text all the methods in the 
+  pie chart class
     @author Robert Fletcher
-    @file TestPIeChart.java
-    @see PIeChart.java
+    @file TestPieChart.java
+    @see PieChart.java
     @date April 2013
     */
 
@@ -40,7 +40,7 @@ public class TestPieChart {
     
     
     /**
-     * Constructor that sets up the dataset and the frame to shoe to chart
+     * Constructor that sets up the dataset and the frame to show the chart
      */
     public TestPieChart(){
         
@@ -60,7 +60,7 @@ public class TestPieChart {
           
     }
     /**
-     * Method to test the PIeChart and returns a Test object containing the 
+     * Method to test the PieChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -110,7 +110,7 @@ public class TestPieChart {
     
     
      /**
-     * Method to test the PIeChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the PieChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -143,7 +143,7 @@ public class TestPieChart {
     }
       
        /**
-     * Method to test the PIeChart SetDataSet() method  and returns a Test object containing the 
+     * Method to test the PieChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -176,7 +176,7 @@ public class TestPieChart {
     }
     
     /**
-     * Method to test the PIeChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the PieChart SetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -209,7 +209,7 @@ public class TestPieChart {
         return theTest;
     }
       /**
-     * Method to test the PIeChart SetYColumnData() method  and returns a Test object containing the 
+     * Method to test the PieChart SetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -242,7 +242,7 @@ public class TestPieChart {
     }
      
    /**
-     * Method to test the PIeChart SetTitle() method  and returns a Test object containing the 
+     * Method to test the PieChart SetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -276,7 +276,7 @@ public class TestPieChart {
      
      
       /**
-     * Method to test the PIeChart SetSetColourMap method  and returns a Test object containing the 
+     * Method to test the PieChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -308,7 +308,7 @@ public class TestPieChart {
         return theTest;
     } 
      /**
-     * Method to test the PIeChart SetAuthor() method  and returns a Test object containing the 
+     * Method to test the PieChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -341,7 +341,7 @@ public class TestPieChart {
     }
      
      /**
-     * Method to test the PIeChart SetDescription() method  and returns a Test object containing the 
+     * Method to test the PieChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -373,7 +373,7 @@ public class TestPieChart {
         return theTest;
     }
      /**
-     * Method to test the PIeChart SetXChartType() method  and returns a Test object containing the 
+     * Method to test the PieChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -406,7 +406,7 @@ public class TestPieChart {
     }
      
     /**
-     * Method to test the PIeChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the PieChart GetXColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -438,7 +438,7 @@ public class TestPieChart {
         return theTest;
     }
        /**
-     * Method to test the PIeChart GetYColumnData() method  and returns a Test object containing the 
+     * Method to test the PieChart GetYColumnData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -471,7 +471,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PIeChart GetTitle() method  and returns a Test object containing the 
+     * Method to test the PieChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -504,7 +504,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PIeChart GetColourMap() method  and returns a Test object containing the 
+     * Method to test the PieChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -536,7 +536,7 @@ public class TestPieChart {
         return theTest;
     } 
       /**
-     * Method to test the PIeChart GetAuthor() method  and returns a Test object containing the 
+     * Method to test the PieChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -569,7 +569,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PIeChart GetDescritpion() method  and returns a Test object containing the 
+     * Method to test the PieChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -601,7 +601,7 @@ public class TestPieChart {
         return theTest;
     }
       /**
-     * Method to test the PIeChart GetChartType() method  and returns a Test object containing the 
+     * Method to test the PieChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -634,7 +634,7 @@ public class TestPieChart {
     }
      
       /**
-     * Method to test the PIeChart createChart() method  and returns a Test object containing the 
+     * Method to test the PieChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -667,7 +667,7 @@ public class TestPieChart {
     }
     
      /**
-     * Method to test the PIeChart GetGetJChart() method  and returns a Test object containing the 
+     * Method to test the PieChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
