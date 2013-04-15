@@ -35,14 +35,20 @@ import javax.swing.border.TitledBorder;
 public class VisualiserGUI extends JFrame
 {
  
+    public void setContext(VisualiserGUI con){
+        m_Context = con;
+    }
+    
   public VisualiserGUI() 
   {
-    // Init JFileChooser
-    m_fc = new JFileChooser();
-
+    
+      
     // Init Main Window
     m_container = getContentPane();
     m_container.setLayout(new BorderLayout());
+    m_Context = this;
+    m_db = new DataSet();
+    handler = new GUIHandler();
     
     // Gets users current resolution
     KIT = m_container.getToolkit();
@@ -61,21 +67,17 @@ public class VisualiserGUI extends JFrame
         }
     DataSet db = new DataSet();
     File f = new File(this.getClass().getResource("/assets/files/csv.csv").getPath());
+    System.err.println("file check: "+f);
     CSVReader m_reader = new CSVReader(db,f,",");
     m_reader.ParseFile();
-    
-    
 
     m_chartTabPanel = new TabPannel();
-    
-   
     
     m_pLeft = new JPanel();
     m_pLeft.setLayout(new BorderLayout());
     m_pLeft.setBackground(Color.DARK_GRAY);
     m_pLeft.add(new TableView(),BorderLayout.CENTER);
     m_pLeft.validate();
-    
     
     m_SplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,m_pLeft, m_chartTabPanel);
     m_SplitPane.setDividerSize(8);
@@ -96,7 +98,7 @@ public class VisualiserGUI extends JFrame
   
     /**
     * Initialises the MenuBar
-    * Adds the various elements.
+    * Creates and adds the various elements.
     */
     private void initMenuBar()
     {
@@ -154,6 +156,12 @@ public class VisualiserGUI extends JFrame
         m_menuBar.setVisible(true);
     }
     
+    /**
+     * Initialises the toolbar
+     * Creates and adds the components
+     * @throws IOException 
+     */
+    
     private void initToolBar() throws IOException 
     {
         Border m_loweredEtched = 
@@ -192,17 +200,20 @@ public class VisualiserGUI extends JFrame
         m_printFileButton.setPreferredSize(new Dimension(50, 50));
         m_printFileButton.setToolTipText("Print File");
             
-
         m_toolbar.add(m_newFileButton);
         m_toolbar.add(m_openFileButton);
         m_toolbar.add(m_saveFileButton);
         m_toolbar.add(m_printFileButton);
         m_toolbar.add(m_chartListPanel);
+        // Add handlers
+        
+        
+        m_openFileButton.addActionListener(handler);
         
         m_toolbar.setVisible(true);
         m_container.add(m_toolbar, BorderLayout.PAGE_START);
         
-        // ------ code to remove the chart the tabpenl is displaying ----///
+        // ------ code to remove the chart the tabpanel is displaying ----///
          m_openFileButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event) {
                 int i = m_chartTabPanel.getSelectedIndex();
@@ -211,15 +222,13 @@ public class VisualiserGUI extends JFrame
                     m_chartTabPanel.validate();
 
                 }
-            }});
-        
-        
-        
-        
-        
-        
+            }});   
     }
     
+    /*
+     * Creates the custom combo box for chart selection.
+     * Creates and adds all needed elements.
+     */
     private void initChartComboBox()
     {
         
@@ -257,6 +266,11 @@ public class VisualiserGUI extends JFrame
         
     }
     
+    /**
+     * Creates and image icon from the image parsed from the path
+     * @param path - the image path
+     * @return the new image icon
+     */
     protected static ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = VisualiserGUI.class.getResource(path);
         if (imgURL != null) {
@@ -266,7 +280,20 @@ public class VisualiserGUI extends JFrame
                 return null;
         }
     }
-
+    
+    public boolean displayTable(){
+       Rectangle r =  new Rectangle(0,0,m_pLeft.getWidth(),m_pLeft.getWidth());
+       //System.out.println(m_displayArea.getWidth() + " " +m_displayArea.getWidth());
+       m_pLeft.removeAll();
+       m_pLeft.add(new TableView(m_db, r),BorderLayout.CENTER);
+       m_pLeft.validate();
+       return true;
+    }
+    /**
+     * Internal custom combo box renderer class
+     * Handles how the chart selection combobox will look and feel 
+     * and will allow icons in the list for extra visual aid
+     */
     class ComboBoxRenderer extends JLabel implements ListCellRenderer 
     {
         private Font uhOhFont;
@@ -326,10 +353,23 @@ public class VisualiserGUI extends JFrame
         }
     }
 
+    public class GUIHandler implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            if(event.getSource() == m_openFileButton){
+                //creates a new CSVFileDialog for opening CSV files
+                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
+                getFile.setVisible(true);
+                
+            }
+        }
+    }
     /** Main container objects */
     private Container m_container;
     private final Toolkit KIT;
     private final Dimension SCREENSIZE;
+    private DataSet m_db;
+    private VisualiserGUI m_Context;
+    private GUIHandler handler;
     
     /** Menu bar objects */
     private JMenuBar m_menuBar;
