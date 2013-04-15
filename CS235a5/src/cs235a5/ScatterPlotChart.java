@@ -3,12 +3,12 @@ package cs235a5;
 /**
  *
  * \file        ScatterPlotChart.java
- * \author      
+ * \author      Xiaoxi Gu(Wyler) & Robert Fletcher
  * 
  * \date        15/04/2013
  *
- * \brief       The Area Chart Class generates and displays an
- *              Area chart by inheriting from the Chart class.
+ * \brief       The Scatter Plot Chart Class generates and displays an
+ *              scatter plot chart by inheriting from the Chart class.
  *
  */
 
