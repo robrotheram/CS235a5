@@ -147,6 +147,9 @@ public class VisualiserGUI extends JFrame
         m_aboutMenu.add(m_versionMenuItem);
         m_aboutMenu.add(m_helpDocumentationMenuItem);
         
+        // Add handlers
+        m_openMenuItem.addActionListener(handler);
+        
         // Add Menu Elements to MenuBar
         m_menuBar.add(m_fileMenu);
         m_menuBar.add(m_chartsMenu);
@@ -281,6 +284,11 @@ public class VisualiserGUI extends JFrame
         }
     }
     
+    /**
+     * Displays the tables from the CSVReaderDialog
+     * 
+     * @return true if successful, false if not
+     */
     public boolean displayTable(){
        Rectangle r =  new Rectangle(0,0,m_pLeft.getWidth(),m_pLeft.getWidth());
        //System.out.println(m_displayArea.getWidth() + " " +m_displayArea.getWidth());
@@ -360,6 +368,10 @@ public class VisualiserGUI extends JFrame
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
                 
+            } else if (event.getSource() == m_openMenuItem){
+                //creates a new CSVFileDialog for opening CSV files
+                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
+                getFile.setVisible(true);
             }
         }
     }
