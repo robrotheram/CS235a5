@@ -1,9 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs235a5;
 
+
+/**
+ * \file Chart.java
+ * 
+ * \author Kerryanne Tolhurst
+ * 
+ * \date 15/04/2013
+ * 
+ * \brief The chart class is the abstract super class for all charts.
+ * 	  It sets the constructor for all classes and sets all methods needed to be
+ *  	  implemented by all subclasses.
+ * 
+ */
+
+//Import JFreeChart and other libraries 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,40 +31,22 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
-/**
- *
- * @author Kerryanne Tolhurst
- * The chart class is the abstract super class for all charts.
- * It sets the constructor for all classes and sets all methods needed to be
- * implemented by all subclasses.
- * 
- */
 public abstract class Chart extends Visualisation {
     
-    private DataSet m_db;
-    private int m_xAxisDataPosition;
-    private int m_yAxisDataPosition;
-    private String m_chartAuthor; // Allows the user to add an author
-    private String m_chartDescription; // Allows the user to add a description
-    private ColourMap m_colourScheme; // Sets the colour of the charts
-    private String m_title;
-    private ChartType m_chartType;
-    protected ArrayList<String>m_foundElements;
-    private final int OFFSET = 30;
-    
-    /**
-     * Allows access for setting the dataset
+   
+    /** Allows access for setting the dataset
+     * returns true if the dataset is correct
      * 
      * @param db dataset to be set
-     * @return returns true is set is successful
+     * @return returns true is set if successful
      */
     boolean SetDataSet(DataSet db){
         super.SetData(db);
         return true;
     }
     
-    /**
-     * Allows access for setting the x axis data to be used for making charts
+    /** Allows access for setting the x axis data to be used for making charts
+     * returns true if the x axis data is correct
      * 
      * @param xData
      * @return 
@@ -62,8 +55,10 @@ public abstract class Chart extends Visualisation {
         m_xAxisDataPosition = xData;
         return true;
     }
-    /**
-     * Set type the chart from the enum ChartChart class
+    
+    /** Set type the chart from the enum ChartChart class
+     * returns true if the chartType takes in data correctly
+     * 
      * @param ChartType chartType 
      * @return True if set correctly
      */
@@ -72,8 +67,8 @@ public abstract class Chart extends Visualisation {
           return true;
       }
     
-    /**
-     * Allows access for setting the y axis data to be used for making charts
+    /** Allows access for setting the y axis data to be used for making charts
+     * returns true if the y axis takes in the data correctly
      * 
      * @param yData
      * @return 
@@ -83,15 +78,15 @@ public abstract class Chart extends Visualisation {
         return true;
     }
     
-    /**
-     * Allows setting the chart title. 
+    /** Allows setting the chart title. 
+     * returns true if the title is set correctly
      */
     boolean SetChartTitle(String newTitle){
         super.SetTitle(newTitle);
         return true;
     };
     
-    /**
+    /** Sets the colour map and can change it
      * Abstract class that sets the current colour map and carries out any 
      * processing to change the colour of the chart elements
      */
@@ -104,32 +99,32 @@ public abstract class Chart extends Visualisation {
         return m_chartType;
     }
     
-    /**
-     * allows access to the dataset if needed
+    /** Allows access to the dataset if needed
+     * returns the DataSet if called
      * @return M_DB
      */
     DataSet GetData(){
         return super.GetDataSet();
     }
     
-    /**
-     * allows access to the data for x axis if needed
+    /** Allows access to the data for x axis if needed
+     * returns the xAxisPosition for the Chart
      * @return X_AXISDATAPOSITION
      */
     int GetXColumnPosition(){
         return m_xAxisDataPosition;
     }
     
-    /**
-     * allows access to the data for y axis if needed
+    /** Allows access to the data for y axis if needed
+     * returns the yAxisPosition for the Chart
      * @return Y_AXISDATAPOSITION
      */
     int GetYColumnPosition(){
         return m_yAxisDataPosition;
     }
     
-    /**
-     * allows access to the chart title if needed
+    /** Allows access to the chart title if needed
+     * returns the chart title for the Chart
      * @return m_title
      */
     String GetTitle(){
@@ -143,8 +138,26 @@ public abstract class Chart extends Visualisation {
         return super.GetColourMap();
     };
     
-    /**
-     * constructor setting all class variables needed to create a chart
+    /** Method to get the current time and date and return it as a string
+     * returns the date from the computer which is currently running the program 
+     * 
+     * @param format
+     * @return String  - the current time and Data
+     */
+     private String getDate(String format){
+               DateFormat dateFormat = new SimpleDateFormat(format);
+               //get current date time with Date()
+               Date date = new Date();
+               System.out.println(dateFormat.format(date));
+         
+               //get current date time with Calendar()
+               Calendar cal = Calendar.getInstance();
+               return(dateFormat.format(cal.getTime()));
+     } 
+    
+    /** Constructor setting all class variables needed to create a chart
+     * The constructor will create all class variables to be called by the subclasses
+     * of the chart class.
      * @param db - the data for the chart
      * @param xColumnPos - the column data for the x axis from the dataset
      * @param yColPos - the column data for the y axis from the dataset
@@ -176,13 +189,13 @@ public abstract class Chart extends Visualisation {
        this.validate();
     };
     
-    /**
+    /** Creates the Chart class
      * Abstract class that creates the actual chart 
      */
     abstract public JFreeChart createChart();
     
-    /**
-     * Creates a chart panel from the chart
+    /**	Creates the chart panel
+     * Returns a chart panel from the chart to be used by the chart class
      * @return myChart 
      */
     private ChartPanel createPanel(){
@@ -192,8 +205,8 @@ public abstract class Chart extends Visualisation {
     } 
     
     
-    /**
-     * Private method to add the charts info ie the Author Description and time to the chart
+    /** Adds charts information 
+     * Private method to add the charts information for example "The Author Description and time to the chart"
      * @param Rectangle the size of the panel
      * @param String author of the chart
      * @param String Description, The charts Description
@@ -210,36 +223,13 @@ public abstract class Chart extends Visualisation {
         JLabel des = new JLabel("Description: "+Desc+" | ");
         p.add(des);
         JLabel date = new JLabel("Date: "+getDate("dd/MM/yyyy")+" Time: "+getDate("HH:mm:ss"));
-        p.add(date);
-        
-        
+        p.add(date);        
         p.validate(); 
-       
-        
-        
         
         return p;
     } 
-     /**
-     * Method to get the current time and date and return it as a string
-     * @return String  - the current time and Data
-     */
-     private String getDate(String format){
-               DateFormat dateFormat = new SimpleDateFormat(format);
-               //get current date time with Date()
-               Date date = new Date();
-               System.out.println(dateFormat.format(date));
-         
-               //get current date time with Calendar()
-               Calendar cal = Calendar.getInstance();
-               return(dateFormat.format(cal.getTime()));
-               
-           
-           
-     }  
     
-    
-    /**
+    /** Method that tests array lists and finding elements
      * Method for checking array list if the element has already be found. 
      * It so that when making the chart dataset there will be no duplicates.
      * @param String Value to be checked
@@ -258,7 +248,17 @@ public abstract class Chart extends Visualisation {
 		 }
                   System.out.println();
 		 return found;
-	 }
+    } 
     
+    private DataSet m_db;			//Initalises the DataSet variable valled m_db
+    private int m_xAxisDataPosition;		//Initalises x Axis position
+    private int m_yAxisDataPosition;		//Initalises y Axis position
+    private String m_chartAuthor; 		// Allows the user to add an author
+    private String m_chartDescription; 		// Allows the user to add a description
+    private ColourMap m_colourScheme; 		// Sets the colour of the charts
+    private String m_title;			//Initalises the chart title
+    private ChartType m_chartType;		//Initalises the chart type
+    protected ArrayList<String>m_foundElements;		//Initalises the array list to find elements
+    private final int OFFSET = 30;		//Initalises the variable offset and sets it to "30"
     
 }
