@@ -1,7 +1,7 @@
 /** @brief This class is will Test all the methods in the Area chart class
  
-  The Class contains a number of methods to text all the methods in the C
-  * column chart class
+  The Class contains a number of methods to text all the methods in the 
+  * Area chart class
     @author Alex McDonough & Robert Fletcher
     @file TestAreaChart.java
     @see AreaChart.java
