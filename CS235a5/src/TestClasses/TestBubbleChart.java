@@ -11,6 +11,7 @@
 package TestClasses;
 
 import TestUI.Test;
+import cs235a5.BubbleChart;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
@@ -22,10 +23,10 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestColumnChart {
+public class TestBubbleChart {
     private final String CLASSNAME ="BubbleChart";
     private final int SIZE = 500;
-    private ColumnChart m_CC;
+    private BubbleChart m_CC;
     private JFrame m_frame;
     private JPanel m_pnl;
     private DataSet m_db;
@@ -41,7 +42,7 @@ public class TestColumnChart {
     /**
      * Constructor that sets up the dataset and the frame to shoe to chart
      */
-    public TestColumnChart(){
+    public TestBubbleChart(){
         
             m_frame = new JFrame("Testing"+CLASSNAME);
             m_frame.setSize(SIZE,SIZE);

@@ -12,6 +12,7 @@ import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
 import cs235a5.PieChart;
+import cs235a5.ScatterPlotChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -40,8 +41,8 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-          m.add( new BubbleChart(db,
-                                                0,
+          m.add( new ScatterPlotChart(db,
+                                                2,
                                                 4,
                                                 "title",
                                                 new Rectangle(0,0,400,400),
