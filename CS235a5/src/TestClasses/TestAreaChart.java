@@ -1,20 +1,19 @@
-/** @brief This class is will Test all the methods in the Bubble chart class
+/** @brief This class is will Test all the methods in the Area chart class
  
-  The Class contains a number of methods to test all the methods in the 
-  * bubble chart class
-    @author William Jones
-    @file TestBubbleChart.java
-    @see BubbleChart.java
-    @date 15 April 2013
+  The Class contains a number of methods to text all the methods in the 
+  * Area chart class
+    @author Alex McDonough & Robert Fletcher
+    @file TestAreaChart.java
+    @see AreaChart.java
+    @date April 2013
     */
 
 package TestClasses;
 
 import TestUI.Test;
-import cs235a5.BubbleChart;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
-import cs235a5.BubbleChart;
+import cs235a5.AreaChart;
 import cs235a5.DataSet;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -23,10 +22,10 @@ import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestBubbleChart {
-    private final String CLASSNAME ="BubbleChart";
+public class TestAreaChart {
+    private final String CLASSNAME ="AreaChart";
     private final int SIZE = 500;
-    private BubbleChart m_CC;
+    private AreaChart m_CC;
     private JFrame m_frame;
     private JPanel m_pnl;
     private DataSet m_db;
@@ -40,9 +39,9 @@ public class TestBubbleChart {
     
     
     /**
-     * Constructor that sets up the dataset and the frame to show the chart
+     * Constructor that sets up the dataset and the frame to shoe to chart
      */
-    public TestBubbleChart(){
+    public TestAreaChart(){
         
             m_frame = new JFrame("Testing"+CLASSNAME);
             m_frame.setSize(SIZE,SIZE);
@@ -59,16 +58,15 @@ public class TestBubbleChart {
             csvr.ParseFile();
           
     }
-    
     /**
-     * Method to test the BubbleChart and returns a Test object containing the 
+     * Method to test the AreaChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */
-     public Test TestBubbleChartDiplay(boolean run){
+     public Test TestAreaChartDiplay(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the Chart Constructor",//Test Title
                  CLASSNAME,//Class Name
@@ -85,7 +83,7 @@ public class TestBubbleChart {
             theTest.hasRun();
             try{
             
-            m_CC = new BubbleChart(m_db,
+            m_CC = new ColumnChart(m_db,
                                     0,
                                     4,
                                     "title",
@@ -106,9 +104,12 @@ public class TestBubbleChart {
         }
         return theTest;
     }
-        
+    
+    
+    
+    
      /**
-     * Method to test the BubbleChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the AreaChart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -140,8 +141,8 @@ public class TestBubbleChart {
         return theTest;
     }
       
-    /**
-     * Method to test the ~BubbleChart SetDataSet() method  and returns a Test object containing the 
+       /**
+     * Method to test the AreaChart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -174,7 +175,7 @@ public class TestBubbleChart {
     }
     
     /**
-     * Method to test the BubbleChart SetXColumnData() method  and returns a Test object containing the 
+     * Method to test the AreaChart SetXAreaData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -182,12 +183,12 @@ public class TestBubbleChart {
      * @return Test 
      */
       
-    public Test TestSetXColumnData(boolean run){
+    public Test TestSetXAreaData(boolean run){
             Test theTest = new Test(
-                 "Testing if you can set the X column",//Test Title
+                 "Testing if you can set the X Area",//Test Title
                  CLASSNAME,//Class Name
                  "SetXData",//Method Being Tested
-                 "A test to see if the you can set the X column in the class", //Description
+                 "A test to see if the you can set the X Area in the class", //Description
                  "0", //Input Data
                  "True" //Expected output
                  );   
@@ -206,21 +207,20 @@ public class TestBubbleChart {
         }
         return theTest;
     }
-    
-    /**
-     * Method to test the BubbleChart SetYColumnData() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart SetYAreaData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */
-     public Test TestSetYColumnData(boolean run){
+     public Test TestSetYAreaData(boolean run){
             Test theTest = new Test(
-                 "Testing if you can set the Y column",//Test Title
+                 "Testing if you can set the Y Area",//Test Title
                  CLASSNAME,//Class Name
                  "SetYData",//Method Being Tested
-                 "A test to see if the you can set the Y column in the class", //Description
+                 "A test to see if the you can set the Y Area in the class", //Description
                  "4", //Input Data
                  "True" //Expected output
                  );   
@@ -241,7 +241,7 @@ public class TestBubbleChart {
     }
      
    /**
-     * Method to test the BubbleChart SetTitle() method  and returns a Test object containing the 
+     * Method to test the AreaChart SetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -272,9 +272,10 @@ public class TestBubbleChart {
         }
         return theTest;
     }
-
-     /**
-     * Method to test the BubbleChart SetSetColourMap method  and returns a Test object containing the 
+     
+     
+      /**
+     * Method to test the AreaChart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -305,9 +306,8 @@ public class TestBubbleChart {
         }
         return theTest;
     } 
-    
-    /**
-     * Method to test the BubbleChart SetAuthor() method  and returns a Test object containing the 
+     /**
+     * Method to test the areaChart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -339,8 +339,8 @@ public class TestBubbleChart {
         return theTest;
     }
      
-    /**
-     * Method to test the BubbleChart SetDescription() method  and returns a Test object containing the 
+     /**
+     * Method to test the AreaChart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -371,9 +371,8 @@ public class TestBubbleChart {
         
         return theTest;
     }
-    
-    /**
-     * Method to test the BubbleChart SetXChartType() method  and returns a Test object containing the 
+     /**
+     * Method to test the AreaChart SetXChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -406,16 +405,16 @@ public class TestBubbleChart {
     }
      
     /**
-     * Method to test the BubbleChart GetXColumnData() method  and returns a Test object containing the 
+     * Method to test the AreaChart GetXAreaData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */ 
-    public Test TestGetXColumnData(boolean run){
+    public Test TestGetXAreaData(boolean run){
             Test theTest = new Test(
-                 "Testing if you can Get the X column",//Test Title
+                 "Testing if you can Get the X Area",//Test Title
                  CLASSNAME,//Class Name
                  "GetXData",//Method Being Tested
                  "A test to see if the you can get the X column from the class", //Description
@@ -437,21 +436,20 @@ public class TestBubbleChart {
         }
         return theTest;
     }
-    
-    /**
-     * Method to test the BubbleChart GetYColumnData() method  and returns a Test object containing the 
+       /**
+     * Method to test the AreaChart GetYAreaData() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */ 
-     public Test TestGetYColumnData(boolean run){
+     public Test TestGetYAreaData(boolean run){
             Test theTest = new Test(
-                 "Testing if you can Get the Y column",//Test Title
+                 "Testing if you can Get the Y area",//Test Title
                  CLASSNAME,//Class Name
                  "GetYData",//Method Being Tested
-                 "A test to see if the you can get the Y column from the class", //Description
+                 "A test to see if the you can get the Y area from the class", //Description
                  "na", //Input Data
                  "True" //Expected output
                  );   
@@ -471,8 +469,8 @@ public class TestBubbleChart {
         return theTest;
     }
      
-    /**
-     * Method to test the BubbleChart GetTitle() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -504,8 +502,8 @@ public class TestBubbleChart {
         return theTest;
     }
      
-    /**
-     * Method to test the BubbleChart GetColourMap() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -536,9 +534,8 @@ public class TestBubbleChart {
         }
         return theTest;
     } 
-    
-    /**
-     * Method to test the BubbleChart GetAuthor() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -569,9 +566,9 @@ public class TestBubbleChart {
         
         return theTest;
     }
-    
-     /**
-     * Method to test the BubbleChart GetDescritpion() method  and returns a Test object containing the 
+     
+      /**
+     * Method to test the AreaChart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -602,9 +599,8 @@ public class TestBubbleChart {
         
         return theTest;
     }
-    
-    /**
-     * Method to test the BubbleChart GetChartType() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart GetChartType() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -636,8 +632,8 @@ public class TestBubbleChart {
         return theTest;
     }
      
-    /**
-     * Method to test the BubbleChart createChart() method  and returns a Test object containing the 
+      /**
+     * Method to test the AreaChart createChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -669,8 +665,8 @@ public class TestBubbleChart {
         return theTest;
     }
     
-    /**
-     * Method to test the BubbleChart GetGetJChart() method  and returns a Test object containing the 
+     /**
+     * Method to test the AreaChart GetGetJChart() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -708,10 +704,10 @@ public class TestBubbleChart {
      */
     
     public static void main(String[] args){
-        TestBubbleChart TCC = new TestBubbleChart();
+        TestAreaChart TCC = new TestAreaChart();
         boolean run = true;
         System.out.println("Test Chart can be displayed: "+
-              TCC.TestBubbleChartDiplay(run).getResult());
+              TCC.TestAreaChartDiplay(run).getResult());
         
         System.out.println("Test createchart: "+
               TCC.TestcreateChart(run).getResult());
@@ -729,14 +725,14 @@ public class TestBubbleChart {
               TCC.TestGetDataSet(run).getResult());
         
         System.out.println("Test Set XData: "+
-              TCC.TestSetXColumnData(run).getResult());
+              TCC.TestSetXAreaData(run).getResult());
         System.out.println("Test Get XData: "+
-              TCC.TestGetXColumnData(run).getResult());
+              TCC.TestGetXAreaData(run).getResult());
         
         System.out.println("Test Set YData: "+
-              TCC.TestSetYColumnData(run).getResult());
+              TCC.TestSetYAreaData(run).getResult());
         System.out.println("Test Get YData: "+
-              TCC.TestGetYColumnData(run).getResult());
+              TCC.TestGetYAreaData(run).getResult());
         
         System.out.println("Test Set Color Map: "+
               TCC.TestSetColourMap(run).getResult());
@@ -749,8 +745,27 @@ public class TestBubbleChart {
               TCC.TestGetAuthor(run).getResult());
         
          System.out.println("Test Set Desciption: "+
-              TCC.TestSetYColumnData(run).getResult());
+              TCC.TestSetYAreaData(run).getResult());
         System.out.println("Test Get Desciption: "+
-              TCC.TestGetYColumnData(run).getResult());         
+              TCC.TestGetYAreaData(run).getResult());
+        
+        
+        
+        
     }
+      
+      
+      
+      
+    
+  
+        
+    
+    
+    
+    
+    
+    
+    
+    
 }

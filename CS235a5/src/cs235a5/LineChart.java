@@ -35,9 +35,11 @@ public class LineChart extends Chart{
   
   
   /**
-  * Returns the data set  
-  * @return true the set data is correct;
-  */  
+   * Allows access for setting the dataset
+   * 
+   * @param data dataset to be set
+   * @return returns true is set if successful
+   */  
   @Override
   public boolean SetDataSet(DataSet data){
       super.SetData(data);
@@ -45,9 +47,11 @@ public class LineChart extends Chart{
   }
   
   /**
-  * returns the x axis values
-  * @return xData set values;
-  */ 
+   * Allows access for setting the x axis data to be used for making charts
+   * 
+   * @param xData
+   * @return 
+   */
   @Override
   public boolean SetXData(int xData){
       super.SetXData(xData);
@@ -55,16 +59,21 @@ public class LineChart extends Chart{
   }
   
   /**
-  * returns the y axis values
-  * @return yData set values;
-  */
+   * Allows access for setting the y axis data to be used for making charts
+   * 
+   * @param xData
+   * @return 
+   */
   @Override
   public boolean SetYData(int yData){
       super.SetYData(yData);
       return true;
   }
+  
   /**
-  * returns the title of the Chart
+  * sets the title of the Chart
+  * 
+  * @param title
   * @return Chart title of the Chart;
   */
   @Override
@@ -75,6 +84,8 @@ public class LineChart extends Chart{
   
   /**
   * Returns the colourmap selected 
+  * 
+  * @param colours
   * @return colourmap set of the Chart;
   */
   @Override
@@ -85,6 +96,8 @@ public class LineChart extends Chart{
   
   /**
   * Returns a aurthor
+  * 
+  * @param author
   * @return author of the Chart;
   */
   @Override
@@ -94,7 +107,9 @@ public class LineChart extends Chart{
   }
   
   /**
-  * returns the description
+  * sets the description
+  * 
+  * @param description
   * @return description of the Chart class;
   */
   @Override
@@ -104,7 +119,7 @@ public class LineChart extends Chart{
   }
   
   /**
-  * Sets the type of chart to the constant AreaChart
+  * Sets the type of chart to the constant LineChart
   * @return true of set correctly;
   */
   public boolean SetChartType(){
@@ -141,7 +156,6 @@ public class LineChart extends Chart{
   */
   @Override
   public String GetDescription(){
-
     return super.GetDescription();
   }
 
