@@ -14,7 +14,6 @@ package cs235a5;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.io.File;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 

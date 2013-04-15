@@ -5,7 +5,7 @@ import java.util.Iterator;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-/** @brief This class is will parser a json File and retrun it to the CloudIO
+/** @brief This class is will parser a json File and return it to the CloudIO
 
     The Json file is got from the server using the CloudIO.java and depending 
     * on the action will contain different tags which must be passed through
@@ -20,7 +20,7 @@ public class JsonParser {
      * Parse the Json object and return an String array of the result
      * @param JsonType enumeration type from jsonType
      * @param jsonObject the json Object from the server
-     * @return String[][] 2 dimentional array of the result from the server
+     * @return String[][] 2 dimensional array of the result from the server
      */
     public String[][] parse(JsonType t, JSONObject jsonObject ){
         String[][] returns = null;

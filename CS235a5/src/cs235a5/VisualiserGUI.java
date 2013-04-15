@@ -6,8 +6,8 @@ package cs235a5;
  * \author  John Rowley(Original), Kerry Tolhurst(Built upon for A5)
  * \date    16/02/2013
  *
- * \brief   A Grahical User Interface to read and
- *          display data from a .csv file, and trasform
+ * \brief   A Graphical User Interface to read and
+ *          display data from a .csv file, and transform
  *          that data into visualisations.
  *
  */

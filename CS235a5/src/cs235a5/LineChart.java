@@ -14,13 +14,9 @@ package cs235a5;
 
 // Import JFreeChart and libraries 
 import org.jfree.chart.*;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.*;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -34,8 +30,8 @@ public class LineChart extends Chart{
   private JFreeChart m_chart;
   
   
-  /**Allows access for setting the dataset
-   * returns true if the dataset is correct
+  /**
+   * Allows access for setting the dataset
    * 
    * @param data dataset to be set
    * @return returns true is set if successful
@@ -46,8 +42,8 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /**Allows access for setting the x axis data to be used for making charts
-   * returns true if the x axis data is correct
+  /**
+   * Allows access for setting the x axis data to be used for making charts
    * 
    * @param xData
    * @return 
@@ -58,10 +54,10 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Allows access for setting the y axis data to be used for making charts
-   * returns true if the y axis data is correct
+  /**
+   * Allows access for setting the y axis data to be used for making charts
    * 
-   * @param yData
+   * @param xData
    * @return 
    */
   @Override
@@ -70,8 +66,8 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Sets the title of the Chart
-  * returns true if the title is set correctly
+  /**
+  * sets the title of the Chart
   * 
   * @param title
   * @return Chart title of the Chart;
@@ -82,8 +78,8 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Returns the colourmap selected 
-  * returns true if the colour is configured correctly 
+  /**
+  * Returns the colourmap selected 
   * 
   * @param colours
   * @return colourmap set of the Chart;
@@ -94,8 +90,8 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Returns a aurthor
-  * returns the method as true if a author is set for the chart
+  /**
+  * Returns an author
   * 
   * @param author
   * @return author of the Chart;
@@ -106,8 +102,8 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Sets the description
-  * returns the description as true if the method takes in the description
+  /**
+  * sets the description
   * 
   * @param description
   * @return description of the Chart class;
@@ -118,54 +114,49 @@ public class LineChart extends Chart{
       return true;
   }
   
-  /** Sets the type of chart to the constant LineChart
-  * returns the chart type (Line) if called
-  * 
+  /**
+  * Sets the type of chart to the constant LineChart
   * @return true of set correctly;
   */
   public boolean SetChartType(){
       return super.SetChartType(ChartType.LINECHART);
   }
   
-  /** Returns the chart type
-  * returns chart type (Line) if the method is called
-  * 
+  /**
+  * returns the chart type
   * @return the constant LINECHART
   */
   public ChartType getChartType(){
       return super.GetChartType();
   }
   
-  /** Returns the X Axis Column Position
-  * returns the XData position based on the XColumnPosition
-  * 
-  * @return Int XColumnPosition The X Axis Data
+  /**
+  * Returns the X Axis Column Position
+  * @return Int X Axis Column Position
   */
   public int GetXData(){
     return super.GetXColumnPosition();
   }
 
-  /** Returns the Y Values for the Column
-  * returns the YData position based on the YColumnPosition
-  * 
-  * @return Int YColumnPosition The Y Axis Data
+  /**
+  * Returns the Y Values for the Column
+  * @return m_yValues The Y Axis Data
   */
   public int GetYData(){
     return super.GetYColumnPosition();
   }
 
-  /** Returns the Description
-  * returns the Description of the chart if called 
-  * 
-  * @return m_Description a description of the char thats been genarated
+  /**
+  * Returns the Description for the Chart
+  * @return m_Description a description of the char thats been generated
   */
   @Override
   public String GetDescription(){
     return super.GetDescription();
   }
 
-  /** Returns the Title
-  * returns the name or title of the Chart if the method is called
+  /**
+  * Returns the name of the Chart
   * @return m_chartName the name of the chart
   */
   @Override
@@ -173,10 +164,8 @@ public class LineChart extends Chart{
     return super.GetChartTitle();
   }
 
-     /** constructor setting all class variables needed to create a line chart
-     * The constructor will create all class variables to be called by the subclasses
-     * of the chart class.
-     * 
+     /**
+     * constructor setting all class variables needed to create a column chart
      * @param ds - the data for the chart
      * @param xColPosition - the column data for the x axis from the dataset
      * @param yColPosition - the column data for the y axis from the dataset
@@ -192,9 +181,8 @@ public class LineChart extends Chart{
       
   }
   
-   /** Creates a dataset of type XYSeries
-   * Creates a dataset based on the data from the Chart class of which the graph
-   * will be based on.
+   /**
+   * Creates a dataset of type XYSeries
    */
    public XYDataset convertDataSet(){
         int size = 0;                                                //Initialises a value for size
@@ -242,10 +230,9 @@ public class LineChart extends Chart{
     }
    
 
-   /** Creates a Line Chart
-   * Creates the Line Chart using the ChartFactory built into JFreeChart
-   * of which can then be used by the visualiser to be displayed.
-   * 
+   /**
+   *
+   * Create the line chart using the ChartFactory built into JFreeChart
    * @return m_chart A chart of type JFreeChart
    */
    @Override                                                 
@@ -267,14 +254,16 @@ public class LineChart extends Chart{
         return CHART;
     }
    
-    /** A renderer for the Line Chart class
+   
+   
+    /**
     * A renderer specific for this type of chart. Sets the colours that will 
     * be used when displaying the chart.
     */
     class CustomRenderer extends XYLineAndShapeRenderer{
         private Paint[] colors;
         
-        /** Consrtuctor for a custom rendrer
+        /**
         * The constructor for the custom renderer, which will set the colours
         * of the Area
         */
@@ -286,9 +275,8 @@ public class LineChart extends Chart{
            }
         }
         
-        /** A method that gets the colours of the area
-        * Accessor method for getting the colours of the area to be used on the graph
-        * 
+        /**
+        * Accessor method for getting the colours of the area
         * @param row - the identifier of the row it is returning
         * @param column - the identifier of the area it is returning
         * @return the colour of each area 
@@ -299,9 +287,8 @@ public class LineChart extends Chart{
         } 
     }
     
-   /** A method that returns the chart created from the data
-   *  A method to return the chart created from the data by this class so it can be outputted.
-   * 
+   /**
+   *  A method to return the chart created by this class so it can be outputted.
    * @return m_chart the chart created by this class
    */
    public JFreeChart GetJChart(){

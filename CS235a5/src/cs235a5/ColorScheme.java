@@ -34,14 +34,14 @@ interface ColorScheme {
     Color[] getColourArray();
     
     /**
-     * Get's a single colour from the array
+     * Gets a single colour from the array
      * @param i place of colour in the array
      * @return the colour at the requested position
      */
     Color getColour(int i);
     
     /**
-     * Get's the number of colours in the array for calculations etc.
+     * Gets the number of colours in the array for calculations etc.
      * @return 
      */
     int getNumberOfColours();

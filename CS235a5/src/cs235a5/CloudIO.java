@@ -4,18 +4,13 @@
  */
 package cs235a5;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.nio.channels.FileChannel;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +23,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -39,7 +33,6 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
-import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -145,7 +138,7 @@ public class CloudIO {
      * This Method will return the path of the file so long as you are loged in 
      * @param String sid the session id you have got from the login method
      * @param fileID the id of the file you want to retrieve
-     * @return String url file path
+     * @return String URL file path
      */
     public String getFilePath(String sid, String fileID){
         try {
@@ -174,7 +167,7 @@ public class CloudIO {
      * This Method will List all the files you have uploaded.
      * @param String sid the session id you have got from the login method
      * @param file File you are going to upload
-     * @return String will contain the word yess if upload is successful
+     * @return String will contain the word yes if upload is successful
      */
     public String upload(String sid, File file){
         try {
@@ -218,8 +211,8 @@ public class CloudIO {
 
     /**
      * Download the file from the path got from the getFilePath() method or a 
-     * custom url of your choosing 
-     * @param String url path to the string
+     * custom URL of your choosing 
+     * @param String URL path to the string
      * @return file the downloaded file
      */
     public File DownloadFile(String path){
