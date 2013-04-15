@@ -8,7 +8,7 @@ package cs235a5;
     */
 public enum ChartType {
     BARCHART("BarChart"),PIECHART("PieChart"),LINECHART("LineChart"),
-    AREACHART("AreaChart"),BUBBLECHART("BubbleChart");
+    AREACHART("AreaChart"),BUBBLECHART("BubbleChart"),SCATTERPLOTCHART("Scatter Plot");
     
     private String Type;
     
