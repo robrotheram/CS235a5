@@ -123,7 +123,7 @@ public class PieChart extends Chart {
   /** Returns the chert type
    * returns what kind of chart is being created
    * 
-   * @return the constant LINECHART
+   * @return the constant PIECHART
    */
   public ChartType getChartType(){
       return super.GetChartType();
