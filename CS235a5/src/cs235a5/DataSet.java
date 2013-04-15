@@ -1,7 +1,5 @@
 package cs235a5;
 
-import java.util.ArrayList;
-
 /**
  * The MS_DataSet Class stores a structure of the entire data 
  * @author Robert

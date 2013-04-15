@@ -6,26 +6,20 @@ package cs235a5;
  * \author      Robert Fletcher
  * \date        13/04/2013
  *
- * \brief       The Column Chart Class generates and displays
+ * \brief       The Pie Chart Class generates and displays
  *              column chart by inheriting from the Chart class.
  *
  */
 
 // Import JFreeChart
 import org.jfree.chart.*;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.*;
 import java.awt.Rectangle;
 
 import java.awt.Paint;
 import java.util.ArrayList;
 import java.util.List;
 import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 
 public class PieChart extends Chart {
  
@@ -80,12 +74,12 @@ public class PieChart extends Chart {
    * @return true of set correctly;
    */
   public boolean SetChartType(){
-      return super.SetChartType(ChartType.BARCHART);
+      return super.SetChartType(ChartType.PIECHART);
   }
   
   /**
-   * returns the chart type
-   * @return the constant BARCHART
+   * returns the chart type PIECHART
+   * @return the constant 
    */
   public ChartType getChartType(){
       return super.GetChartType();
@@ -111,7 +105,7 @@ public class PieChart extends Chart {
 
   /**
    * Returns the Description for the Chart
-   * @return m_Description a description of the char thats been genarated
+   * @return m_Description a description of the char thats been generated
    */
   @Override
   public String GetDescription(){
@@ -197,7 +191,7 @@ public class PieChart extends Chart {
 
    /**
     *
-    * Create the column chart using the ChartFactory built into JFreeChart
+    * Create the pie chart using the ChartFactory built into JFreeChart
     * @return m_chart A chart of type JFreeChart
     */
    @Override

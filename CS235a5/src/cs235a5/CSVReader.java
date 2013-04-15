@@ -86,7 +86,7 @@ public class CSVReader {
         return m_DB;
     }
     /** 
-    * Sets the Delimiter used in parsing the file;
+    * Sets the delimiter used in parsing the file;
     * @param  String  the file's Delimiter
     * @return boolean true if set correctly
     */
@@ -96,7 +96,7 @@ public class CSVReader {
     }
 
     /**
-    * Gets the delimitor of this class
+    * Gets the delimiter of this class
     * @return String 
     */
     public String GetDelimitor(){

@@ -107,7 +107,7 @@ public class ColumnChart extends Chart {
 
   /**
    * Returns the Description for the Chart
-   * @return m_Description a description of the char thats been genarated
+   * @return m_Description a description of the char thats been generated
    */
   @Override
   public String GetDescription(){

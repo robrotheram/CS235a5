@@ -14,7 +14,6 @@ package cs235a5;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
-import java.io.File;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,7 +56,8 @@ public class TableView extends JPanel
   public JTable GetUserData()
   {
     m_table = new JTable(m_DB.GetDataSet(),m_DB.GetHeader());
-
+    m_table.setShowGrid(true);
+    m_table.setGridColor(Color.BLACK);
     return m_table;
   }
 
