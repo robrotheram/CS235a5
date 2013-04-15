@@ -263,6 +263,7 @@ public class VisualiserGUI extends JFrame
         m_chartList.setRenderer(m_chartListRenderer);
         m_chartList.setMaximumRowCount(3);
         
+        m_chartList.addActionListener(handler);
         m_chartListPanel.add(m_chartList, BorderLayout.PAGE_START);
         m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
                 10,10));
@@ -372,7 +373,13 @@ public class VisualiserGUI extends JFrame
                 //creates a new CSVFileDialog for opening CSV files
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
+            } else if (event.getSource() == m_chartList){
+                ChartOptionPane m_chartOptions = new ChartOptionPane(
+                        m_chartList.getSelectedIndex(), m_chartImages,
+                        m_chartImageStrings, m_chartImageDescriptions, 
+                        m_intArray);
             }
+            
         }
     }
     /** Main container objects */
