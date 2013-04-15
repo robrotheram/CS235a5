@@ -61,7 +61,7 @@ public class LineChart extends Chart{
   /** Allows access for setting the y axis data to be used for making charts
    * returns true if the y axis data is correct
    * 
-   * @param xData
+   * @param yData
    * @return 
    */
   @Override
