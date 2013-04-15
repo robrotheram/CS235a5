@@ -13,7 +13,7 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
-import cs235a5.ColumnChart;
+import cs235a5.BubbleChart;
 import cs235a5.DataSet;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -41,7 +41,7 @@ public class TestColumnChart {
     /**
      * Constructor that sets up the dataset and the frame to shoe to chart
      */
-    public TestColumnChart(){
+    public TestBubbleChart(){
         
             m_frame = new JFrame("Testing"+CLASSNAME);
             m_frame.setSize(SIZE,SIZE);
@@ -59,14 +59,14 @@ public class TestColumnChart {
           
     }
     /**
-     * Method to test the ColumnChart and returns a Test object containing the 
+     * Method to test the BubbleChart and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
      * @param boolean if the method is being run
      * @return Test 
      */
-     public Test TestColumnChartDiplay(boolean run){
+     public Test TestBubbleChartDiplay(boolean run){
             Test theTest = new Test(
                  "Testing if you can get the Chart Constructor",//Test Title
                  CLASSNAME,//Class Name
@@ -704,10 +704,10 @@ public class TestColumnChart {
      */
     
     public static void main(String[] args){
-        TestColumnChart TCC = new TestColumnChart();
+        TestBubbleChart TCC = new TestBubbleChart();
         boolean run = true;
         System.out.println("Test Chart can be displayed: "+
-              TCC.TestColumnChartDiplay(run).getResult());
+              TCC.TestBubbleChartDiplay(run).getResult());
         
         System.out.println("Test createchart: "+
               TCC.TestcreateChart(run).getResult());
