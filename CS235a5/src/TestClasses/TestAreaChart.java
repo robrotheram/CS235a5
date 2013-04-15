@@ -83,7 +83,7 @@ public class TestAreaChart {
             theTest.hasRun();
             try{
             
-            m_CC = new ColumnChart(m_db,
+            m_CC = new AreaChart(m_db,
                                     0,
                                     4,
                                     "title",
