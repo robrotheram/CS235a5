@@ -35,6 +35,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import org.jfree.chart.ChartPanel;
 
 public class VisualiserGUI extends JFrame
 {
@@ -368,6 +369,16 @@ public class VisualiserGUI extends JFrame
                 //creates a new CSVFileDialog for opening CSV files
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
+            } else if(event.getSource() == m_printFileButton){
+                 int i = m_chartTabPanel.getSelectedIndex();
+                 if(i >-1){
+                    Chart c =  m_chartTabPanel.GetTab(i);
+                    if(c!=null){
+                        ChartPanel cp = c.GetChartPannel();
+                        cp.createChartPrintJob();
+                    }
+                 }
+                    
                 
             } else if (event.getSource() == m_openMenuItem){
                 //creates a new CSVFileDialog for opening CSV files
