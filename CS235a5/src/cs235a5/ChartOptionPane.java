@@ -287,6 +287,14 @@ public class ChartOptionPane extends JFrame{
                             GetColours(), GetAuthor(), GetDescription());
                     m_tabs.AddTab(GetTitle(), pieChart);
                     setVisible(false);
+                } else if (GetChartType() == BUBBLECHART){
+                    BubbleChart bubbleChart = new BubbleChart(m_db, 
+                            GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), bubbleChart);
+                    setVisible(false);
                 } else if (GetChartType() == SCATTERPLOT){
                     ScatterPlotChart scatterChart = new ScatterPlotChart(m_db, 
                             GetXData(), 
@@ -410,7 +418,7 @@ public class ChartOptionPane extends JFrame{
         }
     }
     private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
-            , PIECHART = 4, SCATTERPLOT = 5;
+            , PIECHART = 4, BUBBLECHART = 5, SCATTERPLOT = 6;
     private JPanel m_chartListPanel;
     private JPanel m_rightPanel;
     private JLabel m_titleLabel, m_authorLabel, m_descriptionLabel,
