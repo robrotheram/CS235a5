@@ -126,7 +126,10 @@ public class DataSet {
     public String getFilePath(){
         return m_filePath;
     }
-    
+    /**
+     * A check to see if the dataset is empty
+     * @return Boolean True if empty
+     */
     public boolean isEmpty(){
         boolean r =true;
         for(int i = 0; i<GetNumOfColumns();i++){
