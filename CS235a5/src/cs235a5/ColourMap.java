@@ -2,6 +2,8 @@ package cs235a5;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -43,13 +45,36 @@ public class ColourMap implements ColorScheme{
      * Sets 5 panels sizes and colours to match the array for viewing colour
      * map colours in an interface
      * 
-     * @param panels array of panels
+     * @param panels array of bufferedImages to be coloured
      * @return true if set correctly
      */
-    public boolean setPanels(JPanel[] panels){
+    public boolean setPanels(BufferedImage[] panels){
         for(int i = 0; i < panels.length; i++){
-            panels[i].setPreferredSize(new Dimension(30,30));
-            panels[i].setBackground(m_colorArray[i]);
+            for (int x = 0; x < COLOUR_KEY_SIZE; x++) {
+                for (int y = 0; y < COLOUR_KEY_SIZE; y++) {
+                    panels[i].setRGB(x, y, m_colorArray[i].getRGB());
+                }
+            }
+            
+        }
+        if(!CreateKey(panels)){
+            System.out.println("Error creating colourmap key. In SetPanels()."
+                    + "CreateKey()");
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * Creates a single colourmap key image from the array of painted images
+     * @param panels the coloured panels for each colour in the colour map
+     * @return true if successful
+     */
+    public boolean CreateKey(BufferedImage[] panels){
+        int xPos = 0;
+        for(int i = 0; i < panels.length; i++){
+            m_colourMap.getGraphics().drawImage(panels[i], xPos, 0, null);
+            xPos += COLOUR_KEY_SIZE;
         }
         return true;
     }
@@ -59,8 +84,8 @@ public class ColourMap implements ColorScheme{
      * 
      * @return panels coloured panels matching the colour array
      */
-    public JPanel[] getPanels(){
-        return m_panels;
+    public ImageIcon getPanels(){
+        return new ImageIcon(m_colourMap);
     }
     
     /** Get the colour array
@@ -105,10 +130,10 @@ public class ColourMap implements ColorScheme{
         } else if(!setColourArray(colorArray)){
             System.err.println("Unable to set colours in MS_ColourMap");
         }
-        if(setPanels(m_panels)){
+        if(setPanels(m_colourKeyList)){
             System.out.println("Colour panels set in MS_ColourMap");
         }
-        else if(!setPanels(m_panels)){
+        else if(!setPanels(m_colourKeyList)){
             System.err.println("Colour panels not set in MS_ColourMap");
         }
     }
@@ -127,18 +152,27 @@ public class ColourMap implements ColorScheme{
     }
         
     private Color[] m_colorArray = new Color[5];
-    private JPanel m_colourPanel = new JPanel(), 
-                     m_defaultC2 = new JPanel(),
-                     m_defaultC3 = new JPanel(), 
-                     m_defaultC4 = new JPanel(), 
-                     m_defaultC5 = new JPanel();
-    private JPanel[] m_panels = {
-        m_colourPanel,
-        m_defaultC2, 
-        m_defaultC3, 
-        m_defaultC4, 
-        m_defaultC5
-    };
+    private final int COLOUR_KEY_SIZE = 30;
+    private final int NUM_OF_COLOURS = 5;
+    
+    // Images for storing the colours of created colour maps
+    private BufferedImage m_colour1 = new BufferedImage(COLOUR_KEY_SIZE,
+            COLOUR_KEY_SIZE, BufferedImage.TYPE_INT_RGB),
+            m_colour2 = new BufferedImage(COLOUR_KEY_SIZE,
+            COLOUR_KEY_SIZE, BufferedImage.TYPE_INT_RGB),
+            m_colour3 = new BufferedImage(COLOUR_KEY_SIZE,
+            COLOUR_KEY_SIZE, BufferedImage.TYPE_INT_RGB),
+            m_colour4 = new BufferedImage(COLOUR_KEY_SIZE,
+            COLOUR_KEY_SIZE, BufferedImage.TYPE_INT_RGB),
+            m_colour5 = new BufferedImage(COLOUR_KEY_SIZE,
+            COLOUR_KEY_SIZE, BufferedImage.TYPE_INT_RGB);
+    private BufferedImage m_colourMap = new BufferedImage(COLOUR_KEY_SIZE*
+            NUM_OF_COLOURS, COLOUR_KEY_SIZE,BufferedImage.TYPE_INT_RGB);
+    // Array of image panels for looping through and colouring
+    private BufferedImage[] m_colourKeyList = new BufferedImage[] {m_colour1,
+        m_colour2, m_colour3, m_colour4, m_colour5};
+    
+   
     
 }
 
