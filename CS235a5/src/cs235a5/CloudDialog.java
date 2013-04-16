@@ -111,6 +111,7 @@ public class CloudDialog extends JFrame{
                     "Wrong Username and or password",
                     "Login Failed",
                         JOptionPane.ERROR_MESSAGE);
+                    context.dispose();
                 }
                
             }

@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
@@ -73,37 +75,41 @@ public class CloudIO {
      * @return String the Session ID form the server or null
      */
     public String login(String user, String pass){
-        try {
-            HttpPost httppost = new HttpPost(SERVER+LOGIN);
+            try{
             
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("user", user));
-            nameValuePairs.add(new BasicNameValuePair("pass", pass));
+                HttpPost httppost = new HttpPost(SERVER+LOGIN);
+                
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+                nameValuePairs.add(new BasicNameValuePair("user", user));
+                nameValuePairs.add(new BasicNameValuePair("pass", pass));
 
 
-            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-            HttpResponse response = httpclient.execute(httppost);
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse response = httpclient.execute(httppost);
+                
+                Reader in = new InputStreamReader(response.getEntity().getContent());
+                try{
+                    Object obj = parser.parse(in);
+
+                    String[][] out = jP.parse(JsonType.LOGIN, (JSONObject) obj);
+                    if(out == null){
+                        return null;
+                    }else{
+                     return out[0][0];
+                    }
+                }catch(Exception e){
+                    return null;
+                }
+
+           
+          
+        }catch(Exception ex){
             
-            Reader in = new InputStreamReader(response.getEntity().getContent());
-	    Object obj = parser.parse(in);
-            
-            String[][] out = jP.parse(JsonType.LOGIN, (JSONObject) obj);
-            if(out == null){
-                return null;
-            }else{
-             return out[0][0];
-            }
-        
-        
-        } catch (ParseException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
-                    ex);
             return null;
-        } catch (IOException ex) {
-            Logger.getLogger(CloudIO.class.getName()).log(Level.SEVERE, null, 
-                    ex);  
-            return null;
-        }
+           
+        }    
+        
+       
       
     }
     
