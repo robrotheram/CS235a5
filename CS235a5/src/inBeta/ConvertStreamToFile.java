@@ -1,4 +1,19 @@
- /**
+package inBeta;
+
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+ *
+ * @author William
+ */
+public class ConvertStreamToFile {
+/**
      * Private method to get the file inside of the jar file
      * @return File
      */ 
@@ -20,3 +35,4 @@
         return new File(p);
     }
 
+}
