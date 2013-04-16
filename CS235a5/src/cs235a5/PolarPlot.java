@@ -146,6 +146,15 @@ public class PolarPlot extends Chart{
     return super.GetDescription();
   }
 
+  
+   /**
+   *  A method to return the chart created by this class so it can be outputted.
+   * @return m_chart the chart created by this class
+   */
+   public JFreeChart GetJChart(){
+     return m_chart;
+   }
+   
   /**
   * Returns the name of the Chart
   * @return m_chartName the name of the chart
@@ -290,13 +299,7 @@ public class PolarPlot extends Chart{
    
     }
     
-   /**
-   *  A method to return the chart created by this class so it can be outputted.
-   * @return m_chart the chart created by this class
-   */
-   public JFreeChart GetJChart(){
-     return m_chart;
-   }
+  
    
    
    
