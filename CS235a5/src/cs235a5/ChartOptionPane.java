@@ -38,7 +38,13 @@ import javax.swing.border.TitledBorder;
 
 /**
  *
- * @author Kerry Tolhurst
+ * \file    ChartOptionPane.java
+ * \author  Kerry Tolhurst
+ * \date    12/04/2013
+ *
+ * \brief   A UI for the chart options allowing the user input any required
+ *          information for creating charts and select between different charts.
+ *
  */
 public class ChartOptionPane extends JFrame{
     /**
@@ -301,6 +307,9 @@ public class ChartOptionPane extends JFrame{
         });
     }
     
+    /**
+     * Creates the custom list for choosing colour schemes
+     */
     private void initColourList()
     {
         m_colourListPanel = new JPanel();
@@ -329,12 +338,21 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.add(m_colourListPanel);
     }
     
+    /**
+     * Custom renderer class for both the Chart list and the Colours list
+     */
     class ComboBoxRenderer extends JLabel implements ListCellRenderer 
     {
         private Font uhOhFont;
         private Object[] m_images;
         private String[] m_descriptions;
 
+        /**
+         * Constructor passing all the information needed to initialise the 
+         * renderer
+         * @param images the icons for the list items
+         * @param descriptions the descriptions for the icons
+         */
         public ComboBoxRenderer(Object[] images, String[] descriptions) {
             setOpaque(true);
             setHorizontalAlignment(LEFT);

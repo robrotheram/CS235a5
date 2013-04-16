@@ -208,8 +208,7 @@ public class VisualiserGUI extends JFrame
         m_importButton.setPreferredSize(new Dimension(50, 50));
         m_importButton.setToolTipText("Import CSV File");
         
-        
-        
+        //add components
         m_toolbar.add(m_newFileButton);
         m_toolbar.add(m_openFileButton);
         m_toolbar.add(m_saveFileButton);
@@ -282,7 +281,7 @@ public class VisualiserGUI extends JFrame
     
   
     /**
-     * Creates and image icon from the image parsed from the path
+     * Creates an image icon from the image parsed from the path
      * @param path - the image path
      * @return the new image icon
      */
@@ -309,6 +308,7 @@ public class VisualiserGUI extends JFrame
        m_pLeft.validate();
        return true;
     }
+    
     /**
      * Internal custom combo box renderer class
      * Handles how the chart selection combobox will look and feel 
@@ -363,7 +363,12 @@ public class VisualiserGUI extends JFrame
             return this;
         }
         
-        //Set the font and text when no image was found.
+        /**
+         * Set the styling for the error text when creating image icons for the 
+         * chart list
+         * @param uhOhText
+         * @param normalFont 
+         */
         protected void setUhOhText(String uhOhText, Font normalFont) {
             if (uhOhFont == null) { //lazily create this font
                 uhOhFont = normalFont.deriveFont(Font.ITALIC);
