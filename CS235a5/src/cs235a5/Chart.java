@@ -208,9 +208,9 @@ public abstract class Chart extends Visualisation {
      * @return myChart 
      */
     private ChartPanel createPanel(){
-        ChartPanel myChart = new ChartPanel(createChart());
-           myChart.setMouseWheelEnabled(true);
-        return myChart;
+        c_Pane = new ChartPanel(createChart());
+           c_Pane.setMouseWheelEnabled(true);
+        return c_Pane;
     } 
     
     
@@ -237,6 +237,15 @@ public abstract class Chart extends Visualisation {
         
         return p;
     } 
+    
+    /**
+     * GetChart will return a ChartPanel  which has the chart
+     * @return ChartPanel
+     */
+    public ChartPanel GetChartPannel(){
+        return c_Pane;
+        
+    }
     
     /** Method that tests array lists and finding elements
      * Method for checking array list if the element has already be found. 
@@ -269,5 +278,6 @@ public abstract class Chart extends Visualisation {
     private ChartType m_chartType;		//Initalises the chart type
     protected ArrayList<String>m_foundElements;		//Initalises the array list to find elements
     private final int OFFSET = 30;		//Initalises the variable offset and sets it to "30"
+    private ChartPanel c_Pane;
     
 }

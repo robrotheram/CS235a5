@@ -24,6 +24,9 @@ import java.io.File;
 import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
 
 /**
  *
@@ -125,7 +128,24 @@ public class test extends JFrame {
            SaveDialog s = new SaveDialog(db,tp);
            s.SaveFile();
        */
-            
+           
+           
+           
+           BubbleChart bc =  new BubbleChart(db,
+                                                0,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                );
+           
+           
+           
+        ChartPanel cc = bc.GetChartPannel();
+        cc.createChartPrintJob();
+        
         }else{
              System.err.print("error!!!!!");
         }

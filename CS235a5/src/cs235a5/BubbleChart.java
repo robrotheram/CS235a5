@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.PlotRenderingInfo;
 import org.jfree.chart.plot.XYPlot;
@@ -334,5 +335,12 @@ public class BubbleChart extends Chart{
    public JFreeChart GetJChart()
    {
      return m_chart;
+   }
+   /**
+    * Method that calls the superclass Chart.java to get the charts chartPanel
+    * @return 
+    */
+   public ChartPanel GetPanel(){
+       return super.GetChartPannel();
    }
 }

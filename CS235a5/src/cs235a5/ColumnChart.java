@@ -304,4 +304,12 @@ public class ColumnChart extends Chart {
    {
      return m_chart;
    }
+   
+     /**
+    * Method that calls the superclass Chart.java to get the charts chartPanel
+    * @return 
+    */
+   public ChartPanel GetPanel(){
+       return super.GetChartPannel();
+   }
 }

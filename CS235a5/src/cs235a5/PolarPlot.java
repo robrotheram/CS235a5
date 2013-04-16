@@ -183,6 +183,13 @@ public class PolarPlot extends Chart{
       
   }
   
+    /**
+    * Method that calls the superclass Chart.java to get the charts chartPanel
+    * @return 
+    */
+   public ChartPanel GetPanel(){
+       return super.GetChartPannel();
+   }
    /**
    * Creates a dataset of type XYSeries
    */
