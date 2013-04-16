@@ -1,7 +1,10 @@
  package TestUI;
 
+import TestClasses.TestAreaChart;
+import TestClasses.TestBubbleChart;
 import TestClasses.TestCSVReader;
 import TestClasses.TestCSVReaderDialog;
+import TestClasses.TestChart;
 import TestClasses.TestCloudDialog;
 import TestClasses.TestCloudIO;
 import TestClasses.TestColumnChart;
@@ -11,8 +14,13 @@ import TestClasses.TestJsonParser;
 import TestClasses.TestLineChart;
 import TestClasses.TestOpenDialog;
 import TestClasses.TestPieChart;
+import TestClasses.TestPolarChart;
 import TestClasses.TestSaveDialog;
+import TestClasses.TestScatterPlotChart;
 import TestClasses.TestTabPannel;
+import TestClasses.TestTabelView;
+import TestClasses.TestUserColor;
+import TestClasses.TestVisulisation;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -362,7 +370,6 @@ public class TestingUI extends JFrame {
                 
                 TCC.TestColumnChartDiplay(run),
                 TCC.TestcreateChart(run),
-               
                 TCC.TestSetTitle(run),
                 TCC.TestGetTitle(run),
                 TCC.TestsetDataSet(run),
@@ -375,8 +382,114 @@ public class TestingUI extends JFrame {
                 TCC.TestSetAuthor(run),
                 TCC.TestGetAuthor(run),
                 TCC.TestSetYColumnData(run),
-                TCC.TestGetYColumnData(run)
-
+                TCC.TestGetYColumnData(run),
+                
+                
+                TCPC.TestPieChartDiplay(run),
+                TCPC.TestcreateChart(run),
+                TCPC.TestSetTitle(run),
+                TCPC.TestGetTitle(run),
+                TCPC.TestsetDataSet(run),
+                TCPC.TestSetXColumnData(run),
+                TCPC.TestGetXColumnData(run),
+                TCPC.TestSetYColumnData(run),
+                TCPC.TestGetYColumnData(run),
+                TCPC.TestSetColourMap(run),
+                TCPC.TestGetColourMap(run),
+                TCPC.TestSetAuthor(run),
+                TCPC.TestGetAuthor(run),
+                TCPC.TestSetYColumnData(run),
+                TCPC.TestGetYColumnData(run),
+                
+                
+                TAC.TestAreaChartDiplay(run),
+                TAC.TestcreateChart(run),
+                TAC.TestSetTitle(run),
+                TAC.TestGetTitle(run),
+                TAC.TestsetDataSet(run),
+                TAC.TestSetXAreaData(run),
+                TAC.TestGetXAreaData(run),
+                TAC.TestSetYAreaData(run),
+                TAC.TestGetYAreaData(run),
+                TAC.TestSetColourMap(run),
+                TAC.TestGetColourMap(run),
+                TAC.TestSetAuthor(run),
+                TAC.TestGetAuthor(run),
+                TAC.TestSetYAreaData(run),
+                TAC.TestGetYAreaData(run),
+                
+                      
+                TAB.TestBubbleChartDiplay(run),
+                TAB.TestcreateChart(run),
+                TAB.TestSetTitle(run),
+                TAB.TestGetTitle(run),
+                TAB.TestsetDataSet(run),
+                TAB.TestSetXColumnData(run),
+                TAB.TestGetXColumnData(run),
+                TAB.TestSetYColumnData(run),
+                TAB.TestGetYColumnData(run),
+                TAB.TestSetColourMap(run),
+                TAB.TestGetColourMap(run),
+                TAB.TestSetAuthor(run),
+                TAB.TestGetAuthor(run),
+                TAB.TestSetYColumnData(run),
+                TAB.TestGetYColumnData(run),  
+                    
+                TPLC.TestPolarChartDiplay(run),
+                TPLC.TestcreateChart(run),
+                TPLC.TestSetTitle(run),
+                TPLC.TestGetTitle(run),
+                TPLC.TestsetDataSet(run),
+                TPLC.TestSetXColumnData(run),
+                TPLC.TestGetXColumnData(run),
+                TPLC.TestSetYColumnData(run),
+                TPLC.TestGetYColumnData(run),
+                TPLC.TestSetColourMap(run),
+                TPLC.TestGetColourMap(run),
+                TPLC.TestSetAuthor(run),
+                TPLC.TestGetAuthor(run),
+                TPLC.TestSetYColumnData(run),
+                TPLC.TestGetYColumnData(run), 
+                
+                TSC.TestScatterPlotChartDiplay(run),
+                TSC.TestcreateChart(run),
+                TSC.TestSetTitle(run),
+                TSC.TestGetTitle(run),
+                TSC.TestsetDataSet(run),
+                TSC.TestSetXColumnData(run),
+                TSC.TestGetXColumnData(run),
+                TSC.TestSetYColumnData(run),
+                TSC.TestGetYColumnData(run),
+                TSC.TestSetColourMap(run),
+                TSC.TestGetColourMap(run),
+                TSC.TestSetAuthor(run),
+                TSC.TestGetAuthor(run),
+                TSC.TestSetYColumnData(run),
+                TSC.TestGetYColumnData(run),
+                
+                TCS.TestChartDiplay(run),
+                TCS.TestcreateChart(run),
+                TCS.TestGetColourMap(run),
+                TCS.TestSetAuthor(run),
+                TCS.TestGetAuthor(run),
+                
+             
+                TCV.TestSetTitle(run),
+                TCV.TestGetTitle(run),
+                TCV.TestsetDataSet(run),
+                TCV.TestGetDataSet(run),
+                TCV.TestSetColourMap(run),
+                TCV.TestGetColourMap(run),
+                TCV.TestSetAuthor(run),
+                TCV.TestGetAuthor(run),
+                
+                TUC.TestUserColor(run),
+                
+                TTV.TestDisplay(run),
+                TTV.TestGetDataSet(run),
+                TTV.TestsetDataSet(run)
+                
+                    
                 
             };
         return THETESTS;
@@ -400,6 +513,16 @@ public class TestingUI extends JFrame {
     private final TestPieChart TPC = new TestPieChart();
     private final TestLineChart TLC = new TestLineChart();
     private final TestColumnChart TCC = new TestColumnChart();
+    private final TestPieChart TCPC = new TestPieChart();
+    private final TestAreaChart TAC = new TestAreaChart();
+    private final TestBubbleChart TAB = new TestBubbleChart();
+    private final TestPolarChart TPLC = new TestPolarChart();
+    private final TestScatterPlotChart TSC = new TestScatterPlotChart();
+    private final TestChart TCS = new TestChart();
+    private final TestVisulisation TCV = new TestVisulisation();
+    private final TestUserColor TUC = new TestUserColor();
+    private final TestTabelView TTV = new TestTabelView();
+    
     
     /* ---- Set to run the tests --*/
     private boolean m_runTests = false;
