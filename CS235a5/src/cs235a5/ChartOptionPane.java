@@ -53,7 +53,7 @@ public class ChartOptionPane extends JFrame{
         m_chartList = new JList(m_intArray);
         m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_chartImages, m_chartImageDescriptions);
-        m_chartListRenderer.setPreferredSize(new Dimension(185, 50));
+        m_chartListRenderer.setPreferredSize(new Dimension(185, 55));
         m_chartList.setCellRenderer(m_chartListRenderer);
         m_chartList.setSelectedIndex(selectedChartIndex);
         Border m_loweredEtched = 
@@ -118,7 +118,7 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
         
         this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(500, 370));
+        this.setSize(new Dimension(500, 400));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
         this.add(m_rightPanel, BorderLayout.LINE_END);
         this.setVisible(true);
@@ -152,9 +152,7 @@ public class ChartOptionPane extends JFrame{
         
         //m_colourMapList.addActionListener(handler);
         m_colourListPanel.add(m_colourMapList, BorderLayout.PAGE_START);
-        //m_colourListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
-                //10,10));
-        
+
         m_rightPanel.add(m_colourListPanel);
     }
     
@@ -255,6 +253,6 @@ public class ChartOptionPane extends JFrame{
     private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
             m_colourMapListRenderer;
     private JPanel m_colourListPanel;
-    private JCheckBox m_colourCheck = new JCheckBox("Custom Colours?");
+    private JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
 }
