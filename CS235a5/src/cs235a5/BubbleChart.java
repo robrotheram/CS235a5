@@ -5,16 +5,20 @@
 package cs235a5;
 
 import java.awt.Paint;
+import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.PlotRenderingInfo;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYBubbleRenderer;
 import org.jfree.data.xy.MatrixSeriesCollection;
 import org.jfree.data.xy.NormalizedMatrixSeries;
+import org.jfree.data.xy.XYDataset;
 
 /**
  *\file     BubbleChart.java
@@ -233,7 +237,7 @@ public class BubbleChart extends Chart{
                  int y = super.GetDataSet().GetCell(super.GetYColumnPosition(),(i)).GetInteger();
                  xVal.add(x);
                  yVal.add(y);
-                 double d = (y+0.0)/sum;
+                 double d = /*(y+0.0)/ */ sum;
                  sumVal.add((d));
 
 
@@ -251,6 +255,7 @@ public class BubbleChart extends Chart{
         
         NormalizedMatrixSeries series = new NormalizedMatrixSeries(super.GetTitle(),(maxY+1),(maxX+1));
         for(int i = 0; i<sumVal.size();i++){
+            System.out.println("X: "+xVal.get(i)+"  Y: "+yVal.get(i)+"  Sum: "+sumVal.get(i));
             series.update(yVal.get(i),xVal.get(i),sumVal.get(i));
         }
         
@@ -284,24 +289,10 @@ public class BubbleChart extends Chart{
         
         final XYPlot plot = (XYPlot) CHART.getPlot();
         plot.setForegroundAlpha(0.65f); // Set the transparency of the bubble
+     
         
-        /*
-        XYItemRenderer renderer = plot.getRenderer();
-        renderer.setSeriesPaint(0, Color.blue);  
-
-        // increase the margins to account for the fact that the auto-range
-        // doesn't take into account the bubble size
-        NumberAxis domainAxis = (NumberAxis) plot.getDomainAxis();
-        domainAxis.setLowerMargin(1);
-        domainAxis.setUpperMargin(1);
-        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-        rangeAxis.setLowerMargin(1);
-        rangeAxis.setUpperMargin(1);
-        return CHART;
-         */
-        
-        XYBubbleRenderer renderer = new BubbleChart.CustomRenderer(); 
-        plot.setRenderer(renderer);
+       XYBubbleRenderer renderer = new BubbleChart.CustomRenderer(); 
+       plot.setRenderer(renderer);
         return CHART;
     }
       /**
@@ -316,13 +307,15 @@ public class BubbleChart extends Chart{
          * of the Area
          */
         public CustomRenderer(){ 
-           ColourMap mappedColours = GetColourMap();
+        
+          ColourMap mappedColours = GetColourMap();
           this.colors = new Paint[mappedColours.getColourArray().length];
+          
            for(int i = 0; i<mappedColours.getColourArray().length;i++){
                this.colors[i] = mappedColours.getColour(i);
            }
         }
-        
+
         /** Gets the colours of an area
          * Accessory method for getting the colours of the area
          * @param row - the identifier of the row it is returning

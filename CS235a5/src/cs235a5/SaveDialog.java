@@ -117,10 +117,17 @@ public class SaveDialog {
                 bw.write("<Schemme>\n");
                 for(int j =0; j<cm.getNumberOfColours();j++){
                     Color cl = cm.getColour(j);
+                    System.err.println("Color = "+cl);
+                    String r = Integer.toString(cl.getRed());
+                    String g = Integer.toString(cl.getGreen());
+                    String b = Integer.toString(cl.getBlue());
+                    System.err.print("Red = "+r+" | ");
+                    System.err.print("Green = "+g+" | ");
+                    System.err.println("Blue = "+b);
                     bw.write("<Color>");
-                    bw.write(cl.getRed()+",");
-                    bw.write(cl.getGreen()+",");
-                    bw.write(cl.getBlue());
+                    bw.write(r+",");
+                    bw.write(g+",");
+                    bw.write(b);
                     bw.write("</Color>\n");
                     
                 }

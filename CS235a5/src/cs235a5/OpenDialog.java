@@ -175,7 +175,7 @@ public class OpenDialog {
                                 clrArr[j] =  new Color(red,green,blue);
                                 
                             }
-                            //addChart(type,x,y,title,author,desc,clrArr);
+                            addChart(type,x,y,title,author,desc,clrArr);
                              
 
                             }
@@ -215,7 +215,18 @@ public class OpenDialog {
             String desc, 
             Color[] clrs){
         
-       if(ct.equals(ChartType.BARCHART.toString())){
+       if(ct.equals(ChartType.AREACHART.toString())){
+           AreaChart c = new AreaChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
+       }else if(ct.equals(ChartType.BARCHART.toString())){
            ColumnChart c = new ColumnChart(
                    m_db,
                    x,
@@ -225,10 +236,64 @@ public class OpenDialog {
                    new ColourMap(clrs),
                    author,
                    desc);
-           
-           c.SetChartType(ChartType.BARCHART);
-           //m_tp.AddTab(title, c);
+           m_tp.AddTab(title, c);
+      }else if(ct.equals(ChartType.BUBBLECHART.toString())){
+           BubbleChart c = new BubbleChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
+       }else if(ct.equals(ChartType.LINECHART.toString())){
+           LineChart c = new LineChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
+       }else if(ct.equals(ChartType.PIECHART.toString())){
+           PieChart c = new PieChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
+       }else if(ct.equals(ChartType.POLARCHART.toString())){
+          PolarPlot c = new PolarPlot(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
+       }else if(ct.equals(ChartType.SCATTERPLOTCHART.toString())){
+           ScatterPlotChart c = new ScatterPlotChart(
+                   m_db,
+                   x,
+                   y,
+                   title,
+                   m_tp.getBounds(),
+                   new ColourMap(clrs),
+                   author,
+                   desc);
+           m_tp.AddTab(title, c);
        }
+       
         
         
     }

@@ -126,8 +126,23 @@ public class DataSet {
     public String getFilePath(){
         return m_filePath;
     }
-    
-    
+    /**
+     * A check to see if the dataset is empty
+     * @return Boolean True if empty
+     */
+    public boolean isEmpty(){
+        boolean r =true;
+        for(int i = 0; i<GetNumOfColumns();i++){
+            for(int j = 0; j<GetNumOfRows();j++){
+                if(GetCell(i,j)!=null){
+                    if(!GetCell(i,j).GetString().equals("")){
+                        r = false;
+                    }
+                }
+            }
+        }
+        return r;
+    }
     
     
     private DataCell[][] m_dataSet;

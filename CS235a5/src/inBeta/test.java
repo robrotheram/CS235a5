@@ -12,6 +12,7 @@ import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
+import cs235a5.OpenDialog;
 import cs235a5.PieChart;
 import cs235a5.PolarPlot;
 import cs235a5.SaveDialog;
@@ -41,12 +42,31 @@ public class test extends JFrame {
      m.setBounds(0,0, 500, 500);
      this.add(m);
      DataSet db = new DataSet();
+     System.err.println("is Empty: "+db.isEmpty());
      URL fileURL = this.getClass().getResource("/assets/files/csv.csv");
         
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-        tp.AddTab("test1", new PolarPlot(db,
+        System.err.println("is Empty: "+db.isEmpty());
+        
+        m.add(tp);
+        m.validate();
+        
+      // OpenDialog O = new OpenDialog(db,tp);
+     // O.ReadFile();
+        
+           tp.AddTab("test1", new BubbleChart(db,
+                                                0,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+           /*
+         tp.AddTab("test2", new PieChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -55,7 +75,7 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
-         tp.AddTab("test2", new PolarPlot(db,
+          tp.AddTab("test3", new LineChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -64,7 +84,16 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
-          tp.AddTab("test3", new PolarPlot(db,
+          tp.AddTab("test4", new AreaChart(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+          tp.AddTab("test5", new BubbleChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -74,22 +103,28 @@ public class test extends JFrame {
                                                 "Decription"
                                                 ));
             
-           m.add(tp);
-           m.validate();
+           tp.AddTab("test6", new ScatterPlotChart(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+           tp.AddTab("test7", new PolarPlot(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
                   
-           //SaveDialog s = new SaveDialog(db,tp);
-           //s.SaveFile();
-           
-           Chart chrt = tp.GetTab(0);
-           System.out.println(chrt);
-           System.out.println(chrt.GetAuthor());
-           System.out.println(chrt.GetChartTitle());
-           System.out.println(chrt.GetColourMap());
-           System.out.println(chrt.GetDescription());
-           System.out.println(chrt.GetChartType());
-           
-            
-            
+           SaveDialog s = new SaveDialog(db,tp);
+           s.SaveFile();
+       */
             
         }else{
              System.err.print("error!!!!!");
