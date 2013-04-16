@@ -202,7 +202,6 @@ public class TableView extends JPanel
   
   //t.setEnabled(false);
         m_DB = db;
-        m_DB.SetHeader(new String [] {"Title 1", "Title 2", "Title 3", "Title 4"});
         if(n){
             int y = t.getRowCount();
             int x = t.getColumnCount();
