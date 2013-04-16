@@ -202,7 +202,7 @@ public class ChartOptionPane extends JFrame{
     public ColourMap GetColours(){
         int colours = m_colourMapList.getSelectedIndex();
         if (m_colourCheck.isSelected()){
-           return VisualiserGUI.m_userColours; 
+           return m_userColours; 
         } else {
             if(colours == 0){
                 return m_defaultColour;
@@ -227,7 +227,7 @@ public class ChartOptionPane extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 if(m_colourCheck.isSelected()){
-                   ColourMap m_userColours = new UserColormap();
+                   m_userColours = new UserColormap();
                     for (int i = 0; i < m_userColours.getColourArray().length;
                             i++){
                         m_userPanels[i].setBackground(
@@ -432,4 +432,5 @@ public class ChartOptionPane extends JFrame{
     private JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;
     private JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
         m_colour4, m_colour5};
+    private ColourMap m_userColours;
 }
