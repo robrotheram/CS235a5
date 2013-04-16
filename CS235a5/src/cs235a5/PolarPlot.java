@@ -3,11 +3,11 @@ package cs235a5;
 /**
  *
  * \file        PolarPlot.java
- * \author      Xiaoxi Gu(Wyler) & Robert Fletcher
+ * \author      William & Robert Fletcher
  * 
  * \date        15/04/2013
  *
- * \brief       The Scatter Plot Chart Class generates and displays an
+ * \brief       The Polar Plot Chart Class generates and displays an
  *              scatter plot chart by inheriting from the Chart class.
  *
  */
@@ -240,7 +240,7 @@ public class PolarPlot extends Chart{
         JFreeChart CHART = ChartFactory.createPolarChart(
             super.GetTitle(),                                                            // chart title
             convertDataSet(),                                                // orientation
-            true,                                                                        // include legend
+            false, // Legend                                                                        // include legend
             true,                                                                        // tooltips?
             false                                                                        // URLs?
         );
