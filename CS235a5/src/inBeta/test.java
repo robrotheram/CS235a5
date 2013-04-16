@@ -49,13 +49,13 @@ public class test extends JFrame {
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
         System.err.println("is Empty: "+db.isEmpty());
-        /*
+        
         m.add(tp);
         m.validate();
         
-        //OpenDialog O = new OpenDialog(db,tp);
-        //O.ReadFile();
-          
+        OpenDialog O = new OpenDialog(db,tp);
+        O.ReadFile();
+        /*  
            tp.AddTab("test1", new ColumnChart(db,
                                                 2,
                                                 4,
@@ -88,8 +88,8 @@ public class test extends JFrame {
                   
            SaveDialog s = new SaveDialog(db,tp);
            s.SaveFile();
-       
-            */
+       */
+            
         }else{
              System.err.print("error!!!!!");
         }
