@@ -20,6 +20,8 @@ import java.awt.*;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -360,7 +362,7 @@ public class VisualiserGUI extends JFrame
         }
     }
 
-    public class GUIHandler implements ActionListener, ChangeListener {
+    public class GUIHandler implements ActionListener, ItemListener {
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == m_openFileButton){
                 //creates a new CSVFileDialog for opening CSV files
@@ -387,10 +389,14 @@ public class VisualiserGUI extends JFrame
         }
 
         @Override
-        public void stateChanged(ChangeEvent change) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+        public void itemStateChanged(ItemEvent e) {
+            Object source = e.getItemSelectable();
+
+            if (source == ChartOptionPane.m_colourCheck) {
+            
+            }
     }
+}
     /** Main container objects */
     private Container m_container;
     private final Toolkit KIT;

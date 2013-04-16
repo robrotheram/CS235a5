@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -126,7 +127,7 @@ public class ChartOptionPane extends JFrame{
     }
     
     private void addHandlers(){
-        m_colourCheck.addChangeListener(handler);
+        m_colourCheck.addItemListener( handler);
     }
     private void initColourList()
     {
@@ -253,6 +254,6 @@ public class ChartOptionPane extends JFrame{
     private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
             m_colourMapListRenderer;
     private JPanel m_colourListPanel;
-    private JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
+    public static JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
 }
