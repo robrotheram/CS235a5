@@ -1,6 +1,7 @@
 package cs235a5;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -13,9 +14,11 @@ import java.util.Scanner;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -132,7 +135,7 @@ public final class CSVReaderDialog extends JFrame {
     */         
     private boolean parseFile(){
         CSVReader csv = new CSVReader
-                (m_db,m_File,m_delimiterFeild.getText());
+                (m_db,m_File,m_delList.getSelectedItem().toString());
         return csv.ParseFile();
     }
 
@@ -144,7 +147,7 @@ public final class CSVReaderDialog extends JFrame {
     public boolean init(){
         handle = new EventHandler();
         this.setBounds(FRAMESIZE);
-        this.setResizable(false);
+        //this.setResizable(false);
         this.setLayout(new BorderLayout());
         JPanel mainContainer = new JPanel();
         mainContainer.setLayout(new FlowLayout((FlowLayout.LEFT)));
@@ -178,14 +181,12 @@ public final class CSVReaderDialog extends JFrame {
 
         m_Description = new JLabel();
         m_Description.setText("Choose Delimiter:");	
-
-        m_delimiterFeild = new JTextField();
-        m_delimiterFeild.setColumns(COLUMNCOUNTDEL);
-        m_delimiterFeild.setText(",");
-
+        m_delList = new JComboBox(new String[]{",","|",".","-"});
+        m_preButton = new JButton("Preview");
+        m_preButton.addActionListener(handle);
         m_ChoosePannel.add(m_Description);
-        m_ChoosePannel.add(m_delimiterFeild);
-
+        m_ChoosePannel.add(m_delList);
+        m_ChoosePannel.add(m_preButton);
 
         m_FilePath = new JTextField();
         m_FilePath.setColumns(COLUMN);
@@ -237,7 +238,7 @@ public final class CSVReaderDialog extends JFrame {
 
 
         this.add(mainContainer,BorderLayout.CENTER);
-        this.add(m_ButtonPannel,BorderLayout.SOUTH);
+       
 
         return  true;
     }
@@ -289,16 +290,38 @@ public final class CSVReaderDialog extends JFrame {
                     m_Context.displayTable();
 
                }else{
+                   JOptionPane.showMessageDialog(m_TopContent, "Unable to parse file please try again");
                    System.out.println(CLASS+"EventHandler.actionPerformed():"
                            + " parseFile() has faild");
                }
                 dispose(); 
 
+            }else if(event.getSource() == m_preButton){
+               if(parseFile()){
+                    System.out.println(CLASS+"EventHandler.actionPerformed():"
+                            + " parseFile() been successful");
+                    xpnd();
+                    m_Sample.removeAll();
+                    m_Sample.add(new TableView(m_db,m_Sample.getBounds()),BorderLayout.CENTER);
+                    m_Sample.validate();
+                    m_context.add(m_ButtonPannel,BorderLayout.SOUTH);
+                   
+               }else{
+                   JOptionPane.showMessageDialog(m_TopContent, "Unable to parse file please try again");
+                   System.out.println(CLASS+"EventHandler.actionPerformed():"
+                           + " parseFile() has faild");
+               }
+                
             }
         }
     }
-    
-   
+   /**
+    * Expand the form
+    */
+    private void xpnd(){
+        Thread t = new expand();
+                        t.start();
+    }
     /**
      * Class Constructor that sets up the UI the dataset that the program is 
      * using and the reference to the Main UI Class
@@ -306,7 +329,7 @@ public final class CSVReaderDialog extends JFrame {
      * program
      */
     public CSVReaderDialog (DataSet db, VisualiserGUI context){
-           
+            m_context = this;
             if(setDataSet(db)){
                 System.out.println(CLASS+".setDataset():Dataset set Correctly"); 
             }else{
@@ -329,13 +352,14 @@ public final class CSVReaderDialog extends JFrame {
      * Class constructor that sets up just the UI
      */
     public CSVReaderDialog (){
+        m_context = this;
         init();
     }
     
             
     // gui objects
     private JTextField m_delimiterFeild, m_FilePath;
-    private JButton m_ButtonAppy, m_ButtonCancel,m_ButtonBrowse;
+    private JButton m_ButtonAppy, m_ButtonCancel,m_ButtonBrowse,m_preButton;
     private JPanel  m_BrowsePanel, m_ButtonPannel, m_ChoosePannel, m_Sample,
                     m_TopContent, m_iconPanel;
     private EventHandler handle;
@@ -348,15 +372,19 @@ public final class CSVReaderDialog extends JFrame {
     private File m_File;
     private DataSet m_db;
     private VisualiserGUI m_Context;
-    
+    private JComboBox m_delList; 
+    private final CSVReaderDialog m_context;
 
     //Constants
     private final Rectangle PANNELSIZE = new Rectangle(0,0,400,120);
-    private final Rectangle FRAMESIZE = new Rectangle(400,400,500,280);
+    private final Rectangle FRAMESIZE = new Rectangle(400,400,500,130);
     private final Rectangle SAMPLEDATASIZE = new Rectangle(0,0,400,400);
     private final Rectangle CONTENTSIZE = new Rectangle(0,0,400,240);
     private final Rectangle ICONPANELSIZE = new Rectangle(0,0,100,240);
     private final Rectangle ICONSIZE = new Rectangle(0,0,100,100);
+    private final int MAXSIZE = 350;
+    private final int REFRESHRATE = 10;  
+    
     private final int COLUMNCOUNTFILE = 20;
     private final int COLUMN = 16;
     private final int COLUMNCOUNTDEL = 20;
@@ -369,9 +397,32 @@ public final class CSVReaderDialog extends JFrame {
     private final String NEWLINE = "\n";
     private final String CLASS = "MS_CsvFileDialog()";
     
+    
     public static void main(String[] args){
         CSVReaderDialog c = new CSVReaderDialog();
         c.setVisible(true);
+    }
+    
+    
+      /**
+     * Thread class for UI animation
+     */
+    private class expand extends Thread{
+    
+        @Override
+        /**
+         * Run class that overrides the Thread.run() method. Will upload.
+         */
+        public void run(){
+            for(int i = FRAMESIZE.height;i<MAXSIZE;i+=REFRESHRATE){
+                m_context.setSize(new Dimension(FRAMESIZE.width,i));
+                try {
+                    this.sleep(1);//refresh 
+                } catch (InterruptedException ex) {
+                   
+                }
+            }
+        }
     }
 
 }
