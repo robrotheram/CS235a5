@@ -67,7 +67,7 @@ public class ChartOptionPane extends JFrame{
         // Set up and create the chart selection list
         m_chartListPanel = new JPanel(); 
         m_userColourDisplay = new JPanel();
-        m_userColourDisplay.setPreferredSize(new Dimension(150,20));        
+        m_userColourDisplay.setPreferredSize(new Dimension(200,20));        
         m_chartList = new JList(m_intArray);
         m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_chartImages, m_chartImageDescriptions);
@@ -137,7 +137,7 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
         addHandlers();
         this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(500, 400));
+        this.setSize(new Dimension(500, 420));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
         this.add(m_rightPanel, BorderLayout.LINE_END);
         this.setVisible(true);
@@ -235,6 +235,9 @@ public class ChartOptionPane extends JFrame{
                         m_userColourDisplay.add(
                                 m_userPanels[i]);
                     }
+                    m_userColourDisplay.validate();
+                    m_userColourDisplay.repaint();
+                    
                }
             }
         });
@@ -429,7 +432,9 @@ public class ChartOptionPane extends JFrame{
     private JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
     private TabPannel m_tabs;
-    private JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;
+    private JPanel m_colour1 = new JPanel(), m_colour2 = new JPanel(), 
+            m_colour3 = new JPanel(), m_colour4 = new JPanel(), 
+            m_colour5 = new JPanel();
     private JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
         m_colour4, m_colour5};
     private ColourMap m_userColours;
