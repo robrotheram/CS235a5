@@ -65,7 +65,7 @@ public class VisualiserGUI extends JFrame
             // Add toolbar to main window
             initToolBar();
         } catch (IOException ex) {
-            Logger.getLogger(VisualiserGUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane error = new JOptionPane();
         }
    
     // Creates the table and chart display areas of the GUI
@@ -372,10 +372,16 @@ public class VisualiserGUI extends JFrame
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
             } else if (event.getSource() == m_chartList){
-                ChartOptionPane m_chartOptions = new ChartOptionPane(
+                if (m_db.GetHeader() == null){
+                    JOptionPane.showMessageDialog(m_container, "Please create or "
+                        + "add some data before meking a chart. ", 
+                        "Inane Error", JOptionPane.ERROR_MESSAGE);
+                } else  {
+                    ChartOptionPane m_chartOptions = new ChartOptionPane(
                         m_chartList.getSelectedIndex(), m_chartImages,
                         m_chartImageStrings, m_chartImageDescriptions, 
                         m_intArray, m_db, handler);
+                }
             }
             
         }
