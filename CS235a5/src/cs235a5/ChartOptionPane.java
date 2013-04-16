@@ -12,6 +12,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -41,12 +44,14 @@ public class ChartOptionPane extends JFrame{
     
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
-            , DataSet db, VisualiserGUI.GUIHandler handler){
+            , DataSet db, VisualiserGUI.GUIHandler handler, TabPannel tabs){
         // Set all data needed to make charts
         m_chartImages = chartImages;
         m_chartStrings = chartNames;
         m_chartImageDescriptions = chartDescriptions;
         m_intArray = intArray;
+        m_db = db;
+        m_tabs = tabs;
         this.handler = handler;
         
         // Set up and create the chart selection list
@@ -165,15 +170,27 @@ public class ChartOptionPane extends JFrame{
             return m_warmColour;
         } else if (colours == 3){
             return m_colourBlindMap;
-        } else if (colours == 4){
+        } else {
             return m_purpleMonoColour;
         }
-        return null;
+        
         
     }
     private void addHandlers(){
         m_colourCheck.addActionListener(handler);
-        m_acceptButton.addActionListener(handler);
+        m_acceptButton.addActionListener(new ActionListener(){
+            //private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
+            //, PIECHART = 4, SCATTERPLOT = 5;
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                if(GetChartType() == AREACHART){
+                    AreaChart areaChart = new AreaChart(m_db, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                }
+            }
+        });
         m_cancelButton.addActionListener(handler);
     }
     
@@ -267,11 +284,13 @@ public class ChartOptionPane extends JFrame{
             setText(uhOhText);
         }
     }
-    
+    private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
+            , PIECHART = 4, SCATTERPLOT = 5;
     private JPanel m_chartListPanel;
     private JPanel m_rightPanel;
     private JLabel m_titleLabel, m_authorLabel, m_descriptionLabel,
             m_xAxisLabel, m_yAxisLabel;
+    private DataSet m_db;
     private JTextField m_chartTitle, m_chartAuthor, m_chartDescription;
     private JComboBox m_xAxisData, m_yAxisData, m_colourMapList;
     public static JButton m_acceptButton, m_cancelButton;
@@ -305,4 +324,5 @@ public class ChartOptionPane extends JFrame{
     public static JPanel m_userColourDisplay;
     public static JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
+    private TabPannel m_tabs;
 }

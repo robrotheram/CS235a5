@@ -271,20 +271,7 @@ public class VisualiserGUI extends JFrame
         
     }
     
-    public boolean CreateChart(int selectedChart, String title, int yColPosition,
-            int xColPosition, String author, String description, 
-            ColourMap colours){
-        //AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
-         //   , PIECHART = 4, SCATTERPLOT = 5
-        Rectangle r =  new Rectangle(0,0,m_chartTabPanel.getWidth(),
-                m_chartTabPanel.getWidth());
-        if (selectedChart == AREACHART){
-            AreaChart areaChart = new AreaChart(m_db, xColPosition, yColPosition,
-                    title, r, colours, author, description);
-            m_chartTabPanel.add(areaChart);
-        }
-        return true;
-    }
+  
     /**
      * Creates and image icon from the image parsed from the path
      * @param path - the image path
@@ -406,18 +393,14 @@ public class VisualiserGUI extends JFrame
                     ChartOptionPane m_chartOptions = new ChartOptionPane(
                         m_chartList.getSelectedIndex(), m_chartImages,
                         m_chartImageStrings, m_chartImageDescriptions, 
-                        m_intArray, m_db, handler);
+                        m_intArray, m_db, handler, m_chartTabPanel);
                 }
             } else if (event.getSource() == ChartOptionPane.m_colourCheck){
                 if(ChartOptionPane.m_colourCheck.isSelected()){
                     ColourMap m_userColours = new UserColormap();
-                    
-                    System.out.println("BOX CHECKED");
-                    
+  
                }
-            } else if (event.getSource() == ChartOptionPane.m_acceptButton){
-                CreateChart();
-            }
+            } 
             
         
 
