@@ -127,7 +127,19 @@ public class DataSet {
         return m_filePath;
     }
     
-    
+    public boolean isEmpty(){
+        boolean r =true;
+        for(int i = 0; i<GetNumOfColumns();i++){
+            for(int j = 0; j<GetNumOfRows();j++){
+                if(GetCell(i,j)!=null){
+                    if(!GetCell(i,j).GetString().equals("")){
+                        r = false;
+                    }
+                }
+            }
+        }
+        return r;
+    }
     
     
     private DataCell[][] m_dataSet;

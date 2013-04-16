@@ -117,6 +117,7 @@ public class SaveDialog {
                 bw.write("<Schemme>\n");
                 for(int j =0; j<cm.getNumberOfColours();j++){
                     Color cl = cm.getColour(j);
+                    System.err.println("Color = "+cl);
                     bw.write("<Color>");
                     bw.write(cl.getRed()+",");
                     bw.write(cl.getGreen()+",");

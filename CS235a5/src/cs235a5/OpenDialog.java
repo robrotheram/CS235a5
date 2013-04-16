@@ -175,7 +175,7 @@ public class OpenDialog {
                                 clrArr[j] =  new Color(red,green,blue);
                                 
                             }
-                            //addChart(type,x,y,title,author,desc,clrArr);
+                            addChart(type,x,y,title,author,desc,clrArr);
                              
 
                             }
@@ -226,8 +226,8 @@ public class OpenDialog {
                    author,
                    desc);
            
-           c.SetChartType(ChartType.BARCHART);
-           //m_tp.AddTab(title, c);
+           //c.SetChartType(ChartType.BARCHART);
+           m_tp.AddTab(title, c);
        }
         
         
