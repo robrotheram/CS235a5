@@ -127,8 +127,9 @@ public class ChartOptionPane extends JFrame{
     }
     
     private void addHandlers(){
-        m_colourCheck.addItemListener( handler);
+        m_colourCheck.addActionListener(handler);
     }
+    
     private void initColourList()
     {
         m_colourListPanel = new JPanel();

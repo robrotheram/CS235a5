@@ -384,6 +384,12 @@ public class VisualiserGUI extends JFrame
                         m_chartImageStrings, m_chartImageDescriptions, 
                         m_intArray, m_db, handler);
                 }
+            } else if (event.getSource() == ChartOptionPane.m_colourCheck){
+                if(ChartOptionPane.m_colourCheck.isSelected()){
+                    UserColormap m_userColours = new UserColormap();
+                    m_userColours.setVisible(true);
+                    System.out.println("BOX CHECKED");
+               }
             }
             
         }
@@ -393,7 +399,11 @@ public class VisualiserGUI extends JFrame
             Object source = e.getItemSelectable();
 
             if (source == ChartOptionPane.m_colourCheck) {
-            
+                if(ChartOptionPane.m_colourCheck.isSelected()){
+                    UserColormap m_userColours = new UserColormap();
+                    m_userColours.setVisible(true);
+                    System.out.println("BOX CHECKED");
+               }
             }
     }
 }
