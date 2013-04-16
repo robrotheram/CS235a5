@@ -188,6 +188,44 @@ public class ChartOptionPane extends JFrame{
                             GetYData(), GetTitle(),new Rectangle(0,0,
                             m_tabs.getWidth(),m_tabs.getWidth()),
                             GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), areaChart);
+                    setVisible(false);
+                } else if (GetChartType() == POLARCHART){
+                    PolarPlot polarChart = new PolarPlot(m_db, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), polarChart);
+                    setVisible(false);
+                } else if (GetChartType() == BARCHART){
+                    ColumnChart barChart = new ColumnChart(m_db, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), barChart);
+                    setVisible(false);
+                } else if (GetChartType() == LINECHART){
+                    LineChart lineChart = new LineChart(m_db, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), lineChart);
+                    setVisible(false);
+                } else if (GetChartType() == POLARCHART){
+                    PieChart pieChart = new PieChart(m_db, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), pieChart);
+                    setVisible(false);
+                } else if (GetChartType() == POLARCHART){
+                    ScatterPlotChart scatterChart = new ScatterPlotChart(m_db, 
+                            GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    m_tabs.AddTab(GetTitle(), scatterChart);
+                    setVisible(false);
                 }
             }
         });
