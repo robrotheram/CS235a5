@@ -1,19 +1,6 @@
 package cs235a5;
 
 
-/**
- * \file Chart.java
- * 
- * \author Kerryanne Tolhurst
- * 
- * \date 15/04/2013
- * 
- * \brief The chart class is the abstract super class for all charts.
- * 	  It sets the constructor for all classes and sets all methods needed to be
- *  	  implemented by all subclasses.
- * 
- */
-
 //Import JFreeChart and other libraries 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +18,18 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
+/**
+ * \file Chart.java
+ * 
+ * \author Kerryanne Tolhurst
+ * 
+ * \date 15/04/2013
+ * 
+ * \brief The chart class is the abstract super class for all charts.
+ * 	  It sets the constructor for all classes and sets all methods needed to be
+ *  	  implemented by all subclasses.
+ * 
+ */
 public abstract class Chart extends Visualisation {
     
    
