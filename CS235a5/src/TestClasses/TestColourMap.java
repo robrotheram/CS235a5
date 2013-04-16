@@ -1,13 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/** @brief This class is will Test all the methods in the Colourmap class
+ 
+  The Class contains a number of methods to text all the methods in the C
+  * ColourMap class
+    @author Robert Fletcher
+    @file TestChart.java
+    @see Chart.java
+    @date April 2013
+    */
 package TestClasses;
 
 import TestUI.Test;
-import cs235a5.CSVReader;
 import cs235a5.ColourMap;
-import cs235a5.DataSet;
 import java.awt.Color;
 
 /**
@@ -115,7 +118,7 @@ public class TestColourMap {
         return theTest;
     } 
      /**
-     * Method to test the ColourMap Can Get a colour at a spcific index in the colour array 
+     * Method to test the ColourMap Can Get a colour at a specific index in the colour array 
      * @param boolean if the method is being run
      * @return Test 
      */

@@ -1,37 +1,28 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/** @brief This class is will Test all the methods in the TableView class
+ 
+  The Class contains a number of methods to text all the methods in the 
+  * TableView class
+    @author Robert Fletcher
+    @file TestCSVReader.java
+    @see TableView.java
+    @date April 2013
+    */
+
 package TestClasses;
 
 import TestUI.Test;
 import cs235a5.CSVReader;
-import cs235a5.ColourMap;
-import cs235a5.ColumnChart;
 import cs235a5.DataSet;
-import cs235a5.TabPannel;
 import cs235a5.TableView;
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-/** @brief This class is will Test all the methods in the TabPannel class
- 
-  The Class contains a number of methods to text all the methods in the 
-  * TabPannel class
-    @author Robert Fletcher
-    @file TestCSVReader.java
-    @see TabPannel.java
-    @date April 2013
-    */
 
 public class TestTabelView {
     private final String CLASSNAME = "TableView";

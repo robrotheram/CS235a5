@@ -1,18 +1,15 @@
 package TestClasses;
 
 import TestUI.Test;
-import cs235a5.DataSet;
-import cs235a5.SaveDialog;
-import cs235a5.TabPannel;
 import cs235a5.UserColormap;
 
-/** @brief This class is will Test all the methods in the SaveDialog class
+/** @brief This class is will Test all the methods in the UserColor class
  
   The Class contains a number of methods to text all the methods in the 
-  * SaveDialog class
+  * UserColor class
     @author Robert Fletcher
     @file TestCSVReader.java
-    @see SaveDialog.java
+    @see UserColor.java
     @date April 2013
     */
 
@@ -28,7 +25,7 @@ public class TestUserColor {
             Test theTest = new Test(
                  "Test to make A ColourMAp",//Test Title
                  CLASSNAME,//Class Name
-                 "SaveFile",//Method Being Tested
+                 "UserColor",//Method Being Tested
                  "A test to see if the class can save the xml file for the"
                     + " program to rebuild", //Description
                  "", //Input Data
@@ -53,9 +50,9 @@ public class TestUserColor {
      */
     
     public static void main(String[] args){
-        TestSaveDialog TSD = new TestSaveDialog();
+        TestUserColor TSD = new TestUserColor();
             System.out.println("Test UserColor"+
-                TSD.TestSaveFile(true).getResult());
+                TSD.TestUserColor(true).getResult());
                 
         }
     }

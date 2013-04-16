@@ -1,7 +1,7 @@
-/** @brief This class is will Test all the methods in the Scatter Plot chart class
+/** @brief This class is will Test all the methods in the Chart class
  
   The Class contains a number of methods to text all the methods in the 
-  * Scatter Plot chart class
+  * Chart class
     @author Robert Flecher
     @file TestChart.java
     @see Chart.java
@@ -13,11 +13,9 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CSVReader;
 import cs235a5.Chart;
-import cs235a5.ColourMap;
-import cs235a5.Chart;
 import cs235a5.ChartType;
+import cs235a5.ColourMap;
 import cs235a5.DataSet;
-import cs235a5.LineChart;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.BufferedOutputStream;
@@ -26,13 +24,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import org.jfree.chart.JFreeChart;
 
 public class TestChart {
-    private final String CLASSNAME ="ScatterPlot";
+    private final String CLASSNAME ="Chart";
     private final int SIZE = 500;
     private Chart m_LC;
     private JFrame m_frame;
