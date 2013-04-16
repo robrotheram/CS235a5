@@ -211,14 +211,14 @@ public class ChartOptionPane extends JFrame{
                             GetColours(), GetAuthor(), GetDescription());
                     m_tabs.AddTab(GetTitle(), lineChart);
                     setVisible(false);
-                } else if (GetChartType() == POLARCHART){
+                } else if (GetChartType() == PIECHART){
                     PieChart pieChart = new PieChart(m_db, GetXData(), 
                             GetYData(), GetTitle(),new Rectangle(0,0,
                             m_tabs.getWidth(),m_tabs.getWidth()),
                             GetColours(), GetAuthor(), GetDescription());
                     m_tabs.AddTab(GetTitle(), pieChart);
                     setVisible(false);
-                } else if (GetChartType() == POLARCHART){
+                } else if (GetChartType() == SCATTERPLOT){
                     ScatterPlotChart scatterChart = new ScatterPlotChart(m_db, 
                             GetXData(), 
                             GetYData(), GetTitle(),new Rectangle(0,0,
