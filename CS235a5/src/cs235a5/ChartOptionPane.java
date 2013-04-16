@@ -86,10 +86,17 @@ public class ChartOptionPane extends JFrame{
         m_chartDescription.setPreferredSize(new Dimension(200, 30));
         m_yAxisData.setAlignmentX(Component.CENTER_ALIGNMENT);
         //populate combo boxes with values from the table data
-        m_colNames = db.GetHeader();
-        for(int i =0; i < m_colNames.length; i++){
-            m_xAxisData.addItem(m_colNames[i]);
-            m_yAxisData.addItem(m_colNames[i]);
+        
+            m_colNames = db.GetHeader();
+        if(m_colNames != null){
+            for(int i =0; i < m_colNames.length; i++){
+                m_xAxisData.addItem(m_colNames[i]);
+                m_yAxisData.addItem(m_colNames[i]);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please create or "
+                        + "add some data before meking a chart. ", 
+                        "Inane Error", JOptionPane.ERROR_MESSAGE);
         }
         // Add components to the chart option panel
         m_acceptButton = new JButton("OK");
