@@ -109,7 +109,6 @@ public class VisualiserGUI extends JFrame
         // Create menus
         m_fileMenu = new JMenu("File");
         m_chartsMenu = new JMenu("Charts");
-        m_viewMenu = new JMenu("View");
         m_aboutMenu = new JMenu("About");
 
         // Create file menu items
@@ -128,28 +127,17 @@ public class VisualiserGUI extends JFrame
         m_fileMenu.add(m_newMenuImport);
         m_fileMenu.add(m_exitMenuItem);
         
-        // Create charts menu items
-        m_newChartMenuItem = new JMenuItem("New Chart...");  
-        m_editChartMenuItem = new JMenuItem("Edit Chart");
-
-        // Add items to charts menu
-        m_chartsMenu.add(m_newChartMenuItem);
-        m_chartsMenu.add(m_editChartMenuItem);
+       
+   
         
-        // Create view menu items
-        m_colourMapMenuItem = new JMenuItem("Chart colours...");
-
-        // Add items to view menu
-        m_viewMenu.add(m_colourMapMenuItem);
         
         // Create about menu items
         m_versionMenuItem = new JMenuItem("Version");
-        m_helpDocumentationMenuItem = new JMenuItem("Help...");
+
         
         //Add menu items to about menu
         m_aboutMenu.add(m_versionMenuItem);
-        m_aboutMenu.add(m_helpDocumentationMenuItem);
-        
+
         // Add handlers
         m_newMenuItem.addActionListener(handler);
         m_openMenuItem.addActionListener(handler);
@@ -157,10 +145,11 @@ public class VisualiserGUI extends JFrame
         m_newMenuImport.addActionListener(handler);
         m_exitMenuItem.addActionListener(handler);
         CloudOption.addActionListener(handler);
+        m_chartsMenu.addActionListener(handler);
+        m_versionMenuItem.addActionListener(handler);
         // Add Menu Elements to MenuBar
         m_menuBar.add(m_fileMenu);
         m_menuBar.add(m_chartsMenu);
-        m_menuBar.add(m_viewMenu);
         m_menuBar.add(m_aboutMenu);
         
         m_menuBar.setVisible(true);
@@ -446,7 +435,7 @@ public class VisualiserGUI extends JFrame
                         cp.createChartPrintJob();
                     }
                  }
-            } else if (event.getSource() == m_chartList){
+            } else if ((event.getSource() == m_chartList)||(event.getSource() ==  m_chartsMenu)){
                 if (m_db.GetHeader() == null){
                     JOptionPane.showMessageDialog(m_container, "Please create or "
                         + "add some data before meking a chart. ", 
@@ -457,6 +446,17 @@ public class VisualiserGUI extends JFrame
                         m_chartImageStrings, m_chartImageDescriptions, 
                         m_intArray, m_db, handler, m_chartTabPanel);
                 }
+            }else if(event.getSource() ==  m_versionMenuItem){
+                JOptionPane.showMessageDialog(m_container, "Data Visuliser 2.1\n"+
+                                    "Robert Fletcher\n" +
+                                    "Kerry Tolhurst\n" +
+                                    "William Bray\n" +
+                                    "William Jones\n" +
+                                    "Alex McDonough\n" +
+                                    "Wyler Gu\n" +
+                                    "Zhenjie Mu", 
+                                    "About",JOptionPane.INFORMATION_MESSAGE);
+                
             } 
     
 
