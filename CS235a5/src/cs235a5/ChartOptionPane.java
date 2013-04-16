@@ -51,6 +51,8 @@ public class ChartOptionPane extends JFrame{
         
         // Set up and create the chart selection list
         m_chartListPanel = new JPanel(); 
+        m_userColourDisplay = new JPanel();
+        m_userColourDisplay.setPreferredSize(new Dimension(150,20));        
         m_chartList = new JList(m_intArray);
         m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_chartImages, m_chartImageDescriptions);
@@ -114,10 +116,11 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.add(m_chartDescription);
         initColourList();
         m_rightPanel.add(m_colourCheck);
+        m_rightPanel.add(m_userColourDisplay);
         m_rightPanel.add(m_acceptButton);
         m_rightPanel.add(m_cancelButton);
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
-        
+        addHandlers();
         this.setLayout(new BorderLayout());
         this.setSize(new Dimension(500, 400));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
@@ -127,8 +130,9 @@ public class ChartOptionPane extends JFrame{
     }
     
     private void addHandlers(){
-        m_colourCheck.addItemListener( handler);
+        m_colourCheck.addActionListener(handler);
     }
+    
     private void initColourList()
     {
         m_colourListPanel = new JPanel();
@@ -254,6 +258,7 @@ public class ChartOptionPane extends JFrame{
     private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
             m_colourMapListRenderer;
     private JPanel m_colourListPanel;
+    public static JPanel m_userColourDisplay;
     public static JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
 }
