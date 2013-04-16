@@ -102,10 +102,13 @@ public class SaveDialog {
            
             for(int i =0; i<m_tp.GetNumOfCharts();i++){
                 Chart c = m_tp.GetTab(i);
+                System.out.print("c=000000    "+c);
                 ColourMap cm = c.GetColourMap();
                 bw.write("<Chart>\n");
+            
                 bw.write("<ChartType>"+c.GetChartType().toString()+
                          "</ChartType>\n");
+                
                 bw.write("<XColumn>"+c.GetXColumnPosition()+"</XColumn>\n");
                 bw.write("<YColumn>"+c.GetYColumnPosition()+"</YColumn>\n");
                 bw.write("<ChartTitle>"+c.GetTitle()+"</ChartTitle>\n");

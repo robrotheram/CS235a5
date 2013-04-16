@@ -7,12 +7,14 @@ package inBeta;
 import cs235a5.AreaChart;
 import cs235a5.BubbleChart;
 import cs235a5.CSVReader;
+import cs235a5.Chart;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
 import cs235a5.PieChart;
 import cs235a5.PolarPlot;
+import cs235a5.SaveDialog;
 import cs235a5.ScatterPlotChart;
 import cs235a5.TabPannel;
 import java.awt.Color;
@@ -44,7 +46,25 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-            m.add( new PolarPlot(db,
+        tp.AddTab("test1", new PolarPlot(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+         tp.AddTab("test2", new PolarPlot(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+          tp.AddTab("test3", new PolarPlot(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -54,9 +74,20 @@ public class test extends JFrame {
                                                 "Decription"
                                                 ));
             
+           m.add(tp);
+           m.validate();
                   
-                  
-                
+           //SaveDialog s = new SaveDialog(db,tp);
+           //s.SaveFile();
+           
+           Chart chrt = tp.GetTab(0);
+           System.out.println(chrt);
+           System.out.println(chrt.GetAuthor());
+           System.out.println(chrt.GetChartTitle());
+           System.out.println(chrt.GetColourMap());
+           System.out.println(chrt.GetDescription());
+           System.out.println(chrt.GetChartType());
+           
             
             
             

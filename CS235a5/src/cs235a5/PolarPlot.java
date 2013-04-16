@@ -109,7 +109,8 @@ public class PolarPlot extends Chart{
   * @return true of set correctly;
   */
   public boolean SetChartType(){
-      return super.SetChartType(ChartType.LINECHART);
+      super.SetChartType(ChartType.BARCHART);
+      return true;
   }
   
   /**
@@ -117,7 +118,7 @@ public class PolarPlot extends Chart{
   * @return the constant AREACHART
   */
   public ChartType getChartType(){
-      return super.GetChartType();
+      return ChartType.LINECHART;
   }
   
   /**
@@ -177,7 +178,8 @@ public class PolarPlot extends Chart{
      */
   public PolarPlot (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
   {
-     super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
+     
+     super(ds, xColPosition, yColPosition, title, rect, cm, author, description,ChartType.POLARCHART);
       
   }
   
