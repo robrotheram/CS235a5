@@ -83,52 +83,6 @@ public class TestVisulisation {
         }catch(IOException e){}
         return new File(p);
     }
-    /**
-     * Method to test the ColumnChart and returns a Test object containing the 
-     * test tile, Class being tested, method being tested,test description, 
-     * Input data expected output, if the test has been run and if the test 
-     * is passed.
-     * @param boolean if the method is being run
-     * @return Test 
-     */
-     public Test TestColumnChartDiplay(boolean run){
-            Test theTest = new Test(
-                 "Testing if you can get the Chart Constructor",//Test Title
-                 CLASSNAME,//Class Name
-                 "N/A",//Method Being Tested
-                 "A test to see if the you can get Chart can be made", //Description
-                 "N/A", //Input Data
-                 "True" //Expected output
-                 );   
-        
-            
-       
-        
-        if(run){
-            theTest.hasRun();
-            try{
-            
-            m_CC = new ColumnChart(m_db,
-                                    0,
-                                    4,
-                                    "title",
-                                    new Rectangle(0,0,30,30),
-                                    new ColourMap(CLRS),
-                                    "Author",
-                                    "Decription"
-                                    );
-            m_pnl.add(m_CC);
-            m_pnl.validate();
-            m_frame.setVisible(true);    
-            theTest.setPassed(true);
-            
-            }catch(Exception e){
-                theTest.setPassed(false);
-            }
-            
-        }
-        return theTest;
-    }
     
     
     
@@ -475,8 +429,6 @@ public class TestVisulisation {
     public static void main(String[] args){
         TestVisulisation TCC = new TestVisulisation();
         boolean run = true;
-        System.out.println("Test Chart can be displayed: "+
-              TCC.TestColumnChartDiplay(run).getResult());
  
         System.out.println("Test Set Title: "+
               TCC.TestSetTitle(run).getResult());
