@@ -389,6 +389,7 @@ public class VisualiserGUI extends JFrame
                     UserColormap m_userColours = new UserColormap();
                     m_userColours.setVisible(true);
                     System.out.println("BOX CHECKED");
+                    
                }
             }
             
