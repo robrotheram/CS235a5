@@ -457,19 +457,7 @@ public class VisualiserGUI extends JFrame
                         m_chartImageStrings, m_chartImageDescriptions, 
                         m_intArray, m_db, handler, m_chartTabPanel);
                 }
-            } else if (event.getSource() == ChartOptionPane.m_colourCheck){
-                if(ChartOptionPane.m_colourCheck.isSelected()){
-                    ColourMap m_userColours = new UserColormap();
-                    for (int i = 0; i < m_userColours.getColourArray().length;
-                            i++){
-                        VisualiserGUI.m_userPanels[i].setBackground(
-                                m_userColours.getColour(i));
-                        ChartOptionPane.m_userColourDisplay.add(
-                                VisualiserGUI.m_userPanels[i]);
-                    }
-               }
             } 
-            
     
 
         
