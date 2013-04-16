@@ -25,6 +25,8 @@ public class ColourMap implements ColorScheme{
     @Override
     public boolean setColourArray(Color[] cArray) {
         m_colorArray = cArray;
+        setPanels(m_colourKeyList);
+        
         return true;
     }
 

@@ -18,6 +18,7 @@ import cs235a5.PolarPlot;
 import cs235a5.SaveDialog;
 import cs235a5.ScatterPlotChart;
 import cs235a5.TabPannel;
+import cs235a5.UserColormap;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.File;
@@ -156,8 +157,13 @@ public class test extends JFrame {
  }
     
     public static void main(String[] args){
-        test t = new test();
-        t.setVisible(true);
+        
+        
+        //test t = new test();
+        //t.setVisible(true);
+        
+        ColourMap u = new UserColormap();
+        System.out.print(u.getColour(0));
     }
     
     
