@@ -197,7 +197,7 @@ public class TableView extends JPanel
                     {null, null, null, null},
                     {null, null, null, null},
                     
-                   }, new String [] {"", "", "", ""}
+                   }, new String [] {"Title A", "Title B", "Title C", "Title D"}
                 ));
   
   //t.setEnabled(false);
@@ -206,6 +206,7 @@ public class TableView extends JPanel
             int y = t.getRowCount();
             int x = t.getColumnCount();
             db.SetDataSet(y, x);
+            db.SetHeader(new String [] {"Title A", "Title B", "Title C", "Title D"});
         }
 
         t.setFillsViewportHeight(true);
