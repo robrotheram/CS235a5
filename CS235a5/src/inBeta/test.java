@@ -53,10 +53,20 @@ public class test extends JFrame {
         m.add(tp);
         m.validate();
         
-        OpenDialog O = new OpenDialog(db,tp);
-        O.ReadFile();
-        /*  
-           tp.AddTab("test1", new ColumnChart(db,
+      // OpenDialog O = new OpenDialog(db,tp);
+     // O.ReadFile();
+        
+           tp.AddTab("test1", new BubbleChart(db,
+                                                0,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+           /*
+         tp.AddTab("test2", new PieChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -65,7 +75,7 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
-         tp.AddTab("test2", new ColumnChart(db,
+          tp.AddTab("test3", new LineChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -74,7 +84,16 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
-          tp.AddTab("test3", new ColumnChart(db,
+          tp.AddTab("test4", new AreaChart(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+          tp.AddTab("test5", new BubbleChart(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -84,7 +103,24 @@ public class test extends JFrame {
                                                 "Decription"
                                                 ));
             
-           
+           tp.AddTab("test6", new ScatterPlotChart(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
+           tp.AddTab("test7", new PolarPlot(db,
+                                                2,
+                                                4,
+                                                "title",
+                                                new Rectangle(0,0,400,400),
+                                                new ColourMap(c),
+                                                "Author",
+                                                "Decription"
+                                                ));
                   
            SaveDialog s = new SaveDialog(db,tp);
            s.SaveFile();
