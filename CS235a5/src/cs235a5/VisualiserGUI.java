@@ -66,7 +66,7 @@ public class VisualiserGUI extends JFrame
             Logger.getLogger(VisualiserGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
    
-
+    // Creates the table and chart display areas of the GUI
     m_chartTabPanel = new TabPannel();
     
     m_pLeft = new JPanel();
@@ -408,10 +408,10 @@ public class VisualiserGUI extends JFrame
     private JButton m_printFileButton;
     // Custom combo box items
     private ImageIcon[] m_chartImages;
-    private String[] m_chartImageDescriptions = {"Area chart", "Bar chart", 
+    private String[] m_chartImageDescriptions = {"Area chart", "Polar chart", 
         "Compound bar chart", "Line chart", "Pie chart", 
         "Scatter-plot chart"};;
-    private String[] m_chartImageStrings = {"areaChart", "barChart",
+    private String[] m_chartImageStrings = {"areaChart", "polarChart",
         "compoundBarChart", "lineChart", "pieChart",
         "scatterPlotChart"};
     private Integer[] m_intArray;

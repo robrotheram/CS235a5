@@ -152,7 +152,7 @@ public class ColourMap implements ColorScheme{
     }
         
     private Color[] m_colorArray = new Color[5];
-    private final int COLOUR_KEY_SIZE = 30;
+    private final int COLOUR_KEY_SIZE = 15;
     private final int NUM_OF_COLOURS = 5;
     
     // Images for storing the colours of created colour maps

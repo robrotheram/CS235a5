@@ -102,56 +102,51 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.add(m_chartAuthor);
         m_rightPanel.add(m_descriptionLabel);
         m_rightPanel.add(m_chartDescription);
-        m_rightPanel.add(new JLabel(m_defaultColour.getPanels()));
+        initColourList();
+        //m_rightPanel.add(new JLabel(m_defaultColour.getPanels()));
         m_rightPanel.add(m_acceptButton);
         m_rightPanel.add(m_cancelButton);
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
         
         this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(500, 460));
+        this.setSize(new Dimension(500, 370));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
         this.add(m_rightPanel, BorderLayout.LINE_END);
         this.setVisible(true);
         
     }
     
-    /**
+    
     private void initColourList()
     {
         m_colourListPanel = new JPanel();
         // Loads the chart images and creates an index
         m_colourListPanel.setLayout(new BorderLayout());
-        m_colourKeys = new ImageIcon[m_chartImageStrings.length];
-        m_intArray = new Integer[m_chartImageStrings.length];
-        for (int i = 0; i < m_chartImageStrings.length; i++){
-            m_intArray[i] = i;
-            try {
-               m_chartImages[i] = 
-                        new ImageIcon(ImageIO.read(this.getClass().getResource(
-                        "/assets/images/" + m_chartImageStrings[i] + ".png"
-                        )).getScaledInstance(40, 40, Image.SCALE_SMOOTH));
-                m_chartImages[i].setDescription(m_chartImageDescriptions[i]); 
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "There was an error "
-                        + "loading the chart icons. Please report this fault"
-                        + "to the developers at: \n GroupMS@gmail.com", 
-                        "Inane Error", JOptionPane.ERROR_MESSAGE);
-            } 
+        m_colourKeys = new ImageIcon[m_colourMapNames.length];
+        m_intArray2 = new Integer[m_colourMapNames.length];
+        for (int i = 0; i < m_colourMapNames.length; i++){
+            m_intArray2[i] = i;
+            m_colourKeys[i] = m_colourMaps[i].getPanels();
+            m_chartImages[i].setDescription(m_colourMapNames[i]); 
+            
         }
         
         // Creates the combo box
-        m_chartList = new JComboBox(m_intArray);
-        m_chartListRenderer = new VisualiserGUI.ComboBoxRenderer();
-        m_chartListRenderer.setPreferredSize(new Dimension(175, 50));
-        m_chartList.setRenderer(m_chartListRenderer);
-        m_chartList.setMaximumRowCount(3);
+        m_colourMapList = new JComboBox(m_intArray2);
+        m_colourMapListRenderer = new ChartOptionPane.ComboBoxRenderer(
+                m_colourKeys, m_colourMapNames);
+        m_colourMapListRenderer.setPreferredSize(new Dimension(200, 50));
+        m_colourMapList.setRenderer(m_colourMapListRenderer);
+        m_colourMapList.setMaximumRowCount(3);
         
-        m_chartList.addActionListener(handler);
-        m_chartListPanel.add(m_chartList, BorderLayout.PAGE_START);
-        m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
-                10,10));
+        //m_colourMapList.addActionListener(handler);
+        m_colourListPanel.add(m_colourMapList, BorderLayout.PAGE_START);
+        //m_colourListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
+                //10,10));
+        
+        m_rightPanel.add(m_colourListPanel);
     }
-    */
+    
     class ComboBoxRenderer extends JLabel implements ListCellRenderer 
     {
         private Font uhOhFont;
@@ -220,12 +215,12 @@ public class ChartOptionPane extends JFrame{
     private JLabel m_titleLabel, m_authorLabel, m_descriptionLabel,
             m_xAxisLabel, m_yAxisLabel;
     private JTextField m_chartTitle, m_chartAuthor, m_chartDescription;
-    private JComboBox m_xAxisData, m_yAxisData;
+    private JComboBox m_xAxisData, m_yAxisData, m_colourMapList;
     private JButton m_acceptButton, m_cancelButton;
     private JList m_chartList;
-    private ImageIcon[] m_chartImages;
+    private ImageIcon[] m_chartImages, m_colourKeys;
     private String[] m_chartStrings, m_chartImageDescriptions, m_colNames;
-    private Integer[] m_intArray;
+    private Integer[] m_intArray, m_intArray2;
     // Set up the colourmaps
     private ColourMap m_defaultColour = new ColourMap(new Color[] {
         new Color(2,89,89), new Color(0,175,181), new Color(189,51,103), 
@@ -246,6 +241,7 @@ public class ChartOptionPane extends JFrame{
         m_coolColour, m_warmColour, m_colourBlindMap, m_purpleMonoColour};
     private String[] m_colourMapNames ={"Default", "Cool Colours", 
         "Warm Colours", "ColourBlind Friendly", "Purple Monochrome"};
-    private ChartOptionPane.ComboBoxRenderer m_chartListRenderer;
+    private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
+            m_colourMapListRenderer;
     private JPanel m_colourListPanel;
 }
