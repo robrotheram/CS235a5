@@ -1,10 +1,10 @@
-/** @brief This class is will Test all the methods in the Column chart class
+/** @brief This class is will Test all the methods in the visualisation class
  
-  The Class contains a number of methods to text all the methods in the C
-  * column chart class
+  The Class contains a number of methods to text all the methods in the 
+  * visualisation class
     @author Robert Fletcher
-    @file TestColumnChart.java
-    @see ColumnChart.java
+    @file TestChart.java
+    @see Chart.java
     @date April 2013
     */
 
@@ -13,23 +13,20 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CSVReader;
 import cs235a5.ColourMap;
-import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.Visualisation;
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class TestVisulisation {
-    private final String CLASSNAME ="ColumnChart";
+    private final String CLASSNAME ="Visualisation";
     private final int SIZE = 500;
     private Visualisation m_CC;
     private JFrame m_frame;
@@ -88,7 +85,7 @@ public class TestVisulisation {
     
     
      /**
-     * Method to test the ColumnChart GetDataSet() method  and returns a Test object containing the 
+     * Method to test the Chart GetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -121,7 +118,7 @@ public class TestVisulisation {
     }
       
        /**
-     * Method to test the ColumnChart SetDataSet() method  and returns a Test object containing the 
+     * Method to test the Chart SetDataSet() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -190,7 +187,7 @@ public class TestVisulisation {
      
      
       /**
-     * Method to test the ColumnChart SetSetColourMap method  and returns a Test object containing the 
+     * Method to test the Chart SetSetColourMap method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -222,7 +219,7 @@ public class TestVisulisation {
         return theTest;
     } 
      /**
-     * Method to test the ColumnChart SetAuthor() method  and returns a Test object containing the 
+     * Method to test the Chart SetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -255,7 +252,7 @@ public class TestVisulisation {
     }
      
      /**
-     * Method to test the ColumnChart SetDescription() method  and returns a Test object containing the 
+     * Method to test the Chart SetDescription() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -288,7 +285,7 @@ public class TestVisulisation {
     }
      
       /**
-     * Method to test the ColumnChart GetTitle() method  and returns a Test object containing the 
+     * Method to test the Chart GetTitle() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -321,7 +318,7 @@ public class TestVisulisation {
     }
      
       /**
-     * Method to test the ColumnChart GetColourMap() method  and returns a Test object containing the 
+     * Method to test the Chart GetColourMap() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -353,7 +350,7 @@ public class TestVisulisation {
         return theTest;
     } 
       /**
-     * Method to test the ColumnChart GetAuthor() method  and returns a Test object containing the 
+     * Method to test the Chart GetAuthor() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
@@ -386,7 +383,7 @@ public class TestVisulisation {
     }
      
       /**
-     * Method to test the ColumnChart GetDescritpion() method  and returns a Test object containing the 
+     * Method to test the Chart GetDescritpion() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 
      * Input data expected output, if the test has been run and if the test 
      * is passed.
