@@ -8,6 +8,7 @@ import TestUI.Test;
 import cs235a5.DataSet;
 import cs235a5.OpenDialog;
 import cs235a5.TabPannel;
+import cs235a5.VisualiserGUI;
 
 /** @brief This class is will Test all the methods in the OpenDialog class
  
@@ -21,7 +22,7 @@ import cs235a5.TabPannel;
 
 public class TestOpenDialog {
     private final String CLASSNAME = "OpenDialog";
-    private OpenDialog m_OD = new OpenDialog(new DataSet(), new TabPannel());
+    private OpenDialog m_OD = new OpenDialog(new DataSet(), new TabPannel(),new VisualiserGUI());
     
      /**
      * Method to test the OpenDialog ReadFile() method  and returns a Test object containing the 

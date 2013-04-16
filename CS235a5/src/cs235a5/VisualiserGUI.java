@@ -118,12 +118,14 @@ public class VisualiserGUI extends JFrame
         m_saveMenuItem = new JMenuItem("Save");
         m_saveAsMenuItem = new JMenuItem("Save As...");
         m_exitMenuItem = new JMenuItem("Exit");
-        
+        m_newMenuImport = new JMenuItem("Import");
+        CloudOption = new JMenuItem("The Cloud");
         // Add items to file menu
         m_fileMenu.add(m_newMenuItem);
         m_fileMenu.add(m_openMenuItem);
+        m_fileMenu.add(CloudOption);
         m_fileMenu.add(m_saveMenuItem);
-        m_fileMenu.add(m_saveAsMenuItem);
+        m_fileMenu.add(m_newMenuImport);
         m_fileMenu.add(m_exitMenuItem);
         
         // Create charts menu items
@@ -149,8 +151,12 @@ public class VisualiserGUI extends JFrame
         m_aboutMenu.add(m_helpDocumentationMenuItem);
         
         // Add handlers
+        m_newMenuItem.addActionListener(handler);
         m_openMenuItem.addActionListener(handler);
-        
+        m_saveMenuItem.addActionListener(handler);
+        m_newMenuImport.addActionListener(handler);
+        m_exitMenuItem.addActionListener(handler);
+        CloudOption.addActionListener(handler);
         // Add Menu Elements to MenuBar
         m_menuBar.add(m_fileMenu);
         m_menuBar.add(m_chartsMenu);
@@ -197,22 +203,36 @@ public class VisualiserGUI extends JFrame
                 40, 40, Image.SCALE_SMOOTH)));
         m_saveFileButton.setPreferredSize(new Dimension(50, 50));
         m_saveFileButton.setToolTipText("Save File");
+        
+        
         m_printFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/printFile.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
         m_printFileButton.setPreferredSize(new Dimension(50, 50));
         m_printFileButton.setToolTipText("Print File");
-            
+         
+        m_importButton = new JButton(
+                new ImageIcon(ImageIO.read(this.getClass().getResource(
+                "/assets/images/importIcon.png")).getScaledInstance(
+                40, 40, Image.SCALE_SMOOTH)));
+        m_importButton.setPreferredSize(new Dimension(50, 50));
+        m_importButton.setToolTipText("Import CSV File");
+        
+        
+        
         m_toolbar.add(m_newFileButton);
         m_toolbar.add(m_openFileButton);
         m_toolbar.add(m_saveFileButton);
+        m_toolbar.add( m_importButton);
         m_toolbar.add(m_printFileButton);
         m_toolbar.add(m_chartListPanel);
+        
         // Add handlers
-        
-        
+        m_newFileButton.addActionListener(handler);
+        m_importButton.addActionListener(handler);
         m_openFileButton.addActionListener(handler);
+        m_saveFileButton.addActionListener(handler);
         
         m_toolbar.setVisible(true);
         m_container.add(m_toolbar, BorderLayout.PAGE_START);
@@ -365,16 +385,58 @@ public class VisualiserGUI extends JFrame
     }
 
     public class GUIHandler implements ActionListener{
+        
         public void actionPerformed(ActionEvent event) {
-            if(event.getSource() == m_openFileButton){
+            
+            
+            
+            
+            if((event.getSource() == m_importButton)||(event.getSource() == m_newMenuImport)){
                 //creates a new CSVFileDialog for opening CSV files
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
                 
-            } else if (event.getSource() == m_openMenuItem){
-                //creates a new CSVFileDialog for opening CSV files
-                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
-                getFile.setVisible(true);
+            } else if ((event.getSource() == m_newFileButton)||(event.getSource() == m_newMenuItem)){
+                
+                int i = JOptionPane.showConfirmDialog (null, "Would You Like to Over Overwrite the data","Warning",JOptionPane.YES_NO_OPTION);
+                if(i == JOptionPane.YES_OPTION){
+                    m_db = new DataSet();
+                    m_pLeft.removeAll();
+                    m_pLeft.add(new TableView(m_db,true),BorderLayout.CENTER);
+                    m_pLeft.validate();
+
+                    m_chartTabPanel = new TabPannel();
+                    m_SplitPane.setLeftComponent(m_pLeft);
+                    m_SplitPane.setRightComponent(m_chartTabPanel);
+                    m_SplitPane.validate();
+                }
+
+                
+            }else if(event.getSource() == CloudOption){
+                CloudDialog cd = new CloudDialog(m_db,m_Context);
+            } else if ((event.getSource() == m_openFileButton)||(event.getSource() == m_openMenuItem)){
+                
+                OpenDialog o = new OpenDialog(m_db,m_chartTabPanel,m_Context);
+                o.ReadFile();
+
+            } else if ((event.getSource() == m_saveFileButton)||(event.getSource() == m_saveMenuItem)){
+                
+                if(m_chartTabPanel.GetNumOfCharts()<1){
+                    JOptionPane.showMessageDialog(m_container, "You can not save that you have not made ", 
+                        "Insane Error", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    SaveDialog s = new SaveDialog(m_db,m_chartTabPanel);
+                    s.SaveFile();
+                }   
+            } else if(event.getSource() ==m_exitMenuItem )
+            {
+                 if(m_chartTabPanel.GetNumOfCharts()>0){
+                    
+                    SaveDialog s = new SaveDialog(m_db,m_chartTabPanel);
+                    s.SaveFile();
+                 } 
+                 System.exit(0);
+                
             } else if(event.getSource() == m_printFileButton){
                  int i = m_chartTabPanel.getSelectedIndex();
                  if(i >-1){
@@ -408,7 +470,7 @@ public class VisualiserGUI extends JFrame
                }
             } 
             
-        
+    
 
         
     }
@@ -429,7 +491,7 @@ public class VisualiserGUI extends JFrame
     private JMenu m_fileMenu, m_chartsMenu, m_viewMenu, m_aboutMenu; 
     // File menu items
     private JMenuItem m_newMenuItem, m_openMenuItem, m_saveMenuItem, 
-            m_saveAsMenuItem, m_exitMenuItem;
+            m_saveAsMenuItem,m_newMenuImport, m_exitMenuItem, CloudOption;
     // Chart menu items
       private JMenuItem m_newChartMenuItem, m_editChartMenuItem;
     // View menu items
@@ -443,6 +505,8 @@ public class VisualiserGUI extends JFrame
     private JButton m_openFileButton;
     private JButton m_saveFileButton;
     private JButton m_printFileButton;
+    private JButton m_importButton;
+    
     // Custom combo box items
     private ImageIcon[] m_chartImages;
     private String[] m_chartImageDescriptions = {"Area chart", "Polar chart", 
@@ -462,7 +526,7 @@ public class VisualiserGUI extends JFrame
     private TableView m_tablePane;
     
     private JSplitPane m_SplitPane;
-    
+    private VisualiserGUI m_cnt;
     private JPanel m_pLeft;
     private JPanel m_pRight;
     public static JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;

@@ -31,7 +31,7 @@ public class OpenDialog {
      * @param DataSet the programs dataSet
      * @param TabPannel The programs TabPannel
      */
-    public OpenDialog(DataSet db, TabPannel tp){
+    public OpenDialog(DataSet db, TabPannel tp,VisualiserGUI cnt){
         if(!setDataSet(db)){
             System.out.println("SaveDialog.SetDataSet()-Failed to"
                     + " set the DataSet");
@@ -40,6 +40,7 @@ public class OpenDialog {
             System.out.println("SaveDialog.SetTabPannel()-Failed to"
                     + " set the DataSet");
         }
+        m_cnt = cnt;
     }
     
     /**
@@ -92,110 +93,117 @@ public class OpenDialog {
             File file = getOpenFile();
             //File file = new File("/Users/Robert/Desktop/save.xml");
             boolean parse = false;
-            if (file.exists()) {
-                  Document doc = db.parse(file);
-                  Element docEle = doc.getDocumentElement();
-                  
-                  NodeList studentList = docEle.getElementsByTagName("Data");
-                  
-                  if (studentList != null && studentList.getLength() > 0) {
-                      for (int i = 0; i < studentList.getLength(); i++) {
-                          Node node = studentList.item(i);
-                          if (node.getNodeType() == Node.ELEMENT_NODE) {
-                              
-                              Element e = (Element) node;
-                              NodeList nodeList =
-                                      
-                                      e.getElementsByTagName("Date");
-                              System.out.println("Data: " + nodeList.item(0)
-                                      .getChildNodes().item(0).getNodeValue());
+            if(file!=null){
+                if (file.exists()) {
+                      Document doc = db.parse(file);
+                      Element docEle = doc.getDocumentElement();
 
-                              nodeList = e.getElementsByTagName("File");
-                              String url = nodeList.item(0).getChildNodes()
-                                      .item(0).getNodeValue();
-                              CSVReader r = new CSVReader(
-                                                            m_db, 
-                                                            new File(url),
-                                                            ",");
-                              
-                              if(r.ParseFile()){
-                                   parse = true;
+                      NodeList studentList = docEle.getElementsByTagName("Data");
+
+                      if (studentList != null && studentList.getLength() > 0) {
+                          for (int i = 0; i < studentList.getLength(); i++) {
+                              Node node = studentList.item(i);
+                              if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+                                  Element e = (Element) node;
+                                  NodeList nodeList =
+
+                                          e.getElementsByTagName("Date");
+                                  System.out.println("Data: " + nodeList.item(0)
+                                          .getChildNodes().item(0).getNodeValue());
+
+                                  nodeList = e.getElementsByTagName("File");
+                                  String url = nodeList.item(0).getChildNodes()
+                                          .item(0).getNodeValue();
+                                  CSVReader r = new CSVReader(
+                                                                m_db, 
+                                                                new File(url),
+                                                                ",");
+
+                                  if(r.ParseFile()){
+                                       parse = true;
+                                       m_cnt.displayTable();
+                                  }
                               }
                           }
                       }
-                  }
-                  if(parse){
-                    studentList = docEle.getElementsByTagName("Chart");
-                    System.out.println("Total Charts: " 
-                            + studentList.getLength());
-                    
-                    if (studentList != null && studentList.getLength() > 0) {
-                        System.err.println("Error 1");
-                        for (int i = 0; i < studentList.getLength(); i++) {
-                            System.err.println("Error 2");
-                            Node node = studentList.item(i);
-                            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                                System.err.println("Error 3");
-                                Element e = (Element) node;
-                                NodeList nodeList = 
-                                        e.getElementsByTagName("ChartType");
-                                String type = 
-                       nodeList.item(0).getChildNodes().item(0).getNodeValue();
-                                System.out.println(type);
-                                nodeList = e.getElementsByTagName("XColumn");
-                                int x = Integer.parseInt
-                     (nodeList.item(0).getChildNodes().item(0).getNodeValue());
+                      if(parse){
+                        studentList = docEle.getElementsByTagName("Chart");
+                        System.out.println("Total Charts: " 
+                                + studentList.getLength());
 
-                                nodeList = e.getElementsByTagName("YColumn");
-                                int y = Integer.parseInt
-                     (nodeList.item(0).getChildNodes().item(0).getNodeValue());
+                        if (studentList != null && studentList.getLength() > 0) {
+                            System.err.println("Error 1");
+                            for (int i = 0; i < studentList.getLength(); i++) {
+                                System.err.println("Error 2");
+                                Node node = studentList.item(i);
+                                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                                    System.err.println("Error 3");
+                                    Element e = (Element) node;
+                                    NodeList nodeList = 
+                                            e.getElementsByTagName("ChartType");
+                                    String type = 
+                           nodeList.item(0).getChildNodes().item(0).getNodeValue();
+                                    System.out.println(type);
+                                    nodeList = e.getElementsByTagName("XColumn");
+                                    int x = Integer.parseInt
+                         (nodeList.item(0).getChildNodes().item(0).getNodeValue());
 
-                                nodeList = e.getElementsByTagName("ChartTitle");
-                                String title =
-                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
-                                
-                                nodeList = e.getElementsByTagName("Author");
-                                String author =
-                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
-                                
-                                nodeList = e.getElementsByTagName("Desc");
-                                String desc =
-                    nodeList.item(0).getChildNodes().item(0).getNodeValue();
+                                    nodeList = e.getElementsByTagName("YColumn");
+                                    int y = Integer.parseInt
+                         (nodeList.item(0).getChildNodes().item(0).getNodeValue());
 
-                                nodeList = e.getElementsByTagName("Color");
-                                int c = nodeList.getLength();
-                                Color[] clrArr = new Color[c];
-                             for(int j = 0; j <c; j++){
-                                String[] rgbStr =
-            nodeList.item(j).getChildNodes().item(0).getNodeValue().split(",");
-                                
-                                int red = Integer.parseInt(rgbStr[RED]);
-                                int green = Integer.parseInt(rgbStr[GREEN]);
-                                int blue = Integer.parseInt(rgbStr[BLUE]);
-                                clrArr[j] =  new Color(red,green,blue);
-                                
+                                    nodeList = e.getElementsByTagName("ChartTitle");
+                                    String title =
+                        nodeList.item(0).getChildNodes().item(0).getNodeValue();
+
+                                    nodeList = e.getElementsByTagName("Author");
+                                    String author =
+                        nodeList.item(0).getChildNodes().item(0).getNodeValue();
+
+                                    nodeList = e.getElementsByTagName("Desc");
+                                    String desc =
+                        nodeList.item(0).getChildNodes().item(0).getNodeValue();
+
+                                    nodeList = e.getElementsByTagName("Color");
+                                    int c = nodeList.getLength();
+                                    Color[] clrArr = new Color[c];
+                                 for(int j = 0; j <c; j++){
+                                    String[] rgbStr =
+                nodeList.item(j).getChildNodes().item(0).getNodeValue().split(",");
+
+                                    int red = Integer.parseInt(rgbStr[RED]);
+                                    int green = Integer.parseInt(rgbStr[GREEN]);
+                                    int blue = Integer.parseInt(rgbStr[BLUE]);
+                                    clrArr[j] =  new Color(red,green,blue);
+
+                                }
+                                addChart(type,x,y,title,author,desc,clrArr);
+
+
+                                }
+
                             }
-                            addChart(type,x,y,title,author,desc,clrArr);
-                             
-
-                            }
-                            
                         }
-                    }
-                   return true; 
+                       return true; 
+                      }
+                  }else{
+                      System.err.println("FNF: ");
+                      return false; 
                   }
-              }else{
-                  System.err.println("FNF: ");
-                  return false; 
-              }
-        } catch (SAXException ex) {
-            return false; 
-        } catch (IOException ex) {
-           return false; 
-        } catch (ParserConfigurationException ex) {
-            return false; 
-            
-        }
+            }else{
+               System.err.println("FNF: ");
+                      return false;  
+            }
+            } catch (SAXException ex) {
+                return false; 
+            } catch (IOException ex) {
+               return false; 
+            } catch (ParserConfigurationException ex) {
+                return false; 
+
+            }
+  
         return false;
     }
     /**
@@ -306,5 +314,6 @@ public class OpenDialog {
     private final int RED = 0;
     private final int GREEN = 1;
     private final int BLUE = 2;
+    private VisualiserGUI m_cnt;
     
 }

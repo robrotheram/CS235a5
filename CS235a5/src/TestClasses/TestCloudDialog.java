@@ -7,6 +7,7 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.CloudDialog;
 import cs235a5.DataSet;
+import cs235a5.VisualiserGUI;
 
 /** @brief This class is will Test all the methods in the CloudDialog class
  
@@ -42,7 +43,7 @@ public class TestCloudDialog {
         String userPass  = "r";
         if(run){
             theTest.hasRun();
-            m_CD = new CloudDialog(new DataSet());
+            m_CD = new CloudDialog(new DataSet(),new VisualiserGUI());
             if(m_CD.isVisible()){
                 theTest.setPassed(true);
             }else{

@@ -36,9 +36,10 @@ public class CloudDialog extends JFrame{
      * Class Constructor Sets up the UI and the DataSet for the Class
      * @param DataSet DataSet the dataSet for the class
      */
-    public CloudDialog(DataSet db){
+    public CloudDialog(DataSet db, VisualiserGUI vg){
          m_db = db;
          context = this;
+         m_guiContext = vg;
          initMainFrame();
          intLoginPanel();
          m_DownloadPanel = new JPanel();
@@ -181,13 +182,14 @@ public class CloudDialog extends JFrame{
                 String path = CLOUD.getFilePath(m_sid, fileID);
                 File f = CLOUD.DownloadFile(path);
                 
-                System.err.println("Path = "+path+"file opath = "+f.getAbsolutePath()+" file id:"+fileID);
+                System.err.println("Path = "+f.getAbsolutePath());
                 
-                CSVReader csvr = new CSVReader(m_db,f,"'");
+                CSVReader csvr = new CSVReader(m_db,f,",");
                 if(csvr.ParseFile()){
                     System.out.println(CLASS+"initListPannel.actionPerformed():"
                             + " parseFile() been successful");
-                   // m_Context.displayTable();
+                   m_guiContext.displayTable();
+                   context.dispose();
 
                }else{
                    System.out.println(CLASS+"initListPannel.actionPerformed():"
@@ -213,7 +215,7 @@ public class CloudDialog extends JFrame{
 
     
     
-   
+    private VisualiserGUI m_guiContext;
     private DataSet m_db;
     private String[][] m_data;
     private String[] m_IOlist = new String[0];
@@ -258,10 +260,7 @@ public class CloudDialog extends JFrame{
     }
     
     
-     public static void main(String[] args){
-        CloudDialog cd = new CloudDialog(new DataSet());
-        
-    }
+
     
     
 }
