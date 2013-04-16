@@ -502,12 +502,15 @@ public class VisualiserGUI extends JFrame
     
     // Custom combo box items
     private ImageIcon[] m_chartImages;
-    private String[] m_chartImageDescriptions = {"Area chart", "Polar chart", 
-        "Bar chart", "Line chart", "Pie chart", 
-        "Scatter-plot chart"};;
-    private String[] m_chartImageStrings = {"areaChart", "polarChart",
-        "barChart", "lineChart", "pieChart",
-        "scatterPlotChart"};
+    private String[] m_chartImageDescriptions =new String[] {"Area chart", "Polar chart","Bar chart", "Line chart", "Pie chart", "Bubble Chart","Scatter-plot chart"};
+    private String[] m_chartImageStrings = new String[] {"areaChart",
+     "polarChart",
+     "barChart", 
+     "lineChart", 
+     "pieChart",
+     "bubblesChart",
+     "scatterPlotChart"};
+    
     private Integer[] m_intArray;
     private JComboBox m_chartList;
     private VisualiserGUI.ComboBoxRenderer m_chartListRenderer;
