@@ -53,7 +53,7 @@ public class VisualiserGUI extends JFrame
     m_container.setLayout(new BorderLayout());
     m_Context = this;
     m_db = new DataSet();
-    handler = new GUIHandler();
+    handler = new VisualiserGUI.GUIHandler();
     
     // Gets users current resolution
     KIT = m_container.getToolkit();
@@ -271,6 +271,20 @@ public class VisualiserGUI extends JFrame
         
     }
     
+    public boolean CreateChart(int selectedChart, String title, int yColPosition,
+            int xColPosition, String author, String description, 
+            ColourMap colours){
+        //AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
+         //   , PIECHART = 4, SCATTERPLOT = 5
+        Rectangle r =  new Rectangle(0,0,m_chartTabPanel.getWidth(),
+                m_chartTabPanel.getWidth());
+        if (selectedChart == AREACHART){
+            AreaChart areaChart = new AreaChart(m_db, xColPosition, yColPosition,
+                    title, r, colours, author, description);
+            m_chartTabPanel.add(areaChart);
+        }
+        return true;
+    }
     /**
      * Creates and image icon from the image parsed from the path
      * @param path - the image path
@@ -363,9 +377,14 @@ public class VisualiserGUI extends JFrame
         }
     }
 
-    public class GUIHandler implements ActionListener, ItemListener {
+    public class GUIHandler implements ActionListener{
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == m_openFileButton){
+                //creates a new CSVFileDialog for opening CSV files
+                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
+                getFile.setVisible(true);
+                
+            } else if (event.getSource() == m_openMenuItem){
                 //creates a new CSVFileDialog for opening CSV files
                 JFrame getFile = new CSVReaderDialog(m_db , m_Context);
                 getFile.setVisible(true);
@@ -378,12 +397,6 @@ public class VisualiserGUI extends JFrame
                         cp.createChartPrintJob();
                     }
                  }
-                    
-                
-            } else if (event.getSource() == m_openMenuItem){
-                //creates a new CSVFileDialog for opening CSV files
-                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
-                getFile.setVisible(true);
             } else if (event.getSource() == m_chartList){
                 if (m_db.GetHeader() == null){
                     JOptionPane.showMessageDialog(m_container, "Please create or "
@@ -397,35 +410,29 @@ public class VisualiserGUI extends JFrame
                 }
             } else if (event.getSource() == ChartOptionPane.m_colourCheck){
                 if(ChartOptionPane.m_colourCheck.isSelected()){
-                    UserColormap m_userColours = new UserColormap();
-                    m_userColours.setVisible(true);
+                    ColourMap m_userColours = new UserColormap();
+                    
                     System.out.println("BOX CHECKED");
                     
                }
+            } else if (event.getSource() == ChartOptionPane.m_acceptButton){
+                CreateChart();
             }
             
-        }
+        
 
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            Object source = e.getItemSelectable();
-
-            if (source == ChartOptionPane.m_colourCheck) {
-                if(ChartOptionPane.m_colourCheck.isSelected()){
-                    UserColormap m_userColours = new UserColormap();
-                    m_userColours.setVisible(true);
-                    System.out.println("BOX CHECKED");
-               }
-            }
+        
     }
 }
     /** Main container objects */
     private Container m_container;
     private final Toolkit KIT;
     private final Dimension SCREENSIZE;
+    private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
+            , PIECHART = 4, SCATTERPLOT = 5;
     private DataSet m_db;
     private VisualiserGUI m_Context;
-    private GUIHandler handler;
+    private VisualiserGUI.GUIHandler handler;
     
     /** Menu bar objects */
     private JMenuBar m_menuBar;
@@ -450,10 +457,10 @@ public class VisualiserGUI extends JFrame
     // Custom combo box items
     private ImageIcon[] m_chartImages;
     private String[] m_chartImageDescriptions = {"Area chart", "Polar chart", 
-        "Compound bar chart", "Line chart", "Pie chart", 
+        "Bar chart", "Line chart", "Pie chart", 
         "Scatter-plot chart"};;
     private String[] m_chartImageStrings = {"areaChart", "polarChart",
-        "compoundBarChart", "lineChart", "pieChart",
+        "barChart", "lineChart", "pieChart",
         "scatterPlotChart"};
     private Integer[] m_intArray;
     private JComboBox m_chartList;

@@ -129,8 +129,52 @@ public class ChartOptionPane extends JFrame{
         
     }
     
+    public int GetChartType(){
+        return m_chartList.getSelectedIndex();
+    }
+    
+    public String GetTitle(){
+        return m_chartTitle.getText();
+        
+    }
+    
+    public int GetXData(){
+        return m_xAxisData.getSelectedIndex();
+    }
+    
+    public int GetYData(){
+        return m_yAxisData.getSelectedIndex();
+    }
+    
+    public String GetAuthor(){
+        return m_chartAuthor.getText();
+    }
+    
+    public String GetDescription(){
+        return m_chartDescription.getText();
+    }
+    
+    public ColourMap GetColours(){
+        int colours = m_colourMapList.getSelectedIndex();
+        
+        if(colours == 0){
+            return m_defaultColour;
+        } else if (colours == 1){
+            return m_coolColour;
+        } else if (colours == 2){
+            return m_warmColour;
+        } else if (colours == 3){
+            return m_colourBlindMap;
+        } else if (colours == 4){
+            return m_purpleMonoColour;
+        }
+        return null;
+        
+    }
     private void addHandlers(){
         m_colourCheck.addActionListener(handler);
+        m_acceptButton.addActionListener(handler);
+        m_cancelButton.addActionListener(handler);
     }
     
     private void initColourList()
@@ -230,7 +274,7 @@ public class ChartOptionPane extends JFrame{
             m_xAxisLabel, m_yAxisLabel;
     private JTextField m_chartTitle, m_chartAuthor, m_chartDescription;
     private JComboBox m_xAxisData, m_yAxisData, m_colourMapList;
-    private JButton m_acceptButton, m_cancelButton;
+    public static JButton m_acceptButton, m_cancelButton;
     private JList m_chartList;
     private ImageIcon[] m_chartImages, m_colourKeys;
     private String[] m_chartStrings, m_chartImageDescriptions, m_colNames;
