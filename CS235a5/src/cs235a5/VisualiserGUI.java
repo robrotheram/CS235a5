@@ -398,7 +398,13 @@ public class VisualiserGUI extends JFrame
             } else if (event.getSource() == ChartOptionPane.m_colourCheck){
                 if(ChartOptionPane.m_colourCheck.isSelected()){
                     ColourMap m_userColours = new UserColormap();
-  
+                    for (int i = 0; i < m_userColours.getColourArray().length;
+                            i++){
+                        VisualiserGUI.m_userPanels[i].setBackground(
+                                m_userColours.getColour(i));
+                        ChartOptionPane.m_userColourDisplay.add(
+                                VisualiserGUI.m_userPanels[i]);
+                    }
                }
             } 
             
@@ -459,23 +465,10 @@ public class VisualiserGUI extends JFrame
     
     private JPanel m_pLeft;
     private JPanel m_pRight;
+    public static JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;
+    public static JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
+        m_colour4, m_colour5};
     
-    
-   
-    
-    private JPanel m_drawPanel;
-    private JFileChooser m_fc;
 
-    private JLabel m_descriptionText,m_authorText;
-    private JLabel m_titleLabel, m_xAxisLabel, m_yAxisLabel, m_scaleLabel;
-    private JLabel m_authorLabel, m_descriptionLabel, m_dataLabel, m_colourLabel;
 
-    private JTextField m_title, m_xAxisTitle, m_yAxisTitle;
-    private JTextField m_author, m_description;
-
-    private JComboBox m_scale, m_dataList, m_dataListTwo, m_chartColour;
-
-    //private GUIEventHandler m_handler;
-    private String m_filename;
-    private File m_file;  
 }

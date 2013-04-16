@@ -27,9 +27,7 @@ public class UserColormap extends ColourMap{
                color = Color.CYAN;
            }
            colorarray[i] = color;
-                    
-             
-            
+   
         }
         super.setColourArray(colorarray);              
     }
