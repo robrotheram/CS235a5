@@ -62,8 +62,9 @@ public abstract class Chart extends Visualisation {
      * @param ChartType chartType 
      * @return True if set correctly
      */
-      boolean SetChartType(ChartType chartType){
+      public boolean SetChartType(ChartType chartType){
           m_chartType  = chartType;
+          System.out.println("ChartType on create at Chart.java = "+m_chartType);
           return true;
       }
     
@@ -95,7 +96,12 @@ public abstract class Chart extends Visualisation {
         return true;
     };
     
-    ChartType GetChartType(){
+    /**
+     *Gets the type of the sub classed chart from the enumeration class ChartType;
+     * @return ChartType
+     */
+    public ChartType GetChartType(){
+        System.out.println("ChartType at Chart.java = "+m_chartType);
         return m_chartType;
     }
     
@@ -165,7 +171,7 @@ public abstract class Chart extends Visualisation {
      * @param r - to display the chart in the windows native size
      */
     public Chart(DataSet db,int xColumnPos, int yColumnPos, String title, 
-            Rectangle r, ColourMap cm, String author, String description){
+            Rectangle r, ColourMap cm, String author, String description,ChartType ct){
         
        super(title, db, cm, author, description);
        
@@ -179,6 +185,9 @@ public abstract class Chart extends Visualisation {
            System.out.println("MS_Chart().setYData(): Successful");
        } else {
            System.err.println("MS_Chart().setYData(): Failed");
+       }
+       if(!SetChartType(ct)){
+          System.err.println("Chart().setChartType(): Failed"); 
        }
        
        this.setBounds(r.x,r.y,r.width,(r.height-OFFSET));

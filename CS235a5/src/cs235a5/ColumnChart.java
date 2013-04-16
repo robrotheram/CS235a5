@@ -184,7 +184,7 @@ public class ColumnChart extends Chart {
      */
   public ColumnChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
   {
-     super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
+     super(ds, xColPosition, yColPosition, title, rect, cm, author, description,ChartType.BARCHART);
       
   }
   

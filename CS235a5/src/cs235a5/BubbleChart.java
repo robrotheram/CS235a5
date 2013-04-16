@@ -184,7 +184,7 @@ public class BubbleChart extends Chart{
      */
   public BubbleChart (DataSet ds, int xColPosition, int yColPosition, String title, Rectangle rect, ColourMap cm, String author, String description)
   {
-     super(ds, xColPosition, yColPosition, title, rect, cm, author, description);
+     super(ds, xColPosition, yColPosition, title, rect, cm, author, description,ChartType.BUBBLECHART);
   }
     
   /**
