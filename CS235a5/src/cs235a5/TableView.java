@@ -55,7 +55,7 @@ public class TableView extends JPanel
    * from the DataSet class.
    * @return A populated JTable
    */
-  public JTable GetUserData()
+  private JTable GetUserData()
   {
     m_table = new JTable(m_DB.GetDataSet(),m_DB.GetHeader());
     m_table.setShowGrid(true);
@@ -85,7 +85,7 @@ public class TableView extends JPanel
    * @return A JScrollPane containing a JTable
    */
    
-  public JScrollPane GetTableView()
+  private JScrollPane GetTableView()
   {
     return  new JScrollPane(GetUserData());
   }

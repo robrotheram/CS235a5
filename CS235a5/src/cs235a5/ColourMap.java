@@ -50,7 +50,7 @@ public class ColourMap implements ColorScheme{
      * @param panels array of bufferedImages to be coloured
      * @return true if set correctly
      */
-    public boolean setPanels(BufferedImage[] panels){
+    private boolean setPanels(BufferedImage[] panels){
         for(int i = 0; i < panels.length; i++){
             for (int x = 0; x < COLOUR_KEY_SIZE; x++) {
                 for (int y = 0; y < COLOUR_KEY_SIZE; y++) {
@@ -72,7 +72,7 @@ public class ColourMap implements ColorScheme{
      * @param panels the coloured panels for each colour in the colour map
      * @return true if successful
      */
-    public boolean CreateKey(BufferedImage[] panels){
+    private boolean CreateKey(BufferedImage[] panels){
         int xPos = 0;
         for(int i = 0; i < panels.length; i++){
             m_colourMap.getGraphics().drawImage(panels[i], xPos, 0, null);

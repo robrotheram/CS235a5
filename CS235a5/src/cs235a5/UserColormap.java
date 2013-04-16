@@ -23,6 +23,9 @@ public class UserColormap extends ColourMap{
         JColorChooser chooser = new JColorChooser();  // color chooser
         for(int i = 0; i < colorarray.length ; i++){
            Color color = chooser.showDialog(null,"Colormap",Color.white);
+           if(color==null){
+               color = Color.CYAN;
+           }
            colorarray[i] = color;
                     
              
