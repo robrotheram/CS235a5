@@ -41,7 +41,17 @@ import javax.swing.border.TitledBorder;
  * @author Kerry Tolhurst
  */
 public class ChartOptionPane extends JFrame{
-    
+    /**
+     * Constructor that passes all data from the main GUI needed to create charts
+     * @param selectedChartIndex  The place in the list of charts
+     * @param chartImages Chart Icons
+     * @param chartNames Names of charts
+     * @param chartDescriptions Descriptions of charts
+     * @param intArray Integer array used for creating custom list renderer
+     * @param db The data 
+     * @param handler The main handler for the GUI
+     * @param tabs The tabbed panel for charts
+     */
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
             , DataSet db, VisualiserGUI.GUIHandler handler, TabPannel tabs){
@@ -93,10 +103,10 @@ public class ChartOptionPane extends JFrame{
         m_chartDescription = new JTextField();
         m_chartDescription.setPreferredSize(new Dimension(200, 30));
         m_yAxisData.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //populate combo boxes with values from the table data
         
+        //populate combo boxes with values from the table data
             m_colNames = db.GetHeader();
-        if(m_colNames != null){
+        if(!m_db.isEmpty()){
             for(int i =0; i < m_colNames.length; i++){
                 m_xAxisData.addItem(m_colNames[i]);
                 m_yAxisData.addItem(m_colNames[i]);
@@ -134,50 +144,100 @@ public class ChartOptionPane extends JFrame{
         
     }
     
+    /**
+     * Returns the index of the selected chart in the list
+     * @return int the position of the chart in the list
+     */
     public int GetChartType(){
         return m_chartList.getSelectedIndex();
     }
     
+    /**
+     * Returns the title in the option pane
+     * @return String - the title
+     */
     public String GetTitle(){
         return m_chartTitle.getText();
         
     }
     
+    /**
+     * Returns position of the column of data in the array that has been chosen 
+     * to be used as the data for the X axis
+     * @return int
+     */
     public int GetXData(){
         return m_xAxisData.getSelectedIndex();
     }
     
+    /**
+     * Returns position of the column of data in the array that has been chosen 
+     * to be used as the data for the Y axis
+     * @return int
+     */
     public int GetYData(){
         return m_yAxisData.getSelectedIndex();
     }
     
+    /**
+     * Gets the author from the option pane
+     * @return String
+     */
     public String GetAuthor(){
         return m_chartAuthor.getText();
     }
     
+    /**
+     * Gets the chart description from the option pane
+     * @return String
+     */
     public String GetDescription(){
         return m_chartDescription.getText();
     }
     
+    /**
+     * Gets the colours from the chart panel to be displayed
+     * @return Colourmap
+     */
     public ColourMap GetColours(){
         int colours = m_colourMapList.getSelectedIndex();
-        
-        if(colours == 0){
-            return m_defaultColour;
-        } else if (colours == 1){
-            return m_coolColour;
-        } else if (colours == 2){
-            return m_warmColour;
-        } else if (colours == 3){
-            return m_colourBlindMap;
+        if (m_colourCheck.isSelected()){
+           return VisualiserGUI.m_userColours; 
         } else {
-            return m_purpleMonoColour;
+            if(colours == 0){
+                return m_defaultColour;
+            } else if (colours == 1){
+                return m_coolColour;
+            } else if (colours == 2){
+                return m_warmColour;
+            } else if (colours == 3){
+                return m_colourBlindMap;
+            } else {
+                return m_purpleMonoColour;
+            }
         }
-        
-        
     }
+    
+    /**
+     * Adds handlers to relevant objects
+     */
     private void addHandlers(){
-        m_colourCheck.addActionListener(handler);
+        m_colourCheck.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(m_colourCheck.isSelected()){
+                   ColourMap m_userColours = new UserColormap();
+                    for (int i = 0; i < m_userColours.getColourArray().length;
+                            i++){
+                        m_userPanels[i].setBackground(
+                                m_userColours.getColour(i));
+                        m_userColourDisplay.add(
+                                m_userPanels[i]);
+                    }
+               }
+            }
+        });
         m_acceptButton.addActionListener(new ActionListener(){
             //private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
             //, PIECHART = 4, SCATTERPLOT = 5;
@@ -229,7 +289,13 @@ public class ChartOptionPane extends JFrame{
                 }
             }
         });
-        m_cancelButton.addActionListener(handler);
+        m_cancelButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                setVisible(false);
+            }
+        });
     }
     
     private void initColourList()
@@ -359,8 +425,11 @@ public class ChartOptionPane extends JFrame{
     private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
             m_colourMapListRenderer;
     private JPanel m_colourListPanel;
-    public static JPanel m_userColourDisplay;
-    public static JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
+    private JPanel m_userColourDisplay;
+    private JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
     private TabPannel m_tabs;
+    private JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;
+    private JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
+        m_colour4, m_colour5};
 }
