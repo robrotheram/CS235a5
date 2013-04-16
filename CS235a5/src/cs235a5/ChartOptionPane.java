@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,12 +40,13 @@ public class ChartOptionPane extends JFrame{
     
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
-            , DataSet db){
+            , DataSet db, VisualiserGUI.GUIHandler handler){
         // Set all data needed to make charts
         m_chartImages = chartImages;
         m_chartStrings = chartNames;
         m_chartImageDescriptions = chartDescriptions;
         m_intArray = intArray;
+        this.handler = handler;
         
         // Set up and create the chart selection list
         m_chartListPanel = new JPanel(); 
@@ -103,7 +105,7 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.add(m_descriptionLabel);
         m_rightPanel.add(m_chartDescription);
         initColourList();
-        //m_rightPanel.add(new JLabel(m_defaultColour.getPanels()));
+        m_rightPanel.add(m_colourCheck);
         m_rightPanel.add(m_acceptButton);
         m_rightPanel.add(m_cancelButton);
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
@@ -116,7 +118,9 @@ public class ChartOptionPane extends JFrame{
         
     }
     
-    
+    private void addHandlers(){
+        m_colourCheck.addChangeListener(handler);
+    }
     private void initColourList()
     {
         m_colourListPanel = new JPanel();
@@ -244,4 +248,6 @@ public class ChartOptionPane extends JFrame{
     private ChartOptionPane.ComboBoxRenderer m_chartListRenderer, 
             m_colourMapListRenderer;
     private JPanel m_colourListPanel;
+    private JCheckBox m_colourCheck = new JCheckBox("Custom Colours?");
+    private VisualiserGUI.GUIHandler handler;
 }

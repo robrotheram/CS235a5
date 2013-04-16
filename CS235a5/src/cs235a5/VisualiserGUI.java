@@ -31,6 +31,8 @@ import static javax.swing.SwingConstants.LEFT;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class VisualiserGUI extends JFrame
 {
@@ -358,7 +360,7 @@ public class VisualiserGUI extends JFrame
         }
     }
 
-    public class GUIHandler implements ActionListener {
+    public class GUIHandler implements ActionListener, ChangeListener {
         public void actionPerformed(ActionEvent event) {
             if(event.getSource() == m_openFileButton){
                 //creates a new CSVFileDialog for opening CSV files
@@ -373,9 +375,14 @@ public class VisualiserGUI extends JFrame
                 ChartOptionPane m_chartOptions = new ChartOptionPane(
                         m_chartList.getSelectedIndex(), m_chartImages,
                         m_chartImageStrings, m_chartImageDescriptions, 
-                        m_intArray, m_db);
+                        m_intArray, m_db, handler);
             }
             
+        }
+
+        @Override
+        public void stateChanged(ChangeEvent change) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
     /** Main container objects */
