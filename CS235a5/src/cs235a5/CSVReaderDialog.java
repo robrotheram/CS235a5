@@ -147,7 +147,7 @@ public final class CSVReaderDialog extends JFrame {
     public boolean init(){
         handle = new EventHandler();
         this.setBounds(FRAMESIZE);
-        //this.setResizable(false);
+        this.setResizable(false);
         this.setLayout(new BorderLayout());
         JPanel mainContainer = new JPanel();
         mainContainer.setLayout(new FlowLayout((FlowLayout.LEFT)));

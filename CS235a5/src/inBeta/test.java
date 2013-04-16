@@ -12,6 +12,7 @@ import cs235a5.ColumnChart;
 import cs235a5.DataSet;
 import cs235a5.LineChart;
 import cs235a5.PieChart;
+import cs235a5.PolarPlot;
 import cs235a5.ScatterPlotChart;
 import cs235a5.TabPannel;
 import java.awt.Color;
@@ -43,7 +44,7 @@ public class test extends JFrame {
         File f = new File(fileURL.getPath());
         CSVReader csvr = new CSVReader(db,f,",");
         if(csvr.ParseFile()){
-            tp.AddTab("testChart",  new ScatterPlotChart(db,
+            m.add( new PolarPlot(db,
                                                 2,
                                                 4,
                                                 "title",
@@ -52,16 +53,7 @@ public class test extends JFrame {
                                                 "Author",
                                                 "Decription"
                                                 ));
-            tp.AddTab("testChart",  new PieChart(db,
-                                                2,
-                                                4,
-                                                "title",
-                                                new Rectangle(0,0,400,400),
-                                                new ColourMap(c),
-                                                "Author",
-                                                "Decription"
-                                                ));
-            m.add(tp); 
+            
                   
                   
                 
