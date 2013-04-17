@@ -43,7 +43,7 @@ import javax.swing.JFrame;
     @file main.java
     @date April 2013
     */
-public class Main {
+public class GroupMSapplication {
     /**
      * This class check to see what arguments have benn entered and checks them
      * to see if the user wants the program to launch the datavisuliser UI or 
