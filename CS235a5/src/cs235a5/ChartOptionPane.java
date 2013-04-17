@@ -77,7 +77,7 @@ public class ChartOptionPane extends JFrame{
         m_chartList = new JList(m_intArray);
         m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_chartImages, m_chartImageDescriptions);
-        m_chartListRenderer.setPreferredSize(new Dimension(185, 55));
+        m_chartListRenderer.setPreferredSize(new Dimension(185, 50));
         m_chartList.setCellRenderer(m_chartListRenderer);
         m_chartList.setSelectedIndex(selectedChartIndex);
         Border m_loweredEtched = 
@@ -97,11 +97,11 @@ public class ChartOptionPane extends JFrame{
         m_chartTitle.setPreferredSize(new Dimension(200, 30));
         m_xAxisLabel = new JLabel("X Axis Data");
         m_xAxisData = new JComboBox();
-        m_xAxisData.setMaximumSize(new Dimension(110,30));
+        m_xAxisData.setPreferredSize(new Dimension(200,30));
         m_xAxisData.setAlignmentX(Component.CENTER_ALIGNMENT);
         m_yAxisLabel = new JLabel("Y Axis Data");
         m_yAxisData = new JComboBox();
-        m_yAxisData.setMaximumSize(new Dimension(110,30));
+        m_yAxisData.setPreferredSize(new Dimension(200,30));
         m_authorLabel = new JLabel("Chart Author");
         m_chartAuthor = new JTextField();
         m_chartAuthor.setPreferredSize(new Dimension(200, 30));
