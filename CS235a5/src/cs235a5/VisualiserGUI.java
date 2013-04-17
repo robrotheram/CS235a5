@@ -127,13 +127,8 @@ public class VisualiserGUI extends JFrame
         m_fileMenu.add(m_newMenuImport);
         m_fileMenu.add(m_exitMenuItem);
         
-       
-   
-        
-        
         // Create about menu items
         m_versionMenuItem = new JMenuItem("Version");
-
         
         //Add menu items to about menu
         m_aboutMenu.add(m_versionMenuItem);
@@ -192,8 +187,7 @@ public class VisualiserGUI extends JFrame
                 40, 40, Image.SCALE_SMOOTH)));
         m_saveFileButton.setPreferredSize(new Dimension(50, 50));
         m_saveFileButton.setToolTipText("Save File");
-        
-        
+
         m_printFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/printFile.png")).getScaledInstance(
@@ -441,7 +435,7 @@ public class VisualiserGUI extends JFrame
                     }
                  }
             } else if ((event.getSource() == m_chartList)||(event.getSource() ==  m_chartsMenu)){
-                if (m_db.GetHeader() == null){
+                if (m_db.isEmpty()){
                     JOptionPane.showMessageDialog(m_container, "Please create or "
                         + "add some data before meking a chart. ", 
                         "Inane Error", JOptionPane.ERROR_MESSAGE);
