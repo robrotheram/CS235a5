@@ -4,7 +4,6 @@ import TestClasses.TestAreaChart;
 import TestClasses.TestBubbleChart;
 import TestClasses.TestCSVReader;
 import TestClasses.TestCSVReaderDialog;
-import TestClasses.TestChart;
 import TestClasses.TestCloudDialog;
 import TestClasses.TestCloudIO;
 import TestClasses.TestColumnChart;
@@ -19,8 +18,7 @@ import TestClasses.TestSaveDialog;
 import TestClasses.TestScatterPlotChart;
 import TestClasses.TestTabPannel;
 import TestClasses.TestTabelView;
-import TestClasses.TestUserColor;
-import TestClasses.TestVisulisation;
+import TestClasses.TestUserColor; 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -466,22 +464,8 @@ public class TestingUI extends JFrame {
                 TSC.TestGetAuthor(run),
                 TSC.TestSetYColumnData(run),
                 TSC.TestGetYColumnData(run),
-                
-                TCS.TestChartDiplay(run),
-                TCS.TestcreateChart(run),
-                TCS.TestGetColourMap(run),
-                TCS.TestSetAuthor(run),
-                TCS.TestGetAuthor(run),
-                
-             
-                TCV.TestSetTitle(run),
-                TCV.TestGetTitle(run),
-                TCV.TestsetDataSet(run),
-                TCV.TestGetDataSet(run),
-                TCV.TestSetColourMap(run),
-                TCV.TestGetColourMap(run),
-                TCV.TestSetAuthor(run),
-                TCV.TestGetAuthor(run),
+
+              
                 
                 TUC.TestUserColor(run),
                 
@@ -518,8 +502,6 @@ public class TestingUI extends JFrame {
     private final TestBubbleChart TAB = new TestBubbleChart();
     private final TestPolarChart TPLC = new TestPolarChart();
     private final TestScatterPlotChart TSC = new TestScatterPlotChart();
-    private final TestChart TCS = new TestChart();
-    private final TestVisulisation TCV = new TestVisulisation();
     private final TestUserColor TUC = new TestUserColor();
     private final TestTabelView TTV = new TestTabelView();
     

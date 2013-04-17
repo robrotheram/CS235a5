@@ -22,7 +22,14 @@ import cs235a5.VisualiserGUI;
 
 public class TestOpenDialog {
     private final String CLASSNAME = "OpenDialog";
-    private OpenDialog m_OD = new OpenDialog(new DataSet(), new TabPannel(),new VisualiserGUI());
+    private final VisualiserGUI V;
+    private OpenDialog m_OD ;
+
+    public TestOpenDialog() {
+        this.V = new VisualiserGUI();
+                V.setVisible(false);
+                m_OD = new OpenDialog(new DataSet(), new TabPannel(),V);
+    }
     
      /**
      * Method to test the OpenDialog ReadFile() method  and returns a Test object containing the 

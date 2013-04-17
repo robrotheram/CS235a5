@@ -43,7 +43,9 @@ public class TestCloudDialog {
         String userPass  = "r";
         if(run){
             theTest.hasRun();
-            m_CD = new CloudDialog(new DataSet(),new VisualiserGUI());
+            VisualiserGUI v =new VisualiserGUI();
+            v.setVisible(false);
+            m_CD = new CloudDialog(new DataSet(),v);
             if(m_CD.isVisible()){
                 theTest.setPassed(true);
             }else{
