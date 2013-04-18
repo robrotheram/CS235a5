@@ -246,8 +246,8 @@ public class LineChart extends Chart{
     public JFreeChart createChart(){
         final JFreeChart CHART = ChartFactory.createXYLineChart(
             super.GetTitle(),                                                            // chart title
-            super.GetDataSet().GetAColumnName(super.GetXColumnPosition()),               // domain axis label
-            super.GetDataSet().GetAColumnName(super.GetYColumnPosition()),               // range axis label
+            super.GetDataSet().GetAColumnName(super.GetYColumnPosition()),               // domain axis label
+            super.GetDataSet().GetAColumnName(super.GetXColumnPosition()),               // range axis label
             convertDataSet(),            
             PlotOrientation.VERTICAL,                                                    // orientation
             true,                                                                        // include legend
