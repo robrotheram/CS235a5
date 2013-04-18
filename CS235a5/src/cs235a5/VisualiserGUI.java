@@ -108,7 +108,6 @@ public class VisualiserGUI extends JFrame
         
         // Create menus
         m_fileMenu = new JMenu("File");
-        m_chartsMenu = new JMenu("Charts");
         m_aboutMenu = new JMenu("About");
 
         // Create file menu items
@@ -140,11 +139,11 @@ public class VisualiserGUI extends JFrame
         m_newMenuImport.addActionListener(handler);
         m_exitMenuItem.addActionListener(handler);
         CloudOption.addActionListener(handler);
-        m_chartsMenu.addActionListener(handler);
+        
         m_versionMenuItem.addActionListener(handler);
         // Add Menu Elements to MenuBar
         m_menuBar.add(m_fileMenu);
-        m_menuBar.add(m_chartsMenu);
+        
         m_menuBar.add(m_aboutMenu);
         
         m_menuBar.setVisible(true);

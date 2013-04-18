@@ -77,7 +77,7 @@ public class ChartOptionPane extends JFrame{
         m_chartList = new JList(m_intArray);
         m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_chartImages, m_chartImageDescriptions);
-        m_chartListRenderer.setPreferredSize(new Dimension(185, 50));
+        m_chartListRenderer.setPreferredSize(new Dimension(185, 60));
         m_chartList.setCellRenderer(m_chartListRenderer);
         m_chartList.setSelectedIndex(selectedChartIndex);
         Border m_loweredEtched = 
@@ -119,7 +119,7 @@ public class ChartOptionPane extends JFrame{
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please create or "
-                        + "add some data before meking a chart. ", 
+                        + "import some data before making a chart. ", 
                         "Inane Error", JOptionPane.ERROR_MESSAGE);
         }
         // Add components to the chart option panel
@@ -143,7 +143,7 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.setPreferredSize(new Dimension(300, 300));
         addHandlers();
         this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(500, 420));
+        this.setSize(new Dimension(500, 480));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
         this.add(m_rightPanel, BorderLayout.LINE_END);
         this.setVisible(true);
