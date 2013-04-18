@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.LineNumberReader;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /** @brief This class is will parser a csv File 
 
@@ -146,6 +147,8 @@ public class CSVReader {
         } catch (Exception e) {
            isError = false;
            System.err.println("MS_CSVParser.ParseFile() Error :"+e);
+           JOptionPane.showMessageDialog(null, "Error in File Please Select a file", 
+                        "Inane Error", JOptionPane.ERROR_MESSAGE);
         }
        return isError;
     }
