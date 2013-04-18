@@ -219,8 +219,8 @@ public class PieChart extends Chart {
                 super.m_foundElements.add(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString());
 
                 //Add to chart dataSet
-
-                dataset.setValue(preVal.GetString(),sum);
+                String header = super.GetData().GetAColumnName(super.GetXColumnPosition())+":";
+                dataset.setValue(header+preVal.GetString(),sum);
 
 
 
@@ -238,7 +238,9 @@ public class PieChart extends Chart {
                 }
             }
         }
-        dataset.setValue(preVal.GetString(),sum);
+        String header = super.GetData().GetAColumnName(super.GetXColumnPosition())+":";
+        dataset.setValue(header+preVal.GetString(),sum);
+
         return dataset;
     }
    
@@ -259,7 +261,7 @@ public class PieChart extends Chart {
             ds,            
             true,                     // include legend
             true,                     // tooltips?
-            false                     // URLs?
+            true                     // URLs?
         );
        
         final PiePlot plot = (PiePlot) CHART.getPlot(); 

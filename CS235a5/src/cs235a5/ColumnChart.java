@@ -218,8 +218,8 @@ public class ColumnChart extends Chart {
                 super.m_foundElements.add(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString());
 
                 //Add to chart dataSet
-
-                dataset.addValue(sum, super.GetTitle(),preVal.GetString());
+                String header = super.GetData().GetAColumnName(super.GetXColumnPosition())+":";
+                dataset.addValue(sum, super.GetTitle(),header+preVal.GetString());
 
 
 
@@ -237,7 +237,8 @@ public class ColumnChart extends Chart {
                 }
             }
         }
-        dataset.addValue(sum, super.GetTitle(),preVal.GetString());
+        String header = super.GetData().GetAColumnName(super.GetXColumnPosition())+":";
+        dataset.addValue(sum, super.GetTitle(),header+preVal.GetString());
         return dataset;
     }
    
@@ -258,7 +259,7 @@ public class ColumnChart extends Chart {
             PlotOrientation.VERTICAL, // orientation
             true,                     // include legend
             true,                     // tooltips?
-            false                     // URLs?
+            true                   // URLs?
         );
        
         final CategoryPlot plot = CHART.getCategoryPlot(); 

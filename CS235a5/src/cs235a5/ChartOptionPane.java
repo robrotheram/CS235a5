@@ -35,6 +35,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -61,6 +63,8 @@ public class ChartOptionPane extends JFrame{
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
             , DataSet db, VisualiserGUI.GUIHandler handler, TabPanel tabs){
+        
+        m_cnt = this;
         // Set all data needed to make charts
         m_chartImages = chartImages;
         m_chartStrings = chartNames;
@@ -310,9 +314,46 @@ public class ChartOptionPane extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                setVisible(false);
+                m_cnt.dispose();
             }
         });
+        
+        m_chartList.addListSelectionListener(new ListSelectionListener(){
+
+            @Override
+            public void valueChanged(ListSelectionEvent lse) {
+                if(GetChartType() == AREACHART){
+                     m_xAxisLabel.setText("X Axis Data");
+                     m_yAxisLabel.setText("Y Axis Data");
+                } else if (GetChartType() == POLARCHART){
+                    m_xAxisLabel.setText("Radius Data:");
+                    m_yAxisLabel.setText("Theata Data:");
+                    
+                } else if (GetChartType() == BARCHART){
+                    m_xAxisLabel.setText("X Axis Data");
+                    m_yAxisLabel.setText("Y Axis Data");
+                    
+                } else if (GetChartType() == LINECHART){
+                    m_xAxisLabel.setText("X Axis Data");
+                    m_yAxisLabel.setText("Y Axis Data");
+                } else if (GetChartType() == PIECHART){
+                    m_xAxisLabel.setText("Catagory :");
+                    m_yAxisLabel.setText("Data Value for Catagory :");
+                    
+                } else if (GetChartType() == BUBBLECHART){
+                    m_xAxisLabel.setText("X Axis Data");
+                    m_yAxisLabel.setText("Y Axis Data");
+                    
+                } 
+                
+            
+            }
+        });
+        
+        
+        
+        
+        
     }
     
     /**
@@ -464,4 +505,5 @@ public class ChartOptionPane extends JFrame{
     private JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
         m_colour4, m_colour5};
     private ColourMap m_userColours;
+    private ChartOptionPane m_cnt;
 }
