@@ -222,8 +222,7 @@ public class ColumnChart extends Chart {
 
                 //Add to chart dataSet
 
-                dataset.addValue(sum, super.GetTitle(),Integer.toString(super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i)).GetInteger()));
+                dataset.addValue(sum, super.GetTitle(),preVal.GetString());
 
 
 

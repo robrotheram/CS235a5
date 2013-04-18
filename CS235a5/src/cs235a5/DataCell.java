@@ -28,6 +28,7 @@ public class DataCell {
        }else if(Pattern.matches(INTPATTERN, input)){
            m_Integer = Integer.parseInt(input);
            m_String = input;
+           m_Double = Double.parseDouble(input);
            m_DataType = DataType.INTEGER;
             return true;
  

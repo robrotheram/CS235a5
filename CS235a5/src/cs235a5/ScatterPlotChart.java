@@ -224,8 +224,7 @@ public class ScatterPlotChart extends Chart{
                 super.m_foundElements.add(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString());
 
                 //Add to chart dataSet
-                 series.add(sum,super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i)).GetInteger());
+                 series.add(sum,preVal.GetInteger());
 
 
 

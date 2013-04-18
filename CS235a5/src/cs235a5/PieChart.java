@@ -220,8 +220,7 @@ public class PieChart extends Chart {
 
                 //Add to chart dataSet
 
-                dataset.setValue(Integer.toString(super.GetDataSet().GetCell(
-                        super.GetXColumnPosition(), (i)).GetInteger()),sum);
+                dataset.setValue(preVal.GetString(),sum);
 
 
 

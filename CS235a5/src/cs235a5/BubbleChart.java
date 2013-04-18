@@ -234,7 +234,7 @@ public class BubbleChart extends Chart{
 
                 
                 
-                 int x= super.GetDataSet().GetCell(super.GetXColumnPosition(),(i)).GetInteger();
+                 int x=  preVal.GetInteger();
                  int y = super.GetDataSet().GetCell(super.GetYColumnPosition(),(i)).GetInteger();
                  xVal.add(x);
                  yVal.add(y);
