@@ -25,8 +25,8 @@ import javax.swing.JTabbedPane;
     @date April 2013
     */
 
-public class TabPannel extends JTabbedPane {
-    private final TabPannel CON = this;
+public class TabPanel extends JTabbedPane {
+    private final TabPanel CON = this;
     private ArrayList<Chart> m_charts = new ArrayList<Chart>();
     private int tabCounter;
     private final int SIZE = 10;

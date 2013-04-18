@@ -17,7 +17,7 @@ import cs235a5.PieChart;
 import cs235a5.PolarPlot;
 import cs235a5.SaveDialog;
 import cs235a5.ScatterPlotChart;
-import cs235a5.TabPannel;
+import cs235a5.TabPanel;
 import cs235a5.UserColormap;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -39,7 +39,7 @@ public class test extends JFrame {
   
     public test(){
      this.setSize(500,500);
-     TabPannel tp  = new TabPannel();
+     TabPanel tp  = new TabPanel();
      m = new JPanel();
      m.setBackground(Color.yellow);
      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

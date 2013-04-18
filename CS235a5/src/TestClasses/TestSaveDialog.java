@@ -4,7 +4,7 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.DataSet;
 import cs235a5.SaveDialog;
-import cs235a5.TabPannel;
+import cs235a5.TabPanel;
 
 /** @brief This class is will Test all the methods in the SaveDialog class
  
@@ -18,7 +18,7 @@ import cs235a5.TabPannel;
 
 public class TestSaveDialog {
     private final String CLASSNAME = "SaveDialog";
-    private SaveDialog m_SD = new SaveDialog(new DataSet(), new TabPannel());
+    private SaveDialog m_SD = new SaveDialog(new DataSet(), new TabPanel());
      /**
      * Method to test the SaveDialog SaveFile() method  and returns a Test object containing the 
      * test tile, Class being tested, method being tested,test description, 

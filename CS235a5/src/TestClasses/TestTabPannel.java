@@ -9,7 +9,7 @@ import cs235a5.CSVReader;
 import cs235a5.ColourMap;
 import cs235a5.ColumnChart;
 import cs235a5.DataSet;
-import cs235a5.TabPannel;
+import cs235a5.TabPanel;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.io.BufferedOutputStream;
@@ -32,7 +32,7 @@ import java.net.URL;
 
 public class TestTabPannel {
     private final String CLASSNAME = "TabPannel";
-    private TabPannel m_TP = new TabPannel();
+    private TabPanel m_TP = new TabPanel();
     private final Color[] c = {Color.RED,Color.RED,Color.RED,Color.RED,Color.RED};
     private final DataSet m_db;
     

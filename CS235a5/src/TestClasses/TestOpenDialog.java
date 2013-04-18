@@ -7,7 +7,7 @@ package TestClasses;
 import TestUI.Test;
 import cs235a5.DataSet;
 import cs235a5.OpenDialog;
-import cs235a5.TabPannel;
+import cs235a5.TabPanel;
 import cs235a5.VisualiserGUI;
 
 /** @brief This class is will Test all the methods in the OpenDialog class
@@ -28,7 +28,7 @@ public class TestOpenDialog {
     public TestOpenDialog() {
         this.V = new VisualiserGUI();
                 V.setVisible(false);
-                m_OD = new OpenDialog(new DataSet(), new TabPannel(),V);
+                m_OD = new OpenDialog(new DataSet(), new TabPanel(),V);
     }
     
      /**

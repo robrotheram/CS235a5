@@ -60,7 +60,7 @@ public class ChartOptionPane extends JFrame{
      */
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
-            , DataSet db, VisualiserGUI.GUIHandler handler, TabPannel tabs){
+            , DataSet db, VisualiserGUI.GUIHandler handler, TabPanel tabs){
         // Set all data needed to make charts
         m_chartImages = chartImages;
         m_chartStrings = chartNames;
@@ -457,7 +457,7 @@ public class ChartOptionPane extends JFrame{
     private JPanel m_userColourDisplay;
     private JCheckBox m_colourCheck = new JCheckBox("Want to use custom colours?");
     private VisualiserGUI.GUIHandler handler;
-    private TabPannel m_tabs;
+    private TabPanel m_tabs;
     private JPanel m_colour1 = new JPanel(), m_colour2 = new JPanel(), 
             m_colour3 = new JPanel(), m_colour4 = new JPanel(), 
             m_colour5 = new JPanel();

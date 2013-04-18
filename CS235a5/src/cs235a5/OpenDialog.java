@@ -31,7 +31,7 @@ public class OpenDialog {
      * @param DataSet the programs dataSet
      * @param TabPannel The programs TabPannel
      */
-    public OpenDialog(DataSet db, TabPannel tp,VisualiserGUI cnt){
+    public OpenDialog(DataSet db, TabPanel tp,VisualiserGUI cnt){
         if(!setDataSet(db)){
             System.out.println("SaveDialog.SetDataSet()-Failed to"
                     + " set the DataSet");
@@ -57,7 +57,7 @@ public class OpenDialog {
      * @param TabPannel 
      * @return boolean True if set Correctly
      */
-    private boolean setTabPannel(TabPannel tp){
+    private boolean setTabPannel(TabPanel tp){
         m_tp = tp;
         return true;
     
@@ -310,7 +310,7 @@ public class OpenDialog {
     
     
     private DataSet m_db;
-    private TabPannel m_tp;
+    private TabPanel m_tp;
     private final int RED = 0;
     private final int GREEN = 1;
     private final int BLUE = 2;

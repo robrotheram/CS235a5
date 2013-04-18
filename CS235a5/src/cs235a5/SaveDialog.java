@@ -29,7 +29,7 @@ public class SaveDialog {
      * @param TabPannel The programs TabPannel
      */
     
-    public SaveDialog(DataSet db, TabPannel tp){
+    public SaveDialog(DataSet db, TabPanel tp){
         if(!setDataSet(db)){
             System.out.println("SaveDialog.SetDataSet()-Failed to"
                     + " set the DataSet");
@@ -54,7 +54,7 @@ public class SaveDialog {
      * @param TabPannel 
      * @return boolean True if set Correctly
      */
-    private boolean setTabPannel(TabPannel tp){
+    private boolean setTabPannel(TabPanel tp){
         m_tp = tp;
         return true;
     
@@ -160,6 +160,6 @@ public class SaveDialog {
     }
     
     private DataSet m_db;
-    private TabPannel m_tp;
+    private TabPanel m_tp;
     
 }

@@ -72,7 +72,7 @@ public class VisualiserGUI extends JFrame
         }
    
     // Creates the table and chart display areas of the GUI
-    m_chartTabPanel = new TabPannel();
+    m_chartTabPanel = new TabPanel();
     
     m_pLeft = new JPanel();
     m_pLeft.setLayout(new BorderLayout());
@@ -393,7 +393,7 @@ public class VisualiserGUI extends JFrame
                     m_pLeft.add(new TableView(m_db,true),BorderLayout.CENTER);
                     m_pLeft.validate();
 
-                    m_chartTabPanel = new TabPannel();
+                    m_chartTabPanel = new TabPanel();
                     m_SplitPane.setLeftComponent(m_pLeft);
                     m_SplitPane.setRightComponent(m_chartTabPanel);
                     m_SplitPane.validate();
@@ -512,7 +512,7 @@ public class VisualiserGUI extends JFrame
     
     /** Data and Chart components */
     private JPanel m_tableAndCharts; 
-    private TabPannel m_chartTabPanel;
+    private TabPanel m_chartTabPanel;
     private TableView m_tablePane;
     
     private JSplitPane m_SplitPane;
