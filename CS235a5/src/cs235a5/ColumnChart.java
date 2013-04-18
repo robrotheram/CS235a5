@@ -208,9 +208,6 @@ public class ColumnChart extends Chart {
             if(!super.isUnique(super.GetDataSet().GetCell(super.GetXColumnPosition(), i).toString())){
                 for(j = pos; j < super.GetDataSet().GetNumOfRows()-1; j++ ){
                     if(preVal.toString().equals(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).toString())){
-
-
-                        //Check if datatype is a number
                         if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.INTEGER){
                             sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), j).GetInteger();  
                         }else if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.DOUBLE){
@@ -229,9 +226,18 @@ public class ColumnChart extends Chart {
                 preVal = super.GetDataSet().GetCell(super.GetXColumnPosition(), i++);
                 sum=0;//
                 pos++;	            
+            }
+        }
+        for(j = pos; j < super.GetDataSet().GetNumOfRows()-1; j++ ){
+            if(super.m_foundElements.get(super.m_foundElements.size()-1).equals(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).toString())){
+                if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.INTEGER){
+                    sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), j).GetInteger();  
+                }else if(super.GetDataSet().GetCell(super.GetXColumnPosition(), j).GetDataType()==DataType.DOUBLE){
+                    sum += super.GetDataSet().GetCell(super.GetYColumnPosition(), j).GetDouble(); 
                 }
             }
-        
+        }
+        dataset.addValue(sum, super.GetTitle(),preVal.GetString());
         return dataset;
     }
    

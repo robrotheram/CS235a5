@@ -30,7 +30,7 @@ public class testAlg {
          
          
         int size = 0;
-        double sum = 0;
+        int sum = 0;
         int pos = 0;
         int j = 0;        
         DataCell preVal =db.GetCell(0, 0);
@@ -40,13 +40,12 @@ public class testAlg {
 
             if(!isUnique(db.GetCell(xPos, i).toString())){
                 for(j = pos; j < db.GetNumOfRows()-1; j++ ){
+                   //System.out.println("loop");
                     if(preVal.toString().equals(db.GetCell(xPos, j).toString())){
-
-
-                        //Check if datatype is a number
+                       //System.out.println("loop");
                         if((db.GetCell(xPos, j).GetDataType()==DataType.INTEGER)||((db.GetCell(xPos, j).GetDataType()==DataType.DOUBLE))){
                             sum += db.GetCell(yPos, j).GetDouble();  
-                            //System.out.println("sum = "+sum+" | at postition"+db.GetCell(xPos, j).GetDouble());
+                            System.out.println("sum = "+sum+" | at postition"+db.GetCell(xPos, j).GetDouble());
                         }
                     }  
                 }
@@ -55,7 +54,7 @@ public class testAlg {
 
                 //Add to chart dataSet
                 
-                dataset.add(new int[]{((int)sum),preVal.GetInteger()});
+                dataset.add(new int[]{sum,preVal.GetInteger()});
 
 
 
@@ -64,6 +63,16 @@ public class testAlg {
                 pos++;             
                 }
             }
+        for(j = pos; j < db.GetNumOfRows()-1; j++ ){
+            if(m_foundElements.get(m_foundElements.size()-1).equals(db.GetCell(xPos, j).toString())){
+                 if((db.GetCell(xPos, j).GetDataType()==DataType.INTEGER)||((db.GetCell(xPos, j).GetDataType()==DataType.DOUBLE))){
+                    sum += db.GetCell(yPos, j).GetDouble();  
+                 }
+            }
+        }
+        dataset.add(new int[]{sum,preVal.GetInteger()});
+        outUV();
+        out();
          
     }
     
@@ -98,7 +107,6 @@ public class testAlg {
     
     public static void main(String[] args){
         testAlg t = new testAlg(0,4);
-        t.outUV();
-        t.out();
+        
     }
 }
