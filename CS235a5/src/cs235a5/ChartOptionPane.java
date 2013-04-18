@@ -150,6 +150,8 @@ public class ChartOptionPane extends JFrame{
         this.setSize(new Dimension(500, 480));
         this.add(m_chartListPanel, BorderLayout.LINE_START);
         this.add(m_rightPanel, BorderLayout.LINE_END);
+        
+        changeLabel();
         this.setVisible(true);
         
     }
@@ -322,7 +324,16 @@ public class ChartOptionPane extends JFrame{
 
             @Override
             public void valueChanged(ListSelectionEvent lse) {
-                if(GetChartType() == AREACHART){
+                
+                changeLabel();
+            
+            }
+        });
+ 
+        
+    }
+    private void changeLabel(){
+        if(GetChartType() == AREACHART){
                      m_xAxisLabel.setText("X Axis Data");
                      m_yAxisLabel.setText("Y Axis Data");
                 } else if (GetChartType() == POLARCHART){
@@ -345,15 +356,6 @@ public class ChartOptionPane extends JFrame{
                     m_yAxisLabel.setText("Y Axis Data");
                     
                 } 
-                
-            
-            }
-        });
-        
-        
-        
-        
-        
     }
     
     /**
