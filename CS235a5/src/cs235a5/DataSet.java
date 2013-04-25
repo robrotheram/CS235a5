@@ -143,7 +143,14 @@ public class DataSet {
         }
         return r;
     }
-    
+    /**
+     * Method to override the object toSrting method and return instead the Chart
+     * @return 
+     */
+    @Override
+    public String toString(){
+        return m_filePath;
+    }
     
     private DataCell[][] m_dataSet;
     private String[] m_Header;

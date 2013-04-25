@@ -5,6 +5,10 @@
 package cs235a5;
 
 import TestUI.Test;
+import animation.Animation;
+import animation.AnimationSpeed;
+import animation.AnimationType;
+import animation.AnimationWait;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -19,6 +23,7 @@ import java.awt.event.ItemListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -49,6 +54,19 @@ import javax.swing.event.ListSelectionListener;
  *
  */
 public class ChartOptionPane extends JFrame{
+    
+    private final Dimension COLORDIPLAYSZIE = new Dimension(200,20);
+    private final Dimension IHATEBOBCODECONVENSIONS = new Dimension(200,50);
+    private final Dimension CHARTLISTSIZE =new Dimension(185, 60);
+    private final Dimension CHARTLIST = new Dimension(350, 300);
+    private final Dimension BUTTONSIZE = new Dimension(350, 100);
+    private final Dimension LABLESIZE = new Dimension(200, 30);
+    private final Dimension RIGHPANELSIZE =new Dimension(300, 300);
+    private final Dimension PANELSIZE =new Dimension(800, 575);
+    private final int ColorPostion1 = 1;
+    private final int ColorPostion2 = 2;
+    private final int ColorPostion3 = 3;
+    private final Border BOARDER =BorderFactory.createEmptyBorder(10,10,10,30);
     /**
      * Constructor that passes all data from the main GUI needed to create charts
      * @param selectedChartIndex  The place in the list of charts
@@ -62,7 +80,7 @@ public class ChartOptionPane extends JFrame{
      */
     public ChartOptionPane(int selectedChartIndex, ImageIcon[] chartImages,
              String[] chartNames, String[] chartDescriptions, Integer[] intArray
-            , DataSet db, VisualiserGUI.GUIHandler handler, TabPanel tabs){
+            , DataSet[] db, VisualiserGUI.GUIHandler handler, TabPanel tabs){
         
         m_cnt = this;
         // Set all data needed to make charts
@@ -70,18 +88,26 @@ public class ChartOptionPane extends JFrame{
         m_chartStrings = chartNames;
         m_chartImageDescriptions = chartDescriptions;
         m_intArray = intArray;
+        listModel = new DefaultListModel();
+        SlideShowList = new DefaultListModel();
+        for(int i = 0; i <intArray.length;i++){
+            listModel.addElement(intArray[i]);
+        }
+        
+        
+        
         m_db = db;
         m_tabs = tabs;
         this.handler = handler;
+        SlideShow = new Animation();
         
         // Set up and create the chart selection list
         m_chartListPanel = new JPanel(); 
         m_userColourDisplay = new JPanel();
-        m_userColourDisplay.setPreferredSize(new Dimension(200,20));        
-        m_chartList = new JList(m_intArray);
-        m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
-                m_chartImages, m_chartImageDescriptions);
-        m_chartListRenderer.setPreferredSize(new Dimension(185, 60));
+        m_userColourDisplay.setPreferredSize(COLORDIPLAYSZIE);        
+        m_chartList = new JList(listModel);
+        m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer( m_chartImages, m_chartImageDescriptions);
+        m_chartListRenderer.setPreferredSize(CHARTLISTSIZE);
         m_chartList.setCellRenderer(m_chartListRenderer);
         m_chartList.setSelectedIndex(selectedChartIndex);
         Border m_loweredEtched = 
@@ -90,45 +116,115 @@ public class ChartOptionPane extends JFrame{
                        m_loweredEtched, "Pick a Chart");
         m_chartListPanel.setBorder(m_titledBorder);
         m_chartListPanel.add(m_chartList);
-        m_chartListPanel.setSize(new Dimension(350, 300));
+        m_chartListPanel.setSize(CHARTLIST);
+        
+        // Add animation pannel
+        m_AnimationListPanel = new JPanel(); 
+        m_AnimationListPanel.setLayout(new BorderLayout());
+        m_userColourDisplay = new JPanel();
+        m_userColourDisplay.setPreferredSize(COLORDIPLAYSZIE);        
+        m_AnimationList = new JList(SlideShowList);
+        m_chartListRenderer = new ChartOptionPane.ComboBoxRenderer(
+                m_chartImages, m_chartImageDescriptions);
+        m_chartListRenderer.setPreferredSize(CHARTLISTSIZE);
+        m_AnimationList.setCellRenderer(m_chartListRenderer);
+        m_AnimationList.setSelectedIndex(selectedChartIndex);
+        Border aniListPanelBorder = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+        
+        TitledBorder aniListTileBorder = BorderFactory.createTitledBorder(
+                      aniListPanelBorder , "Slide Show List");
+        m_AnimationListPanel.setBorder(aniListTileBorder);
+        m_AnimationListPanel.add(new JScrollPane(m_AnimationList), BorderLayout.CENTER);
+        m_AnimationListPanel.setSize(CHARTLIST);
+        
+        m_SlideShow = new JButton("Start Slide Show");
+        m_deleteSlide = new JButton("Delete Slide");
+        AnimationSpeed[] s = new AnimationSpeed[]{AnimationSpeed.VERYFAST,
+            AnimationSpeed.FAST,AnimationSpeed.SLOW};
+        AnimationWait[] w = new AnimationWait[]{AnimationWait.VERYLONG,
+            AnimationWait.LONG,AnimationWait.MEDIUM,AnimationWait.SHORT,AnimationWait.VERYSHORT};
+        
+        m_speed = new JComboBox(s);
+        m_wait = new JComboBox(w);
+        JLabel speedL = new JLabel("Animation Speed:");
+        JLabel waitL = new JLabel("Animation Wait Time:");
+        
+        m_buttonPanel = new JPanel();
+        m_buttonPanel.setLayout(new FlowLayout());
+        m_buttonPanel.add(speedL);
+        m_buttonPanel.add(m_speed);
+        m_buttonPanel.add(waitL);
+        m_buttonPanel.add(m_wait);
+        m_buttonPanel.add(m_SlideShow);
+        m_buttonPanel.add(m_deleteSlide);
+        m_buttonPanel.setPreferredSize(BUTTONSIZE);
+        m_AnimationListPanel.add(m_buttonPanel,BorderLayout.SOUTH);
+        
+        
+        
         
         //Set up and create the right option panel
         m_rightPanel = new JPanel(new FlowLayout());
-        m_rightPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
-                10,30));
+        m_rightPanel.setBorder(BOARDER);
         m_titleLabel = new JLabel("Chart Title");
         m_chartTitle = new JTextField();
-        m_chartTitle.setPreferredSize(new Dimension(200, 30));
+        m_chartTitle.setPreferredSize(LABLESIZE);
+        
+        m_datasetLabel = new JLabel("Choose DataSet");
+        m_datasetBox = new JComboBox(db);
+        m_datasetBox.setPreferredSize(LABLESIZE);
+        m_datasetBox.setAlignmentX(Component.CENTER_ALIGNMENT);
+        m_datasetBox.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                int pos =m_datasetBox.getSelectedIndex();
+           
+                if(pos>-1){
+                    m_xAxisData.removeAllItems();
+                    m_yAxisData.removeAllItems();
+               
+                
+                m_data = m_db[pos];
+                m_colNames = m_db[pos].GetHeader();
+                if(!m_db[pos].isEmpty()){
+                    for(int i =0; i < m_colNames.length; i++){
+                        m_xAxisData.addItem(m_colNames[i]);
+                        m_yAxisData.addItem(m_colNames[i]);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Please create or "
+                                + "import some data before making a chart. ", 
+                                "Inane Error", JOptionPane.ERROR_MESSAGE);
+                }
+                
+            }
+            }
+        });
+        
+        
         m_xAxisLabel = new JLabel("X Axis Data");
         m_xAxisData = new JComboBox();
-        m_xAxisData.setPreferredSize(new Dimension(200,30));
+        m_xAxisData.setPreferredSize(LABLESIZE);
         m_xAxisData.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         m_yAxisLabel = new JLabel("Y Axis Data");
         m_yAxisData = new JComboBox();
-        m_yAxisData.setPreferredSize(new Dimension(200,30));
+        m_yAxisData.setPreferredSize(LABLESIZE);
         m_authorLabel = new JLabel("Chart Author");
         m_chartAuthor = new JTextField();
-        m_chartAuthor.setPreferredSize(new Dimension(200, 30));
+        m_chartAuthor.setPreferredSize(LABLESIZE);
         m_descriptionLabel = new JLabel("Chart Description");
         m_chartDescription = new JTextField();
-        m_chartDescription.setPreferredSize(new Dimension(200, 30));
+        m_chartDescription.setPreferredSize(LABLESIZE);
         m_yAxisData.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         //populate combo boxes with values from the table data
-            m_colNames = db.GetHeader();
-        if(!m_db.isEmpty()){
-            for(int i =0; i < m_colNames.length; i++){
-                m_xAxisData.addItem(m_colNames[i]);
-                m_yAxisData.addItem(m_colNames[i]);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Please create or "
-                        + "import some data before making a chart. ", 
-                        "Inane Error", JOptionPane.ERROR_MESSAGE);
-        }
+        
         // Add components to the chart option panel
-        m_acceptButton = new JButton("OK");
+        m_acceptButton = new JButton("Add Chart");
         m_cancelButton = new JButton("Cancel");
+        m_addSlideShow = new JButton("Add to SlideShow");
+        m_rightPanel.add(m_datasetLabel);
+        m_rightPanel.add(m_datasetBox);
         m_rightPanel.add(m_titleLabel);
         m_rightPanel.add(m_chartTitle);
         m_rightPanel.add(m_xAxisLabel);
@@ -143,13 +239,15 @@ public class ChartOptionPane extends JFrame{
         m_rightPanel.add(m_colourCheck);
         m_rightPanel.add(m_userColourDisplay);
         m_rightPanel.add(m_acceptButton);
+        m_rightPanel.add(m_addSlideShow);
         m_rightPanel.add(m_cancelButton);
-        m_rightPanel.setPreferredSize(new Dimension(300, 300));
+        m_rightPanel.setPreferredSize(RIGHPANELSIZE);
         addHandlers();
         this.setLayout(new BorderLayout());
-        this.setSize(new Dimension(500, 480));
-        this.add(m_chartListPanel, BorderLayout.LINE_START);
-        this.add(m_rightPanel, BorderLayout.LINE_END);
+        this.setSize(PANELSIZE);
+        this.add(m_chartListPanel, BorderLayout.WEST);
+        this.add(m_rightPanel, BorderLayout.CENTER);
+        this.add(m_AnimationListPanel,BorderLayout.EAST);
         
         changeLabel();
         this.setVisible(true);
@@ -218,11 +316,11 @@ public class ChartOptionPane extends JFrame{
         } else {
             if(colours == 0){
                 return m_defaultColour;
-            } else if (colours == 1){
+            } else if (colours == ColorPostion1){
                 return m_coolColour;
-            } else if (colours == 2){
+            } else if (colours == ColorPostion2){
                 return m_warmColour;
-            } else if (colours == 3){
+            } else if (colours == ColorPostion3){
                 return m_colourBlindMap;
             } else {
                 return m_purpleMonoColour;
@@ -253,63 +351,56 @@ public class ChartOptionPane extends JFrame{
                }
             }
         });
+        
+       m_addSlideShow.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                SlideShowList.addElement(GetChartType());
+                m_data = m_db[0];
+                JPanel ch1 = getChart();
+                m_data = m_db[1];
+                JPanel ch2 = getChart();
+                SlideShow.addBiCharts(
+                        ch1, 
+                        ch2, 
+                        AnimationType.LEFT, 
+                        (AnimationSpeed) m_speed.getSelectedItem(), 
+                        (AnimationWait) m_wait.getSelectedItem());
+             
+                        
+            } 
+       });
+       m_SlideShow.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                SlideShow.setSpeed((AnimationSpeed) m_speed.getSelectedItem());
+                SlideShow.setWait((AnimationWait) m_wait.getSelectedItem());
+                
+                SlideShow.setVisible(true);
+                        
+            } 
+       });
+     m_deleteSlide.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                SlideShowList.removeElementAt(m_AnimationList.getSelectedIndex());
+                SlideShow.removeSlide(m_AnimationList.getSelectedIndex() );
+            } 
+       });
+       
+       
+       
+        
         m_acceptButton.addActionListener(new ActionListener(){
             //private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
             //, PIECHART = 4, SCATTERPLOT = 5;
             @Override
             public void actionPerformed(ActionEvent event) {
-                if(GetChartType() == AREACHART){
-                    AreaChart areaChart = new AreaChart(m_db, GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), areaChart);
-                    setVisible(false);
-                } else if (GetChartType() == POLARCHART){
-                    PolarPlot polarChart = new PolarPlot(m_db, GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), polarChart);
-                    setVisible(false);
-                } else if (GetChartType() == BARCHART){
-                    ColumnChart barChart = new ColumnChart(m_db, GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), barChart);
-                    setVisible(false);
-                } else if (GetChartType() == LINECHART){
-                    LineChart lineChart = new LineChart(m_db, GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), lineChart);
-                    setVisible(false);
-                } else if (GetChartType() == PIECHART){
-                    PieChart pieChart = new PieChart(m_db, GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), pieChart);
-                    setVisible(false);
-                } else if (GetChartType() == BUBBLECHART){
-                    BubbleChart bubbleChart = new BubbleChart(m_db, 
-                            GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), bubbleChart);
-                    setVisible(false);
-                } else if (GetChartType() == SCATTERPLOT){
-                    ScatterPlotChart scatterChart = new ScatterPlotChart(m_db, 
-                            GetXData(), 
-                            GetYData(), GetTitle(),new Rectangle(0,0,
-                            m_tabs.getWidth(),m_tabs.getWidth()),
-                            GetColours(), GetAuthor(), GetDescription());
-                    m_tabs.AddTab(GetTitle(), scatterChart);
-                    setVisible(false);
-                }
+                
+                m_tabs.AddTab(GetTitle(),getChart());
             }
         });
         m_cancelButton.addActionListener(new ActionListener() {
@@ -325,13 +416,77 @@ public class ChartOptionPane extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 
-                changeLabel();
+                
             
             }
         });
  
         
     }
+    /**
+     * Method to get the chard depending what the user clicked in the List Box
+     * @return Chart the Bar,PieScatter etc chart with all the data the user inputted
+     */
+    
+    private Chart getChart(){
+        if(GetChartType() == AREACHART){
+                    AreaChart areaChart = new AreaChart(m_data, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(areaChart);
+                    
+                } else if (GetChartType() == POLARCHART){
+                    PolarPlot polarChart = new PolarPlot(m_data, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(polarChart);
+                    
+                } else if (GetChartType() == BARCHART){
+                    ColumnChart barChart = new ColumnChart(m_data, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(barChart);
+                    
+                } else if (GetChartType() == LINECHART){
+                    LineChart lineChart = new LineChart(m_data, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(lineChart);
+                    
+                } else if (GetChartType() == PIECHART){
+                    PieChart pieChart = new PieChart(m_data, GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(pieChart);
+                    
+                } else if (GetChartType() == BUBBLECHART){
+                    BubbleChart bubbleChart = new BubbleChart(m_data, 
+                            GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return(bubbleChart);
+                    
+                } else if (GetChartType() == SCATTERPLOT){
+                    ScatterPlotChart scatterChart = new ScatterPlotChart(m_data, 
+                            GetXData(), 
+                            GetYData(), GetTitle(),new Rectangle(0,0,
+                            m_tabs.getWidth(),m_tabs.getWidth()),
+                            GetColours(), GetAuthor(), GetDescription());
+                    return scatterChart;
+                }else{
+                    return null;
+                }
+                
+    }
+    /**
+     * Method for changing the Axis labels depending what chart is used
+     */
     private void changeLabel(){
         if(GetChartType() == AREACHART){
                      m_xAxisLabel.setText("X Axis Data");
@@ -379,9 +534,9 @@ public class ChartOptionPane extends JFrame{
         m_colourMapList = new JComboBox(m_intArray2);
         m_colourMapListRenderer = new ChartOptionPane.ComboBoxRenderer(
                 m_colourKeys, m_colourMapNames);
-        m_colourMapListRenderer.setPreferredSize(new Dimension(200, 50));
+        m_colourMapListRenderer.setPreferredSize(IHATEBOBCODECONVENSIONS);
         m_colourMapList.setRenderer(m_colourMapListRenderer);
-        m_colourMapList.setMaximumRowCount(3);
+        m_colourMapList.setMaximumRowCount(ColorPostion3);
         
         //m_colourMapList.addActionListener(handler);
         m_colourListPanel.add(m_colourMapList, BorderLayout.PAGE_START);
@@ -432,7 +587,7 @@ public class ChartOptionPane extends JFrame{
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());
             } else {
-                setBackground(list.getBackground());
+                setBackground(m_cnt.getBackground());
                 setForeground(list.getForeground());
             }
 
@@ -460,17 +615,21 @@ public class ChartOptionPane extends JFrame{
             setText(uhOhText);
         }
     }
+    private Animation SlideShow;
+    private ChartOptionPane m_cnt;
+    private DefaultListModel listModel,SlideShowList;
+    private DataSet m_data;
     private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
             , PIECHART = 4, BUBBLECHART = 5, SCATTERPLOT = 6;
     private JPanel m_chartListPanel;
-    private JPanel m_rightPanel;
+    private JPanel m_rightPanel,m_AnimationListPanel,m_buttonPanel;
     private JLabel m_titleLabel, m_authorLabel, m_descriptionLabel,
-            m_xAxisLabel, m_yAxisLabel;
-    private DataSet m_db;
+            m_xAxisLabel, m_yAxisLabel,m_datasetLabel;
+    private DataSet[] m_db;
     private JTextField m_chartTitle, m_chartAuthor, m_chartDescription;
-    private JComboBox m_xAxisData, m_yAxisData, m_colourMapList;
-    public static JButton m_acceptButton, m_cancelButton;
-    private JList m_chartList;
+    private JComboBox m_xAxisData, m_yAxisData, m_colourMapList,m_datasetBox,m_speed,m_wait;
+    public static JButton m_acceptButton, m_cancelButton,m_addSlideShow, m_SlideShow, m_deleteSlide;
+    private JList m_chartList, m_AnimationList;
     private ImageIcon[] m_chartImages, m_colourKeys;
     private String[] m_chartStrings, m_chartImageDescriptions, m_colNames;
     private Integer[] m_intArray, m_intArray2;
@@ -507,5 +666,8 @@ public class ChartOptionPane extends JFrame{
     private JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
         m_colour4, m_colour5};
     private ColourMap m_userColours;
-    private ChartOptionPane m_cnt;
+  
 }
+
+
+

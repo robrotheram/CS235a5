@@ -13,18 +13,13 @@ package cs235a5;
  */
 
 // Import File I/O
-import java.io.File;
 
 // Import AWT Library
 import java.awt.*;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 // Import Swing Library
 import javax.swing.*;
@@ -33,15 +28,14 @@ import static javax.swing.SwingConstants.LEFT;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import org.jfree.chart.ChartPanel;
 
 public class VisualiserGUI extends JFrame
 {
- 
-    public void setContext(VisualiserGUI con){
-        m_Context = con;
+    
+
+    public final void setContext(){
+        m_Context = this;
     }
     
   public VisualiserGUI() 
@@ -49,10 +43,11 @@ public class VisualiserGUI extends JFrame
     
       
     // Init Main Window
+    m_numOfDS = 0;
     m_container = getContentPane();
     m_container.setLayout(new BorderLayout());
-    m_Context = this;
-    m_db = new DataSet();
+    setContext();
+    m_db = new DataSet[]{new DataSet(),new DataSet()};
     handler = new VisualiserGUI.GUIHandler();
     
     // Gets users current resolution
@@ -74,16 +69,27 @@ public class VisualiserGUI extends JFrame
     // Creates the table and chart display areas of the GUI
     m_chartTabPanel = new TabPanel();
     
-    m_pLeft = new JPanel();
-    m_pLeft.setLayout(new BorderLayout());
-    m_pLeft.setBackground(Color.DARK_GRAY);
-    m_pLeft.add(new TableView(m_db,true),BorderLayout.CENTER);
-    m_pLeft.validate();
+    m_pTop = new JPanel();
+    m_pTop.setLayout(new BorderLayout());
+    m_pTop.setBackground(Color.DARK_GRAY);
+    m_pTop.add(new TableView(m_db[0],true),BorderLayout.CENTER);
+    m_pTop.validate();
     
-    m_SplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,m_pLeft, m_chartTabPanel);
-    m_SplitPane.setDividerSize(8);
+    m_pBottom = new JPanel();
+    m_pBottom.setLayout(new BorderLayout());
+    m_pBottom.setBackground(Color.BLACK);
+    m_pBottom.add(new TableView(m_db[1],true),BorderLayout.CENTER);
+    m_pBottom.validate();
+    
+    mTableSpitPane =  new JSplitPane(JSplitPane.VERTICAL_SPLIT,m_pTop,m_pBottom);
+    mTableSpitPane.setOneTouchExpandable(true);
+    mTableSpitPane.setResizeWeight(WEIGHT);
+    
+            
+    
+    m_SplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,mTableSpitPane, m_chartTabPanel);
     m_SplitPane.setOneTouchExpandable(false);
-    m_SplitPane.setResizeWeight(0.25);
+    m_SplitPane.setResizeWeight(WEIGHT);
     m_container.add(m_SplitPane, BorderLayout.CENTER);
     
     setPreferredSize(SCREENSIZE);
@@ -165,40 +171,40 @@ public class VisualiserGUI extends JFrame
        
         m_toolbar = new JPanel((LayoutManager) new FlowLayout(FlowLayout.LEFT));
         m_toolbar.setBorder(m_titledBorder);
-        m_toolbar.setPreferredSize(new Dimension(500, 120));
+        m_toolbar.setPreferredSize(BOBTHISWILLCONFUSEYOUIFYOUREADITJUSTGOAWAY);
        
         m_newFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/newDocument.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
-        m_newFileButton.setPreferredSize(new Dimension(50, 50));
+        m_newFileButton.setPreferredSize(BUTTONSIZE);
         m_newFileButton.setToolTipText("New File");
         
         m_openFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/openFile.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
-        m_openFileButton.setPreferredSize(new Dimension(50, 50));
+        m_openFileButton.setPreferredSize(BUTTONSIZE);
         m_openFileButton.setToolTipText("Open File");
         m_saveFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/saveFile.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
-        m_saveFileButton.setPreferredSize(new Dimension(50, 50));
+        m_saveFileButton.setPreferredSize(BUTTONSIZE);
         m_saveFileButton.setToolTipText("Save File");
 
         m_printFileButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/printFile.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
-        m_printFileButton.setPreferredSize(new Dimension(50, 50));
+        m_printFileButton.setPreferredSize(BUTTONSIZE);
         m_printFileButton.setToolTipText("Print File");
          
         m_importButton = new JButton(
                 new ImageIcon(ImageIO.read(this.getClass().getResource(
                 "/assets/images/importIcon.png")).getScaledInstance(
                 40, 40, Image.SCALE_SMOOTH)));
-        m_importButton.setPreferredSize(new Dimension(50, 50));
+        m_importButton.setPreferredSize(BUTTONSIZE);
         m_importButton.setToolTipText("Import CSV File");
         
         //add components
@@ -220,6 +226,7 @@ public class VisualiserGUI extends JFrame
         
         // ------ code to remove the chart the tabpanel is displaying ----///
          m_openFileButton.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent event) {
                 int i = m_chartTabPanel.getSelectedIndex();
                 if(i>-1){
@@ -261,14 +268,13 @@ public class VisualiserGUI extends JFrame
         // Creates the combo box
         m_chartList = new JComboBox(m_intArray);
         m_chartListRenderer = new VisualiserGUI.ComboBoxRenderer();
-        m_chartListRenderer.setPreferredSize(new Dimension(175, 50));
+        m_chartListRenderer.setPreferredSize(SIZE);
         m_chartList.setRenderer(m_chartListRenderer);
-        m_chartList.setMaximumRowCount(3);
+        m_chartList.setMaximumRowCount(THREE);
         
         m_chartList.addActionListener(handler);
         m_chartListPanel.add(m_chartList, BorderLayout.PAGE_START);
-        m_chartListPanel.setBorder(BorderFactory.createEmptyBorder(10,10,
-                10,10));
+        m_chartListPanel.setBorder(BOARDER);
         
     }
     
@@ -294,11 +300,24 @@ public class VisualiserGUI extends JFrame
      * @return true if successful, false if not
      */
     public boolean displayTable(){
-       Rectangle r =  new Rectangle(0,0,m_pLeft.getWidth(),m_pLeft.getWidth());
-       //System.out.println(m_displayArea.getWidth() + " " +m_displayArea.getWidth());
-       m_pLeft.removeAll();
-       m_pLeft.add(new TableView(m_db, r),BorderLayout.CENTER);
-       m_pLeft.validate();
+       if(m_numOfDS==0){
+            Rectangle r =  new Rectangle(0,0,m_pTop.getWidth(),m_pTop.getWidth());
+           //System.out.println(m_displayArea.getWidth() + " " +m_displayArea.getWidth());
+           m_pTop.removeAll();
+           m_pTop.add(new TableView(m_db[m_numOfDS], r),BorderLayout.CENTER);
+           m_numOfDS++;
+           m_pTop.validate();
+           
+       }else if(m_numOfDS==1){
+           Rectangle r =  new Rectangle(0,0,m_pBottom.getWidth(),m_pBottom.getWidth());
+           //System.out.println(m_displayArea.getWidth() + " " +m_displayArea.getWidth());
+           m_pBottom.removeAll();
+           m_pBottom.add(new TableView(m_db[m_numOfDS], r),BorderLayout.CENTER);
+           m_numOfDS++;
+           m_pBottom.validate();
+           
+       }
+       
        return true;
     }
     
@@ -373,6 +392,7 @@ public class VisualiserGUI extends JFrame
 
     public class GUIHandler implements ActionListener{
         
+        @Override
         public void actionPerformed(ActionEvent event) {
             
             
@@ -380,30 +400,55 @@ public class VisualiserGUI extends JFrame
             
             if((event.getSource() == m_importButton)||(event.getSource() == m_newMenuImport)){
                 //creates a new CSVFileDialog for opening CSV files
-                JFrame getFile = new CSVReaderDialog(m_db , m_Context);
-                getFile.setVisible(true);
+                if((m_numOfDS == 0)||(m_numOfDS > 1)){
+                 m_numOfDS = 0;
+                 JFrame getFile = new CSVReaderDialog(m_db[0], m_Context);
+                 getFile.setVisible(true);  
+                }else if(m_numOfDS == 1){
+                    int i = JOptionPane.showConfirmDialog (null, "Would You Like to inport a second dataset","Warning",JOptionPane.YES_NO_CANCEL_OPTION);
+                    if(i == JOptionPane.YES_OPTION){
+                        JFrame getFile = new CSVReaderDialog(m_db[1], m_Context);
+                        getFile.setVisible(true); 
+                    }else if(i== JOptionPane.CANCEL_OPTION){
+                        
+                    }else if(i == JOptionPane.NO_OPTION){
+                        JFrame getFile = new CSVReaderDialog(m_db[0], m_Context);
+                        getFile.setVisible(true); 
+                    }
+                  
+                }else{
+                }
+                
                 
             } else if ((event.getSource() == m_newFileButton)||(event.getSource() == m_newMenuItem)){
                 
                 int i = JOptionPane.showConfirmDialog (null, "Would You Like to Over Overwrite the data","Warning",JOptionPane.YES_NO_OPTION);
                 if(i == JOptionPane.YES_OPTION){
-                    m_db = new DataSet();
-                    m_pLeft.removeAll();
-                    m_pLeft.add(new TableView(m_db,true),BorderLayout.CENTER);
-                    m_pLeft.validate();
+                    m_numOfDS = 0;
+                    m_db[0] = new DataSet();
+                    m_pTop.removeAll();
+                    m_pTop.add(new TableView(m_db[0],true),BorderLayout.CENTER);
+                    m_pTop.validate();
+                    m_db[1] = new DataSet();
+                    m_pBottom.removeAll();
+                    m_pBottom.add(new TableView(m_db[1],true),BorderLayout.CENTER);
+                    m_pBottom.validate();
 
+                    mTableSpitPane.setTopComponent(m_pTop);
+                    mTableSpitPane.setTopComponent(m_pBottom);
+                    
                     m_chartTabPanel = new TabPanel();
-                    m_SplitPane.setLeftComponent(m_pLeft);
+                    m_SplitPane.setLeftComponent(mTableSpitPane);
                     m_SplitPane.setRightComponent(m_chartTabPanel);
                     m_SplitPane.validate();
                 }
 
                 
             }else if(event.getSource() == CloudOption){
-                CloudDialog cd = new CloudDialog(m_db,m_Context);
+                CloudDialog cd = new CloudDialog(m_db[0],m_Context);
             } else if ((event.getSource() == m_openFileButton)||(event.getSource() == m_openMenuItem)){
                 
-                OpenDialog o = new OpenDialog(m_db,m_chartTabPanel,m_Context);
+                OpenDialog o = new OpenDialog(m_db[0],m_chartTabPanel,m_Context);
                 o.ReadFile();
 
             } else if ((event.getSource() == m_saveFileButton)||(event.getSource() == m_saveMenuItem)){
@@ -412,14 +457,14 @@ public class VisualiserGUI extends JFrame
                     JOptionPane.showMessageDialog(m_container, "You can not save that you have not made ", 
                         "Insane Error", JOptionPane.ERROR_MESSAGE);
                 }else{
-                    SaveDialog s = new SaveDialog(m_db,m_chartTabPanel);
+                    SaveDialog s = new SaveDialog(m_db[0],m_chartTabPanel);
                     s.SaveFile();
                 }   
             } else if(event.getSource() ==m_exitMenuItem )
             {
                  if(m_chartTabPanel.GetNumOfCharts()>0){
                     
-                    SaveDialog s = new SaveDialog(m_db,m_chartTabPanel);
+                    SaveDialog s = new SaveDialog(m_db[0],m_chartTabPanel);
                     s.SaveFile();
                  } 
                  System.exit(0);
@@ -434,7 +479,7 @@ public class VisualiserGUI extends JFrame
                     }
                  }
             } else if ((event.getSource() == m_chartList)||(event.getSource() ==  m_chartsMenu)){
-                if (m_db.isEmpty()){
+                if (m_db[0].isEmpty()){
                     JOptionPane.showMessageDialog(m_container, "Please create or "
                         + "add some data before meking a chart. ", 
                         "Inane Error", JOptionPane.ERROR_MESSAGE);
@@ -462,12 +507,13 @@ public class VisualiserGUI extends JFrame
     }
 }
     /** Main container objects */
+    private int m_numOfDS;
     private Container m_container;
     private final Toolkit KIT;
     private final Dimension SCREENSIZE;
     private final int AREACHART = 0, POLARCHART = 1, BARCHART = 2, LINECHART = 3
             , PIECHART = 4, SCATTERPLOT = 5;
-    private DataSet m_db;
+    private DataSet[] m_db;
     private VisualiserGUI m_Context;
     private VisualiserGUI.GUIHandler handler;
     
@@ -514,14 +560,22 @@ public class VisualiserGUI extends JFrame
     private TabPanel m_chartTabPanel;
     private TableView m_tablePane;
     
-    private JSplitPane m_SplitPane;
+    private JSplitPane m_SplitPane, mTableSpitPane;
     private VisualiserGUI m_cnt;
-    private JPanel m_pLeft;
-    private JPanel m_pRight;
+    private JPanel m_pTop, m_pBottom;
+ 
     public static JPanel m_colour1, m_colour2, m_colour3, m_colour4, m_colour5;
-    public static JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
+
+    public  JPanel[] m_userPanels = new JPanel[] {m_colour1, m_colour2, m_colour3,
         m_colour4, m_colour5};
     
+    
+    private final double WEIGHT = 0.5;
+    private final Dimension BUTTONSIZE = new Dimension(50,50);
+    private final Dimension BOBTHISWILLCONFUSEYOUIFYOUREADITJUSTGOAWAY = new Dimension(500, 120);
+    private final Border BOARDER  = BorderFactory.createEmptyBorder(10,10,10,10); 
+    private final int THREE = 3;
+    private final Dimension SIZE = new Dimension(175, 50);
 
 
 }
