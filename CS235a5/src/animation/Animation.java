@@ -1,3 +1,16 @@
+/**
+ * \file Animation.java
+ * 
+ * \author Robert Fletcher
+ * 
+ * \date 25/04/2013
+ * 
+ * \brief This class contains the UI for the slideshow and also the arraylist containing all the slides. 
+ *  to run the silde show instantiate this class use the method addBiCharts to add 2
+ * charts into a slide for the slide show. the set this class to visible and click the begin button
+ * 
+ */
+
 package animation;
 
 import static animation.AnimationType.LEFT;
@@ -18,10 +31,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Robert Fletcher
- */
 public class Animation extends JFrame {
     private ArrayList<Slide> slide = new ArrayList<Slide>();
     private boolean run;
@@ -30,6 +39,9 @@ public class Animation extends JFrame {
     private AnimationSpeed speed; 
     private AnimationWait wait;
     
+    /**
+     * Constructor that sets up the main ui
+     */
     public Animation(){
         
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -107,6 +119,14 @@ public class Animation extends JFrame {
         });   
         
     }
+    /**
+     * Function to add a slide to the slide show. It will take in 2 charts and add the slide to the Main ui,
+     * @param ch1 Chart on the left side
+     * @param ch2 Chart on the right side
+     * @param t Animation Type
+     * @param s Animation Slide Speed
+     * @param w Animation wait time
+     */
     public void addBiCharts(JPanel ch1,JPanel ch2,AnimationType t,AnimationSpeed s,AnimationWait w){
 
         JPanel c = new JPanel();
@@ -121,21 +141,32 @@ public class Animation extends JFrame {
         main.revalidate();
         main.repaint();
     }
+    /**
+     * Remove a slide from the slideshow
+     * @param pos position in the Slideshow list. 
+     */
     public void removeSlide(int pos){
         slide.remove(pos);
     }
 
-
+    /**
+     * method to set the animation slide in and out speed
+     * @param Animation speed
+     */
     public void setSpeed(AnimationSpeed s){
         speed = s;
     }
+    /**
+     * Set the animation wait time once the slide has been slid in
+     * @param AnimationWait 
+     */
     public void setWait(AnimationWait w){
         wait = w;
     }
     
-    public JPanel getMain(){
-        return main;
-    }
+    /**
+     * Private class to start the slide show.
+     */
     private class slideshow extends Thread{
         
         public void run(){

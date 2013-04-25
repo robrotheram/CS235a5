@@ -1,22 +1,44 @@
+/**
+ * \file  Slide.java
+ * 
+ * \author Robert Fletcher
+ * 
+ * \date 25/04/2013
+ * 
+ * \brief The class that extends the slide class contains spicfic methods for the animation
+ * 
+ */
+
 package animation;
 
 import java.awt.Rectangle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 public class SlideLeft extends Slide {
     private SlideLeft cont;
 
+    /**
+     * Class Constructor that creates the slide
+     * @param JPanel slide 
+     * @param JPanel the panel the slide will be in 
+     * @param s Animation Speed
+     * @param w Animation pause time
+     * @param anitype Type of animation
+     */
     public SlideLeft(JPanel content,JPanel cnt,AnimationSpeed s,AnimationWait w){
        super(content,cnt,s,w,AnimationType.LEFT);
        cont = this;
     }
-    
+    /**
+     * Method to start the slide in animation
+     */
     public void start(){
         super.start(new animation());
 }
 
+    /**
+     * class that contains the animation 
+     */
 private class animation extends Thread{
     
     @Override
@@ -40,7 +62,9 @@ private class animation extends Thread{
 }
     
     
-
+/**
+ * class that contains the slide in animation
+ */
 
 private class slideout extends Thread{
     
@@ -63,6 +87,9 @@ private class slideout extends Thread{
     
 }
 
+/**
+ * Class that contains the animation for sliding in
+ */
 
 private class slidein extends Thread{
     
