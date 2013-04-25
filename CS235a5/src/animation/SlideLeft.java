@@ -73,6 +73,7 @@ private class slideout extends Thread{
         for(int i = 0; i<= cont.getSize().getWidth(); i++){
             if(cont.isRun()){
                 cont.getMain().setBounds(new Rectangle(i,0,cont.getSize().getBounds().width,cont.getSize().getBounds().height));
+                cont.getMain().updateUI();
                 try {
                     slideout.sleep(cont.getSpeed().getValue());
                 } catch (InterruptedException ex) {
@@ -99,6 +100,7 @@ private class slidein extends Thread{
         for(int i = -(cont.getSize().getBounds().width); i!=0; i++){
             if(cont.isRun()){
                 cont.getMain().setBounds(new Rectangle(i,0,cont.getSize().getBounds().width,cont.getSize().getBounds().height));
+               cont.getMain().updateUI();
                 try {
                     slidein.sleep(cont.getSpeed().getValue());
                 } catch (InterruptedException ex) {
