@@ -56,7 +56,7 @@ public class Slide {
      * pause the slideshow
      */
     
-    public void pause(){
+   public void pause(){
         run = false;
     }
     /**
@@ -71,42 +71,42 @@ public class Slide {
      * check if the slideshow is running
      * @return boolean true if running
      */
-    public boolean isRun(){
+    boolean isRun(){
         return run;
     }
     /**
      * get the size of the slideshow pane
      * @return 
      */
-    public JPanel getSize(){
+     JPanel getSize(){
         return size;
     }
     /**
      * Get the wait time of the animation
      * @return 
      */
-    public int getWait(){
+     int getWait(){
         return wait;
     }
     /**
      * get the speed of the animation
      * @return 
      */
-    public AnimationSpeed getSpeed(){
+    AnimationSpeed getSpeed(){
         return speed;
     }
     /**
      * Set the wait time of the animation
      * @param AnimationWait 
      */
-    public void setWait(AnimationWait w){
+     void setWait(AnimationWait w){
         wait = w.getTime();
     }
     /**
      * Set the animation slide in and out speed;
      * @param AnimationSpeed s
      */
-    public void setSpeed(AnimationSpeed s){
+    void setSpeed(AnimationSpeed s){
        speed = s;
     }
     
@@ -114,14 +114,14 @@ public class Slide {
      * Get the main panel;
      * @return JPanel 
      */
-    public JPanel getMain(){
+    JPanel getMain(){
         return main;
     }
     /**
      * Get the type of animation that is running
      * @return AnimationType
      */
-    public AnimationType getAnimationType(){
+    AnimationType getAnimationType(){
         return at;
     }
     /**

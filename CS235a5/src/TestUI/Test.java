@@ -22,7 +22,7 @@ public class Test {
     private ImageIcon IMAGE;
     private boolean run;
     private boolean passed;
-  
+   
   
 /**
  * Test Constructor Sets up the test variables

@@ -88,7 +88,7 @@ private class slideout extends Thread{
 }
 
 /**
- * Class that contains the animation for sliding in
+ * Class that contains the animation for sliding in the Slide
  */
 
 private class slidein extends Thread{

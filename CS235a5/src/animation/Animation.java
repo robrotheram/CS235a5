@@ -126,8 +126,9 @@ public class Animation extends JFrame {
      * @param t Animation Type
      * @param s Animation Slide Speed
      * @param w Animation wait time
+     * @return Boolean true if sucsessful
      */
-    public void addBiCharts(JPanel ch1,JPanel ch2,AnimationType t,AnimationSpeed s,AnimationWait w){
+    public boolean addBiCharts(JPanel ch1,JPanel ch2,AnimationType t,AnimationSpeed s,AnimationWait w){
 
         JPanel c = new JPanel();
         c.setLayout(new GridLayout(1,2));
@@ -140,28 +141,32 @@ public class Animation extends JFrame {
         main.add(c);
         main.revalidate();
         main.repaint();
+        return true;
     }
     /**
      * Remove a slide from the slideshow
      * @param pos position in the Slideshow list. 
      */
-    public void removeSlide(int pos){
+    public boolean removeSlide(int pos){
         slide.remove(pos);
+        return true;
     }
 
     /**
      * method to set the animation slide in and out speed
      * @param Animation speed
      */
-    public void setSpeed(AnimationSpeed s){
+    public boolean setSpeed(AnimationSpeed s){
         speed = s;
+        return true;
     }
     /**
      * Set the animation wait time once the slide has been slid in
      * @param AnimationWait 
      */
-    public void setWait(AnimationWait w){
+    public boolean setWait(AnimationWait w){
         wait = w;
+        return true;
     }
     
     /**
