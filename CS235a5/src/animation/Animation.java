@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Animation extends JFrame {
@@ -44,7 +43,7 @@ public class Animation extends JFrame {
      * Constructor that sets up the main ui
      */
     public Animation(){
-        m_container = this;
+        
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         main = new JPanel();
@@ -173,7 +172,6 @@ public class Animation extends JFrame {
     /**
      * Private class to start the slide show.
      */
-    private Animation m_container;
     private class slideshow extends Thread{
         
         public void run(){
@@ -191,14 +189,12 @@ public class Animation extends JFrame {
                             System.out.println("Upadte main ui");
                             main.updateUI();
                             pos = i;
-                            main.updateUI();
                             
                             break;
                 } 
                while(sld.getThread().isAlive()){}
-            }  
-            JOptionPane.showMessageDialog(m_container, "Slide Show is complete", "About",JOptionPane.INFORMATION_MESSAGE);
-            m_container.dispose();
+               
+            }
         }
     }
 

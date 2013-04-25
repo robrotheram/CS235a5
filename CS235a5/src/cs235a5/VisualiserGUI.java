@@ -490,7 +490,7 @@ public class VisualiserGUI extends JFrame
                         m_intArray, m_db, handler, m_chartTabPanel);
                 }
             }else if(event.getSource() ==  m_versionMenuItem){
-                JOptionPane.showMessageDialog(m_container, "Data Visuliser 3.0\n"+
+                JOptionPane.showMessageDialog(m_container, "Data Visuliser 2.1\n"+
                                     "Robert Fletcher\n" +
                                     "Kerry Tolhurst\n" +
                                     "William Bray\n" +
@@ -570,7 +570,7 @@ public class VisualiserGUI extends JFrame
         m_colour4, m_colour5};
     
     
-    private final double WEIGHT = 0.15;
+    private final double WEIGHT = 0.5;
     private final Dimension BUTTONSIZE = new Dimension(50,50);
     private final Dimension BOBTHISWILLCONFUSEYOUIFYOUREADITJUSTGOAWAY = new Dimension(500, 120);
     private final Border BOARDER  = BorderFactory.createEmptyBorder(10,10,10,10); 
